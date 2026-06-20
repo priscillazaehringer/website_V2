@@ -66,7 +66,7 @@
       color: var(--text-muted);
       margin: 0 0 var(--s-2);
     }
-    section.feature .eyebrow { color: var(--c-blue); }
+    section.feature .eyebrow { color: var(--c-mint); }
 
     .section-head { margin-bottom: var(--s-5); }
     .section-head p { color: var(--text-muted); }
@@ -132,7 +132,7 @@
 
     .compare { gap: var(--s-3); }
     .compare .card { background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:var(--s-3); }
-    .compare .good { border-left: 4px solid var(--c-blue); }
+    .compare .good { border-left: 4px solid var(--c-mint); }
     .compare .bad  { border-left: 4px solid var(--c-pink); }
     .compare .tag { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.12em; font-weight:600; color:var(--text-muted); margin-bottom: var(--s-1); }
     .fake-bold { font-weight: 700; } /* used only to show what we are avoiding */
@@ -152,14 +152,16 @@
       transition: transform 0.12s ease, opacity 0.12s ease;
     }
     .btn:active { transform: translateY(1px); }
+    /* Primary: solid ink */
     .btn-primary { background: var(--action); color: var(--action-text); }
     .btn-primary:hover { opacity: 0.88; }
-    .btn-ghost { background: transparent; color: var(--action); }
-    .btn-ghost:hover { background: var(--action); color: var(--action-text); }
-    /* On dark feature backgrounds the ghost flips to cream */
-    .on-ink .btn-ghost { border-color: var(--text-on-dark); color: var(--text-on-dark); }
-    .on-ink .btn-ghost:hover { background: var(--text-on-dark); color: var(--c-ink); }
+    /* Secondary: Pink accent fill, Ink text. Hairline so it reads on cream.
+       Hovers down into Deep Pink (tone-on-tone). */
+    .btn-accent { background: var(--c-pink); color: var(--c-ink); border-color: var(--line); }
+    .btn-accent:hover { background: var(--c-pink-deep); color: var(--c-cream); border-color: var(--c-pink-deep); }
+    /* On dark feature backgrounds, primary flips to cream; accent stays pink */
     .on-ink .btn-primary { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
+    .on-ink .btn-accent { border-color: var(--c-pink); }
     .btn-row { display: flex; gap: var(--s-2); flex-wrap: wrap; align-items: center; }
 
     /* ---- Spacing scale ---- */
@@ -177,7 +179,7 @@
     }
     .radius-demo {
       width: 96px; height: 96px;
-      background: var(--c-blue);
+      background: var(--c-mint);
       border-radius: var(--radius);
     }
 
@@ -188,6 +190,47 @@
       padding: 0.12em 0.4em;
       border-radius: var(--radius);
     }
+
+    /* ---- Accent pairs (light fill + deep tone) ---- */
+    .pair-label {
+      display: flex; align-items: center; gap: var(--s-1);
+      font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;
+      font-weight: 600; color: var(--text-muted);
+      margin: var(--s-4) 0 var(--s-2);
+    }
+    .pair-label .dot { width: 12px; height: 12px; border-radius: var(--radius); border: 1px solid var(--line); }
+
+    /* ---- Tonal ladder ---- */
+    .ladder { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .rung { display: flex; align-items: center; gap: var(--s-2); padding: 12px var(--s-3); font-size: 0.9rem; }
+    .rung .nm { flex: 1; font-weight: 600; }
+    .rung .hx { font-variant-numeric: tabular-nums; opacity: 0.8; font-size: 0.85rem; }
+
+    /* ---- Pairings table ---- */
+    .ptable { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    .ptable th, .ptable td { text-align: left; padding: 12px var(--s-2); border-bottom: 1px solid var(--line); vertical-align: top; }
+    .ptable th { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+    .ptable .chipdot { display: inline-block; width: 13px; height: 13px; border-radius: var(--radius); vertical-align: -2px; margin-right: 8px; border: 1px solid var(--line); }
+    .ptable .ratio { font-variant-numeric: tabular-nums; color: var(--text-muted); white-space: nowrap; }
+    .ptable .pass { color: var(--c-mint-deep); font-weight: 600; white-space: nowrap; }
+
+    /* ---- Working rules ---- */
+    .rules { display: grid; gap: var(--s-3); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .rule { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-3); }
+    .rule h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; margin: 0 0 var(--s-1); }
+    .rule p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+    .rule .mk { color: var(--link); font-weight: 600; }
+
+    /* ---- Do / Don't lists ---- */
+    .dodont { display: grid; gap: var(--s-3); grid-template-columns: 1fr 1fr; }
+    @media (max-width: 760px) { .dodont { grid-template-columns: 1fr; } }
+    .dodont h4 { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 var(--s-2); }
+    .dodont ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-1); }
+    .dodont li { font-size: 0.92rem; padding-left: 24px; position: relative; }
+    .dodont .do li::before  { content: "\2713"; position: absolute; left: 0; color: var(--c-mint-deep); font-weight: 700; }
+    .dodont .dont li::before { content: "\2715"; position: absolute; left: 0; color: var(--c-pink-deep); font-weight: 700; }
+
+    .link-demo a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
 
     .page-footer { padding-block: var(--s-5); border-top: 1px solid var(--line); }
     .page-footer p { color: var(--text-muted); font-size: 0.9rem; }
@@ -217,20 +260,21 @@
       <div class="section-head">
         <p class="eyebrow">01 · Color</p>
         <h2>Palette</h2>
-        <p>Cream carries the page. Ink does the talking. Pink is the signature,
-          mint supports it, and olive shows up the least. Use the role tokens
-          (<code>--bg</code>, <code>--text</code>, <code>--accent</code>) in real
-          pages, not the raw hex.</p>
+        <p>Four warm neutrals and three accent hues. Each accent comes in a light
+          fill and a deep tone. Cream carries the page, Ink does the talking. Pink
+          is the warm signature, Mint holds the cool side, Soft Coral is gentle
+          warm support. Use the role tokens (<code>--bg</code>, <code>--text</code>,
+          <code>--accent</code>, <code>--link</code>) in real pages, not the raw hex.</p>
       </div>
 
-      <h3 style="margin-bottom: var(--s-3);">Surfaces &amp; text</h3>
+      <h3 style="margin-bottom: var(--s-3);">Neutrals</h3>
       <div class="grid cols-4">
         <div class="swatch">
           <div class="chip on-light" style="background:#F7EEE7;">Aa</div>
           <div class="meta">
             <div class="name">Cream</div>
             <div class="hex">#F7EEE7</div>
-            <div class="role">Page background</div>
+            <div class="role">Page background. The default canvas.</div>
             <span class="token">--c-cream / --bg</span>
           </div>
         </div>
@@ -239,8 +283,17 @@
           <div class="meta">
             <div class="name">Cream Soft</div>
             <div class="hex">#FBF6F1</div>
-            <div class="role">Alternate sections</div>
+            <div class="role">Alternate sections. A whisper lighter than Cream.</div>
             <span class="token">--c-cream-soft / --bg-alt</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip on-dark" style="background:#6A5E53;">Aa</div>
+          <div class="meta">
+            <div class="name">Warm Gray</div>
+            <div class="hex">#6A5E53</div>
+            <div class="role">Secondary text, captions, metadata, labels.</div>
+            <span class="token">--c-gray / --text-muted</span>
           </div>
         </div>
         <div class="swatch">
@@ -248,49 +301,181 @@
           <div class="meta">
             <div class="name">Ink</div>
             <div class="hex">#1D1E26</div>
-            <div class="role">Text, dark sections, buttons</div>
+            <div class="role">Primary text, dark sections, primary buttons.</div>
             <span class="token">--c-ink / --text / --action</span>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="chip on-dark" style="background:#4C4D57;">Aa</div>
-          <div class="meta">
-            <div class="name">Ink Soft</div>
-            <div class="hex">#4C4D57</div>
-            <div class="role">Muted text, captions</div>
-            <span class="token">--c-ink-soft / --text-muted</span>
           </div>
         </div>
       </div>
 
-      <h3 style="margin: var(--s-5) 0 var(--s-3);">Accents</h3>
-      <div class="grid cols-3">
+      <h3 style="margin: var(--s-5) 0 0;">Accents</h3>
+      <p style="color: var(--text-muted); margin: var(--s-1) 0 0;">Each hue has a
+        light fill (backgrounds, cards, buttons) and a deep tone (text, links,
+        headings on light).</p>
+
+      <div class="pair-label"><span class="dot" style="background:#FFC8E5;"></span>Pink · warm signature</div>
+      <div class="grid cols-2">
         <div class="swatch">
           <div class="chip on-light" style="background:#FFC8E5;">Aa</div>
           <div class="meta">
             <div class="name">Pink</div>
             <div class="hex">#FFC8E5</div>
-            <div class="role">Signature accent, highlights</div>
+            <div class="role">Signature fill. Highlights, cards, secondary buttons.</div>
             <span class="token">--c-pink / --accent</span>
           </div>
         </div>
+        <div class="swatch">
+          <div class="chip" style="background:#9E0053; color:#FFE4F0;">Aa</div>
+          <div class="meta">
+            <div class="name">Deep Pink (Plum)</div>
+            <div class="hex">#9E0053</div>
+            <div class="role">Links, emphasis, accent headings. Text on Pink.</div>
+            <span class="token">--c-pink-deep / --link</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pair-label"><span class="dot" style="background:#B1DED9;"></span>Mint · cool counterweight</div>
+      <div class="grid cols-2">
         <div class="swatch">
           <div class="chip on-light" style="background:#B1DED9;">Aa</div>
           <div class="meta">
             <div class="name">Mint</div>
             <div class="hex">#B1DED9</div>
-            <div class="role">Secondary accent</div>
-            <span class="token">--c-blue</span>
+            <div class="role">Cool supporting blocks, quotes, calmer sections.</div>
+            <span class="token">--c-mint</span>
           </div>
         </div>
         <div class="swatch">
-          <div class="chip on-light" style="background:#D5CC7D;">Aa</div>
+          <div class="chip" style="background:#195750; color:#DDF1ED;">Aa</div>
           <div class="meta">
-            <div class="name">Olive</div>
-            <div class="hex">#D5CC7D</div>
-            <div class="role">Tertiary accent, use the least</div>
-            <span class="token">--c-olive</span>
+            <div class="name">Deep Mint (Teal)</div>
+            <div class="hex">#195750</div>
+            <div class="role">Accent headings, labels. Text on Mint.</div>
+            <span class="token">--c-mint-deep</span>
           </div>
+        </div>
+      </div>
+
+      <div class="pair-label"><span class="dot" style="background:#F7CBBB;"></span>Soft Coral · warm support</div>
+      <div class="grid cols-2">
+        <div class="swatch">
+          <div class="chip on-light" style="background:#F7CBBB;">Aa</div>
+          <div class="meta">
+            <div class="name">Soft Coral</div>
+            <div class="hex">#F7CBBB</div>
+            <div class="role">Warm accent fill. Sits beside Pink as gentle support.</div>
+            <span class="token">--c-coral</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#8E2E0B; color:#FCE3D9;">Aa</div>
+          <div class="meta">
+            <div class="name">Deep Coral</div>
+            <div class="hex">#8E2E0B</div>
+            <div class="role">Warm accent text, captions. Text on Soft Coral.</div>
+            <span class="token">--c-coral-deep</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tonal ladder -->
+      <h3 style="margin: var(--s-5) 0 var(--s-1);">Tonal ladder</h3>
+      <p style="color: var(--text-muted); margin: 0 0 var(--s-3);">Lightest to
+        darkest. The deep tones bridge the airy accents and Ink.</p>
+      <div class="ladder">
+        <div class="rung" style="background:#FBF6F1; color:#1D1E26;"><span class="nm">Cream Soft</span><span class="hx">#FBF6F1</span></div>
+        <div class="rung" style="background:#F7EEE7; color:#1D1E26;"><span class="nm">Cream</span><span class="hx">#F7EEE7</span></div>
+        <div class="rung" style="background:#FFC8E5; color:#1D1E26;"><span class="nm">Pink</span><span class="hx">#FFC8E5</span></div>
+        <div class="rung" style="background:#F7CBBB; color:#1D1E26;"><span class="nm">Soft Coral</span><span class="hx">#F7CBBB</span></div>
+        <div class="rung" style="background:#B1DED9; color:#1D1E26;"><span class="nm">Mint</span><span class="hx">#B1DED9</span></div>
+        <div class="rung" style="background:#6A5E53; color:#F7EEE7;"><span class="nm">Warm Gray</span><span class="hx">#6A5E53</span></div>
+        <div class="rung" style="background:#9E0053; color:#FFE4F0;"><span class="nm">Deep Pink</span><span class="hx">#9E0053</span></div>
+        <div class="rung" style="background:#8E2E0B; color:#FCE3D9;"><span class="nm">Deep Coral</span><span class="hx">#8E2E0B</span></div>
+        <div class="rung" style="background:#195750; color:#DDF1ED;"><span class="nm">Deep Mint</span><span class="hx">#195750</span></div>
+        <div class="rung" style="background:#1D1E26; color:#F7EEE7;"><span class="nm">Ink</span><span class="hx">#1D1E26</span></div>
+      </div>
+
+      <!-- Safe text pairings -->
+      <h3 style="margin: var(--s-5) 0 var(--s-1);">Safe text pairings</h3>
+      <p style="color: var(--text-muted); margin: 0 0 var(--s-3);">What reads
+        legibly on each background. Everything here passes WCAG AA or better for
+        body text.</p>
+      <table class="ptable">
+        <thead><tr><th>Background</th><th>Use this text color</th><th>Ratio</th><th>Grade</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="chipdot" style="background:#F7EEE7;"></span>Cream / Cream Soft</td>
+            <td>Ink (body), Warm Gray (muted), Deep Pink / Deep Mint / Deep Coral (accent text)</td>
+            <td class="ratio">5.5–14.5:1</td><td class="pass">AA–AAA</td>
+          </tr>
+          <tr>
+            <td><span class="chipdot" style="background:#1D1E26;"></span>Ink</td>
+            <td>Cream (body), Pink / Mint / Coral (accent headings &amp; highlights)</td>
+            <td class="ratio">11.2–14.5:1</td><td class="pass">AAA</td>
+          </tr>
+          <tr>
+            <td><span class="chipdot" style="background:#FFC8E5;"></span>Pink</td>
+            <td>Ink (body), Deep Pink (tone-on-tone)</td>
+            <td class="ratio">5.7–11.6:1</td><td class="pass">AA–AAA</td>
+          </tr>
+          <tr>
+            <td><span class="chipdot" style="background:#B1DED9;"></span>Mint</td>
+            <td>Ink (body), Deep Mint (tone-on-tone)</td>
+            <td class="ratio">5.7–11.3:1</td><td class="pass">AA–AAA</td>
+          </tr>
+          <tr>
+            <td><span class="chipdot" style="background:#F7CBBB;"></span>Soft Coral</td>
+            <td>Ink (body), Deep Coral (tone-on-tone)</td>
+            <td class="ratio">5.6–11.2:1</td><td class="pass">AA–AAA</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Working rules -->
+      <h3 style="margin: var(--s-5) 0 var(--s-3);">Working rules</h3>
+      <div class="rules">
+        <div class="rule"><h4>Two or three text colors</h4>
+          <p><span class="mk">Ink</span> for primary, <span class="mk">Warm Gray</span>
+            for muted, <span class="mk">Deep Pink</span> for links and emphasis.
+            Deep Mint and Deep Coral are optional accent-text extras.</p></div>
+        <div class="rule"><h4>60 / 30 / 10</h4>
+          <p>Roughly 60% cream, 30% Ink, 10% accent. The accents are seasoning.
+            When in doubt, use less of them.</p></div>
+        <div class="rule"><h4>Light and dark tiers</h4>
+          <p>Contrast only exists between tiers. Light text on a light background
+            never works. Put text on Ink, or Ink on light, or use a deep tone.</p></div>
+        <div class="rule"><h4>Tone-on-tone for depth</h4>
+          <p>Pink card with Deep Pink text, Mint with Teal, Coral with Deep Coral.
+            Same hue, far apart in lightness. The considered, layered look.</p></div>
+        <div class="rule"><h4>Three accents, three jobs</h4>
+          <p>Pink is the signature, Coral its warm support, Mint the lone cool
+            note. Keep Mint in the mix so the warm side does not take over.</p></div>
+        <div class="rule"><h4>Meaning in Ink, mood in accents</h4>
+          <p>Anything that must be read at a glance on a light page lives in Ink
+            or a deep tone, never in a pastel. Pastels are decoration.</p></div>
+      </div>
+
+      <!-- Color do / don't -->
+      <div class="dodont" style="margin-top: var(--s-5);">
+        <div class="do">
+          <h4>Do</h4>
+          <ul>
+            <li>Pair a Deep Pink, Teal, or Deep Coral heading with Ink body on cream.</li>
+            <li>Use an Ink section with a Pink headline for high energy.</li>
+            <li>Give pastel cards a hairline border so they read on cream.</li>
+            <li>Make primary buttons Ink, secondary buttons a Pink fill.</li>
+            <li>Use Warm Gray for captions and metadata, not faded Ink.</li>
+          </ul>
+        </div>
+        <div class="dont">
+          <h4>Don't</h4>
+          <ul>
+            <li>Set Pink, Mint, or Coral as text on cream.</li>
+            <li>Layer one pastel accent directly on another.</li>
+            <li>Rely on the Cream / Cream Soft difference to separate sections.</li>
+            <li>Use more than three text colors in one layout.</li>
+            <li>Let key information live in a pastel accent color.</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -370,24 +555,27 @@
   <section class="alt">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">03 · Buttons</p>
-        <h2>Buttons</h2>
-        <p>Two styles. Solid ink for the one thing you most want a reader to do.
-          Ghost for the secondary option next to it. Both use the 4px radius and
-          Hanken at weight 600.</p>
+        <p class="eyebrow">03 · Buttons &amp; links</p>
+        <h2>Buttons &amp; links</h2>
+        <p>Two button styles. Solid Ink for the one thing you most want a reader
+          to do. A Pink fill for the secondary option beside it. Both use the 4px
+          radius and Hanken at weight 600. Links use Deep Pink so emphasis stays
+          on-brand and readable on cream.</p>
       </div>
 
       <p style="margin-bottom: var(--s-2); color: var(--text-muted);">On a light background</p>
-      <div class="btn-row" style="margin-bottom: var(--s-5);">
+      <div class="btn-row" style="margin-bottom: var(--s-2);">
         <a href="#" class="btn btn-primary">Book a session</a>
-        <a href="#" class="btn btn-ghost">See the work</a>
+        <a href="#" class="btn btn-accent">See the work</a>
       </div>
+      <p class="link-demo" style="margin-bottom: var(--s-5);">In running text, a
+        <a href="#">link looks like this</a> in Deep Pink.</p>
 
       <div class="on-ink" style="background: var(--bg-feature); border-radius: var(--radius); padding: var(--s-4);">
-        <p style="margin-bottom: var(--s-2); color: var(--c-blue);">On ink</p>
+        <p style="margin-bottom: var(--s-2); color: var(--c-mint);">On ink</p>
         <div class="btn-row">
           <a href="#" class="btn btn-primary">Book a session</a>
-          <a href="#" class="btn btn-ghost">See the work</a>
+          <a href="#" class="btn btn-accent">See the work</a>
         </div>
       </div>
     </div>
@@ -447,7 +635,7 @@
 
       <div class="grid cols-2 compare">
         <div class="card good" style="background: rgba(247,238,231,0.06); border-color: rgba(247,238,231,0.18);">
-          <div class="tag" style="color: var(--c-blue);">Sounds like us</div>
+          <div class="tag" style="color: var(--c-mint);">Sounds like us</div>
           <p style="margin:0; color: var(--c-cream);">"You will have your gallery
             within two weeks, and every photo is yours to print."</p>
         </div>

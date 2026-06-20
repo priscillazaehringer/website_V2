@@ -1,7 +1,8 @@
 /* ==================================================================
    DESIGN TOKENS — new site
    Single source of truth for color, type, spacing, shape.
-   Palette Option 2 — exact brand hex codes.
+   Palette: the "8 + 1" system — four neutrals + three accent hues,
+   each accent in a light fill and a deep tone. Exact brand hex codes.
    ================================================================== */
 
 /* Golden Batch — elegant serif, headlines. REGULAR (400) ONLY. */
@@ -20,20 +21,34 @@
 }
 
 :root {
-  --c-cream:#F7EEE7; --c-cream-soft:#FBF6F1; --c-ink:#1D1E26; --c-ink-soft:#4C4D57;
-  --c-pink:#FFC8E5; --c-blue:#B1DED9; --c-olive:#D5CC7D;
+  /* ---- Raw brand colors -------------------------------------------- */
+  /* Neutrals — the backbone */
+  --c-cream:#F7EEE7;        /* page background */
+  --c-cream-soft:#FBF6F1;   /* alternate sections, a whisper lighter */
+  --c-gray:#6A5E53;         /* warm gray — muted text, captions, labels */
+  --c-ink:#1D1E26;          /* primary text, dark sections, primary buttons */
 
+  /* Accents — each a light fill + a deep tone for text/links/tone-on-tone */
+  --c-pink:#FFC8E5;         --c-pink-deep:#9E0053;   /* signature   (deep = plum) */
+  --c-mint:#B1DED9;         --c-mint-deep:#195750;   /* cool note   (deep = teal) */
+  --c-coral:#F7CBBB;        --c-coral-deep:#8E2E0B;  /* warm support */
+
+  /* ---- Semantic roles — use THESE in pages, not the raw hex --------- */
   --bg:var(--c-cream); --bg-alt:var(--c-cream-soft); --bg-feature:var(--c-ink);
-  --text:var(--c-ink); --text-muted:var(--c-ink-soft); --text-on-dark:var(--c-cream);
-  --action:var(--c-ink); --action-text:var(--c-cream); --accent:var(--c-pink);
+  --text:var(--c-ink); --text-muted:var(--c-gray); --text-on-dark:var(--c-cream);
+  --link:var(--c-pink-deep);                        /* links + emphasis */
+  --action:var(--c-ink); --action-text:var(--c-cream);
+  --accent:var(--c-pink);                           /* signature accent fill */
   --line:rgba(29,30,38,0.12);
 
+  /* ---- Type -------------------------------------------------------- */
   --font-display:'Golden Batch', Georgia, serif;   /* headlines, weight 400 only */
   --font-body:'Hanken Grotesk', system-ui, sans-serif;
 
   --h1:clamp(2.6rem,6vw,4.5rem); --h2:clamp(2rem,4vw,3rem); --h3:clamp(1.4rem,2.5vw,1.75rem);
   --body:clamp(1rem,1.2vw,1.125rem); --lh-tight:1.15; --lh-body:1.6;
 
+  /* ---- Spacing (8px grid) & shape ---------------------------------- */
   --s-1:8px; --s-2:16px; --s-3:24px; --s-4:32px; --s-5:48px; --s-6:64px; --s-7:96px; --s-8:120px;
   --section-y:clamp(var(--s-6),10vw,var(--s-8)); --container:1120px;
 
