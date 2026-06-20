@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Brand Guidelines · Reference</title>
+
+  <!-- Single source of truth for all design tokens -->
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+
+  <style>
+    /* ----------------------------------------------------------------
+       Guidelines page styling. Tokens come from tokens.css.
+       This page only demonstrates the system, it does not redefine it.
+       ---------------------------------------------------------------- */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: var(--body);
+      line-height: var(--lh-body);
+      font-weight: 400;
+    }
+
+    /* Headlines: Golden Batch, regular only. Never bold.
+       font-synthesis:none stops the browser faking a bold weight. */
+    h1, h2, h3, .display {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-synthesis: none;
+      line-height: var(--lh-tight);
+      margin: 0;
+    }
+    h1 { font-size: var(--h1); }
+    h2 { font-size: var(--h2); }
+    h3 { font-size: var(--h3); }
+
+    p { margin: 0 0 var(--s-2); max-width: 64ch; }
+    a { color: var(--text); }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--s-3);
+    }
+
+    /* Sections alternate cream / cream-soft */
+    section { padding-block: var(--section-y); }
+    section.alt { background: var(--bg-alt); }
+    section.feature { background: var(--bg-feature); color: var(--text-on-dark); }
+    section.feature h1, section.feature h2, section.feature h3 { color: var(--text-on-dark); }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin: 0 0 var(--s-2);
+    }
+    section.feature .eyebrow { color: var(--c-blue); }
+
+    .section-head { margin-bottom: var(--s-5); }
+    .section-head p { color: var(--text-muted); }
+
+    .grid { display: grid; gap: var(--s-3); }
+    .cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .cols-4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 760px) {
+      .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Color swatches ---- */
+    .swatch {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #fff;
+    }
+    .swatch .chip {
+      height: 120px;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--s-2);
+    }
+    .swatch .meta { padding: var(--s-2); }
+    .swatch .name { font-weight: 600; }
+    .swatch .hex {
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.02em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .swatch .token {
+      display: inline-block;
+      margin-top: var(--s-1);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .swatch .role { font-size: 0.85rem; color: var(--text-muted); }
+    .chip.on-light { color: var(--c-ink); }
+    .chip.on-dark { color: var(--c-cream); }
+
+    /* ---- Type specimens ---- */
+    .specimen { padding: var(--s-3) 0; border-top: 1px solid var(--line); }
+    .specimen:first-of-type { border-top: 0; }
+    .specimen .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      margin-bottom: var(--s-1);
+    }
+
+    .callout {
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius);
+      padding: var(--s-3);
+      background: #fff;
+    }
+    .callout strong { font-weight: 700; }
+
+    .compare { gap: var(--s-3); }
+    .compare .card { background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:var(--s-3); }
+    .compare .good { border-left: 4px solid var(--c-blue); }
+    .compare .bad  { border-left: 4px solid var(--c-pink); }
+    .compare .tag { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.12em; font-weight:600; color:var(--text-muted); margin-bottom: var(--s-1); }
+    .fake-bold { font-weight: 700; } /* used only to show what we are avoiding */
+
+    /* ---- Buttons ---- */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+      padding: 14px 24px;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--action);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.12s ease, opacity 0.12s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--action); color: var(--action-text); }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-ghost { background: transparent; color: var(--action); }
+    .btn-ghost:hover { background: var(--action); color: var(--action-text); }
+    /* On dark feature backgrounds the ghost flips to cream */
+    .on-ink .btn-ghost { border-color: var(--text-on-dark); color: var(--text-on-dark); }
+    .on-ink .btn-ghost:hover { background: var(--text-on-dark); color: var(--c-ink); }
+    .on-ink .btn-primary { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
+    .btn-row { display: flex; gap: var(--s-2); flex-wrap: wrap; align-items: center; }
+
+    /* ---- Spacing scale ---- */
+    .scale-row { display:flex; align-items:center; gap: var(--s-3); margin-bottom: var(--s-2); }
+    .scale-row .token { width: 7ch; font-size:0.85rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+    .scale-row .px { width: 6ch; font-size:0.85rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+    .scale-row .bar { height: 16px; background: var(--accent); border-radius: var(--radius); }
+
+    /* ---- Shape + shadow demo ---- */
+    .shadow-card {
+      background:#fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: var(--s-4);
+    }
+    .radius-demo {
+      width: 96px; height: 96px;
+      background: var(--c-blue);
+      border-radius: var(--radius);
+    }
+
+    code, .mono {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.85em;
+      background: rgba(29,30,38,0.06);
+      padding: 0.12em 0.4em;
+      border-radius: var(--radius);
+    }
+
+    .page-footer { padding-block: var(--s-5); border-top: 1px solid var(--line); }
+    .page-footer p { color: var(--text-muted); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================ HERO ============================ -->
+  <header>
+    <section>
+      <div class="container">
+        <p class="eyebrow">Brand guidelines</p>
+        <h1>The look, the voice, the rules.</h1>
+        <p style="margin-top: var(--s-3); font-size: 1.15rem; color: var(--text-muted);">
+          This is the reference for the new site. Everything here comes from one
+          file, <code>assets/css/tokens.css</code>. Change a token there and the
+          whole site follows. This page is set to <code>noindex</code>, so it
+          stays private while we build.
+        </p>
+      </div>
+    </section>
+  </header>
+
+  <!-- ============================ COLOR ============================ -->
+  <section class="alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">01 · Color</p>
+        <h2>Palette</h2>
+        <p>Cream carries the page. Ink does the talking. Pink is the signature,
+          mint supports it, and olive shows up the least. Use the role tokens
+          (<code>--bg</code>, <code>--text</code>, <code>--accent</code>) in real
+          pages, not the raw hex.</p>
+      </div>
+
+      <h3 style="margin-bottom: var(--s-3);">Surfaces &amp; text</h3>
+      <div class="grid cols-4">
+        <div class="swatch">
+          <div class="chip on-light" style="background:#F7EEE7;">Aa</div>
+          <div class="meta">
+            <div class="name">Cream</div>
+            <div class="hex">#F7EEE7</div>
+            <div class="role">Page background</div>
+            <span class="token">--c-cream / --bg</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip on-light" style="background:#FBF6F1;">Aa</div>
+          <div class="meta">
+            <div class="name">Cream Soft</div>
+            <div class="hex">#FBF6F1</div>
+            <div class="role">Alternate sections</div>
+            <span class="token">--c-cream-soft / --bg-alt</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip on-dark" style="background:#1D1E26;">Aa</div>
+          <div class="meta">
+            <div class="name">Ink</div>
+            <div class="hex">#1D1E26</div>
+            <div class="role">Text, dark sections, buttons</div>
+            <span class="token">--c-ink / --text / --action</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip on-dark" style="background:#4C4D57;">Aa</div>
+          <div class="meta">
+            <div class="name">Ink Soft</div>
+            <div class="hex">#4C4D57</div>
+            <div class="role">Muted text, captions</div>
+            <span class="token">--c-ink-soft / --text-muted</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin: var(--s-5) 0 var(--s-3);">Accents</h3>
+      <div class="grid cols-3">
+        <div class="swatch">
+          <div class="chip on-light" style="background:#FFC8E5;">Aa</div>
+          <div class="meta">
+            <div class="name">Pink</div>
+            <div class="hex">#FFC8E5</div>
+            <div class="role">Signature accent, highlights</div>
+            <span class="token">--c-pink / --accent</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip on-light" style="background:#B1DED9;">Aa</div>
+          <div class="meta">
+            <div class="name">Mint</div>
+            <div class="hex">#B1DED9</div>
+            <div class="role">Secondary accent</div>
+            <span class="token">--c-blue</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip on-light" style="background:#D5CC7D;">Aa</div>
+          <div class="meta">
+            <div class="name">Olive</div>
+            <div class="hex">#D5CC7D</div>
+            <div class="role">Tertiary accent, use the least</div>
+            <span class="token">--c-olive</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= TYPOGRAPHY ========================= -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">02 · Typography</p>
+        <h2>Type</h2>
+        <p>Two typefaces, each with one job. Golden Batch sets the headlines.
+          Hanken Grotesk handles everything you read in paragraphs, buttons, and
+          labels. Both are self-hosted, so they load fast and look the same
+          everywhere.</p>
+      </div>
+
+      <div class="callout" style="margin-bottom: var(--s-5);">
+        <p style="margin:0;"><strong>The one rule for Golden Batch: regular (400) only.</strong>
+          Never bold it. Bold crowds the letters and loses the elegance. The
+          token sets <code>font-synthesis: none</code> so the browser cannot
+          fake a bold weight either. When you need emphasis in a heading, use
+          size or color, not weight.</p>
+      </div>
+
+      <div class="grid cols-2 compare" style="margin-bottom: var(--s-5);">
+        <div class="card good">
+          <div class="tag">Do · regular</div>
+          <div class="display" style="font-size: var(--h2);">Warm and clear</div>
+        </div>
+        <div class="card bad">
+          <div class="tag">Don't · faux bold</div>
+          <div class="display fake-bold" style="font-size: var(--h2);">Warm and clear</div>
+          <p style="margin-top: var(--s-2); font-size:0.85rem; color:var(--text-muted);">
+            With <code>font-synthesis: none</code> live, this stays at 400 in the
+            real system. Shown here only to name what we avoid.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-bottom: var(--s-3);">Display scale · Golden Batch 400</h3>
+
+      <div class="specimen">
+        <div class="label">H1 · var(--h1) · clamp(2.6rem, 6vw, 4.5rem)</div>
+        <div class="display" style="font-size: var(--h1);">Photography with feeling</div>
+      </div>
+      <div class="specimen">
+        <div class="label">H2 · var(--h2) · clamp(2rem, 4vw, 3rem)</div>
+        <div class="display" style="font-size: var(--h2);">Stories you want to keep</div>
+      </div>
+      <div class="specimen">
+        <div class="label">H3 · var(--h3) · clamp(1.4rem, 2.5vw, 1.75rem)</div>
+        <div class="display" style="font-size: var(--h3);">A calm, simple booking process</div>
+      </div>
+
+      <h3 style="margin: var(--s-5) 0 var(--s-3);">Body · Hanken Grotesk</h3>
+      <div class="specimen">
+        <div class="label">Body · var(--body) · line-height 1.6 · weight 400</div>
+        <p>You want photos that still feel like you in ten years. That is the
+          whole job. We keep the day relaxed, we talk like people, and we hand
+          you images you are proud to put on the wall. No stiff poses, no long
+          waits, no surprises on the invoice.</p>
+      </div>
+      <div class="specimen">
+        <div class="label">Hanken weights (variable 100–900) · for body emphasis only, not headings</div>
+        <p style="margin:0;">
+          <span style="font-weight:300;">Light 300</span> &nbsp;·&nbsp;
+          <span style="font-weight:400;">Regular 400</span> &nbsp;·&nbsp;
+          <span style="font-weight:500;">Medium 500</span> &nbsp;·&nbsp;
+          <span style="font-weight:600;">SemiBold 600</span> &nbsp;·&nbsp;
+          <span style="font-weight:700;">Bold 700</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== BUTTONS =========================== -->
+  <section class="alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">03 · Buttons</p>
+        <h2>Buttons</h2>
+        <p>Two styles. Solid ink for the one thing you most want a reader to do.
+          Ghost for the secondary option next to it. Both use the 4px radius and
+          Hanken at weight 600.</p>
+      </div>
+
+      <p style="margin-bottom: var(--s-2); color: var(--text-muted);">On a light background</p>
+      <div class="btn-row" style="margin-bottom: var(--s-5);">
+        <a href="#" class="btn btn-primary">Book a session</a>
+        <a href="#" class="btn btn-ghost">See the work</a>
+      </div>
+
+      <div class="on-ink" style="background: var(--bg-feature); border-radius: var(--radius); padding: var(--s-4);">
+        <p style="margin-bottom: var(--s-2); color: var(--c-blue);">On ink</p>
+        <div class="btn-row">
+          <a href="#" class="btn btn-primary">Book a session</a>
+          <a href="#" class="btn btn-ghost">See the work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== SPACING + SHAPE ====================== -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">04 · Spacing &amp; shape</p>
+        <h2>Spacing, radius, shadow</h2>
+        <p>Everything sits on an 8px grid. Pick from the scale instead of typing
+          one-off numbers. Corners are always 4px. There is one shadow, used
+          sparingly for things that lift off the page.</p>
+      </div>
+
+      <h3 style="margin-bottom: var(--s-3);">8px spacing scale</h3>
+      <div style="margin-bottom: var(--s-5);">
+        <div class="scale-row"><span class="token">--s-1</span><span class="px">8px</span><span class="bar" style="width:8px;"></span></div>
+        <div class="scale-row"><span class="token">--s-2</span><span class="px">16px</span><span class="bar" style="width:16px;"></span></div>
+        <div class="scale-row"><span class="token">--s-3</span><span class="px">24px</span><span class="bar" style="width:24px;"></span></div>
+        <div class="scale-row"><span class="token">--s-4</span><span class="px">32px</span><span class="bar" style="width:32px;"></span></div>
+        <div class="scale-row"><span class="token">--s-5</span><span class="px">48px</span><span class="bar" style="width:48px;"></span></div>
+        <div class="scale-row"><span class="token">--s-6</span><span class="px">64px</span><span class="bar" style="width:64px;"></span></div>
+        <div class="scale-row"><span class="token">--s-7</span><span class="px">96px</span><span class="bar" style="width:96px;"></span></div>
+        <div class="scale-row"><span class="token">--s-8</span><span class="px">120px</span><span class="bar" style="width:120px;"></span></div>
+      </div>
+
+      <div class="grid cols-2">
+        <div>
+          <h3 style="margin-bottom: var(--s-3);">Radius · 4px everywhere</h3>
+          <div class="radius-demo"></div>
+          <p style="margin-top: var(--s-2);"><code>--radius: 4px</code></p>
+        </div>
+        <div>
+          <h3 style="margin-bottom: var(--s-3);">One soft shadow</h3>
+          <div class="shadow-card">
+            <p style="margin:0;">This card uses <code>--shadow</code>: a single
+              soft drop. Reach for it on cards and popovers, not on everything.</p>
+          </div>
+          <p style="margin-top: var(--s-2);"><code>0 18px 50px rgba(29,30,38,0.12)</code></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== VOICE =========================== -->
+  <section class="feature">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">05 · Voice</p>
+        <h2>How we write</h2>
+        <p style="color: var(--c-cream); opacity:0.85;">Warm, direct, plain. Write
+          the way you would talk to a client across the table. Speak to the
+          reader as <em>you</em>, and be specific instead of vague.</p>
+      </div>
+
+      <div class="grid cols-2 compare">
+        <div class="card good" style="background: rgba(247,238,231,0.06); border-color: rgba(247,238,231,0.18);">
+          <div class="tag" style="color: var(--c-blue);">Sounds like us</div>
+          <p style="margin:0; color: var(--c-cream);">"You will have your gallery
+            within two weeks, and every photo is yours to print."</p>
+        </div>
+        <div class="card bad" style="background: rgba(247,238,231,0.06); border-color: rgba(247,238,231,0.18);">
+          <div class="tag" style="color: var(--c-pink);">Not us</div>
+          <p style="margin:0; color: var(--c-cream);">"We leverage a seamless,
+            robust workflow to elevate and unlock your visual story."</p>
+        </div>
+      </div>
+
+      <div class="grid cols-2" style="margin-top: var(--s-5);">
+        <div>
+          <h3 style="color: var(--c-cream); margin-bottom: var(--s-2);">Do</h3>
+          <ul style="color: var(--c-cream); opacity:0.9; line-height: var(--lh-body); padding-left: 1.1em;">
+            <li>Talk to the reader: you, your, yours.</li>
+            <li>Be specific. Real numbers, real timelines.</li>
+            <li>Keep sentences short and plain.</li>
+            <li>Sound warm and sure, not salesy.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color: var(--c-cream); margin-bottom: var(--s-2);">Don't</h3>
+          <ul style="color: var(--c-cream); opacity:0.9; line-height: var(--lh-body); padding-left: 1.1em;">
+            <li>No em dashes. Use a period or a comma.</li>
+            <li>Avoid elevate, unlock, leverage, seamless, robust.</li>
+            <li>No vague promises you cannot back up.</li>
+            <li>No filler. If a word does no work, cut it.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== FOOTER =========================== -->
+  <footer class="page-footer">
+    <div class="container">
+      <p>Internal reference. Not for the public site. All tokens live in
+        <code>assets/css/tokens.css</code>. Fonts are self-hosted in
+        <code>assets/fonts/</code>.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
