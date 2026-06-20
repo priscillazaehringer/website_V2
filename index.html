@@ -89,11 +89,14 @@
     @media (max-width: 760px) { .hero .photo { background-position: 60% 42%; } }
     .hero .scrim { position: absolute; inset: 0; z-index: 1;
       background:
-        linear-gradient(90deg, rgba(29,30,38,0.60) 0%, rgba(29,30,38,0.12) 48%, rgba(29,30,38,0) 72%),
-        linear-gradient(180deg, rgba(29,30,38,0.45) 0%, rgba(29,30,38,0.08) 30%, rgba(29,30,38,0.32) 60%, rgba(29,30,38,0.85) 100%); }
+        linear-gradient(90deg, rgba(29,30,38,0.68) 0%, rgba(29,30,38,0.34) 38%, rgba(29,30,38,0.06) 64%, transparent 82%),
+        linear-gradient(180deg, rgba(29,30,38,0.45) 0%, rgba(29,30,38,0.10) 30%, rgba(29,30,38,0.30) 60%, rgba(29,30,38,0.85) 100%); }
+    .hero h1, .hero .lede, .hero .hero-body, .hero .textlink {
+      text-shadow: 0 2px 18px rgba(29,30,38,0.45); }
     .hero .container { position: relative; z-index: 2; padding-top: var(--s-7); padding-bottom: var(--s-5); }
     .hero h1 { max-width: 16ch; }
-    .hero .lede { color: var(--c-cream); opacity: 0.92; max-width: 46ch; margin-top: var(--s-3); }
+    .hero .lede { color: var(--c-cream); opacity: 0.95; max-width: 46ch; margin-top: var(--s-3); }
+    .hero .hero-body { color: var(--c-cream); opacity: 0.9; max-width: 44ch; margin-top: var(--s-2); }
     .hero .cta { margin-top: var(--s-4); display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
     .hero .textlink { color: var(--c-cream); }
     .hero .ph-note { position: absolute; top: 96px; right: 16px; z-index: 2; font-size: 0.7rem;
@@ -167,6 +170,13 @@
     .band-mint blockquote { font-family: var(--font-display); font-synthesis: none; font-weight: 400;
       font-size: clamp(1.7rem, 3.6vw, 2.6rem); line-height: 1.25; color: var(--c-mint-deep);
       margin: 0 0 var(--s-3); max-width: 24ch; }
+    .band-mint .qmark { display: block; font-family: var(--font-display); font-synthesis: none;
+      font-size: 5rem; line-height: 0.7; color: var(--c-mint-deep); opacity: 0.55; margin-bottom: var(--s-1); }
+    .band-mint .cite-row { display: flex; align-items: center; gap: var(--s-2); margin-top: var(--s-4); }
+    .band-mint .avatar { width: 60px; height: 60px; border-radius: 50%; flex: none;
+      background: var(--c-mint-deep); color: var(--c-cream); display: grid; place-items: center;
+      font-family: var(--font-body); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.02em;
+      background-size: cover; background-position: center; box-shadow: var(--shadow); }
     .band-mint .cite { color: var(--c-ink); font-weight: 600; margin: 0; }
     .band-mint .cite span { color: var(--c-mint-deep); font-weight: 400; display: block; font-size: 0.95rem; }
 
@@ -296,8 +306,10 @@
     <div class="container">
       <h1>Your marketing, finally
         <span class="sig">handled<svg viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 55 2, 150 2, 217 6"/></svg></span>.</h1>
-      <p class="lede">One person who runs it end to end: the strategy, the launches, the ads, and the
-        systems behind them. You run the vision. I run the rest.</p>
+      <p class="lede">One person. Strategy, systems, and the actual work.</p>
+      <p class="hero-body">You're past the startup phase and ready to grow, but you don't want to build a
+        team to do it. I'm the second brain who runs your marketing end to end: the strategy, the launches,
+        the ads, and the systems behind them. You run the vision. I run the rest.</p>
       <div class="cta">
         <a href="#book" class="btn btn-cream">Book a Clarity Call</a>
         <a href="#pain" class="textlink">See if this is you ↓</a>
@@ -352,7 +364,6 @@
   <!-- ===================== OFFER ===================== -->
   <section class="section alt" id="offer">
     <div class="container">
-      <p class="lead-in reveal">So, here's what we can <span class="em">actually</span> do about it.</p>
       <div class="reveal measure">
         <p class="eyebrow"><span class="heart">&#9829;</span>The whole chalupa</p>
         <h2>A marketing partner on your team.</h2>
@@ -387,10 +398,14 @@
   <section class="section band-mint">
     <div class="container reveal">
       <p class="eyebrow"><span class="heart">&#9829;</span>What clients say</p>
-      <blockquote>"You can give her a goal, and she figures out the process. She goes above and beyond."</blockquote>
-      <p style="color: var(--c-ink); max-width: 60ch; margin: 0 0 var(--s-4);">She's highly detail-oriented,
+      <span class="qmark" aria-hidden="true">&#8220;</span>
+      <blockquote>You can give her a goal, and she figures out the process. She goes above and beyond.</blockquote>
+      <p style="color: var(--c-ink); max-width: 60ch; margin: 0;">She's highly detail-oriented,
         very process-driven, and more than that, she genuinely cares about the work she does.</p>
-      <p class="cite">Kaye Putnam <span>Brand Strategist</span></p>
+      <div class="cite-row">
+        <span class="avatar" aria-hidden="true">KP</span>
+        <p class="cite">Kaye Putnam <span>Brand Strategist</span></p>
+      </div>
     </div>
   </section>
 
