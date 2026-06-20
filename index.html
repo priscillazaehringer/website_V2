@@ -40,6 +40,13 @@
     .measure { max-width: 62ch; }
     .lede { font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--text-muted); }
 
+    /* Fun eyebrow labels (brand voice, with the Pink signature heart) */
+    .eyebrow { font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em;
+      color: var(--c-pink-deep); margin: 0 0 var(--s-2); }
+    .eyebrow .heart { color: var(--c-pink); margin-right: 7px; }
+    .band-mint .eyebrow, .band-mint .eyebrow .heart { color: var(--c-mint-deep); }
+    .band-ink .eyebrow, .band-ink .eyebrow .heart { color: var(--c-pink); }
+
     /* ---- Header: overlays the hero, turns solid on scroll ---- */
     .site-header { position: fixed; inset: 0 0 auto 0; z-index: 50; color: var(--c-cream);
       transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
@@ -150,6 +157,61 @@
     .band-ink h2 { color: var(--c-pink); }
     .band-ink .lede { color: var(--c-cream); opacity: 0.85; }
 
+    /* ================= Pain: tick-the-box checklist ================= */
+    .checklist { max-width: 64ch; margin-top: var(--s-4); }
+    .check-item { display: flex; gap: var(--s-3); align-items: flex-start; padding-block: var(--s-3);
+      border-bottom: 1px solid var(--line); cursor: pointer; user-select: none; }
+    .check-item input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .check-item .box { flex: none; width: 30px; height: 30px; border-radius: var(--radius);
+      border: 2px solid var(--c-ink); background: transparent; display: grid; place-items: center;
+      margin-top: 3px; transition: background 0.15s ease, border-color 0.15s ease; }
+    .check-item .box svg { width: 20px; height: 20px; opacity: 0; transform: scale(0.5) rotate(-10deg);
+      transition: opacity 0.18s ease, transform 0.22s cubic-bezier(.2,.9,.3,1.4); }
+    .check-item .box svg path { stroke: var(--c-cream); stroke-width: 3.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .check-item input:checked + .box { background: var(--c-pink-deep); border-color: var(--c-pink-deep); }
+    .check-item input:checked + .box svg { opacity: 1; transform: none; }
+    .check-item .ci-text { display: block; }
+    .check-item .claim { display: block; font-family: var(--font-display); font-synthesis: none;
+      font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.2; transition: color 0.15s ease; }
+    .check-item .sub { display: block; color: var(--text-muted); margin-top: 6px; font-size: 0.95rem; }
+    .check-item input:checked ~ .ci-text .claim { color: var(--c-pink-deep); }
+    .check-item:hover .box { border-color: var(--c-pink-deep); }
+
+    /* ================= Process: horizontal timeline ================= */
+    .timeline { position: relative; display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-4); margin-top: var(--s-6); }
+    .timeline::before { content: ""; position: absolute; top: 28px; left: calc(100%/6); right: calc(100%/6);
+      height: 2px; background: var(--line); z-index: 0; }
+    .tl-step { position: relative; z-index: 1; text-align: center; }
+    .tl-step .marker { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--c-ink);
+      background: var(--bg-alt); display: grid; place-items: center; margin: 0 auto;
+      font-family: var(--font-display); font-synthesis: none; font-size: 1.5rem; color: var(--c-pink-deep); }
+    .tl-step h3 { margin: var(--s-3) 0 var(--s-1); }
+    .tl-step p { color: var(--text-muted); margin: 0 auto; max-width: 34ch; }
+    @media (max-width: 760px) {
+      .timeline { grid-template-columns: 1fr; gap: var(--s-5); }
+      .timeline::before { display: none; }
+    }
+
+    /* ================= Ombre + overlapping sections ================= */
+    /* Each section flows into the next through a soft vertical gradient,
+       and lifts over the previous one with a rounded top + upward shadow. */
+    .section {
+      position: relative; z-index: 1;
+      margin-top: -40px;
+      border-radius: 34px 34px 0 0;
+      box-shadow: 0 -16px 38px rgba(29,30,38,0.07);
+      padding-top: calc(var(--section-y) + 40px);
+    }
+    #pain      { background: linear-gradient(180deg, #F7EEE7 0%, #FCE4EF 100%); }
+    #offer     { background: linear-gradient(180deg, #FCE4EF 0%, #FBE2D6 100%); }
+    .band-mint { background: linear-gradient(180deg, #FBE2D6 0%, #B1DED9 100%); }
+    #projects  { background: linear-gradient(180deg, #B1DED9 0%, #E9F5F1 100%); }
+    #process   { background: linear-gradient(180deg, #E9F5F1 0%, #FCE4EF 100%); }
+    #about     { background: linear-gradient(180deg, #FCE4EF 0%, #FBE2D6 100%); }
+    #book      { background: var(--c-ink); }
+    .site-footer { position: relative; z-index: 1; }
+
     /* grain + reveal */
     #grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04; mix-blend-mode: multiply;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
@@ -203,27 +265,43 @@
   <!-- ===================== PAIN ===================== -->
   <section class="section" id="pain">
     <div class="container">
+      <p class="eyebrow reveal"><span class="heart">&#9829;</span>Three signs we should talk</p>
       <h2 class="reveal" style="max-width: 18ch;">Sound familiar?</h2>
-      <div class="rows reveal" style="margin-top: var(--s-5);">
-        <div class="row">
-          <div class="claim">You're managing instead of building.</div>
-          <p class="body">You hired a VA, a copywriter, an ads manager. Now you spend your week briefing,
-            following up, and connecting dots between people who don't talk to each other.</p>
-        </div>
-        <div class="row">
-          <div class="claim">Your high-value hours go to low-value work.</div>
-          <p class="body">You're spending twenty hours a week on backend marketing tasks at $150 an hour
-            or more. It's exhausting, and quietly, it's costing you everything.</p>
-        </div>
-        <div class="row">
-          <div class="claim">The marketing that would actually grow this is still on next month's list.</div>
-          <p class="body">The podcast. The launch. The ad strategy. The funnel that's been "almost done"
-            for six weeks. You know what would move the needle, you just can't get to it.</p>
-        </div>
+      <p class="reveal" style="color: var(--text-muted); margin-top: var(--s-2);">Go ahead, check the ones that hit.</p>
+
+      <div class="checklist reveal">
+        <label class="check-item">
+          <input type="checkbox">
+          <span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 l5 5 l12 -13"/></svg></span>
+          <span class="ci-text">
+            <span class="claim">You're managing instead of building.</span>
+            <span class="sub">You hired a VA, a copywriter, an ads manager. Now your week is briefing,
+              following up, and connecting dots between people who don't talk to each other.</span>
+          </span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 l5 5 l12 -13"/></svg></span>
+          <span class="ci-text">
+            <span class="claim">Your high-value hours go to low-value work.</span>
+            <span class="sub">Twenty hours a week on backend marketing tasks at $150 an hour or more.
+              It's exhausting, and quietly, it's costing you everything.</span>
+          </span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 l5 5 l12 -13"/></svg></span>
+          <span class="ci-text">
+            <span class="claim">The marketing that would actually grow this is on next month's list.</span>
+            <span class="sub">The podcast. The launch. The ad strategy. The funnel that's been "almost
+              done" for six weeks. You know what would move the needle, you just can't get to it.</span>
+          </span>
+        </label>
       </div>
-      <p class="statement reveal" style="margin-top: var(--s-6);">You don't need five hires. You need
-        <span class="em">one person who thinks and does</span>, holds the strategy, runs the campaigns,
-        and keeps the systems moving. So you get back to the parts only you can do.</p>
+
+      <p class="statement reveal" style="margin-top: var(--s-6);">Checked a few? You don't need five hires.
+        You need <span class="em">one person who thinks and does</span>, holds the strategy, runs the
+        campaigns, and keeps the systems moving. So you get back to the parts only you can do.</p>
     </div>
   </section>
 
@@ -231,6 +309,7 @@
   <section class="section alt" id="offer">
     <div class="container">
       <div class="reveal measure">
+        <p class="eyebrow"><span class="heart">&#9829;</span>The whole chalupa</p>
         <h2>A marketing partner on your team.</h2>
         <p class="subhead">Not a project. Not a deliverable. A partnership.</p>
         <p>This is what most clients hire me for. I become part of your team, the person who holds the
@@ -262,6 +341,7 @@
   <!-- ===================== TESTIMONIAL (Mint band) ===================== -->
   <section class="section band-mint">
     <div class="container reveal">
+      <p class="eyebrow"><span class="heart">&#9829;</span>What clients say</p>
       <blockquote>"You can give her a goal, and she figures out the process. She goes above and beyond."</blockquote>
       <p style="color: var(--c-ink); max-width: 60ch; margin: 0 0 var(--s-4);">She's highly detail-oriented,
         very process-driven, and more than that, she genuinely cares about the work she does.</p>
@@ -273,6 +353,7 @@
   <section class="section" id="projects">
     <div class="container">
       <div class="reveal measure">
+        <p class="eyebrow"><span class="heart">&#9829;</span>Just want a piece of the pie?</p>
         <h2>Just need one thing handled?</h2>
         <p class="lede" style="margin-top: var(--s-2);">Sometimes you don't need a full partnership. You
           need one specific thing done really well. For those situations:</p>
@@ -306,33 +387,28 @@
   </section>
 
   <!-- ===================== PROCESS ===================== -->
-  <section class="section alt">
+  <section class="section alt" id="process">
     <div class="container">
+      <p class="eyebrow reveal"><span class="heart">&#9829;</span>How we jam</p>
       <h2 class="reveal measure">Three steps between you and finally having your marketing handled.</h2>
-      <div class="rows reveal" style="margin-top: var(--s-5);">
-        <div class="row num-row">
-          <div class="num">01</div>
-          <div class="num-body">
-            <h3>Start with a conversation.</h3>
-            <p>Whether you know exactly what you need or just know something isn't working, we'll walk
-              through your business and find the real gaps. You'll leave with a clearer picture either way.</p>
-          </div>
+      <div class="timeline reveal">
+        <div class="tl-step">
+          <div class="marker">01</div>
+          <h3>Start with a conversation.</h3>
+          <p>You know exactly what you need, or you just know something isn't working. Either way, we walk
+            through your business and find the real gaps. You'll leave with a clearer picture.</p>
         </div>
-        <div class="row num-row">
-          <div class="num">02</div>
-          <div class="num-body">
-            <h3>Get a plan, not a pitch.</h3>
-            <p>If it's a fit, you'll get a proposal with real scope, a real timeline, and a real price.
-              If it's not, I'll tell you who to call instead.</p>
-          </div>
+        <div class="tl-step">
+          <div class="marker">02</div>
+          <h3>Get a plan, not a pitch.</h3>
+          <p>If it's a fit, you'll get a proposal with real scope, a real timeline, and a real price.
+            If it's not, I'll tell you who to call instead.</p>
         </div>
-        <div class="row num-row">
-          <div class="num">03</div>
-          <div class="num-body">
-            <h3>One person, strategy through execution.</h3>
-            <p>Most marketers hand you a plan and leave. I run it with you: ads, funnels, launches, email,
-              podcast. One person, running marketing like it's their whole job.</p>
-          </div>
+        <div class="tl-step">
+          <div class="marker">03</div>
+          <h3>One person runs it.</h3>
+          <p>Most marketers hand you a plan and leave. I run it with you: ads, funnels, launches, email,
+            podcast. Marketing handled like it's someone's whole job.</p>
         </div>
       </div>
     </div>
@@ -347,6 +423,7 @@
           <p class="pullquote">Most marketers hand you a plan. I run it with you.</p>
         </div>
         <div class="reveal">
+          <p class="eyebrow"><span class="heart">&#9829;</span>Hi! Nice to meet you!</p>
           <h2>I'm Priscilla, the marketing partner your business has been missing.</h2>
           <p style="margin-top: var(--s-3);">I work with online business owners who are past the startup
             phase and ready to grow, but who don't want to build a team to get there.</p>
@@ -362,6 +439,7 @@
   <!-- ===================== FINAL CTA (Ink band) ===================== -->
   <section class="section band-ink" id="book">
     <div class="container measure reveal">
+      <p class="eyebrow"><span class="heart">&#9829;</span>One last thing</p>
       <h2>Ready for a marketing partner?</h2>
       <p class="lede" style="margin: var(--s-3) 0 var(--s-4);">Book a clarity call. Thirty minutes, no
         pitch. We'll talk through what's on your plate, what's working, and what one person could actually
