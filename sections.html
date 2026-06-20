@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Section Treatments · Demo</title>
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <style>
+    /* ----------------------------------------------------------------
+       Section treatments demo. noindex. Uses tokens.css for the system;
+       everything here is a demonstration, with placeholder imagery and
+       sample copy in the brand voice. Not the real homepage.
+       ---------------------------------------------------------------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: var(--font-body); font-size: var(--body);
+      line-height: var(--lh-body); font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .display {
+      font-family: var(--font-display); font-weight: 400;
+      font-synthesis: none; line-height: var(--lh-tight); margin: 0;
+    }
+    h1 { font-size: var(--h1); }
+    h2 { font-size: var(--h2); }
+    h3 { font-size: var(--h3); }
+    p { margin: 0 0 var(--s-2); }
+    a { color: var(--link); }
+
+    .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--s-3); }
+    section { padding-block: var(--section-y); position: relative; overflow: hidden; }
+    section.alt { background: var(--bg-alt); }
+    section.feature { background: var(--bg-feature); color: var(--text-on-dark); }
+    section.feature h1, section.feature h2, section.feature h3 { color: var(--text-on-dark); }
+
+    .eyebrow {
+      font-family: var(--font-body); text-transform: uppercase;
+      letter-spacing: 0.14em; font-size: 0.75rem; font-weight: 600;
+      color: var(--text-muted); margin: 0 0 var(--s-2);
+    }
+    section.feature .eyebrow { color: var(--c-mint); }
+
+    /* Tiny margin-note so each block names its own treatment (demo only) */
+    .treat-tag {
+      position: absolute; top: 10px; right: 12px; z-index: 3;
+      font-size: 0.68rem; letter-spacing: 0.04em; color: var(--text-muted);
+      background: rgba(255,255,255,0.6); border: 1px solid var(--line);
+      padding: 3px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+    }
+    section.feature .treat-tag { background: rgba(247,238,231,0.12); color: var(--c-cream); border-color: rgba(247,238,231,0.25); }
+    body.tags-off .treat-tag { display: none; }
+
+    /* ---- Buttons (from the system) ---- */
+    .btn {
+      display: inline-block; font-family: var(--font-body); font-size: 1rem;
+      font-weight: 600; line-height: 1; padding: 14px 24px; border-radius: var(--radius);
+      border: 1.5px solid var(--action); text-decoration: none; cursor: pointer;
+      transition: transform 0.12s ease, opacity 0.12s ease, background 0.16s ease, color 0.16s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--action); color: var(--action-text); }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-accent { background: var(--c-pink); color: var(--c-ink); border-color: var(--line); }
+    .btn-accent:hover { background: var(--c-pink-deep); color: var(--c-cream); border-color: var(--c-pink-deep); }
+    .on-ink .btn-primary, section.feature .btn-primary { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
+    .on-ink .btn-accent, section.feature .btn-accent { border-color: var(--c-pink); }
+    .btn-row { display: flex; gap: var(--s-2); flex-wrap: wrap; align-items: center; }
+
+    /* ---- Placeholder imagery (warm, on-brand, self-contained) ---- */
+    .ph {
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--line); background-size: cover; background-position: center;
+      display: grid; place-items: center; min-height: 160px;
+    }
+    .ph::after {
+      content: attr(data-label);
+      font-family: var(--font-body); font-size: 0.78rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(29,30,38,0.45);
+      border: 1px dashed rgba(29,30,38,0.25); border-radius: 999px; padding: 5px 12px;
+      background: rgba(255,255,255,0.35);
+    }
+    .ph-1 { background-image: linear-gradient(135deg, #FBF6F1, #FFC8E5 70%, #F7CBBB); }
+    .ph-2 { background-image: linear-gradient(135deg, #FBF6F1, #B1DED9); }
+    .ph-3 { background-image: linear-gradient(135deg, #F7CBBB, #FFC8E5); }
+    .ph-4 { background-image: linear-gradient(160deg, #B1DED9, #FBF6F1 60%, #FFC8E5); }
+    .ph-5 { background-image: linear-gradient(135deg, #FFC8E5, #FBF6F1); }
+    .ph-portrait { aspect-ratio: 4 / 5; }
+    .ph-wide { aspect-ratio: 16 / 10; }
+    .ph-square { aspect-ratio: 1 / 1; }
+
+    /* hover zoom + lift for gallery */
+    .img-hover { overflow: hidden; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .img-hover .ph { border-radius: 0; border: 0; transition: transform 0.5s cubic-bezier(.2,.7,.2,1); }
+    .img-hover:hover .ph { transform: scale(1.05); }
+
+    /* ---- Layout helpers ---- */
+    .split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: var(--s-6); align-items: center; }
+    .split.tight { gap: var(--s-5); }
+    @media (max-width: 820px) { .split { grid-template-columns: 1fr; gap: var(--s-4); } }
+    .lede { font-size: 1.15rem; color: var(--text-muted); max-width: 52ch; }
+    section.feature .lede { color: var(--c-cream); opacity: 0.85; }
+
+    /* signature pink underline under a headline */
+    .sig { position: relative; display: inline-block; }
+    .sig svg { position: absolute; left: 0; bottom: -0.14em; width: 100%; height: 0.34em; overflow: visible; }
+    .sig svg path { stroke: var(--c-pink-deep); stroke-width: 5; fill: none; stroke-linecap: round; }
+
+    /* gallery */
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); }
+    @media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+
+    /* testimonial (Mint block, tone-on-tone) */
+    .quote-block { background: var(--c-mint); border-radius: var(--radius); padding: clamp(var(--s-4), 6vw, var(--s-7)); }
+    .quote-block .eyebrow { color: var(--c-mint-deep); }
+    .quote-block blockquote {
+      font-family: var(--font-display); font-weight: 400; font-synthesis: none;
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem); line-height: 1.25; color: var(--c-mint-deep);
+      margin: 0 0 var(--s-3); max-width: 22ch;
+    }
+    .quote-block .cite { color: var(--c-ink); font-weight: 600; }
+    .quote-block .cite span { color: var(--c-mint-deep); font-weight: 400; display: block; font-size: 0.9rem; }
+
+    /* process steps */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
+    @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+    .step .num {
+      font-family: var(--font-display); font-weight: 400; font-synthesis: none;
+      font-size: 2.5rem; color: var(--c-pink-deep); line-height: 1;
+    }
+    .step h3 { margin: var(--s-2) 0 var(--s-1); }
+    .step p { color: var(--text-muted); margin: 0; }
+    .step { padding-top: var(--s-2); border-top: 2px solid var(--c-ink); }
+
+    /* small portrait card cluster for the about strip */
+    .about-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); }
+    .about-imgs .ph:first-child { margin-top: var(--s-4); }
+
+    /* ---- TEXTURE: grain overlay (toggle) ---- */
+    #grain {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      opacity: 0; transition: opacity 0.25s ease; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    body.tex-grain #grain { opacity: 0.05; }
+
+    /* ---- TEXTURE: soft accent glow behind sections (toggle) ---- */
+    .glow { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0; transition: opacity 0.3s ease; z-index: 0; pointer-events: none; }
+    body.tex-glow .glow { opacity: 0.55; }
+    .glow.pink { background: var(--c-pink); }
+    .glow.mint { background: var(--c-mint); }
+    .glow.coral { background: var(--c-coral); }
+    section > .container { position: relative; z-index: 2; }
+
+    /* ---- MOTION: scroll reveal (toggle, respects reduced motion) ---- */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    body.motion-off .reveal { opacity: 1; transform: none; transition: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+    /* ---- Demo control bar (not part of the real site) ---- */
+    .demobar {
+      position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+      z-index: 50; display: flex; gap: 6px; align-items: center;
+      background: var(--c-ink); color: var(--c-cream); padding: 8px 10px;
+      border-radius: 999px; box-shadow: var(--shadow); font-size: 0.82rem;
+      flex-wrap: wrap; justify-content: center; max-width: calc(100% - 24px);
+    }
+    .demobar .label { opacity: 0.6; padding: 0 6px 0 4px; letter-spacing: 0.04em; }
+    .demobar button {
+      font: inherit; font-weight: 600; color: var(--c-cream); cursor: pointer;
+      background: rgba(247,238,231,0.12); border: 1px solid rgba(247,238,231,0.2);
+      padding: 7px 12px; border-radius: 999px; transition: all 0.15s ease;
+    }
+    .demobar button[aria-pressed="true"] { background: var(--c-pink); color: var(--c-ink); border-color: var(--c-pink); }
+
+    .footer { padding-block: var(--s-5); border-top: 1px solid var(--line); }
+    .footer p { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
+  </style>
+</head>
+<body class="tex-grain">
+
+  <div id="grain" aria-hidden="true"></div>
+
+  <!-- ===================== 1 · HERO ===================== -->
+  <section>
+    <span class="treat-tag">01 Hero · cream + signature underline + accent glow</span>
+    <div class="glow pink" style="width:520px; height:520px; top:-160px; right:-120px;"></div>
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <p class="eyebrow">A warm, editorial hero</p>
+          <h1>Marketing that sounds like
+            <span class="sig">you<svg viewBox="0 0 120 12" preserveAspectRatio="none"><path d="M3 8 C 30 2, 70 2, 117 6"/></svg></span>
+            and actually works.</h1>
+          <p class="lede" style="margin-top: var(--s-3);">One clear promise, a real
+            photo of you, and a single thing to do next. That is all a hero needs.
+            The rest of the page earns the scroll.</p>
+          <div class="btn-row" style="margin-top: var(--s-4);">
+            <a href="#" class="btn btn-primary">Book a call</a>
+            <a href="#" class="btn btn-accent">See how I work</a>
+          </div>
+        </div>
+        <div class="reveal img-hover ph ph-portrait ph-1" data-label="Photo of you"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2 · ABOUT STRIP ===================== -->
+  <section class="alt">
+    <span class="treat-tag">02 Intro · cream-soft, asymmetric portrait cluster</span>
+    <div class="container">
+      <div class="split tight">
+        <div class="about-imgs reveal">
+          <div class="ph ph-square ph-2" data-label="Portrait"></div>
+          <div class="ph ph-square ph-3" data-label="Detail"></div>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow">A short, warm introduction</p>
+          <h2>Hi, I help you say it clearly.</h2>
+          <p style="margin-top: var(--s-3);">This is where you sound like a person,
+            not a brochure. Two short paragraphs on who you help and what changes
+            when they work with you. Written the way you would talk across the table.</p>
+          <p>Notice the muted text is Warm Gray, the heading is Golden Batch, and
+            nothing here is shouting. That restraint is the brand.</p>
+          <p style="margin-bottom:0;"><a href="#">More about how I work</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3 · FEATURE BAND (INK) ===================== -->
+  <section class="feature">
+    <span class="treat-tag">03 Feature band · full Ink, Pink headline (the deep breath)</span>
+    <div class="container" style="text-align:center; max-width: 760px;">
+      <p class="eyebrow reveal">A dark section for contrast</p>
+      <h2 class="reveal" style="color: var(--c-pink);">Every long page needs one
+        quiet, dark moment.</h2>
+      <p class="lede reveal" style="margin: var(--s-3) auto var(--s-4); text-align:center;">
+        Drop into Ink once or twice to reset the eye, carry a single big idea, and
+        point at one action. High contrast, low clutter.</p>
+      <div class="btn-row reveal" style="justify-content:center;">
+        <a href="#" class="btn btn-primary">Primary action</a>
+        <a href="#" class="btn btn-accent">Secondary</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4 · GALLERY ===================== -->
+  <section>
+    <span class="treat-tag">04 Gallery · 3-up grid, hover zoom + soft shadow</span>
+    <div class="container">
+      <div class="reveal" style="margin-bottom: var(--s-4);">
+        <p class="eyebrow">Selected work</p>
+        <h2>Show results, not promises.</h2>
+        <p class="lede" style="margin-top: var(--s-2);">Case studies, client logos,
+          or before and after. Same crops, one warm grade, 4px corners, gentle zoom
+          on hover. Hover any tile.</p>
+      </div>
+      <div class="gallery reveal">
+        <div class="img-hover"><div class="ph ph-square ph-1" data-label="Case study"></div></div>
+        <div class="img-hover"><div class="ph ph-square ph-4" data-label="Case study"></div></div>
+        <div class="img-hover"><div class="ph ph-square ph-3" data-label="Case study"></div></div>
+        <div class="img-hover"><div class="ph ph-square ph-2" data-label="Case study"></div></div>
+        <div class="img-hover"><div class="ph ph-square ph-5" data-label="Case study"></div></div>
+        <div class="img-hover"><div class="ph ph-square ph-1" data-label="Case study"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 5 · TESTIMONIAL (MINT) ===================== -->
+  <section class="alt">
+    <span class="treat-tag">05 Testimonial · Mint block, tone-on-tone (Deep Mint text)</span>
+    <div class="glow mint" style="width:460px; height:460px; bottom:-180px; left:-120px;"></div>
+    <div class="container">
+      <div class="quote-block reveal">
+        <p class="eyebrow">What people say</p>
+        <blockquote>"I finally know what to say, and my bookings doubled in a
+          month. It felt easy the whole way."</blockquote>
+        <p class="cite">Jordan M. <span>1:1 client, 2026</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 6 · PROCESS ===================== -->
+  <section>
+    <span class="treat-tag">06 Process · calm numbered steps</span>
+    <div class="container">
+      <div class="reveal" style="margin-bottom: var(--s-5);">
+        <p class="eyebrow">How it works</p>
+        <h2>A simple path, start to finish.</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="num">01</div>
+          <h3>Book a call</h3>
+          <p>Tell me where you are stuck. We see if we are a fit, with no pressure.</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">02</div>
+          <h3>We work 1:1</h3>
+          <p>Focused sessions on your message, your offer, and your next move. Just us.</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">03</div>
+          <h3>You run with it</h3>
+          <p>You leave with a clear plan and the words to use, ready to put to work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 7 · CTA BAND (PINK) ===================== -->
+  <section>
+    <span class="treat-tag">07 CTA · Pink band, Ink text + button</span>
+    <div class="container">
+      <div class="reveal" style="background: var(--c-pink); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(var(--s-5), 7vw, var(--s-7)); text-align:center;">
+        <h2 style="color: var(--c-ink);">Ready when you are.</h2>
+        <p style="color: var(--c-ink); opacity:0.8; max-width: 46ch; margin: var(--s-2) auto var(--s-4);">
+          End the page the way you started it: one clear line, one button. No maze.</p>
+        <a href="#" class="btn btn-primary">Book a call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <p>Demo page · placeholder imagery and sample copy · not the real homepage.
+        All styling comes from <code>assets/css/tokens.css</code>.</p>
+    </div>
+  </footer>
+
+  <!-- Demo controls (not part of the real site) -->
+  <div class="demobar" role group aria-label="Demo controls">
+    <span class="label">Demo</span>
+    <button id="t-grain" aria-pressed="true">Grain</button>
+    <button id="t-glow" aria-pressed="false">Accent glow</button>
+    <button id="t-motion" aria-pressed="true">Motion</button>
+    <button id="t-tags" aria-pressed="true">Labels</button>
+  </div>
+
+  <script>
+    // Scroll reveal
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const els = document.querySelectorAll('.reveal');
+    if (reduce) {
+      els.forEach(e => e.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(e => io.observe(e));
+    }
+
+    // Toggles
+    const body = document.body;
+    const bind = (id, cls, on, invert=false) => {
+      const btn = document.getElementById(id);
+      const apply = () => {
+        const pressed = btn.getAttribute('aria-pressed') === 'true';
+        const active = invert ? !pressed : pressed;
+        body.classList.toggle(cls, active);
+      };
+      btn.addEventListener('click', () => {
+        btn.setAttribute('aria-pressed', btn.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+        apply();
+      });
+      apply();
+    };
+    bind('t-grain', 'tex-grain', true);
+    bind('t-glow', 'tex-glow', false);
+    bind('t-motion', 'motion-off', true, true); // pressed = motion ON = class OFF
+    bind('t-tags', 'tags-off', true, true);     // pressed = labels ON = class OFF
+  </script>
+</body>
+</html>
