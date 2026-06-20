@@ -125,6 +125,28 @@
     .row .proj-link { display: inline-block; margin-top: var(--s-2); font-weight: 600; text-decoration: none;
       border-bottom: 2px solid currentColor; }
 
+    /* project feature pairs: a white panel overlapping a square pic */
+    .feature-pair { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; margin-top: var(--s-6); }
+    .feature-pair .panel { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: clamp(var(--s-4), 4vw, var(--s-5)); position: relative; z-index: 2; }
+    .feature-pair .panel h3 { font-size: clamp(1.5rem, 2.6vw, 2rem); }
+    .feature-pair .pic { aspect-ratio: 1 / 1; border-radius: 22px; display: grid; place-items: center; overflow: hidden; }
+    .feature-pair .pic span { font-size: clamp(3rem, 7vw, 5rem); line-height: 1; }
+    .feature-pair.left  .panel { margin-right: -56px; }
+    .feature-pair.right .panel { margin-left: -56px; }
+    .pic-coral { background: var(--c-coral); }
+    .pic-mint  { background: var(--c-mint); }
+    .feature-pair .panel .retainer { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--c-coral-deep); font-weight: 600; margin: var(--s-1) 0 var(--s-2); }
+    .feature-pair .panel p { color: var(--text-muted); }
+    .feature-pair .panel .proj-link { display: inline-block; margin-top: var(--s-2); color: var(--link);
+      font-weight: 600; text-decoration: none; border-bottom: 2px solid currentColor; }
+    @media (max-width: 760px) {
+      .feature-pair { grid-template-columns: 1fr; }
+      .feature-pair .pic { order: 1; }
+      .feature-pair .panel { order: 2; margin: -28px var(--s-3) 0 !important; }
+    }
+
     /* big statement */
     .statement { font-family: var(--font-display); font-synthesis: none; font-weight: 400;
       font-size: clamp(1.6rem, 3.4vw, 2.4rem); line-height: 1.28; max-width: 26ch; }
@@ -159,7 +181,7 @@
     .photo-frame { position: relative; display: inline-block; width: 100%; }
     .photo-frame .ph { position: relative; z-index: 1; }
     .ph--photo { background-image: url('/assets/img/about.webp'); background-size: cover;
-      background-position: 50% 25%; }
+      background-position: 50% 30%; aspect-ratio: 1 / 1; }
     .ph--photo::after { content: none; }
     .photo-frame .block { position: absolute; z-index: 0; width: 58%; aspect-ratio: 1;
       background: var(--c-mint); border-radius: var(--radius); right: -22px; bottom: -22px; }
@@ -210,14 +232,15 @@
     }
 
     /* ================= Ombre + overlapping sections ================= */
-    /* Each section flows into the next through a soft vertical gradient,
-       and lifts over the previous one with a rounded top + upward shadow. */
-    .section {
-      position: relative; z-index: 1;
-      margin-top: -40px;
-      border-radius: 34px 34px 0 0;
-      box-shadow: 0 -16px 38px rgba(29,30,38,0.07);
-      padding-top: calc(var(--section-y) + 40px);
+    /* Sections flow into each other through a soft vertical ombre. Overlap
+       (rounded top + upward shadow) is reserved for a few intentional moments:
+       the content rising over the hero, and the Mint and Ink feature bands. */
+    .section { position: relative; z-index: 1; }
+    #pain, .band-mint, .band-ink {
+      margin-top: -44px; z-index: 2;
+      border-radius: 40px 40px 0 0;
+      box-shadow: 0 -16px 40px rgba(29,30,38,0.08);
+      padding-top: calc(var(--section-y) + 44px);
     }
     #pain      { background: linear-gradient(180deg, #F7EEE7 0%, #FCE4EF 100%); }
     #offer     { background: linear-gradient(180deg, #FCE4EF 0%, #FBE2D6 100%); }
@@ -314,9 +337,10 @@
         </label>
       </div>
 
-      <p class="statement reveal" style="margin-top: var(--s-6);">Checked a few? You don't need five hires.
-        You need <span class="em">one person who thinks and does</span>, holds the strategy, runs the
-        campaigns, and keeps the systems moving. So you get back to the parts only you can do.</p>
+      <p class="statement reveal" style="margin: var(--s-6) auto 0; text-align: center;">Checked a few?
+        You don't need five hires. You need <span class="em">one person who thinks and does</span>, holds
+        the strategy, runs the campaigns, and keeps the systems moving. So you get back to the parts only
+        you can do.</p>
     </div>
   </section>
 
@@ -373,29 +397,25 @@
         <p class="lede" style="margin-top: var(--s-2);">Sometimes you don't need a full partnership. You
           need one specific thing done really well. For those situations:</p>
       </div>
-      <div class="rows reveal" style="margin-top: var(--s-5);">
-        <div class="row proj">
-          <div>
-            <h3>Meta Ads Management</h3>
-            <p class="retainer">Project-based or short-term retainer</p>
-          </div>
-          <div>
-            <p class="body">You've outgrown organic, or maybe you've tried ads before and they didn't
-              deliver. I build real Meta ads strategy around your business, not a recycled template.
-              Honest reporting, no agency markup, no smoke.</p>
-            <a href="#" class="proj-link">See the ads service →</a>
-          </div>
+      <div class="feature-pair left reveal">
+        <div class="panel">
+          <h3>Meta Ads Management</h3>
+          <p class="retainer">Project-based or short-term retainer</p>
+          <p>You've outgrown organic, or maybe you've tried ads before and they didn't deliver. I build
+            real Meta ads strategy around your business, not a recycled template. Honest reporting, no
+            agency markup, no smoke.</p>
+          <a href="#" class="proj-link">See the ads service →</a>
         </div>
-        <div class="row proj">
-          <div>
-            <h3>Podcast Production</h3>
-            <p class="retainer">Monthly retainer</p>
-          </div>
-          <div>
-            <p class="body">You want a podcast but don't want to become a producer. I handle the editing,
-              show notes, publishing, and strategy. You show up and hit record. The rest gets done.</p>
-            <a href="#" class="proj-link">See the podcast service →</a>
-          </div>
+        <div class="pic pic-coral"><span aria-hidden="true">&#128227;</span></div>
+      </div>
+      <div class="feature-pair right reveal">
+        <div class="pic pic-mint"><span aria-hidden="true">&#127908;&#65039;</span></div>
+        <div class="panel">
+          <h3>Podcast Production</h3>
+          <p class="retainer">Monthly retainer</p>
+          <p>You want a podcast but don't want to become a producer. I handle the editing, show notes,
+            publishing, and strategy. You show up and hit record. The rest gets done.</p>
+          <a href="#" class="proj-link">See the podcast service →</a>
         </div>
       </div>
     </div>
