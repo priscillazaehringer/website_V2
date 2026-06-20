@@ -15,7 +15,9 @@ assets/
   fonts/
     hanken-grotesk-var.woff2       Body font, variable 100–900 (self-hosted)
     golden-batch.woff2 / .woff     Headline font, regular 400 only (see below)
+    caveat-var.woff2               Casual marker script, accent words only
     OFL-HankenGrotesk.txt          Hanken Grotesk license
+    OFL-Caveat.txt                 Caveat license
 scripts/
   convert-golden-batch.py          Turns the Golden Batch .ttf into web fonts
 ```
@@ -33,6 +35,8 @@ raw hex.
   bold. The token sets `font-synthesis: none` so browsers cannot fake a bold.
 - **Hanken Grotesk** · body, buttons, labels. Variable weights 100–900,
   self-hosted as a single woff2.
+- **Caveat** · casual marker script for small handwritten accent words only
+  (never body text). Self-hosted variable woff2. Token: `--font-script`.
 
 ### Adding Golden Batch
 

@@ -20,6 +20,13 @@
   font-weight: 100 900; font-style: normal; font-display: swap;
 }
 
+/* Caveat — casual marker script. ACCENT WORDS ONLY, never body text. */
+@font-face {
+  font-family: 'Caveat';
+  src: url('/assets/fonts/caveat-var.woff2') format('woff2');
+  font-weight: 400 700; font-style: normal; font-display: swap;
+}
+
 :root {
   /* ---- Raw brand colors -------------------------------------------- */
   /* Neutrals — the backbone */
@@ -44,6 +51,7 @@
   /* ---- Type -------------------------------------------------------- */
   --font-display:'Golden Batch', Georgia, serif;   /* headlines, weight 400 only */
   --font-body:'Hanken Grotesk', system-ui, sans-serif;
+  --font-script:'Caveat', 'Segoe Script', cursive; /* accent words only, never body */
 
   --h1:clamp(2.6rem,6vw,4.5rem); --h2:clamp(2rem,4vw,3rem); --h3:clamp(1.4rem,2.5vw,1.75rem);
   --body:clamp(1rem,1.2vw,1.125rem); --lh-tight:1.15; --lh-body:1.6;

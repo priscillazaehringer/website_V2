@@ -152,6 +152,16 @@
     .pullquote { font-family: var(--font-display); font-synthesis: none; font-size: 1.35rem; line-height: 1.3;
       border-left: 3px solid var(--c-pink); padding-left: var(--s-2); margin: var(--s-3) 0 0; }
 
+    /* photo with a color block behind it + a handwritten marker note */
+    .photo-frame { position: relative; display: inline-block; width: 100%; }
+    .photo-frame .ph { position: relative; z-index: 1; }
+    .photo-frame .block { position: absolute; z-index: 0; width: 58%; aspect-ratio: 1;
+      background: var(--c-mint); border-radius: var(--radius); right: -22px; bottom: -22px; }
+    .note-script { font-family: var(--font-script); font-weight: 600; color: var(--c-pink-deep);
+      line-height: 1; }
+    .photo-frame .note-script { position: absolute; z-index: 2; font-size: 2.3rem;
+      transform: rotate(-7deg); top: -20px; left: -12px; }
+
     /* ================= Ink full-bleed CTA ================= */
     .band-ink { background: var(--bg-feature); color: var(--text-on-dark); }
     .band-ink h2 { color: var(--c-pink); }
@@ -419,7 +429,11 @@
     <div class="container">
       <div class="about-grid">
         <div class="reveal">
-          <div class="ph" data-label="Photo of Priscilla"></div>
+          <div class="photo-frame">
+            <span class="block" aria-hidden="true"></span>
+            <div class="ph" data-label="Photo of Priscilla"></div>
+            <span class="note-script" aria-hidden="true">hi, that's me!</span>
+          </div>
           <p class="pullquote">Most marketers hand you a plan. I run it with you.</p>
         </div>
         <div class="reveal">
