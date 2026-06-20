@@ -7,7 +7,9 @@ self-hosted fonts and a shared CSS file work normally.
 ## Structure
 
 ```
-index.html                         Brand guidelines / reference page (noindex)
+index.html                         Homepage (built from real copy, noindex while staging)
+brand.html                         Brand guidelines / reference page (noindex)
+sections.html                      Section treatments demo (noindex)
 assets/
   css/tokens.css                   Design tokens · the single source of truth
   fonts/
