@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- noindex while staging. Remove this tag at launch. -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>About Priscilla Zaehringer · Iowa marketing partner</title>
+  <meta name="description" content="Meet Priscilla Zaehringer, an Iowa-based marketing partner offering Meta ads management, podcast production, and business operations support for small business owners.">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="About Priscilla Zaehringer · Iowa marketing partner">
+  <meta property="og:description" content="Meet Priscilla Zaehringer, an Iowa-based marketing partner offering Meta ads management, podcast production, and business operations support for small business owners.">
+  <meta property="og:url" content="https://priscillazaehringer.com/about/">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <style>
+    /* ================================================================
+       About page. Built on the homepage system (tokens, cut-outs, ombre,
+       the .col column, eyebrows, color blocks). noindex while staging.
+       ================================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body);
+      font-size: var(--body); line-height: var(--lh-body); font-weight: 400; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, .display { font-family: var(--font-display); font-weight: 400; font-synthesis: none;
+      line-height: var(--lh-tight); margin: 0; }
+    h1 { font-size: clamp(2.7rem, 6.4vw, 4.8rem); }
+    h2 { font-size: clamp(2rem, 4.4vw, 3.1rem); }
+    h3 { font-size: clamp(1.4rem, 2.4vw, 1.75rem); }
+    p { margin: 0 0 var(--s-2); }
+    a { color: var(--link); }
+
+    .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--s-3); }
+    .section { padding-block: var(--section-y); position: relative; z-index: 1; }
+    .col { max-width: 680px; margin-inline: auto; }
+    .lede { font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--text-muted); }
+
+    .eyebrow { font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em;
+      color: var(--c-pink-deep); margin: 0 0 var(--s-2); }
+    .eyebrow .heart { color: var(--c-pink); margin-right: 7px; }
+
+    .sig { position: relative; display: inline-block; }
+    .sig svg { position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0.32em; overflow: visible; }
+    .sig svg path { stroke: var(--c-pink); stroke-width: 5; fill: none; stroke-linecap: round; }
+    .note-script { font-family: var(--font-script); font-weight: 600; color: var(--c-pink-deep); line-height: 1; }
+
+    /* ---- Header ---- */
+    .site-header { position: fixed; inset: 0 0 auto 0; z-index: 50; color: var(--text);
+      transition: background 0.25s ease, border-color 0.25s ease; border-bottom: 1px solid transparent; }
+    .site-header.stuck { background: rgba(247,238,231,0.92); backdrop-filter: blur(8px); border-bottom-color: var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding-block: var(--s-2); gap: var(--s-3); }
+    .wordmark { font-family: var(--font-display); font-size: 1.3rem; color: inherit; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: var(--s-4); }
+    .nav-links a:not(.btn) { color: inherit; text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+    .nav-links a:not(.btn):hover { color: var(--link); }
+    @media (max-width: 720px) { .nav-links .hide-sm { display: none; } }
+
+    /* ---- Buttons ---- */
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 1rem;
+      font-weight: 600; line-height: 1; padding: 16px 28px; border-radius: var(--radius);
+      border: 1.5px solid var(--action); background: var(--action); color: var(--action-text);
+      text-decoration: none; cursor: pointer; transition: opacity 0.14s ease, transform 0.12s ease; }
+    .btn:hover { opacity: 0.88; } .btn:active { transform: translateY(1px); }
+    .btn-cream { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
+    .textlink { color: var(--link); font-weight: 600; text-decoration: none; border-bottom: 2px solid currentColor; padding-bottom: 1px; }
+
+    /* ---- Pills ---- */
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 500;
+      padding: 7px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); color: var(--text); }
+    .pill-pink { background: var(--c-pink); border-color: transparent; }
+    .pill-mint { background: var(--c-mint); border-color: transparent; }
+    .pill-coral { background: var(--c-coral); border-color: transparent; }
+
+    /* ================= HERO: cut-out over ombre ================= */
+    .hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden;
+      background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 55%, #FBE2D6 100%); }
+    .hero-blob { position: absolute; z-index: 0; right: 9%; bottom: 6%; width: 40vw; height: 64%;
+      max-width: 580px; border-radius: 50%; background: var(--c-coral); filter: blur(72px); opacity: 0.5; }
+    .hero-cutout { position: absolute; z-index: 1; right: 0; bottom: 0; height: 92%; width: auto;
+      object-fit: contain; object-position: bottom right; pointer-events: none;
+      filter: grayscale(0) drop-shadow(0 22px 40px rgba(29,30,38,0.20)); }
+    .hero .container { position: relative; z-index: 2; }
+    .hero-text { max-width: 34rem; padding-block: var(--s-6); }
+    .hero h1 { color: var(--text); max-width: 14ch; }
+    .hero .lede { color: var(--text); max-width: 40ch; margin-top: var(--s-3); }
+    .hero .cilla-note { font-family: var(--font-script); color: var(--c-pink-deep); font-size: 1.5rem;
+      transform: rotate(-6deg); display: inline-block; margin-top: var(--s-3); }
+    .hero .cta { margin-top: var(--s-3); display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+    .hero .pills { margin-top: var(--s-4); }
+    @media (max-width: 860px) {
+      .hero { flex-direction: column; align-items: stretch; min-height: auto; }
+      .hero-text { max-width: 100%; padding-top: 116px; padding-bottom: 0; }
+      .hero-cutout { position: relative; right: auto; bottom: auto; height: auto; width: 80%;
+        max-width: 340px; margin: var(--s-4) auto 0; display: block; }
+      .hero-blob { width: 78%; height: 36%; right: 11%; bottom: 0; }
+    }
+
+    /* ================= Ombre / bands ================= */
+    .alt-pink  { background: linear-gradient(180deg, #F7EEE7 0%, #FCE4EF 100%); }
+    .alt-coral { background: linear-gradient(180deg, #F7EEE7 0%, #FBE7DD 100%); }
+    .band-ink { background: var(--bg-feature); color: var(--text-on-dark); }
+    .band-ink h2, .band-ink h3 { color: var(--c-pink); }
+    .band-ink .eyebrow, .band-ink .eyebrow .heart { color: var(--c-pink); }
+    .band-ink .lede { color: var(--c-cream); opacity: 0.85; }
+    .overlap { margin-top: -44px; z-index: 2; border-radius: 40px 40px 0 0;
+      box-shadow: 0 -16px 40px rgba(29,30,38,0.08); padding-top: calc(var(--section-y) + 44px); }
+
+    /* ---- Story pull-quote ---- */
+    .pullquote { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.3; color: var(--c-pink-deep); margin: var(--s-4) 0; max-width: 22ch; }
+    .quote-soft { font-family: var(--font-display); font-synthesis: none; font-size: 1.3rem; line-height: 1.4;
+      border-left: 3px solid var(--c-pink); padding-left: var(--s-2); margin: var(--s-3) 0 0; }
+
+    /* ---- Script band ---- */
+    .script-band { text-align: center; }
+    .script-band .big { font-family: var(--font-script); color: var(--c-pink); font-size: clamp(1.8rem, 4.5vw, 3rem);
+      line-height: 1.3; max-width: 18ch; margin: 0 auto; display: block; }
+
+    /* ---- Beliefs ---- */
+    .beliefs { display: grid; gap: var(--s-4); margin-top: var(--s-4); }
+    .belief { display: grid; grid-template-columns: auto 1fr; gap: var(--s-3); align-items: start; }
+    .belief .be { font-size: 1.7rem; line-height: 1; }
+    .belief h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); margin-bottom: 4px; }
+    .belief p { color: var(--text-muted); margin: 0; }
+
+    /* ---- Partner split ---- */
+    .split { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: var(--s-6); align-items: center; }
+    @media (max-width: 820px) { .split { grid-template-columns: 1fr; gap: var(--s-4); } }
+    .photo-frame { position: relative; }
+    .photo-frame .block { position: absolute; z-index: 0; width: 60%; aspect-ratio: 1; background: var(--c-coral);
+      border-radius: var(--radius); right: -22px; bottom: -22px; }
+    .about-photo { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: var(--radius);
+      background-image: url('/assets/img/about.webp'); background-size: cover; background-position: 50% 22%; }
+    .photo-frame .note-script { position: absolute; z-index: 2; font-size: 2.1rem; transform: rotate(-7deg); top: -18px; left: -10px; }
+
+    /* ---- Services ---- */
+    .svc-about { display: grid; gap: var(--s-2); margin-top: var(--s-4); }
+    .svc-about .item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-3); align-items: center;
+      padding: var(--s-3); background: #fff; border: 1px solid var(--line); border-radius: var(--radius); }
+    .svc-about .em { font-size: 1.5rem; }
+    .svc-about h3 { font-size: 1.15rem; margin-bottom: 2px; }
+    .svc-about p { color: var(--text-muted); font-size: 0.92rem; margin: 0; }
+    .svc-about .lk { font-weight: 600; color: var(--link); white-space: nowrap; font-size: 0.85rem; text-decoration: none; border-bottom: 2px solid currentColor; }
+    .svc-about .soon { color: var(--text-muted); white-space: nowrap; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    @media (max-width: 640px) { .svc-about .item { grid-template-columns: auto 1fr; } .svc-about .lk, .svc-about .soon { grid-column: 2; } }
+
+    /* ---- Off the clock band ---- */
+    .band-ink .pill { background: rgba(247,238,231,0.10); border-color: rgba(247,238,231,0.22); color: var(--c-cream); }
+    .band-ink .sign { font-family: var(--font-script); color: var(--c-pink); font-size: 1.5rem; }
+
+    /* ---- Quiz flip cards ---- */
+    .quiz-intro { color: var(--text-muted); max-width: 46ch; margin: var(--s-2) auto 0; }
+    .quiz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); max-width: 920px; margin: var(--s-5) auto 0; }
+    @media (max-width: 760px) { .quiz-grid { grid-template-columns: 1fr; } }
+    .flip { perspective: 1000px; }
+    .flip-inner { position: relative; width: 100%; transition: transform 0.6s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+    .flip.flipped .flip-inner { transform: rotateY(180deg); }
+    .flip-front, .flip-back { backface-visibility: hidden; border-radius: var(--radius); padding: var(--s-3); top: 0; left: 0; width: 100%; }
+    .flip-front { background: #fff; box-shadow: var(--shadow); }
+    .flip-back { background: var(--c-mint); transform: rotateY(180deg); display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; }
+    /* flow trick so cards size to content */
+    .flip-front, .flip-back { position: relative; }
+    .flip.flipped .flip-front { visibility: hidden; position: absolute; }
+    .flip.flipped .flip-back { position: relative; visibility: visible; }
+    .flip:not(.flipped) .flip-back { visibility: hidden; position: absolute; }
+    .flip-num { font-family: var(--font-script); font-weight: 700; font-size: 1.8rem; color: var(--c-pink-deep); opacity: 0.35; }
+    .flip-q { font-family: var(--font-display); font-size: 1.2rem; color: var(--text); margin-bottom: var(--s-2); }
+    .flip-opts { display: flex; flex-direction: column; gap: 6px; }
+    .flip-o { font-size: 0.9rem; color: var(--text); padding: 9px 14px; border-radius: 999px; cursor: pointer;
+      border: 1.5px solid var(--line); transition: all 0.18s ease; }
+    .flip-o:hover { border-color: var(--c-pink-deep); background: var(--bg-alt); }
+    .flip-lbl { font-weight: 600; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-mint-deep); margin-bottom: var(--s-1); }
+    .flip-ans { font-family: var(--font-script); font-size: 1.5rem; color: var(--c-ink); margin-bottom: var(--s-2); line-height: 1.25; }
+    .flip-you { font-size: 0.85rem; color: var(--c-ink); margin-bottom: 4px; }
+    .flip-yours { font-weight: 600; }
+    .flip-vibe { font-family: var(--font-script); font-size: 1.3rem; color: var(--c-pink-deep); }
+
+    /* ---- grain + reveal ---- */
+    #grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+    /* ---- footer ---- */
+    .site-footer { background: var(--c-ink); color: var(--c-cream); padding-block: var(--s-6); position: relative; z-index: 1; }
+    .site-footer a { color: var(--c-cream); text-decoration: none; opacity: 0.85; }
+    .site-footer a:hover { opacity: 1; color: var(--c-pink); }
+    .foot-top { display: flex; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; align-items: start; }
+    .foot-links { display: flex; gap: var(--s-4); flex-wrap: wrap; }
+    .foot-bottom { margin-top: var(--s-5); padding-top: var(--s-3); border-top: 1px solid rgba(247,238,231,0.15);
+      font-size: 0.85rem; opacity: 0.7; display: flex; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+  <div id="grain" aria-hidden="true"></div>
+
+  <header class="site-header" id="hdr">
+    <div class="container nav">
+      <a href="/" class="wordmark">Priscilla Zähringer</a>
+      <nav class="nav-links">
+        <a href="/#offer" class="hide-sm">Work with me</a>
+        <a href="/#projects" class="hide-sm">Services</a>
+        <a href="/about.html" class="hide-sm">About</a>
+        <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="textlink" style="border:0;">Book a call</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="top">
+    <span class="hero-blob" aria-hidden="true"></span>
+    <div class="container">
+      <div class="hero-text">
+        <h1>The person your business has been
+          <span class="sig">missing<svg viewBox="0 0 180 12" preserveAspectRatio="none"><path d="M3 8 C 45 2, 130 2, 177 6"/></svg></span>.</h1>
+        <p class="lede">Business operations, podcast production, and Meta ad management for small business
+          owners who want a partner who actually cares. Not just the invoice.</p>
+        <div class="pills">
+          <span class="pill pill-coral">🌻 Iowa girl</span>
+          <span class="pill pill-pink">☕ Sugar cookie latte</span>
+          <span class="pill pill-mint">✨ Disney lover</span>
+        </div>
+        <div class="cta">
+          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn">Book a Clarity Call</a>
+          <span class="note-script" style="font-size:1.4rem; transform:rotate(-5deg); display:inline-block;">Cilla, for short</span>
+        </div>
+      </div>
+    </div>
+    <img class="hero-cutout" src="/assets/img/hero-cutout.webp" width="1500" height="1401" alt="Priscilla">
+  </section>
+
+  <!-- ===================== STORY ===================== -->
+  <section class="section alt-pink overlap" id="story">
+    <div class="container">
+      <div class="col reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>Hi, nice to meet you</p>
+        <h2>Here's what you should know about me.</h2>
+        <p style="margin-top: var(--s-3);">I'm Priscilla. Born and raised in Iowa, still here, and not
+          going anywhere. Mom of three. The kind of person who'd rather have an honest conversation than a
+          polished pitch.</p>
+        <p>I earned my MBA in 2020, right in the middle of the pandemic, with three kids at home.</p>
+        <p class="pullquote">Most people would call that chaos. I called it an opening.</p>
+        <p>Operations, marketing, content, systems. I tried all of it. And it stopped feeling like
+          experimenting and started feeling like the actual thing I was supposed to be doing.</p>
+        <p class="quote-soft">Today I run a business offering operations support, podcast production, and
+          done-for-you Meta ad management. I treat every client like a partner, not a project.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCRIPT BAND ===================== -->
+  <section class="section band-ink overlap script-band">
+    <div class="container reveal">
+      <span class="big">just me, doing work I care about, for businesses I believe in.</span>
+    </div>
+  </section>
+
+  <!-- ===================== BELIEFS ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="col reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>What I believe</p>
+        <h2>The hills I'll die on.</h2>
+        <div class="beliefs">
+          <div class="belief"><span class="be">🌱</span><div>
+            <h3>Growth doesn't have to feel chaotic.</h3>
+            <p>Scaling should feel steady, not like everything is one missed email away from falling apart.</p></div></div>
+          <div class="belief"><span class="be">🎙️</span><div>
+            <h3>Your podcast is a marketing lever, not a revenue stream.</h3>
+            <p>Treat it as a trust-building tool and it will do more for your bottom line than any sponsorship.</p></div></div>
+          <div class="belief"><span class="be">🎯</span><div>
+            <h3>You don't need a massive budget. You need the right strategy.</h3>
+            <p>$5 a day in ad spend can bring in 7+ new leads. Big results require the right person, not big budgets.</p></div></div>
+          <div class="belief"><span class="be">💪</span><div>
+            <h3>Small businesses deserve big-brand support.</h3>
+            <p>Not a watered-down version. Real strategy, honest guidance, work built around your business.</p></div></div>
+          <div class="belief"><span class="be">🤍</span><div>
+            <h3>Honesty over hype. Every single time.</h3>
+            <p>If you're not ready, I'll tell you. I'd rather lose a project today and earn your trust for the long run.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PARTNER ===================== -->
+  <section class="section alt-coral">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <div class="photo-frame">
+            <span class="block" aria-hidden="true"></span>
+            <div class="about-photo" role="img" aria-label="Priscilla"></div>
+            <span class="note-script" aria-hidden="true">that's me!</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow"><span class="heart">&#9829;</span>How I work</p>
+          <h2>The kind of partner I am.</h2>
+          <p style="margin-top: var(--s-3);">I keep my client roster intentionally small. I refuse to give
+            anyone less than they deserve.</p>
+          <p>When you work with me, you get me. Not a junior account manager. Not a templated report. Just
+            me, in your corner, every day.</p>
+          <p class="quote-soft">The businesses that need the most support are usually the ones that get the
+            least of it. That's who I'm for.</p>
+          <p style="margin-top: var(--s-3);">My clients become friends. I genuinely root for them, celebrate
+            their wins, and think about their businesses even when I'm not on the clock.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="col reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>What I do</p>
+        <h2>Three ways I support small businesses.</h2>
+        <div class="svc-about">
+          <div class="item">
+            <span class="em">⚙️</span>
+            <div><h3>Business Operations (OBM)</h3><p>Systems, workflows, project management. I become the operational backbone.</p></div>
+            <span class="soon">Coming soon</span>
+          </div>
+          <div class="item">
+            <span class="em">🎙️</span>
+            <div><h3>Podcast Production</h3><p>Full-service production. You hit record, I handle everything else.</p></div>
+            <a href="/#projects" class="lk">See the service</a>
+          </div>
+          <div class="item">
+            <span class="em">📣</span>
+            <div><h3>Done-for-You Meta Ads</h3><p>Strategic ad management without the agency markup. Custom strategy, relentless optimization.</p></div>
+            <a href="/#projects" class="lk">See the service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== OFF THE CLOCK ===================== -->
+  <section class="section band-ink overlap">
+    <div class="container col reveal" style="text-align:center;">
+      <p class="eyebrow"><span class="heart">&#9829;</span>Off the clock</p>
+      <h2>The non-marketing stuff.</h2>
+      <div class="pills" style="justify-content:center; margin: var(--s-4) 0;">
+        <span class="pill">✨ Disney Parks fanatic</span>
+        <span class="pill">👩‍👧‍👦 Mom of 3</span>
+        <span class="pill">🔮 Enneagram 6</span>
+        <span class="pill">🧠 INFJ-T</span>
+        <span class="pill">☕ Sugar cookie latte, no shame</span>
+        <span class="pill">🌻 Iowa forever</span>
+        <span class="pill">💃 Most-used emoji</span>
+        <span class="pill">🏖️ Dreaming of a beach house</span>
+      </div>
+      <p class="lede" style="margin-inline:auto; max-width: 52ch;">I'm a Midwest girl through and through.
+        I love adventures, big and small. I bring that same energy to my work: show up fully, stay curious,
+        care deeply.</p>
+      <p class="sign" style="margin-top: var(--s-3);">No curated highlight reel. Just me.</p>
+    </div>
+  </section>
+
+  <!-- ===================== QUIZ ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="col reveal" style="text-align:center;">
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Just for fun</p>
+        <h2>The get-to-know-each-other quiz.</h2>
+        <p class="quiz-intro">Pick your answer. The card flips to reveal mine.</p>
+      </div>
+      <div class="quiz-grid reveal">
+        <div class="flip" data-cilla="1"><div class="flip-inner"><div class="flip-front"><div class="flip-num">01</div><div class="flip-q">Ideal Friday night?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🎬 Disney movie marathon</div><div class="flip-o" onclick="fp(this,1)">🎯 Target adventure</div><div class="flip-o" onclick="fp(this,2)">🛋️ Couch and true crime</div><div class="flip-o" onclick="fp(this,3)">📋 Planning ahead</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🎯 A Target run that becomes a 2-hour adventure</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
+        <div class="flip" data-cilla="0"><div class="flip-inner"><div class="flip-front"><div class="flip-num">02</div><div class="flip-q">Coffee order?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🍪 Something sweet</div><div class="flip-o" onclick="fp(this,1)">🍂 Whatever's seasonal</div><div class="flip-o" onclick="fp(this,2)">✨ Surprise me</div><div class="flip-o" onclick="fp(this,3)">💧 Just water</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🍪 Sugar cookie latte, not even a little sorry</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
+        <div class="flip" data-cilla="2"><div class="flip-inner"><div class="flip-front"><div class="flip-num">03</div><div class="flip-q">Comfort TV?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">📺 Reality TV</div><div class="flip-o" onclick="fp(this,1)">⚔️ Drama or fantasy</div><div class="flip-o" onclick="fp(this,2)">🤷‍♀️ Both, no judgment</div><div class="flip-o" onclick="fp(this,3)">😅 Whatever's on</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🤷‍♀️ TLC and Game of Thrones. Don't make me choose.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
+        <div class="flip" data-cilla="0"><div class="flip-inner"><div class="flip-front"><div class="flip-num">04</div><div class="flip-q">Love language?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🤝 Acts of service</div><div class="flip-o" onclick="fp(this,1)">⏰ Quality time</div><div class="flip-o" onclick="fp(this,2)">💬 Words of affirmation</div><div class="flip-o" onclick="fp(this,3)">🎁 Gifts</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🤝 Acts of service. It's literally my whole job.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
+        <div class="flip" data-cilla="0"><div class="flip-inner"><div class="flip-front"><div class="flip-num">05</div><div class="flip-q">If you weren't doing this?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">👩‍🏫 Teacher</div><div class="flip-o" onclick="fp(this,1)">✈️ Travel blogger</div><div class="flip-o" onclick="fp(this,2)">👩‍🍳 Chef or baker</div><div class="flip-o" onclick="fp(this,3)">🤔 No idea honestly</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">👩‍🏫 A teacher. 100%.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
+        <div class="flip" data-cilla="3"><div class="flip-inner"><div class="flip-front"><div class="flip-num">06</div><div class="flip-q">Dream vacation?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🏖️ Beach</div><div class="flip-o" onclick="fp(this,1)">🏔️ Mountains</div><div class="flip-o" onclick="fp(this,2)">🇪🇺 Europe</div><div class="flip-o" onclick="fp(this,3)">🌍 Anywhere new</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🌍 Anywhere outside the US. Take me anywhere.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
+        <div class="flip" data-cilla="2"><div class="flip-inner"><div class="flip-front"><div class="flip-num">07</div><div class="flip-q">Most-used emoji?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">😂</div><div class="flip-o" onclick="fp(this,1)">❤️</div><div class="flip-o" onclick="fp(this,2)">💃</div><div class="flip-o" onclick="fp(this,3)">🙃</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">💃 always and forever</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
+        <div class="flip" data-cilla="0"><div class="flip-inner"><div class="flip-front"><div class="flip-num">08</div><div class="flip-q">Never say no to?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🧳 Vacation</div><div class="flip-o" onclick="fp(this,1)">🍫 Chocolate</div><div class="flip-o" onclick="fp(this,2)">☕ Coffee</div><div class="flip-o" onclick="fp(this,3)">🏷️ A good deal</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🧳 A vacation. Or chocolate. Okay, both.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
+        <div class="flip" data-cilla="3"><div class="flip-inner"><div class="flip-front"><div class="flip-num">09</div><div class="flip-q">Biggest lottery splurge?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🏡 Dream house</div><div class="flip-o" onclick="fp(this,1)">✈️ Travel forever</div><div class="flip-o" onclick="fp(this,2)">💝 Give it away</div><div class="flip-o" onclick="fp(this,3)">🤩 All of the above</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🤩 Beach house and a cabin in the woods. All of it.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
+        <div class="flip" data-cilla="1"><div class="flip-inner"><div class="flip-front"><div class="flip-num">10</div><div class="flip-q">People describe you as?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">📋 The planner</div><div class="flip-o" onclick="fp(this,1)">💛 The caretaker</div><div class="flip-o" onclick="fp(this,2)">🌍 The adventurer</div><div class="flip-o" onclick="fp(this,3)">🤞 The loyal one</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">💛 The caretaker. It's in my DNA.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="section band-ink overlap" id="book">
+    <div class="container col reveal" style="text-align:center;">
+      <p class="eyebrow"><span class="heart">&#9829;</span>Let's connect</p>
+      <h2>If you've read this far, we should probably talk.</h2>
+      <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 52ch;">I'm not for everyone, and
+        I'm okay with that. But if something here resonated, I'd love to hear from you. No pressure. No hard
+        sell. Just an honest conversation.</p>
+      <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn btn-cream">Book a Clarity Call</a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="foot-top">
+        <div>
+          <div class="wordmark" style="color: var(--c-cream);">Priscilla Zähringer</div>
+          <p style="opacity:0.75; margin-top: var(--s-1); max-width: 34ch;">Your marketing, finally handled.
+            One person who runs it end to end.</p>
+        </div>
+        <nav class="foot-links">
+          <a href="/#offer">Work with me</a>
+          <a href="/#projects">Services</a>
+          <a href="/about.html">About</a>
+          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a call</a>
+        </nav>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="yr"></span> Priscilla Zähringer. All rights reserved.</span>
+        <span class="foot-links">
+          <a href="https://www.instagram.com/priscillazaehringer/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/priscillazaehringer" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener">Pinterest</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const els = document.querySelectorAll('.reveal');
+    if (reduce) { els.forEach(e => e.classList.add('in')); }
+    else {
+      const io = new IntersectionObserver((ents) => {
+        ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(e => io.observe(e));
+    }
+    // Header solid on scroll
+    const hdr = document.getElementById('hdr');
+    const onScroll = () => hdr.classList.toggle('stuck', window.scrollY > 60);
+    onScroll(); addEventListener('scroll', onScroll, { passive: true });
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Quiz flip
+    function fp(el, idx) {
+      const card = el.closest('.flip');
+      if (card.classList.contains('flipped')) return;
+      const cilla = parseInt(card.getAttribute('data-cilla'), 10);
+      card.querySelector('.flip-yours').textContent = el.textContent.trim();
+      const vibe = card.querySelector('.flip-vibe');
+      if (idx === cilla) { vibe.textContent = 'same!!'; }
+      else {
+        const msgs = ['love that for you!', 'ooh, different vibes!', 'noted!', 'variety is the spice!', 'respect!'];
+        vibe.textContent = msgs[Math.floor(Math.random() * msgs.length)];
+      }
+      card.classList.add('flipped');
+    }
+    window.fp = fp;
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://priscillazaehringer.com/#person",
+        "name": "Priscilla Zaehringer",
+        "url": "https://priscillazaehringer.com/",
+        "jobTitle": "Online Business Manager and Marketing Partner",
+        "description": "Iowa-based marketing partner offering Meta ads management, podcast production, and business operations support for small business owners.",
+        "address": { "@type": "PostalAddress", "addressRegion": "IA", "addressCountry": "US" },
+        "sameAs": [
+          "https://www.instagram.com/priscillazaehringer/",
+          "https://www.facebook.com/priscillazaehringer",
+          "https://www.pinterest.com/priscillazaehringer/"
+        ]
+      },
+      {
+        "@type": "AboutPage",
+        "url": "https://priscillazaehringer.com/about/",
+        "name": "About Priscilla Zaehringer",
+        "mainEntity": { "@id": "https://priscillazaehringer.com/#person" }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>

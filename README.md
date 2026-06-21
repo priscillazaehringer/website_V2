@@ -8,6 +8,7 @@ self-hosted fonts and a shared CSS file work normally.
 
 ```
 index.html                         Homepage (built from real copy, noindex while staging)
+about.html                         About page (noindex while staging)
 brand.html                         Brand guidelines / reference page (noindex)
 sections.html                      Section treatments demo (noindex)
 assets/
