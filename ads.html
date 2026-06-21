@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- noindex while staging. Remove this tag at launch. -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>The Lead Stream · Done-for-you Meta ads · Priscilla Zaehringer</title>
+  <meta name="description" content="The Lead Stream: an 8-week done-for-you Meta ad system for online business owners. I build it, run it, hand it off. Beta pricing $997 (5 spots).">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Lead Stream · Done-for-you Meta ads · Priscilla Zaehringer">
+  <meta property="og:description" content="The Lead Stream: an 8-week done-for-you Meta ad system for online business owners. I build it, run it, hand it off. Beta pricing $997 (5 spots).">
+  <meta property="og:url" content="https://priscillazaehringer.com/ads/">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <style>
+    /* ================================================================
+       The Lead Stream (ads) page. Built on the homepage system.
+       ================================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body);
+      font-size: var(--body); line-height: var(--lh-body); font-weight: 400; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4, .display { font-family: var(--font-display); font-weight: 400; font-synthesis: none;
+      line-height: var(--lh-tight); margin: 0; }
+    h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); }
+    h3 { font-size: clamp(1.3rem, 2.2vw, 1.6rem); }
+    p { margin: 0 0 var(--s-2); }
+    a { color: var(--link); }
+
+    .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--s-3); }
+    .section { padding-block: var(--section-y); position: relative; z-index: 1; }
+    .col { max-width: 680px; margin-inline: auto; }
+    .alt { background: var(--bg-alt); }
+    .lede { font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--text-muted); }
+    .center { text-align: center; }
+
+    .eyebrow { font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em;
+      color: var(--c-pink-deep); margin: 0 0 var(--s-2); }
+    .eyebrow .heart { color: var(--c-pink); margin-right: 7px; }
+    .sig { position: relative; display: inline-block; }
+    .sig svg { position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0.32em; overflow: visible; }
+    .sig svg path { stroke: var(--c-pink); stroke-width: 5; fill: none; stroke-linecap: round; }
+    .note-script { font-family: var(--font-script); font-weight: 600; color: var(--c-pink-deep); line-height: 1; }
+    .quote-soft { font-family: var(--font-display); font-synthesis: none; font-size: 1.3rem; line-height: 1.4;
+      border-left: 3px solid var(--c-pink); padding-left: var(--s-2); margin: var(--s-3) 0 0; }
+
+    /* ---- Header ---- */
+    .site-header { position: fixed; inset: 0 0 auto 0; z-index: 50; color: var(--text);
+      transition: background 0.25s ease, border-color 0.25s ease; border-bottom: 1px solid transparent; }
+    .site-header.stuck { background: rgba(247,238,231,0.92); backdrop-filter: blur(8px); border-bottom-color: var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding-block: var(--s-2); gap: var(--s-3); }
+    .wordmark { font-family: var(--font-display); font-size: 1.3rem; color: inherit; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: var(--s-4); }
+    .nav-links a:not(.btn) { color: inherit; text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+    .nav-links a:not(.btn):hover { color: var(--link); }
+    @media (max-width: 720px) { .nav-links .hide-sm { display: none; } }
+
+    /* ---- Buttons ---- */
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 1rem;
+      font-weight: 600; line-height: 1; padding: 16px 28px; border-radius: var(--radius);
+      border: 1.5px solid var(--action); background: var(--action); color: var(--action-text);
+      text-decoration: none; cursor: pointer; transition: opacity 0.14s ease, transform 0.12s ease; }
+    .btn:hover { opacity: 0.88; } .btn:active { transform: translateY(1px); }
+    .btn-cream { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
+
+    /* ---- Announce bar ---- */
+    .announce { background: var(--c-ink); color: var(--c-cream); text-align: center; font-size: 0.92rem;
+      padding: 10px 16px; position: relative; z-index: 60; }
+    .announce a { color: var(--c-pink); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; margin-left: 6px; white-space: nowrap; }
+
+    /* ---- Hero (type-led on ombre) ---- */
+    .hero { background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 60%, #FBE2D6 100%); }
+    .hero .container { max-width: 820px; text-align: center; padding-top: 132px; padding-bottom: var(--s-8); }
+    .hero h1 { margin-inline: auto; max-width: 18ch; }
+    .hero .lede { margin: var(--s-3) auto 0; max-width: 56ch; color: var(--text); }
+    .hero .cta { margin-top: var(--s-4); }
+    .hero .micro { margin-top: var(--s-2); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .hero .stats { display: flex; justify-content: center; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-5); }
+    .stat { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-2) var(--s-3); box-shadow: var(--shadow); }
+    .stat .n { font-family: var(--font-display); font-size: 1.8rem; color: var(--c-pink-deep); line-height: 1; }
+    .stat .l { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+
+    /* ---- Ombre/band helpers ---- */
+    .alt-pink  { background: linear-gradient(180deg, #F7EEE7 0%, #FCE4EF 100%); }
+    .alt-coral { background: linear-gradient(180deg, #F7EEE7 0%, #FBE7DD 100%); }
+    .band-ink { background: var(--bg-feature); color: var(--text-on-dark); }
+    .band-ink h2, .band-ink h3 { color: var(--c-pink); }
+    .band-ink .eyebrow, .band-ink .eyebrow .heart { color: var(--c-pink); }
+    .band-ink .lede { color: var(--c-cream); opacity: 0.85; }
+    .overlap { margin-top: -44px; z-index: 2; border-radius: 40px 40px 0 0;
+      box-shadow: 0 -16px 40px rgba(29,30,38,0.08); padding-top: calc(var(--section-y) + 44px); }
+
+    /* ---- Reality: the options that don't work ---- */
+    .struck { border-top: 1px solid var(--line); margin-top: var(--s-4); }
+    .struck-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-3); align-items: center;
+      padding-block: var(--s-3); border-bottom: 1px solid var(--line); }
+    .struck-item .ic { font-size: 1.5rem; }
+    .struck-item .t { font-family: var(--font-display); font-size: 1.2rem; position: relative; display: inline-block; }
+    .struck-item .t::after { content: ''; position: absolute; left: -2%; right: -2%; top: 52%; height: 2px; background: var(--c-pink-deep); }
+    .struck-item p { color: var(--text-muted); font-size: 0.92rem; margin: 4px 0 0; }
+    .struck-item .x { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--c-pink-deep); }
+    @media (max-width: 600px) { .struck-item { grid-template-columns: auto 1fr; } .struck-item .x { display: none; } }
+    .callout-box { background: var(--c-pink); border-radius: var(--radius); padding: clamp(var(--s-3), 4vw, var(--s-5));
+      margin-top: var(--s-5); text-align: center; }
+    .callout-box p { font-family: var(--font-display); font-size: clamp(1.2rem, 2.4vw, 1.6rem); line-height: 1.4; margin: 0; max-width: 34ch; margin-inline: auto; }
+
+    /* ---- Split (about / budget) ---- */
+    .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--s-6); align-items: center; }
+    @media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: var(--s-4); } }
+    .photo-frame { position: relative; }
+    .photo-frame .block { position: absolute; z-index: 0; width: 60%; aspect-ratio: 1; background: var(--c-mint);
+      border-radius: var(--radius); right: -22px; bottom: -22px; }
+    .about-photo { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: var(--radius);
+      background-image: url('/assets/img/about.webp'); background-size: cover; background-position: 50% 22%; }
+    .photo-frame .note-script { position: absolute; z-index: 2; font-size: 2rem; transform: rotate(-7deg); top: -16px; left: -8px; }
+
+    /* ---- Numbered step cards (the offer) ---- */
+    .steps3 { display: grid; gap: var(--s-2); margin-top: var(--s-5); }
+    .stepcard { display: grid; grid-template-columns: auto 1fr; gap: var(--s-3); align-items: start;
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-4); }
+    .stepcard .num { font-family: var(--font-display); font-size: 2.4rem; color: var(--c-pink-deep); line-height: 0.9; }
+    .stepcard h3 { margin-bottom: var(--s-1); }
+    .stepcard p { color: var(--text-muted); margin: 0; }
+    .wordmark-lead { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.4rem); color: var(--c-pink-deep); }
+
+    /* ---- Phase cards (what you get) ---- */
+    .phases { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
+    .phase { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-4); }
+    .phase .meta { display: flex; align-items: baseline; gap: var(--s-2); }
+    .phase .num { font-family: var(--font-display); font-size: 2rem; color: var(--c-pink-deep); line-height: 0.9; }
+    .phase .when { font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; }
+    .phase h3 { margin: var(--s-1) 0; }
+    .phase .outcome { color: var(--text-muted); font-style: italic; margin: 0 0 var(--s-2); }
+    .phase ul { list-style: none; margin: var(--s-2) 0 0; padding-top: var(--s-2); border-top: 1px solid var(--line);
+      columns: 2; column-gap: var(--s-4); }
+    @media (max-width: 640px) { .phase ul { columns: 1; } }
+    .phase li { font-size: 0.95rem; color: var(--text); padding: 5px 0 5px 22px; position: relative; break-inside: avoid; }
+    .phase li::before { content: '\2713'; position: absolute; left: 0; top: 5px; color: var(--c-mint-deep); font-weight: 700; }
+
+    /* ---- Proof ---- */
+    .proof-grid { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
+    .proof-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: clamp(var(--s-4), 4vw, var(--s-5)); display: grid; grid-template-columns: minmax(180px, 0.8fr) 1.2fr; gap: var(--s-5); align-items: center; }
+    .proof-card.flip { grid-template-columns: 1.2fr minmax(180px, 0.8fr); }
+    .proof-card.flip .fig { order: 2; } .proof-card.flip .story { order: 1; }
+    @media (max-width: 720px) { .proof-card, .proof-card.flip { grid-template-columns: 1fr; gap: var(--s-3); }
+      .proof-card.flip .fig, .proof-card.flip .story { order: 0; } }
+    .fig { text-align: center; }
+    .fig .big { font-family: var(--font-display); font-size: clamp(4rem, 10vw, 7.5rem); line-height: 0.9; color: var(--c-ink); }
+    .fig .big .sym { color: var(--c-pink-deep); font-size: 0.5em; vertical-align: 0.08em; }
+    .fig .cap { font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: var(--s-1); }
+    .story .client { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; margin-bottom: var(--s-1); }
+    .story h3 strong { color: var(--c-pink-deep); }
+    .story .body { color: var(--text-muted); margin: var(--s-2) 0 var(--s-3); }
+    .cbar { margin-bottom: var(--s-2); }
+    .cbar-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .cbar-key { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+    .cbar-val { font-family: var(--font-display); font-size: 0.95rem; }
+    .cbar-track { height: 10px; background: rgba(29,30,38,0.06); border-radius: 999px; overflow: hidden; }
+    .cbar-fill { height: 100%; width: 0; border-radius: 999px; transition: width 1.3s cubic-bezier(0.2,0.7,0.2,1); }
+    .cbar-fill.us { background: var(--c-pink); } .cbar-fill.them { background: rgba(29,30,38,0.14); }
+    .proof-card.in .cbar-fill { width: var(--w); }
+    .receipt { display: flex; flex-wrap: wrap; gap: 8px 24px; padding-top: var(--s-2); border-top: 1px solid var(--line); margin-top: var(--s-2); }
+    .receipt span { font-size: 0.82rem; color: var(--text-muted); }
+    .receipt strong { font-family: var(--font-display); color: var(--c-ink); }
+
+    /* ---- Pricing ---- */
+    .pricing { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-5); }
+    .pricing .label { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; margin-bottom: var(--s-2); }
+    .pricing .price-row { display: flex; align-items: baseline; gap: var(--s-2); flex-wrap: wrap; margin-bottom: var(--s-3); }
+    .pricing .price { font-family: var(--font-display); font-size: 3.2rem; color: var(--c-ink); line-height: 1; }
+    .pricing .old { font-size: 0.95rem; color: var(--text-muted); text-decoration: line-through; }
+    .pricing ul { list-style: none; margin: 0 0 var(--s-3); padding-top: var(--s-2); border-top: 1px solid var(--line); }
+    .pricing li { font-size: 0.98rem; color: var(--text); padding: 6px 0 6px 22px; position: relative; }
+    .pricing li::before { content: '\2713'; position: absolute; left: 0; top: 6px; color: var(--c-mint-deep); font-weight: 700; }
+    .pricing .honest { background: var(--bg-alt); border-radius: var(--radius); padding: var(--s-2) var(--s-3); font-size: 0.92rem; color: var(--text-muted); margin-bottom: var(--s-3); }
+    .pricing .honest strong { color: var(--c-pink-deep); }
+    .pricing .spots { font-weight: 600; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--s-3); }
+    .pricing .spots span { color: var(--c-pink-deep); font-size: 1.05rem; }
+
+    /* ---- Two-column lists (honesty / fit) ---- */
+    .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); margin-top: var(--s-4); }
+    @media (max-width: 760px) { .twocol { grid-template-columns: 1fr; } }
+    .listcard { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-4); }
+    .listcard.warm { background: var(--bg-alt); }
+    .listcard h3 { font-size: 1.4rem; margin-bottom: var(--s-2); padding-bottom: var(--s-2); border-bottom: 1px solid var(--line); }
+    .listcard ul { list-style: none; margin: 0; padding: 0; }
+    .listcard li { font-size: 1rem; color: var(--text); padding: 8px 0 8px 26px; position: relative; line-height: 1.6; }
+    .listcard.can li::before { content: '\2713'; position: absolute; left: 0; top: 8px; color: var(--c-mint-deep); font-weight: 700; }
+    .listcard.cant li::before { content: '\2715'; position: absolute; left: 0; top: 8px; color: var(--c-pink-deep); font-weight: 700; }
+
+    /* ---- Final steps (timeline) ---- */
+    .timeline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4); margin-top: var(--s-6); }
+    .timeline::before { content: ""; position: absolute; top: 28px; left: calc(100%/8); right: calc(100%/8); height: 2px; background: var(--line); z-index: 0; }
+    .tl-step { position: relative; z-index: 1; text-align: center; }
+    .tl-step .marker { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--c-ink); background: var(--bg);
+      display: grid; place-items: center; margin: 0 auto; font-family: var(--font-display); font-size: 1.5rem; color: var(--c-pink-deep); }
+    .tl-step h4 { margin: var(--s-2) 0 var(--s-1); font-size: 1.2rem; }
+    .tl-step p { color: var(--text-muted); margin: 0 auto; max-width: 26ch; font-size: 0.95rem; }
+    @media (max-width: 760px) { .timeline { grid-template-columns: 1fr 1fr; gap: var(--s-5); } .timeline::before { display: none; } }
+    @media (max-width: 440px) { .timeline { grid-template-columns: 1fr; } }
+
+    /* ---- grain + reveal + footer ---- */
+    #grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+    .site-footer { background: var(--c-ink); color: var(--c-cream); padding-block: var(--s-6); position: relative; z-index: 1; }
+    .site-footer a { color: var(--c-cream); text-decoration: none; opacity: 0.85; }
+    .site-footer a:hover { opacity: 1; color: var(--c-pink); }
+    .foot-top { display: flex; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; align-items: start; }
+    .foot-links { display: flex; gap: var(--s-4); flex-wrap: wrap; }
+    .foot-bottom { margin-top: var(--s-5); padding-top: var(--s-3); border-top: 1px solid rgba(247,238,231,0.15);
+      font-size: 0.85rem; opacity: 0.7; display: flex; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+  <div id="grain" aria-hidden="true"></div>
+
+  <header class="site-header" id="hdr">
+    <div class="container nav">
+      <a href="/" class="wordmark">Priscilla Zähringer</a>
+      <nav class="nav-links">
+        <a href="/#offer" class="hide-sm">Work with me</a>
+        <a href="/#projects" class="hide-sm">Services</a>
+        <a href="/about.html" class="hide-sm">About</a>
+        <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn" style="padding:10px 18px; font-size:0.9rem;">Book a call</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ANNOUNCEMENT -->
+  <div class="announce">Beta pricing is open. 5 spots at $997 before it goes to $1,997.<a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a clarity call →</a></div>
+
+  <!-- HERO -->
+  <section class="section hero" id="top">
+    <div class="container">
+      <p class="eyebrow" style="display:inline-block;"><span class="heart">📣</span>Done-for-you Meta ads</p>
+      <h1>Your email list shouldn't depend on a
+        <span class="sig">perfect<svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M3 8 C 42 2, 120 2, 167 6"/></svg></span>
+        Instagram week.</h1>
+      <p class="lede">A done-for-you lead-gen ad system, built for established online business owners with
+        room in the budget to grow. I set it up, run it for a couple of weeks, and hand it off. You keep
+        the leads coming in long after we're done.</p>
+      <div class="cta"><a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn">Book a Clarity Call</a></div>
+      <p class="micro">Beta pricing · 5 spots · $997</p>
+      <div class="stats">
+        <div class="stat"><div class="n">425</div><div class="l">signups, one campaign</div></div>
+        <div class="stat"><div class="n">$0.70</div><div class="l">per lead</div></div>
+        <div class="stat"><div class="n">8 wks</div><div class="l">build to handoff</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REALITY -->
+  <section class="section alt overlap" id="gap">
+    <div class="container">
+      <div class="col reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>The gap I'm filling</p>
+        <h2>You're doing the work. The number still won't move.</h2>
+        <p style="margin-top: var(--s-3); color: var(--text-muted);">You've built something solid. Clients
+          love your work. Your offer converts when people actually see it. But growth is slow, and your
+          email list has been stuck at the same number for months. You've thought about ads, and you've
+          looked at what's out there:</p>
+        <div class="struck">
+          <div class="struck-item">
+            <span class="ic">💸</span>
+            <div><span class="t">Hire an agency</span><p>$2,000 to $5,000 a month, and the day you stop paying, the system stops with you. They built it, they know it, you don't get the keys.</p></div>
+            <span class="x">nope</span>
+          </div>
+          <div class="struck-item">
+            <span class="ic">🤹</span>
+            <div><span class="t">Find someone cheap</span><p>Templated work, no real strategy, ghost emails by month two. Even when it kind of works, you're still locked into someone else's system.</p></div>
+            <span class="x">nope</span>
+          </div>
+          <div class="struck-item">
+            <span class="ic">😵‍💫</span>
+            <div><span class="t">Figure it out yourself</span><p>YouTube tutorials and a prayer. The pixel, the audiences, the creative, the reporting. You don't have time for this.</p></div>
+            <span class="x">nope</span>
+          </div>
+        </div>
+        <div class="callout-box">
+          <p>There's a third, better option: a strategic system, built around your business, that's yours to keep when we're done.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section alt-coral">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <div class="photo-frame">
+            <span class="block" aria-hidden="true"></span>
+            <div class="about-photo" role="img" aria-label="Priscilla"></div>
+            <span class="note-script" aria-hidden="true">that's me!</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow"><span class="heart">&#9829;</span>About Priscilla</p>
+          <h2>Real ad strategy shouldn't be reserved for the biggest budgets.</h2>
+          <p style="margin-top: var(--s-3);">When I first started running ads for a client, something
+            clicked. Paid traffic does more than drive sales. It builds awareness, grows your email list,
+            and creates momentum that doesn't depend on the algorithm liking you that week.</p>
+          <p>But I watched too many small business owners get burned by agencies charging a fortune for
+            templated strategy. The businesses that would benefit most from ads are the ones priced out of
+            getting good help.</p>
+          <p class="quote-soft">So I kept my practice small. My prices fair. My work personal. Just me,
+            doing work I care about, for businesses I believe in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE OFFER -->
+  <section class="section" id="offer">
+    <div class="container">
+      <div class="col reveal center">
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Introducing</p>
+        <div class="wordmark-lead">The Lead Stream</div>
+        <p class="lede" style="margin-top: var(--s-2); margin-inline:auto;">A done-for-you lead-gen ad
+          system, built around your business in 8 weeks. I handle the strategy, the build, the launch, and
+          the optimization. Then I hand it off so it stays yours.</p>
+      </div>
+      <div class="col">
+        <div class="steps3 reveal">
+          <div class="stepcard"><div class="num">01</div><div><h3>I build it</h3><p>Strategy, ad creative, ad copy, native Facebook lead form, branded thank-you page, email welcome sequence, Zapier integration, and campaign launch. All done for you.</p></div></div>
+          <div class="stepcard"><div class="num">02</div><div><h3>I run it</h3><p>Once we launch, I'm in your ad account daily for a couple of weeks. Testing, optimizing, refreshing creative, watching the data come in. Your only job is to approve.</p></div></div>
+          <div class="stepcard"><div class="num">03</div><div><h3>You keep it</h3><p>At week eight I hand off the SOP library, Loom training videos, and a written plan for what's next. You own the system, and it keeps generating leads with or without me.</p></div></div>
+        </div>
+        <p class="reveal" style="text-align:center; color: var(--text-muted); font-style: italic; margin-top: var(--s-4);">
+          Prefer to keep me on after handoff? Ongoing management is $397/mo. Beta clients lock in $297/mo for their first 6 months.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="section alt">
+    <div class="container">
+      <div class="col reveal center">
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>What you get</p>
+        <h2>Exactly what we build, week by week.</h2>
+        <p class="lede" style="margin: var(--s-2) auto 0;">Four phases over eight weeks, hands-on the whole way.</p>
+      </div>
+      <div class="col">
+        <div class="phases reveal">
+          <div class="phase">
+            <div class="meta"><span class="num">01</span><span class="when">Weeks 1 &amp; 2</span></div>
+            <h3>🧱 The foundation</h3>
+            <p class="outcome">You'll know exactly where your money is going and why.</p>
+            <ul>
+              <li>Full audit of your offer, audience, and current setup</li>
+              <li>Custom lead-gen strategy built for your business</li>
+              <li>Audience research and build-out</li>
+              <li>Realistic expectations and a clear timeline</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <div class="meta"><span class="num">02</span><span class="when">Weeks 3 to 5</span></div>
+            <h3>🎯 The build</h3>
+            <p class="outcome">Everything built, connected, and tested before a dollar goes live.</p>
+            <ul>
+              <li>Ad creative direction and design</li>
+              <li>Ad copy, multiple variations for testing</li>
+              <li>Native Facebook lead form, lower cost per lead</li>
+              <li>Branded thank-you page, built and connected</li>
+              <li>Email welcome sequence, written and connected</li>
+              <li>Zapier integration between Meta and your email platform</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <div class="meta"><span class="num">03</span><span class="when">Weeks 6 &amp; 7</span></div>
+            <h3>🚀 Launch and optimize</h3>
+            <p class="outcome">New leads landing in your inbox while I fine-tune the system live.</p>
+            <ul>
+              <li>We go live and the leads start coming in</li>
+              <li>I'm in your account daily for one to two weeks</li>
+              <li>Testing creative and refreshing what's working</li>
+              <li>Optimizing audiences and watching cost per lead</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <div class="meta"><span class="num">04</span><span class="when">Week 8</span></div>
+            <h3>🤝 The handoff</h3>
+            <p class="outcome">A system you own and understand, yours to run for years to come.</p>
+            <ul>
+              <li>Complete SOP library for running your system long-term</li>
+              <li>Loom training videos walking through every part</li>
+              <li>Written next-steps plan on what to do from here</li>
+              <li>30 days of post-handoff email support</li>
+              <li>Optional ongoing management ($297/mo for beta clients, first 6 months)</li>
+            </ul>
+          </div>
+        </div>
+        <p class="reveal center" style="color: var(--text-muted); font-style: italic; margin-top: var(--s-4);">
+          No long-term contracts. No retainers locking you in. The system is yours, and a partner who thinks about your growth every week.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="section">
+    <div class="container">
+      <div class="col reveal center">
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Proof it works</p>
+        <h2>What it looks like when it works.</h2>
+      </div>
+      <div class="proof-grid">
+        <!-- TODO: confirm the ~70 "typical rate" and the 6x math against approved
+             numbers, and replace "Wellness coach" with the approved descriptor. -->
+        <article class="proof-card reveal">
+          <div class="fig">
+            <div class="big">6<span class="sym">&times;</span></div>
+            <div class="cap">more signups for the same spend</div>
+          </div>
+          <div class="story">
+            <div class="client">Wellness coach</div>
+            <h3>A masterclass that <strong>filled itself</strong>.</h3>
+            <p class="body">We put her offer in front of the right people and kept the cost per signup low.
+              The budget that usually brings in around 70 leads brought in 425.</p>
+            <div class="cbar">
+              <div class="cbar-head"><span class="cbar-key">The Lead Stream</span><span class="cbar-val">425 signups</span></div>
+              <div class="cbar-track"><div class="cbar-fill us" style="--w: 100%;"></div></div>
+            </div>
+            <div class="cbar">
+              <div class="cbar-head"><span class="cbar-key">Typical rate</span><span class="cbar-val">~70 signups</span></div>
+              <div class="cbar-track"><div class="cbar-fill them" style="--w: 16.5%;"></div></div>
+            </div>
+            <div class="receipt"><span><strong>$4.56</strong> per signup</span><span><strong>$1,936</strong> spent</span><span><strong>$27.66</strong> typical CPL</span></div>
+          </div>
+        </article>
+        <!-- TODO: replace "Solo practitioner" with the approved descriptor. -->
+        <article class="proof-card flip reveal">
+          <div class="fig">
+            <div class="big"><span class="sym">$</span>5</div>
+            <div class="cap">a day, seven new leads</div>
+          </div>
+          <div class="story">
+            <div class="client">Solo practitioner</div>
+            <h3>Steady leads on a <strong>coffee budget</strong>.</h3>
+            <p class="body">A small daily spend, set up with care, brought fresh leads in every morning.
+              Strong strategy did the work a big budget usually gets credit for.</p>
+            <div class="cbar">
+              <div class="cbar-head"><span class="cbar-key">The Lead Stream</span><span class="cbar-val">7 leads / day</span></div>
+              <div class="cbar-track"><div class="cbar-fill us" style="--w: 100%;"></div></div>
+            </div>
+            <div class="receipt"><span><strong>$0.70</strong> per lead</span><span><strong>$5</strong> a day</span></div>
+          </div>
+        </article>
+      </div>
+      <div class="center reveal" style="margin-top: var(--s-5);">
+        <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn">Book a Clarity Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTMENT -->
+  <section class="section alt">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <p class="eyebrow"><span class="heart">&#9829;</span>Investment</p>
+          <h2>Here's what it costs.</h2>
+          <p style="margin-top: var(--s-3);">You don't need a five-figure ad budget to see results, just
+            enough room to test and gather meaningful data.</p>
+          <p style="font-size: 0.95rem; color: var(--text-muted); font-style: italic;">Plus a minimum
+            $150/mo in ad spend, about $5 a day (this goes to Meta, not me), and a 90-day commitment to
+            testing. This is how we build momentum and gather meaningful data.</p>
+          <p style="font-size: 0.95rem; color: var(--text-muted); font-style: italic;">Want more data
+            faster? Bumping daily spend during the active management phase, even from $5 to $10 a day, moves
+            a lot more people through the system in the same window.</p>
+        </div>
+        <div class="pricing reveal">
+          <div class="label">The Lead Stream · Beta pricing</div>
+          <div class="price-row"><span class="price">$997</span><span class="old">$1,997 after beta closes</span></div>
+          <ul>
+            <li>Everything listed above</li>
+            <li>8-week build, manage, and handoff</li>
+            <li>Full SOP library and training</li>
+            <li>Beta clients lock in $297/mo ongoing management (if desired) for their first 6 months</li>
+            <li>Prefer to split it? You can pay in two monthly payments</li>
+          </ul>
+          <div class="honest"><strong>The trade:</strong> in exchange for the beta rate, you give me a
+            written testimonial and a short case study once we have results. That's how the post-beta price
+            gets earned.</div>
+          <div class="spots">Spots remaining: <span>5</span></div>
+          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn" style="width:100%; justify-content:center;">Book a Clarity Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONESTY -->
+  <section class="section">
+    <div class="container">
+      <div class="col reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>No sugarcoating</p>
+        <h2>What ads can and can't do.</h2>
+        <p class="lede" style="margin-top: var(--s-2);">The honest version.</p>
+      </div>
+      <div class="col">
+        <div class="twocol reveal">
+          <div class="listcard can">
+            <h3>Ads can</h3>
+            <ul>
+              <li>Put your offer in front of the right people, consistently</li>
+              <li>Scale what's already working</li>
+              <li>Build your email list predictably</li>
+              <li>Create a steady flow of leads and sales conversations</li>
+              <li>Play multiple roles: awareness, nurturing, retargeting, conversion</li>
+            </ul>
+          </div>
+          <div class="listcard cant warm">
+            <h3>Ads can't</h3>
+            <ul>
+              <li>Fix a broken offer</li>
+              <li>Create demand where none exists</li>
+              <li>Replace strong messaging</li>
+              <li>Deliver overnight success, no matter what the gurus promise</li>
+            </ul>
+          </div>
+        </div>
+        <p class="reveal" style="font-style: italic; color: var(--text-muted); margin-top: var(--s-4); text-align:center;">
+          If your offer converts at 2% organically, ads can help you get more of that 2%. They usually
+          can't magically turn it into 20%. I'd rather set honest expectations than overpromise.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIT CHECK -->
+  <section class="section alt">
+    <div class="container">
+      <div class="col reveal">
+        <h2 class="center">Is The Lead Stream right for you?</h2>
+      </div>
+      <div class="col">
+        <div class="twocol reveal">
+          <div class="listcard can">
+            <h3>This works best when…</h3>
+            <ul>
+              <li>You've made sales and validated your offer</li>
+              <li>You're actively growing, not just starting out</li>
+              <li>You have a freebie, or you're ready to build one with me</li>
+              <li>You have an active email platform</li>
+              <li>You're ready to invest in steady growth over the next few months</li>
+              <li>You want personalized strategy, not just "more traffic"</li>
+              <li>You have a team ready to take it over after handoff (though it's simple enough to run on your own, too)</li>
+            </ul>
+          </div>
+          <div class="listcard cant warm">
+            <h3>Probably not the right fit if…</h3>
+            <ul>
+              <li>You're just getting started and figuring out your offer</li>
+              <li>You're relying on ads to fix a cash flow crisis</li>
+              <li>You need overnight results</li>
+              <li>You can't commit to 90 days of testing</li>
+            </ul>
+          </div>
+        </div>
+        <p class="reveal center" style="font-style: italic; color: var(--text-muted); margin-top: var(--s-4);">
+          Not sure where you fall? Book a clarity call. We'll talk it through. No pressure, no hard sell.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section class="section">
+    <div class="container">
+      <div class="col reveal center">
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Next steps</p>
+        <h2>Ready to stop guessing and start growing?</h2>
+      </div>
+      <div class="timeline reveal">
+        <div class="tl-step"><div class="marker">01</div><h4>Book a Clarity Call</h4><p>Tell me about your business, your goals, and what you've tried.</p></div>
+        <div class="tl-step"><div class="marker">02</div><h4>We talk it through</h4><p>30 minutes, honest conversation, no hard sell. We figure out if this is the right move.</p></div>
+        <div class="tl-step"><div class="marker">03</div><h4>Your onboarding</h4><p>If we're a fit, you'll get an onboarding link, your contract, and a kickoff date.</p></div>
+        <div class="tl-step"><div class="marker">04</div><h4>We build</h4><p>8 weeks, start to finish, leads to your inbox.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section band-ink overlap" id="book">
+    <div class="container col reveal center">
+      <p class="eyebrow"><span class="heart">&#9829;</span>Let's work together</p>
+      <h2>Let's get your email list growing again.</h2>
+      <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 52ch;">Beta pricing is open. 5
+        spots at $997 before it goes to $1,997. Book a clarity call and let's see if it's a fit.</p>
+      <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn btn-cream">Book a Clarity Call</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="foot-top">
+        <div>
+          <div class="wordmark" style="color: var(--c-cream);">Priscilla Zähringer</div>
+          <p style="opacity:0.75; margin-top: var(--s-1); max-width: 34ch;">Your marketing, finally handled.
+            One person who runs it end to end.</p>
+        </div>
+        <nav class="foot-links">
+          <a href="/#offer">Work with me</a>
+          <a href="/#projects">Services</a>
+          <a href="/about.html">About</a>
+          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a call</a>
+        </nav>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="yr"></span> Priscilla Zähringer. All rights reserved.</span>
+        <span class="foot-links">
+          <a href="https://www.instagram.com/priscillazaehringer/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/priscillazaehringer" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener">Pinterest</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const els = document.querySelectorAll('.reveal');
+    if (reduce) { els.forEach(e => e.classList.add('in')); }
+    else {
+      const io = new IntersectionObserver((ents) => {
+        ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(e => io.observe(e));
+    }
+    const hdr = document.getElementById('hdr');
+    const onScroll = () => hdr.classList.toggle('stuck', window.scrollY > 60);
+    onScroll(); addEventListener('scroll', onScroll, { passive: true });
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://priscillazaehringer.com/#person",
+        "name": "Priscilla Zaehringer",
+        "url": "https://priscillazaehringer.com/",
+        "jobTitle": "Online Business Manager and Marketing Partner",
+        "description": "Iowa-based marketing partner offering Meta ads management, podcast production, and business operations support for small business owners.",
+        "address": { "@type": "PostalAddress", "addressRegion": "IA", "addressCountry": "US" },
+        "sameAs": [
+          "https://www.instagram.com/priscillazaehringer/",
+          "https://www.facebook.com/priscillazaehringer",
+          "https://www.pinterest.com/priscillazaehringer/"
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://priscillazaehringer.com/ads/#service",
+        "serviceType": "Meta Ads Management",
+        "name": "The Lead Stream",
+        "description": "An 8-week done-for-you Meta ad system for online business owners. Strategy, build, daily management, and a full handoff so the system is yours to keep.",
+        "provider": { "@id": "https://priscillazaehringer.com/#person" },
+        "areaServed": "US",
+        "url": "https://priscillazaehringer.com/ads/"
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
