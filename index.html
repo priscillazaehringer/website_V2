@@ -124,9 +124,7 @@
     /* services as a quiet divided list */
     .svc-list { margin-top: var(--s-1); }
     .svc-item { display: flex; gap: 14px; align-items: center; padding-block: 6px; }
-    .svc-item .ic { flex: none; width: 22px; height: 22px; color: var(--c-pink-deep); }
-    .svc-item .ic svg { width: 100%; height: 100%; display: block; fill: none;
-      stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .svc-item .ic { flex: none; width: 1.6em; text-align: center; font-size: 1.15rem; line-height: 1; }
     .svc-item .t { font-size: 1.05rem; }
 
     /* project rows */
@@ -155,7 +153,8 @@
       font-weight: 600; text-decoration: none; border-bottom: 2px solid currentColor; }
     @media (max-width: 760px) {
       .feature-pair { grid-template-columns: 1fr; }
-      .feature-pair .pic { order: 1; }
+      .feature-pair .pic { order: 1; aspect-ratio: 16 / 10; }
+      .feature-pair .pic span { font-size: 3.4rem; }
       .feature-pair .panel { order: 2; margin: -28px var(--s-3) 0 !important; }
     }
 
@@ -389,11 +388,11 @@
 
         <p class="label">What I might be running for you in any given month</p>
         <div class="svc-list">
-          <div class="svc-item"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l8 4V6l-8 4H4a1 1 0 0 0-1 1z"/><path d="M18 9a3 3 0 0 1 0 6"/></svg></span><span class="t">Ads strategy and management</span></div>
-          <div class="svc-item"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 7v5l-4 2v-7L4 5z"/></svg></span><span class="t">Funnels, landing pages, and lead magnets</span></div>
-          <div class="svc-item"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span><span class="t">Email marketing, sequences, and launches</span></div>
-          <div class="svc-item"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/><path d="M9 21h6"/></svg></span><span class="t">Podcast production and content systems</span></div>
-          <div class="svc-item"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="8" cy="18" r="2"/></svg></span><span class="t">Operations: tools, automations, SOPs, and team coordination</span></div>
+          <div class="svc-item"><span class="ic">&#128227;</span><span class="t">Ads strategy and management</span></div>
+          <div class="svc-item"><span class="ic">&#129522;</span><span class="t">Funnels, landing pages, and lead magnets</span></div>
+          <div class="svc-item"><span class="ic">&#9993;&#65039;</span><span class="t">Email marketing, sequences, and launches</span></div>
+          <div class="svc-item"><span class="ic">&#127908;</span><span class="t">Podcast production and content systems</span></div>
+          <div class="svc-item"><span class="ic">&#9881;&#65039;</span><span class="t">Operations: tools, automations, SOPs, and team coordination</span></div>
         </div>
 
         <p style="margin-top: var(--s-4);">The specific mix depends on your business. What stays consistent
