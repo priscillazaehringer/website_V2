@@ -248,10 +248,9 @@
       .timeline::before { display: none; }
     }
 
-    /* ================= Ombre + overlapping sections ================= */
-    /* Sections flow into each other through a soft vertical ombre. Overlap
-       (rounded top + upward shadow) is reserved for a few intentional moments:
-       the content rising over the hero, and the Mint and Ink feature bands. */
+    /* ================= Ombre on every other section ================= */
+    /* Alternate: ombre accent sections and solid cream/cream-soft ones.
+       Overlap (rounded top + shadow) stays on the entry and the color bands. */
     .section { position: relative; z-index: 1; }
     #pain, .band-mint, .band-ink {
       margin-top: -44px; z-index: 2;
@@ -259,13 +258,13 @@
       box-shadow: 0 -16px 40px rgba(29,30,38,0.08);
       padding-top: calc(var(--section-y) + 44px);
     }
-    #pain      { background: linear-gradient(180deg, #F7EEE7 0%, #FCE4EF 100%); }
-    #offer     { background: linear-gradient(180deg, #FCE4EF 0%, #FBE2D6 100%); }
-    .band-mint { background: linear-gradient(180deg, #FBE2D6 0%, #B1DED9 100%); }
-    #projects  { background: linear-gradient(180deg, #B1DED9 0%, #E9F5F1 100%); }
-    #process   { background: linear-gradient(180deg, #E9F5F1 0%, #FCE4EF 100%); }
-    #about     { background: linear-gradient(180deg, #FCE4EF 0%, #FBE2D6 100%); }
-    #book      { background: var(--c-ink); }
+    #pain      { background: linear-gradient(180deg, #F7EEE7 0%, #FCE4EF 100%); }  /* ombre */
+    #offer     { background: var(--bg-alt); }                                       /* solid cream-soft */
+    .band-mint { background: var(--c-mint); }                                       /* solid mint band */
+    #projects  { background: linear-gradient(180deg, #F7EEE7 0%, #E3F2EE 100%); }   /* ombre */
+    #process   { background: var(--bg-alt); }                                       /* solid cream-soft */
+    #about     { background: linear-gradient(180deg, #F7EEE7 0%, #FBE7DD 100%); }   /* ombre */
+    #book      { background: var(--c-ink); }                                        /* solid ink */
     .site-footer { position: relative; z-index: 1; }
 
     /* grain + reveal */
