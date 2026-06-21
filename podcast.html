@@ -70,6 +70,8 @@
     /* ---- Hero ---- */
     .hero { background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 60%, #FBE2D6 100%); }
     .hero .container { max-width: 840px; text-align: center; padding-top: 132px; padding-bottom: var(--s-8); }
+    .hero-logo { width: clamp(230px, 34vw, 320px); height: auto; display: block; margin: 0 auto var(--s-3); }
+    .cta-logo { width: clamp(190px, 28vw, 270px); height: auto; display: block; margin: 0 auto var(--s-3); }
     .hero h1 { margin-inline: auto; max-width: 20ch; }
     .hero .lede { margin: var(--s-3) auto 0; max-width: 58ch; color: var(--text); }
     .hero .cta { margin-top: var(--s-4); }
@@ -220,9 +222,10 @@
   <!-- HERO -->
   <section class="section hero" id="top">
     <div class="container">
+      <img class="hero-logo" src="/assets/img/the-signal-dark.png" width="518" height="128" alt="the Signal">
       <p class="eyebrow" style="display:inline-flex; align-items:center; gap:10px;">
         <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-        <span><span class="heart">&#9829;</span>The Signal · done-for-you podcast launch</span></p>
+        <span>Done-for-you podcast launch</span></p>
       <h1>You want to start a podcast. Let's get it built and out the
         <span class="sig">door<svg viewBox="0 0 110 12" preserveAspectRatio="none"><path d="M3 8 C 28 2, 72 2, 107 6"/></svg></span>.</h1>
       <p class="lede">A done-for-you launch for business owners who want a real show without figuring it all
@@ -464,7 +467,7 @@
   <!-- FINAL CTA -->
   <section class="section band-ink overlap" id="book">
     <div class="container col reveal center">
-      <p class="eyebrow"><span class="heart">&#9829;</span>Let's build it</p>
+      <img class="cta-logo" src="/assets/img/the-signal-light.png" width="518" height="128" alt="the Signal">
       <h2>Let's get your show built and out the door.</h2>
       <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 52ch;">Tell me about your
         business and what you want to build. If we're a fit, we'll map out your launch.</p>
