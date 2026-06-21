@@ -198,9 +198,8 @@
     /* photo with a color block behind it + a handwritten marker note */
     .photo-frame { position: relative; display: inline-block; width: 100%; }
     .photo-frame .ph { position: relative; z-index: 1; }
-    .about-panel { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: var(--radius);
-      overflow: hidden; background: linear-gradient(165deg, #CFEAE4 0%, #EFF8F5 78%); }
-    .about-panel img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; display: block; }
+    .about-photo { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: var(--radius);
+      background-image: url('/assets/img/about.webp'); background-size: cover; background-position: 50% 22%; }
     .photo-frame .block { position: absolute; z-index: 0; width: 60%; aspect-ratio: 1;
       background: var(--c-coral); border-radius: var(--radius); right: -22px; bottom: -22px; }
     .note-script { font-family: var(--font-script); font-weight: 600; color: var(--c-pink-deep);
@@ -213,6 +212,10 @@
     .band-ink h2 { color: var(--c-pink); }
     .band-ink .lede { color: var(--c-cream); opacity: 0.85; }
 
+    /* ================= Pain: one centered column ================= */
+    .pain-col { max-width: 680px; margin-inline: auto; }
+    .pain-col .checklist { max-width: none; }
+    .pain-col .statement { max-width: none; text-align: left; }
     /* ================= Pain: tick-the-box checklist ================= */
     .checklist { max-width: 64ch; margin-top: var(--s-4); }
     .check-item { display: flex; gap: var(--s-3); align-items: flex-start; padding-block: var(--s-3);
@@ -325,11 +328,12 @@
   <!-- ===================== PAIN ===================== -->
   <section class="section" id="pain">
     <div class="container">
-      <p class="eyebrow reveal"><span class="heart">&#9829;</span>Three signs we should talk</p>
-      <h2 class="reveal" style="max-width: 18ch;">Sound familiar?</h2>
-      <p class="reveal" style="color: var(--text-muted); margin-top: var(--s-2);">Go ahead, check the ones that hit.</p>
+     <div class="pain-col reveal">
+      <p class="eyebrow"><span class="heart">&#9829;</span>Three signs we should talk</p>
+      <h2 style="max-width: 18ch;">Sound familiar?</h2>
+      <p style="color: var(--text-muted); margin-top: var(--s-2);">Go ahead, check the ones that hit.</p>
 
-      <div class="checklist reveal">
+      <div class="checklist">
         <label class="check-item">
           <input type="checkbox">
           <span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 l5 5 l12 -13"/></svg></span>
@@ -359,10 +363,11 @@
         </label>
       </div>
 
-      <p class="statement reveal" style="margin: var(--s-6) auto 0; text-align: center;">Checked a few?
+      <p class="statement" style="margin-top: var(--s-5);">Checked a few?
         You don't need five hires. You need <span class="em">one person who thinks and does</span>, holds
         the strategy, runs the campaigns, and keeps the systems moving. So you get back to the parts only
         you can do.</p>
+     </div>
     </div>
   </section>
 
@@ -482,9 +487,7 @@
         <div class="reveal">
           <div class="photo-frame">
             <span class="block" aria-hidden="true"></span>
-            <div class="about-panel">
-              <img src="/assets/img/about-cutout.webp" width="1100" height="1100" alt="Priscilla">
-            </div>
+            <div class="about-photo" role="img" aria-label="Portrait of Priscilla"></div>
             <span class="note-script" aria-hidden="true">hi, that's me!</span>
           </div>
           <p class="pullquote">Most marketers hand you a plan. I run it with you.</p>
