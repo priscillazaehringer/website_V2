@@ -231,6 +231,36 @@
     .dodont .dont li::before { content: "\2715"; position: absolute; left: 0; color: var(--c-pink-deep); font-weight: 700; }
 
     .link-demo a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+    .textlink { color: var(--link); font-weight: 600; text-decoration: none;
+      border-bottom: 2px solid currentColor; padding-bottom: 1px; }
+
+    /* ---- Homepage standards: script accent, signature underline, fun eyebrow ---- */
+    .script-demo { font-family: var(--font-script); color: var(--c-pink-deep);
+      font-size: 2.6rem; line-height: 1; display: inline-block; transform: rotate(-4deg); }
+    .sig { position: relative; display: inline-block; }
+    .sig svg { position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0.32em; overflow: visible; }
+    .sig svg path { stroke: var(--c-pink); stroke-width: 5; fill: none; stroke-linecap: round; }
+    .eyebrow-fun { font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;
+      color: var(--c-pink-deep); margin: 0; }
+    .eyebrow-fun .heart { color: var(--c-pink); margin-right: 7px; }
+
+    /* ---- Page-pattern demos: ombre, overlap, photo block ---- */
+    .ombre-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); }
+    @media (max-width: 760px){ .ombre-row { grid-template-columns: 1fr; } }
+    .ombre-demo { height: 96px; border-radius: var(--radius); border: 1px solid var(--line); }
+    .o-pink { background: linear-gradient(180deg,#F7EEE7,#FCE4EF); }
+    .o-mint { background: linear-gradient(180deg,#F7EEE7,#E3F2EE); }
+    .o-coral{ background: linear-gradient(180deg,#F7EEE7,#FBE7DD); }
+    .overlap-demo .a { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); height: 64px; }
+    .overlap-demo .b { background: var(--c-mint); border-radius: 28px 28px var(--radius) var(--radius);
+      height: 84px; margin-top: -26px; box-shadow: 0 -14px 30px rgba(29,30,38,0.10); position: relative; }
+    .block-demo { position: relative; width: 190px; }
+    .block-demo .blk { position: absolute; right: -16px; bottom: -16px; width: 62%; aspect-ratio: 1;
+      background: var(--c-coral); border-radius: var(--radius); }
+    .block-demo .pic { position: relative; z-index: 1; aspect-ratio: 4/5; border-radius: var(--radius);
+      background: linear-gradient(160deg,#CFEAE4,#EFF8F5); }
+    .block-demo .note { font-family: var(--font-script); color: var(--c-pink-deep); font-size: 1.3rem;
+      position: absolute; top: -14px; left: -8px; transform: rotate(-7deg); z-index: 2; }
 
     .page-footer { padding-block: var(--s-5); border-top: 1px solid var(--line); }
     .page-footer p { color: var(--text-muted); font-size: 0.9rem; }
@@ -487,10 +517,11 @@
       <div class="section-head">
         <p class="eyebrow">02 · Typography</p>
         <h2>Type</h2>
-        <p>Two typefaces, each with one job. Golden Batch sets the headlines.
+        <p>Three typefaces, each with one job. Golden Batch sets the headlines.
           Hanken Grotesk handles everything you read in paragraphs, buttons, and
-          labels. Both are self-hosted, so they load fast and look the same
-          everywhere.</p>
+          labels. Caveat is a casual marker script used only for small handwritten
+          accent words, never body text. All three are self-hosted, so they load
+          fast and look the same everywhere.</p>
       </div>
 
       <div class="callout" style="margin-bottom: var(--s-5);">
@@ -519,24 +550,24 @@
 
       <div class="specimen">
         <div class="label">H1 · var(--h1) · clamp(2.6rem, 6vw, 4.5rem)</div>
-        <div class="display" style="font-size: var(--h1);">Photography with feeling</div>
+        <div class="display" style="font-size: var(--h1);">Your marketing, finally handled</div>
       </div>
       <div class="specimen">
         <div class="label">H2 · var(--h2) · clamp(2rem, 4vw, 3rem)</div>
-        <div class="display" style="font-size: var(--h2);">Stories you want to keep</div>
+        <div class="display" style="font-size: var(--h2);">A marketing partner on your team</div>
       </div>
       <div class="specimen">
         <div class="label">H3 · var(--h3) · clamp(1.4rem, 2.5vw, 1.75rem)</div>
-        <div class="display" style="font-size: var(--h3);">A calm, simple booking process</div>
+        <div class="display" style="font-size: var(--h3);">One person who can hold the whole thing</div>
       </div>
 
       <h3 style="margin: var(--s-5) 0 var(--s-3);">Body · Hanken Grotesk</h3>
       <div class="specimen">
         <div class="label">Body · var(--body) · line-height 1.6 · weight 400</div>
-        <p>You want photos that still feel like you in ten years. That is the
-          whole job. We keep the day relaxed, we talk like people, and we hand
-          you images you are proud to put on the wall. No stiff poses, no long
-          waits, no surprises on the invoice.</p>
+        <p>You're past the startup phase and ready to grow, but you don't want to
+          build a team to do it. I'm the second brain who runs your marketing end
+          to end: the strategy, the launches, the ads, and the systems behind them.
+          You run the vision. I run the rest.</p>
       </div>
       <div class="specimen">
         <div class="label">Hanken weights (variable 100–900) · for body emphasis only, not headings</div>
@@ -548,6 +579,25 @@
           <span style="font-weight:700;">Bold 700</span>
         </p>
       </div>
+
+      <h3 style="margin: var(--s-5) 0 var(--s-3);">Caveat · marker script accent</h3>
+      <div class="specimen">
+        <div class="label">var(--font-script) · accent words only, never body · slight rotation</div>
+        <span class="script-demo">hi, that's me!</span>
+      </div>
+
+      <h3 style="margin: var(--s-5) 0 var(--s-3);">Brand motifs</h3>
+      <div class="specimen">
+        <div class="label">Signature underline · a Pink hand-drawn stroke under one key word in a headline</div>
+        <div class="display" style="font-size: var(--h3);">Your marketing, finally
+          <span class="sig">handled<svg viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 55 2, 150 2, 217 6"/></svg></span>.</div>
+      </div>
+      <div class="specimen">
+        <div class="label">Eyebrow label · Hanken 600 in Deep Pink with a Pink heart · fun, in-voice wording</div>
+        <p class="eyebrow-fun"><span class="heart">&#9829;</span>The whole chalupa</p>
+        <p style="margin-top: var(--s-1); font-size: 0.9rem; color: var(--text-muted);">Use real, playful
+          wording (the whole chalupa, how we jam, one last thing), not a generic all-caps tag.</p>
+      </div>
     </div>
   </section>
 
@@ -557,24 +607,31 @@
       <div class="section-head">
         <p class="eyebrow">03 · Buttons &amp; links</p>
         <h2>Buttons &amp; links</h2>
-        <p>Two button styles. Solid Ink for the one thing you most want a reader
-          to do. A Pink fill for the secondary option beside it. Both use the 4px
-          radius and Hanken at weight 600. Links use Deep Pink so emphasis stays
-          on-brand and readable on cream.</p>
+        <p>Solid Ink is the primary, for the one thing you most want a reader to
+          do. Beside it, the quiet secondary is an underlined Deep Pink text link,
+          not a second filled button. A Pink fill is available as a louder
+          secondary when a section needs it. All use the 4px radius and Hanken at
+          weight 600. Write specific labels (Book a Clarity Call), never "Learn more."</p>
       </div>
 
-      <p style="margin-bottom: var(--s-2); color: var(--text-muted);">On a light background</p>
+      <p style="margin-bottom: var(--s-2); color: var(--text-muted);">Primary + quiet text-link (the default pairing)</p>
+      <div class="btn-row" style="margin-bottom: var(--s-4);">
+        <a href="#" class="btn btn-primary">Book a Clarity Call</a>
+        <a href="#" class="textlink">See if this is you &#8595;</a>
+      </div>
+
+      <p style="margin-bottom: var(--s-2); color: var(--text-muted);">Primary + Pink-fill secondary (louder)</p>
       <div class="btn-row" style="margin-bottom: var(--s-2);">
-        <a href="#" class="btn btn-primary">Book a session</a>
+        <a href="#" class="btn btn-primary">Book a Clarity Call</a>
         <a href="#" class="btn btn-accent">See the work</a>
       </div>
       <p class="link-demo" style="margin-bottom: var(--s-5);">In running text, a
         <a href="#">link looks like this</a> in Deep Pink.</p>
 
       <div class="on-ink" style="background: var(--bg-feature); border-radius: var(--radius); padding: var(--s-4);">
-        <p style="margin-bottom: var(--s-2); color: var(--c-mint);">On ink</p>
+        <p style="margin-bottom: var(--s-2); color: var(--c-mint);">On ink (primary flips to cream)</p>
         <div class="btn-row">
-          <a href="#" class="btn btn-primary">Book a session</a>
+          <a href="#" class="btn btn-primary">Book a Clarity Call</a>
           <a href="#" class="btn btn-accent">See the work</a>
         </div>
       </div>
@@ -588,8 +645,10 @@
         <p class="eyebrow">04 · Spacing &amp; shape</p>
         <h2>Spacing, radius, shadow</h2>
         <p>Everything sits on an 8px grid. Pick from the scale instead of typing
-          one-off numbers. Corners are always 4px. There is one shadow, used
-          sparingly for things that lift off the page.</p>
+          one-off numbers. Corners are 4px on buttons and cards; the one exception
+          is overlapping section tops, which use a larger radius (see Page
+          patterns). There is one shadow, used sparingly for things that lift off
+          the page.</p>
       </div>
 
       <h3 style="margin-bottom: var(--s-3);">8px spacing scale</h3>
@@ -622,11 +681,68 @@
     </div>
   </section>
 
+  <!-- ====================== PAGE PATTERNS ====================== -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">05 · Page patterns</p>
+        <h2>How pages are built</h2>
+        <p>The standards the homepage set: one text column, ombre on alternate
+          sections, overlap at a few moments, and photos paired with color blocks.</p>
+      </div>
+
+      <h3 style="margin-bottom: var(--s-2);">One text column</h3>
+      <p>Text sections (intro, offer, lists, process) live in a single centered
+        column, max-width about 680px, left-aligned on one axis. Wide media (cards,
+        the timeline) can break out to the full 1120px container, but every heading
+        and paragraph stays on the 680px axis.</p>
+
+      <h3 style="margin: var(--s-5) 0 var(--s-2);">Ombre on alternate sections</h3>
+      <p>Cream is the base. Alternate sections carry a soft top-to-bottom ombre
+        (cream into a light accent); the sections between stay solid cream or
+        cream-soft. The Mint testimonial and Ink CTA are solid color bands.</p>
+      <div class="ombre-row" style="margin-top: var(--s-2);">
+        <div class="ombre-demo o-pink"></div>
+        <div class="ombre-demo o-mint"></div>
+        <div class="ombre-demo o-coral"></div>
+      </div>
+
+      <div class="grid cols-2" style="margin-top: var(--s-5);">
+        <div>
+          <h3 style="margin-bottom: var(--s-2);">Overlapping sections</h3>
+          <p>A few intentional moments lift over the previous section with a
+            rounded top (about 28 to 40px) and a soft upward shadow: the content
+            rising over the hero, and the Mint and Ink bands. Not every section.</p>
+          <div class="overlap-demo" style="margin-top: var(--s-3);">
+            <div class="a"></div>
+            <div class="b"></div>
+          </div>
+        </div>
+        <div>
+          <h3 style="margin-bottom: var(--s-2);">Photos and color blocks</h3>
+          <p>Portraits sit on a soft panel with an offset accent block behind and a
+            marker-script note on top. Hero and bio use background-removed cut-outs
+            so nothing crops awkwardly.</p>
+          <div class="block-demo" style="margin-top: var(--s-4);">
+            <span class="note">hi!</span>
+            <span class="blk"></span>
+            <div class="pic"></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin: var(--s-6) 0 var(--s-2);">Texture and motion</h3>
+      <p style="margin-bottom: 0;">A very subtle paper grain sits over the page
+        (about 4% opacity) for warmth. Sections fade and rise in gently on scroll.
+        Both stay quiet, and motion respects <code>prefers-reduced-motion</code>.</p>
+    </div>
+  </section>
+
   <!-- =========================== VOICE =========================== -->
   <section class="feature">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">05 · Voice</p>
+        <p class="eyebrow">06 · Voice</p>
         <h2>How we write</h2>
         <p style="color: var(--c-cream); opacity:0.85;">Warm, direct, plain. Write
           the way you would talk to a client across the table. Speak to the
@@ -636,13 +752,13 @@
       <div class="grid cols-2 compare">
         <div class="card good" style="background: rgba(247,238,231,0.06); border-color: rgba(247,238,231,0.18);">
           <div class="tag" style="color: var(--c-mint);">Sounds like us</div>
-          <p style="margin:0; color: var(--c-cream);">"You will have your gallery
-            within two weeks, and every photo is yours to print."</p>
+          <p style="margin:0; color: var(--c-cream);">"You run the vision. I run the
+            rest. One person who can hold the whole thing."</p>
         </div>
         <div class="card bad" style="background: rgba(247,238,231,0.06); border-color: rgba(247,238,231,0.18);">
           <div class="tag" style="color: var(--c-pink);">Not us</div>
           <p style="margin:0; color: var(--c-cream);">"We leverage a seamless,
-            robust workflow to elevate and unlock your visual story."</p>
+            robust funnel to elevate and unlock your brand's full potential."</p>
         </div>
       </div>
 
