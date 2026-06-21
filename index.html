@@ -198,11 +198,11 @@
     /* photo with a color block behind it + a handwritten marker note */
     .photo-frame { position: relative; display: inline-block; width: 100%; }
     .photo-frame .ph { position: relative; z-index: 1; }
-    .ph--photo { background-image: url('/assets/img/about.webp'); background-size: cover;
-      background-position: 50% 30%; aspect-ratio: 1 / 1; }
-    .ph--photo::after { content: none; }
-    .photo-frame .block { position: absolute; z-index: 0; width: 58%; aspect-ratio: 1;
-      background: var(--c-mint); border-radius: var(--radius); right: -22px; bottom: -22px; }
+    .about-panel { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: var(--radius);
+      overflow: hidden; background: linear-gradient(165deg, #CFEAE4 0%, #EFF8F5 78%); }
+    .about-panel img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; display: block; }
+    .photo-frame .block { position: absolute; z-index: 0; width: 60%; aspect-ratio: 1;
+      background: var(--c-coral); border-radius: var(--radius); right: -22px; bottom: -22px; }
     .note-script { font-family: var(--font-script); font-weight: 600; color: var(--c-pink-deep);
       line-height: 1; }
     .photo-frame .note-script { position: absolute; z-index: 2; font-size: 2.3rem;
@@ -482,7 +482,9 @@
         <div class="reveal">
           <div class="photo-frame">
             <span class="block" aria-hidden="true"></span>
-            <div class="ph ph--photo" role="img" aria-label="Portrait of Priscilla"></div>
+            <div class="about-panel">
+              <img src="/assets/img/about-cutout.webp" width="1100" height="1100" alt="Priscilla">
+            </div>
             <span class="note-script" aria-hidden="true">hi, that's me!</span>
           </div>
           <p class="pullquote">Most marketers hand you a plan. I run it with you.</p>
