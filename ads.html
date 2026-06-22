@@ -145,10 +145,13 @@
     .cta-logo { width: clamp(200px, 30vw, 300px); height: auto; display: block; margin: 0 auto var(--s-3); }
     .section-mark { width: clamp(250px, 33vw, 330px); height: auto; display: block; margin: 0 auto var(--s-3); }
 
-    /* ---- Phase blocks (what you get): teal-accented containment ---- */
+    /* ---- Shared panel: the one containment treatment (teal rail + faint tint) ---- */
+    .panel { border-left: 4px solid var(--c-mint-deep); background: rgba(177, 222, 217, 0.16);
+      border-radius: 0 var(--radius) var(--radius) 0; }
+
+    /* ---- Phase blocks (what you get) ---- */
     .phases { display: grid; gap: var(--s-4); margin-top: var(--s-5); }
-    .phase { border-left: 4px solid var(--c-mint-deep); background: rgba(177, 222, 217, 0.16);
-      border-radius: 0 var(--radius) var(--radius) 0; padding: var(--s-4); }
+    .phase { padding: var(--s-4); }
     .phase .phead { display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--s-2) var(--s-3); }
     .phase .num { font-family: var(--font-display); font-size: 2.2rem; color: var(--c-pink-deep); line-height: 0.9; }
     .phase .when { font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; }
@@ -163,8 +166,7 @@
 
     /* ---- Proof ---- */
     .proof-grid { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
-    .proof-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
-      padding: clamp(var(--s-4), 4vw, var(--s-5)); display: grid; grid-template-columns: minmax(180px, 0.8fr) 1.2fr; gap: var(--s-5); align-items: center; }
+    .proof-card { padding: clamp(var(--s-4), 4vw, var(--s-5)); display: grid; grid-template-columns: minmax(180px, 0.8fr) 1.2fr; gap: var(--s-5); align-items: center; }
     .proof-card.flip { grid-template-columns: 1.2fr minmax(180px, 0.8fr); }
     .proof-card.flip .fig { order: 2; } .proof-card.flip .story { order: 1; }
     @media (max-width: 720px) { .proof-card, .proof-card.flip { grid-template-columns: 1fr; gap: var(--s-3); }
@@ -189,7 +191,7 @@
     .receipt strong { font-family: var(--font-display); color: var(--c-ink); }
 
     /* ---- Pricing ---- */
-    .pricing { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-5); }
+    .pricing { padding: var(--s-5); }
     .pricing .label { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; margin-bottom: var(--s-2); }
     .pricing .price-row { display: flex; align-items: baseline; gap: var(--s-2); flex-wrap: wrap; margin-bottom: var(--s-3); }
     .pricing .price { font-family: var(--font-display); font-size: 3.2rem; color: var(--c-ink); line-height: 1; }
@@ -395,7 +397,7 @@
       </div>
       <div class="col">
         <div class="phases reveal">
-          <div class="phase">
+          <div class="phase panel">
             <div class="phead">
               <span class="num">01</span>
               <span class="when">Weeks 1 &amp; 2</span>
@@ -409,7 +411,7 @@
               <li>Realistic expectations and a clear timeline</li>
             </ul>
           </div>
-          <div class="phase">
+          <div class="phase panel">
             <div class="phead">
               <span class="num">02</span>
               <span class="when">Weeks 3 to 5</span>
@@ -425,7 +427,7 @@
               <li>Zapier integration between Meta and your email platform</li>
             </ul>
           </div>
-          <div class="phase">
+          <div class="phase panel">
             <div class="phead">
               <span class="num">03</span>
               <span class="when">Weeks 6 &amp; 7</span>
@@ -439,7 +441,7 @@
               <li>Optimizing audiences and watching cost per lead</li>
             </ul>
           </div>
-          <div class="phase">
+          <div class="phase panel">
             <div class="phead">
               <span class="num">04</span>
               <span class="when">Week 8</span>
@@ -471,7 +473,7 @@
       <div class="proof-grid">
         <!-- TODO: confirm the ~70 "typical rate" and the 6x math against approved
              numbers, and replace "Wellness coach" with the approved descriptor. -->
-        <article class="proof-card reveal">
+        <article class="proof-card panel reveal">
           <div class="fig">
             <div class="big">6<span class="sym">&times;</span></div>
             <div class="cap">more signups for the same spend</div>
@@ -493,7 +495,7 @@
           </div>
         </article>
         <!-- TODO: replace "Solo practitioner" with the approved descriptor. -->
-        <article class="proof-card flip reveal">
+        <article class="proof-card flip panel reveal">
           <div class="fig">
             <div class="big"><span class="sym">$</span>5</div>
             <div class="cap">a day, seven new leads</div>
@@ -533,7 +535,7 @@
             faster? Bumping daily spend during the active management phase, even from $5 to $10 a day, moves
             a lot more people through the system in the same window.</p>
         </div>
-        <div class="pricing reveal">
+        <div class="pricing panel reveal">
           <div class="label">The Lead Stream · Beta pricing</div>
           <div class="price-row"><span class="price">$997</span><span class="old">$1,997 after beta closes</span></div>
           <ul>
