@@ -190,6 +190,34 @@
     .receipt span { font-size: 0.82rem; color: var(--text-muted); }
     .receipt strong { font-family: var(--font-display); color: var(--c-ink); }
 
+    /* ---- Coffee budget calculator ---- */
+    /* NEW COMPONENT: interactive spend slider + live leads output. */
+    .calc { max-width: 560px; margin-right: auto; margin-top: var(--s-5); padding: var(--s-5); }
+    .calc h3 { margin: var(--s-1) 0 0; }
+    .calc-control { margin-top: var(--s-4); }
+    .calc-row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-2); }
+    .calc-row label { font-size: 0.95rem; color: var(--text); }
+    .calc-row output { font-family: var(--font-display); font-size: 1.6rem; color: var(--c-ink); line-height: 1; }
+    .calc-row output .per { font-family: var(--font-body); font-size: 0.9rem; color: var(--text-muted); }
+    .calc-scale { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; }
+    /* Slider: teal track and fill (structural), magenta handle (emphasis) */
+    .calc-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; margin: var(--s-3) 0 0;
+      border-radius: 999px; cursor: pointer; background: var(--c-mint);
+      background-image: linear-gradient(var(--c-mint-deep), var(--c-mint-deep)); background-size: var(--fill, 0%) 100%; background-repeat: no-repeat; }
+    .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%;
+      background: var(--c-pink-deep); border: 3px solid var(--c-cream); box-shadow: 0 2px 6px rgba(29,30,38,0.25); cursor: pointer; }
+    .calc-slider::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: var(--c-pink-deep);
+      border: 3px solid var(--c-cream); box-shadow: 0 2px 6px rgba(29,30,38,0.25); cursor: pointer; }
+    .calc-slider:focus-visible { outline: 2px solid var(--c-pink-deep); outline-offset: 4px; }
+    .calc-out { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s-3) var(--s-5); margin-top: var(--s-4); }
+    .calc-anchor { font-family: var(--font-display); font-size: clamp(3rem, 9vw, 5rem); line-height: 0.9; color: var(--c-ink); }
+    .calc-cap { display: block; font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+    .calc-cpl { padding-left: var(--s-4); border-left: 1px solid var(--line); }
+    .calc-cpl .n { font-family: var(--font-display); font-size: 1.9rem; color: var(--c-pink-deep); line-height: 1; display: block; }
+    .calc-math { font-size: 0.95rem; color: var(--text); margin: var(--s-4) 0 0; font-variant-numeric: tabular-nums; }
+    .calc-note { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin: var(--s-1) 0 0; }
+    @media (max-width: 600px) { .calc { padding: var(--s-4); } .calc-cpl { padding-left: 0; border-left: 0; } }
+
     /* ---- Pricing ---- */
     .pricing { padding: var(--s-5); }
     .pricing .label { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; margin-bottom: var(--s-2); }
@@ -516,6 +544,34 @@
           </div>
         </article>
       </div>
+
+      <!-- COFFEE BUDGET CALCULATOR -->
+      <div class="calc panel reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>Run it on your own budget</p>
+        <h3>What a coffee budget could buy.</h3>
+        <div class="calc-control">
+          <div class="calc-row">
+            <label for="calc-spend">Daily ad spend</label>
+            <output id="calc-spend-out" for="calc-spend"><span id="calc-spend-val">$5</span><span class="per"> a day</span></output>
+          </div>
+          <input class="calc-slider" type="range" id="calc-spend" min="5" max="20" step="1" value="5"
+            aria-describedby="calc-math calc-note">
+          <div class="calc-scale"><span>$5</span><span>$20</span></div>
+        </div>
+        <div class="calc-out">
+          <div>
+            <div class="calc-anchor" id="calc-leads" aria-live="polite">214</div>
+            <span class="calc-cap">leads a month, give or take</span>
+          </div>
+          <div class="calc-cpl">
+            <span class="n">$0.70</span>
+            <span class="calc-cap">reference cost per lead</span>
+          </div>
+        </div>
+        <p class="calc-math" id="calc-math" aria-live="polite">$5/day ÷ $0.70 per lead ≈ 7 leads/day ≈ 214/month</p>
+        <p class="calc-note" id="calc-note">Based on a recent client's $0.70 cost per lead. Your numbers will vary, this is an example, not a promise.</p>
+      </div>
+
       <div class="center reveal" style="margin-top: var(--s-5);">
         <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn">Book a Clarity Call</a>
       </div>
@@ -710,6 +766,48 @@
     const onScroll = () => hdr.classList.toggle('stuck', window.scrollY > 60);
     onScroll(); addEventListener('scroll', onScroll, { passive: true });
     document.getElementById('yr').textContent = new Date().getFullYear();
+
+    /* ---- Coffee budget calculator ---- */
+    (function () {
+      const slider = document.getElementById('calc-spend');
+      if (!slider) return;
+      const CPL = 0.70;                  // reference cost per lead from a past client
+      const spendVal = document.getElementById('calc-spend-val');
+      const leadsEl  = document.getElementById('calc-leads');
+      const mathEl   = document.getElementById('calc-math');
+      const fmt = n => n.toLocaleString('en-US');
+
+      function values(v) {
+        return { perDay: Math.round(v / CPL), month: Math.round(v / CPL * 30) };
+      }
+      function countTo(el, target) {
+        const dur = 450, t0 = performance.now();
+        (function tick(now) {
+          const p = Math.min((now - t0) / dur, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = fmt(Math.round(target * eased));
+          if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+      }
+      function render(animate) {
+        const v = +slider.value;
+        const { perDay, month } = values(v);
+        spendVal.textContent = '$' + v;
+        slider.style.setProperty('--fill', ((v - 5) / 15 * 100) + '%');
+        mathEl.textContent = '$' + v + '/day ÷ $0.70 per lead ≈ ' + perDay + ' leads/day ≈ ' + fmt(month) + '/month';
+        if (animate && !reduce) countTo(leadsEl, month);
+        else leadsEl.textContent = fmt(month);
+      }
+
+      render(false);                     // set initial state without animation
+      slider.addEventListener('input', () => render(false));
+      if (!reduce) {                     // gentle count-up the first time it scrolls in
+        const io2 = new IntersectionObserver((ents) => {
+          ents.forEach(en => { if (en.isIntersecting) { render(true); io2.unobserve(en.target); } });
+        }, { threshold: 0.4 });
+        io2.observe(slider.closest('.calc'));
+      }
+    })();
   </script>
 
   <script type="application/ld+json">
