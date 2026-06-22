@@ -53,17 +53,30 @@
     .lead-in .em { color: var(--c-pink-deep); }
 
     /* ---- Header: overlays the hero, turns solid on scroll ---- */
-    .site-header { position: fixed; inset: 0 0 auto 0; z-index: 50; color: var(--text);
-      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-      border-bottom: 1px solid transparent; }
-    .site-header.stuck { background: rgba(247,238,231,0.92); backdrop-filter: blur(8px);
-      color: var(--text); border-bottom-color: var(--line); }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding-block: var(--s-2); gap: var(--s-3); }
-    .wordmark { font-family: var(--font-display); font-size: 1.3rem; color: inherit; text-decoration: none; }
-    .nav-links { display: flex; align-items: center; gap: var(--s-4); }
-    .nav-links a { color: inherit; text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.92; }
-    .nav-links a:hover { opacity: 1; }
-    @media (max-width: 720px) { .nav-links .hide-sm { display: none; } }
+    /* top promo bar + nav, fixed as one stack */
+    .top-stack { position: fixed; inset: 0 0 auto 0; z-index: 50; }
+    .promo-bar { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
+      background: var(--c-coral); color: var(--c-ink); text-decoration: none; text-align: center;
+      padding: 8px 16px; font-size: 0.9rem; line-height: 1.3; }
+    .promo-tag { background: var(--c-pink-deep); color: var(--c-cream); font-size: 0.66rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
+    .promo-bar strong { font-weight: 700; }
+    .promo-cta { font-weight: 700; border: 1.5px solid var(--c-ink); border-radius: 999px; padding: 4px 14px;
+      white-space: nowrap; transition: background 0.15s ease, color 0.15s ease; }
+    .promo-bar:hover .promo-cta { background: var(--c-ink); color: var(--c-cream); }
+    .site-header { background: var(--c-pink-deep); color: var(--c-cream);
+      border-bottom: 1px solid rgba(247,238,231,0.14); transition: box-shadow 0.25s ease; }
+    .site-header.stuck { box-shadow: 0 8px 24px rgba(29,30,38,0.20); }
+    .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding-block: var(--s-2); gap: var(--s-3); }
+    .wordmark { font-family: var(--font-display); font-size: 1.3rem; color: var(--c-cream); text-decoration: none; justify-self: start; }
+    .nav-center { justify-self: center; display: flex; align-items: center; gap: var(--s-4); }
+    .nav-center a { color: var(--c-cream); text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.9; white-space: nowrap; }
+    .nav-center a:hover { opacity: 1; }
+    .nav-cta { justify-self: end; }
+    .nav-pill { display: inline-block; background: var(--c-cream); color: var(--c-pink-deep); font-weight: 600;
+      font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease; }
+    .nav-pill:hover { opacity: 0.9; }
+    @media (max-width: 760px) { .nav-center { display: none; } .nav { grid-template-columns: 1fr auto; } .promo-cta { display: none; } }
 
     /* ---- Buttons: one filled style, used singly ---- */
     .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body);
@@ -100,7 +113,7 @@
     .hero .textlink { color: var(--link); }
     @media (max-width: 860px) {
       .hero { flex-direction: column; align-items: stretch; min-height: auto; }
-      .hero-text { max-width: 100%; padding-top: 116px; padding-bottom: 0; }
+      .hero-text { max-width: 100%; padding-top: 150px; padding-bottom: 0; }
       .hero-cutout { position: relative; right: auto; bottom: auto; height: auto; width: 84%;
         max-width: 360px; margin: var(--s-4) auto 0; display: block; }
       .hero-blob { width: 78%; height: 38%; right: 11%; bottom: 0; }
@@ -279,30 +292,68 @@
     @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
     /* footer */
-    .site-footer { background: var(--c-ink); color: var(--c-cream); padding-block: var(--s-6); }
-    .site-footer a { color: var(--c-cream); text-decoration: none; opacity: 0.85; }
-    .site-footer a:hover { opacity: 1; color: var(--c-pink); }
-    .foot-top { display: flex; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; align-items: start; }
-    .foot-links { display: flex; gap: var(--s-4); flex-wrap: wrap; }
-    .foot-bottom { margin-top: var(--s-5); padding-top: var(--s-3); border-top: 1px solid rgba(247,238,231,0.15);
-      font-size: 0.85rem; opacity: 0.7; display: flex; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+    .site-footer { background: var(--c-cream-soft); color: var(--c-ink); padding-block: var(--s-7) var(--s-4); }
+    .site-footer a { color: var(--c-ink); text-decoration: none; }
+    .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--s-6); align-items: start; }
+    .foot-script { font-family: var(--font-script); font-weight: 700; font-size: clamp(2.8rem, 6.5vw, 4.6rem);
+      line-height: 0.82; color: var(--c-pink-deep); display: inline-block; }
+    .foot-intro { display: flex; gap: var(--s-3); align-items: center; margin-top: var(--s-3); max-width: 540px; }
+    .foot-photo { position: relative; flex: 0 0 auto; width: 130px; height: 130px; }
+    .foot-photo img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover;
+      border-radius: 46% 54% 52% 48% / 54% 46% 54% 46%; }
+    .foot-photo::after { content: ''; position: absolute; z-index: 0; left: -12px; top: 12px; width: 130px; height: 130px;
+      background: var(--c-mint); border-radius: 54% 46% 48% 52% / 46% 54% 46% 54%; }
+    .foot-bio { font-size: 1.02rem; line-height: 1.5; }
+    .foot-social { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: var(--s-4); max-width: 540px; }
+    .social-btn { display: flex; align-items: center; gap: 10px; border: 1.5px solid var(--c-ink); border-radius: var(--radius);
+      padding: 11px 14px; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700;
+      transition: background 0.15s ease, color 0.15s ease; }
+    .social-btn:hover { background: var(--c-ink); color: var(--c-cream); }
+    .social-btn .ic { font-size: 1.05rem; line-height: 1; }
+    .foot-explore { justify-self: end; }
+    .foot-explore h4 { font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--c-pink-deep); display: inline-block; border-bottom: 2px solid var(--c-pink); padding-bottom: 6px; margin-bottom: var(--s-3); }
+    .explore-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-5);
+      font-family: var(--font-display); font-size: 1.2rem; }
+    .explore-cols a:hover { color: var(--c-pink-deep); }
+    .back-to-top { position: absolute; top: var(--s-6); right: var(--s-4); writing-mode: vertical-rl;
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--c-pink-deep);
+      display: inline-flex; align-items: center; gap: 8px; }
+    .foot-bottom { margin-top: var(--s-6); padding-top: var(--s-3); border-top: 1px solid var(--line);
+      font-size: 0.85rem; color: var(--text-muted); display: flex; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .foot-grid { grid-template-columns: 1fr; gap: var(--s-5); }
+      .foot-explore { justify-self: start; }
+      .foot-social { grid-template-columns: 1fr; }
+      .back-to-top { display: none; }
+    }
   </style>
 </head>
 <body>
 
   <div id="grain" aria-hidden="true"></div>
 
-  <header class="site-header" id="hdr">
-    <div class="container nav">
-      <a href="#top" class="wordmark">Priscilla Zähringer</a>
-      <nav class="nav-links">
-        <a href="#offer" class="hide-sm">Work with me</a>
-        <a href="#projects" class="hide-sm">Services</a>
-        <a href="/about.html" class="hide-sm">About</a>
-        <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="textlink" style="border:0;">Book a call</a>
-      </nav>
-    </div>
-  </header>
+  <div class="top-stack" id="hdr-stack">
+    <a class="promo-bar" href="/ads.html">
+      <span class="promo-tag">New</span>
+      <span class="promo-text"><strong>The Lead Stream</strong> — done-for-you Meta ads. Beta pricing, 5 spots open.</span>
+      <span class="promo-cta">See the service →</span>
+    </a>
+    <header class="site-header" id="hdr">
+      <div class="container nav">
+        <a href="#top" class="wordmark">Priscilla Zähringer</a>
+        <nav class="nav-center">
+          <a href="#offer">Work with me</a>
+          <a href="/podcast.html">The Signal</a>
+          <a href="/ads.html">The Lead Stream</a>
+          <a href="/about.html">About</a>
+        </nav>
+        <div class="nav-cta">
+          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="nav-pill">Book a call</a>
+        </div>
+      </div>
+    </header>
+  </div>
 
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="top">
@@ -519,27 +570,38 @@
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer">
+    <a href="#top" class="back-to-top" aria-label="Back to top">Back to top <span aria-hidden="true">&uarr;</span></a>
     <div class="container">
-      <div class="foot-top">
-        <div>
-          <div class="wordmark" style="color: var(--c-cream);">Priscilla Zähringer</div>
-          <p style="opacity:0.75; margin-top: var(--s-1); max-width: 36ch;">Your marketing, finally handled.
-            One person who runs it end to end.</p>
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a href="#top" class="foot-script">Priscilla Zähringer</a>
+          <div class="foot-intro">
+            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" alt="Priscilla Zähringer"></span>
+            <p class="foot-bio">I'm a 1:1 marketing partner for small business owners who'd rather grow than build a team.
+              Real strategy, run end to end, done with you and not at you.</p>
+          </div>
+          <div class="foot-social">
+            <a class="social-btn" href="https://www.instagram.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
+            <a class="social-btn" href="/podcast.html"><span class="ic">🎙️</span>Listen to The Signal</a>
+            <a class="social-btn" href="https://www.facebook.com/priscillazaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
+            <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📌</span>Pin along with me</a>
+          </div>
         </div>
-        <nav class="foot-links">
-          <a href="#offer">Work with me</a>
-          <a href="#projects">Services</a>
-          <a href="/about.html">About</a>
-          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a call</a>
+        <nav class="foot-explore" aria-label="Footer">
+          <h4>Get around</h4>
+          <div class="explore-cols">
+            <a href="/">Home</a>
+            <a href="/about.html">About</a>
+            <a href="/podcast.html">The Signal</a>
+            <a href="/ads.html">The Lead Stream</a>
+            <a href="#offer">Work with me</a>
+            <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a call</a>
+          </div>
         </nav>
       </div>
       <div class="foot-bottom">
         <span>© <span id="yr"></span> Priscilla Zähringer. All rights reserved.</span>
-        <span class="foot-links">
-          <a href="https://www.instagram.com/priscillazaehringer/" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.facebook.com/priscillazaehringer" target="_blank" rel="noopener">Facebook</a>
-          <a href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener">Pinterest</a>
-        </span>
+        <span>Your marketing, finally handled.</span>
       </div>
     </div>
   </footer>
