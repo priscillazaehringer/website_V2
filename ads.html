@@ -125,13 +125,22 @@
       background-image: url('/assets/img/about.webp'); background-size: cover; background-position: 50% 22%; }
     .photo-frame .note-script { position: absolute; z-index: 2; font-size: 2rem; transform: rotate(-7deg); top: -16px; left: -8px; }
 
-    /* ---- Numbered step cards (the offer) ---- */
-    .steps3 { display: grid; gap: var(--s-2); margin-top: var(--s-5); }
-    .stepcard { display: grid; grid-template-columns: auto 1fr; gap: var(--s-3); align-items: start;
-      background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-4); }
-    .stepcard .num { font-family: var(--font-display); font-size: 2.4rem; color: var(--c-pink-deep); line-height: 0.9; }
-    .stepcard h3 { margin-bottom: var(--s-1); }
-    .stepcard p { color: var(--text-muted); margin: 0; }
+    /* ---- Timeline steps (the offer) ---- */
+    .steps3 { --node: 60px; display: grid; gap: var(--s-6); margin-top: var(--s-5);
+      max-width: 600px; margin-right: auto; }
+    .tstep { position: relative; display: grid; grid-template-columns: var(--node) 1fr;
+      gap: var(--s-3); align-items: start; }
+    .tstep::after { content: ''; position: absolute; z-index: 0; width: 2px;
+      left: calc(var(--node) / 2); transform: translateX(-50%);
+      top: calc(var(--node) / 2); bottom: calc(-1 * (var(--s-6) + var(--node) / 2));
+      background: var(--c-mint); }
+    .tstep:last-child::after { display: none; }
+    .tstep .num { position: relative; z-index: 1; width: var(--node); height: var(--node);
+      display: grid; place-items: center; font-family: var(--font-display); font-size: 1.7rem;
+      line-height: 1; color: var(--c-pink-deep); background: var(--c-mint); border-radius: 50%; }
+    .tstep h3 { margin-bottom: var(--s-1); }
+    .tstep p { color: var(--text-muted); margin: 0; }
+    @media (max-width: 600px) { .steps3 { --node: 48px; gap: var(--s-5); } .tstep .num { font-size: 1.4rem; } }
     .hero-logo { width: clamp(240px, 36vw, 360px); height: auto; display: block; margin: 0 auto var(--s-3); }
     .cta-logo { width: clamp(200px, 30vw, 300px); height: auto; display: block; margin: 0 auto var(--s-3); }
     .section-mark { width: clamp(250px, 33vw, 330px); height: auto; display: block; margin: 0 auto var(--s-3); }
@@ -364,9 +373,9 @@
       </div>
       <div class="col">
         <div class="steps3 reveal">
-          <div class="stepcard"><div class="num">01</div><div><h3>I build it</h3><p>Strategy, ad creative, ad copy, native Facebook lead form, branded thank-you page, email welcome sequence, Zapier integration, and campaign launch. All done for you.</p></div></div>
-          <div class="stepcard"><div class="num">02</div><div><h3>I run it</h3><p>Once we launch, I'm in your ad account daily for a couple of weeks. Testing, optimizing, refreshing creative, watching the data come in. Your only job is to approve.</p></div></div>
-          <div class="stepcard"><div class="num">03</div><div><h3>You keep it</h3><p>At week eight I hand off the SOP library, Loom training videos, and a written plan for what's next. You own the system, and it keeps generating leads with or without me.</p></div></div>
+          <div class="tstep"><div class="num">01</div><div><h3>I build it</h3><p>Strategy, ad creative, ad copy, native Facebook lead form, branded thank-you page, email welcome sequence, Zapier integration, and campaign launch. All done for you.</p></div></div>
+          <div class="tstep"><div class="num">02</div><div><h3>I run it</h3><p>Once we launch, I'm in your ad account daily for a couple of weeks. Testing, optimizing, refreshing creative, watching the data come in. Your only job is to approve.</p></div></div>
+          <div class="tstep"><div class="num">03</div><div><h3>You keep it</h3><p>At week eight I hand off the SOP library, Loom training videos, and a written plan for what's next. You own the system, and it keeps generating leads with or without me.</p></div></div>
         </div>
         <p class="reveal" style="text-align:center; color: var(--text-muted); font-style: italic; margin-top: var(--s-4);">
           Prefer to keep me on after handoff? Ongoing management is $397/mo. Beta clients lock in $297/mo for their first 6 months.</p>
