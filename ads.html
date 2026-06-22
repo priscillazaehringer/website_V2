@@ -145,31 +145,21 @@
     .cta-logo { width: clamp(200px, 30vw, 300px); height: auto; display: block; margin: 0 auto var(--s-3); }
     .section-mark { width: clamp(250px, 33vw, 330px); height: auto; display: block; margin: 0 auto var(--s-3); }
 
-    /* ---- Phase rows (what you get): left-rail layout ---- */
-    .phases { display: grid; gap: var(--s-6); margin-top: var(--s-5); }
-    .phase { display: grid; grid-template-columns: minmax(150px, 1fr) 2fr; gap: var(--s-5); align-items: start; }
-    .phase + .phase { border-top: 1px solid var(--line); padding-top: var(--s-6); }
-    .phase .rail .meta { display: flex; align-items: baseline; gap: var(--s-2); }
-    .phase .num { font-family: var(--font-display); font-size: 2.4rem; color: var(--c-pink-deep); line-height: 0.9; }
+    /* ---- Phase blocks (what you get): teal-accented containment ---- */
+    .phases { display: grid; gap: var(--s-4); margin-top: var(--s-5); }
+    .phase { border-left: 4px solid var(--c-mint-deep); background: rgba(177, 222, 217, 0.16);
+      border-radius: 0 var(--radius) var(--radius) 0; padding: var(--s-4); }
+    .phase .phead { display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--s-2) var(--s-3); }
+    .phase .num { font-family: var(--font-display); font-size: 2.2rem; color: var(--c-pink-deep); line-height: 0.9; }
     .phase .when { font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; }
-    .phase .emoji { display: block; font-size: 1.7rem; line-height: 1; margin: var(--s-3) 0 var(--s-1); }
-    .phase h3 { margin: 0; }
-    .phase .outcome { color: var(--text-muted); font-style: italic; margin: 0 0 var(--s-2); }
-    .phase ul { list-style: none; margin: var(--s-2) 0 0; padding-top: var(--s-2); border-top: 1px solid var(--line);
-      columns: 2; column-gap: var(--s-4); }
+    .phase h3 { margin: 0; display: flex; align-items: center; gap: var(--s-2); }
+    .phase .emoji { font-size: 1.5rem; line-height: 1; flex: none; }
+    .phase .outcome { color: var(--text-muted); font-style: italic; margin: var(--s-2) 0 0; }
+    .phase ul { list-style: none; margin: var(--s-3) 0 0; padding-top: var(--s-3); border-top: 1px solid var(--line);
+      columns: 2; column-gap: var(--s-5); }
     @media (max-width: 640px) { .phase ul { columns: 1; } }
     .phase li { font-size: 0.95rem; color: var(--text); padding: 5px 0 5px 22px; position: relative; break-inside: avoid; }
     .phase li::before { content: '\2713'; position: absolute; left: 0; top: 5px; color: var(--c-mint-deep); font-weight: 700; }
-    @media (max-width: 720px) { .phase { grid-template-columns: 1fr; gap: var(--s-3); } .phase .emoji { margin-top: var(--s-2); } }
-
-    /* ---- OPTIONAL: week-by-week progress rail (delete this block to remove) ---- */
-    .weekrail { display: flex; gap: 6px; max-width: 600px; margin: var(--s-5) auto 0; }
-    .weekrail-seg { flex: var(--span) 1 0; display: flex; flex-direction: column; gap: 8px; }
-    .weekrail-bar { height: 8px; border-radius: 999px; background: var(--c-mint); }
-    .weekrail-cap { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-mint-deep); font-weight: 600; }
-    .weekrail-cap b { font-family: var(--font-display); font-weight: 400; color: var(--c-pink-deep); margin-right: 6px; letter-spacing: 0; }
-    @media (max-width: 540px) { .weekrail-cap { font-size: 0.6rem; } }
-    /* ---- END OPTIONAL ---- */
 
     /* ---- Proof ---- */
     .proof-grid { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
@@ -402,83 +392,67 @@
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>What you get</p>
         <h2>Exactly what we build, week by week.</h2>
         <p class="lede" style="margin: var(--s-2) auto 0;">Four phases over eight weeks, hands-on the whole way.</p>
-        <!-- OPTIONAL: week-by-week progress rail (delete this block to remove) -->
-        <div class="weekrail reveal" aria-hidden="true">
-          <div class="weekrail-seg" style="--span: 2;"><span class="weekrail-bar"></span><span class="weekrail-cap"><b>01</b>Weeks 1 &amp; 2</span></div>
-          <div class="weekrail-seg" style="--span: 3;"><span class="weekrail-bar"></span><span class="weekrail-cap"><b>02</b>Weeks 3 to 5</span></div>
-          <div class="weekrail-seg" style="--span: 2;"><span class="weekrail-bar"></span><span class="weekrail-cap"><b>03</b>Weeks 6 &amp; 7</span></div>
-          <div class="weekrail-seg" style="--span: 1;"><span class="weekrail-bar"></span><span class="weekrail-cap"><b>04</b>Week 8</span></div>
-        </div>
-        <!-- END OPTIONAL -->
       </div>
       <div class="col">
         <div class="phases reveal">
           <div class="phase">
-            <div class="rail">
-              <div class="meta"><span class="num">01</span><span class="when">Weeks 1 &amp; 2</span></div>
-              <span class="emoji">🧱</span>
-              <h3>The foundation</h3>
+            <div class="phead">
+              <span class="num">01</span>
+              <span class="when">Weeks 1 &amp; 2</span>
+              <h3><span class="emoji">🧱</span> The foundation</h3>
             </div>
-            <div class="detail">
-              <p class="outcome">You'll know exactly where your money is going and why.</p>
-              <ul>
-                <li>Full audit of your offer, audience, and current setup</li>
-                <li>Custom lead-gen strategy built for your business</li>
-                <li>Audience research and build-out</li>
-                <li>Realistic expectations and a clear timeline</li>
-              </ul>
-            </div>
+            <p class="outcome">You'll know exactly where your money is going and why.</p>
+            <ul>
+              <li>Full audit of your offer, audience, and current setup</li>
+              <li>Custom lead-gen strategy built for your business</li>
+              <li>Audience research and build-out</li>
+              <li>Realistic expectations and a clear timeline</li>
+            </ul>
           </div>
           <div class="phase">
-            <div class="rail">
-              <div class="meta"><span class="num">02</span><span class="when">Weeks 3 to 5</span></div>
-              <span class="emoji">🎯</span>
-              <h3>The build</h3>
+            <div class="phead">
+              <span class="num">02</span>
+              <span class="when">Weeks 3 to 5</span>
+              <h3><span class="emoji">🎯</span> The build</h3>
             </div>
-            <div class="detail">
-              <p class="outcome">Everything built, connected, and tested before a dollar goes live.</p>
-              <ul>
-                <li>Ad creative direction and design</li>
-                <li>Ad copy, multiple variations for testing</li>
-                <li>Native Facebook lead form, lower cost per lead</li>
-                <li>Branded thank-you page, built and connected</li>
-                <li>Email welcome sequence, written and connected</li>
-                <li>Zapier integration between Meta and your email platform</li>
-              </ul>
-            </div>
+            <p class="outcome">Everything built, connected, and tested before a dollar goes live.</p>
+            <ul>
+              <li>Ad creative direction and design</li>
+              <li>Ad copy, multiple variations for testing</li>
+              <li>Native Facebook lead form, lower cost per lead</li>
+              <li>Branded thank-you page, built and connected</li>
+              <li>Email welcome sequence, written and connected</li>
+              <li>Zapier integration between Meta and your email platform</li>
+            </ul>
           </div>
           <div class="phase">
-            <div class="rail">
-              <div class="meta"><span class="num">03</span><span class="when">Weeks 6 &amp; 7</span></div>
-              <span class="emoji">🚀</span>
-              <h3>Launch and optimize</h3>
+            <div class="phead">
+              <span class="num">03</span>
+              <span class="when">Weeks 6 &amp; 7</span>
+              <h3><span class="emoji">🚀</span> Launch and optimize</h3>
             </div>
-            <div class="detail">
-              <p class="outcome">New leads landing in your inbox while I fine-tune the system live.</p>
-              <ul>
-                <li>We go live and the leads start coming in</li>
-                <li>I'm in your account daily for one to two weeks</li>
-                <li>Testing creative and refreshing what's working</li>
-                <li>Optimizing audiences and watching cost per lead</li>
-              </ul>
-            </div>
+            <p class="outcome">New leads landing in your inbox while I fine-tune the system live.</p>
+            <ul>
+              <li>We go live and the leads start coming in</li>
+              <li>I'm in your account daily for one to two weeks</li>
+              <li>Testing creative and refreshing what's working</li>
+              <li>Optimizing audiences and watching cost per lead</li>
+            </ul>
           </div>
           <div class="phase">
-            <div class="rail">
-              <div class="meta"><span class="num">04</span><span class="when">Week 8</span></div>
-              <span class="emoji">🤝</span>
-              <h3>The handoff</h3>
+            <div class="phead">
+              <span class="num">04</span>
+              <span class="when">Week 8</span>
+              <h3><span class="emoji">🤝</span> The handoff</h3>
             </div>
-            <div class="detail">
-              <p class="outcome">A system you own and understand, yours to run for years to come.</p>
-              <ul>
-                <li>Complete SOP library for running your system long-term</li>
-                <li>Loom training videos walking through every part</li>
-                <li>Written next-steps plan on what to do from here</li>
-                <li>30 days of post-handoff email support</li>
-                <li>Optional ongoing management ($297/mo for beta clients, first 6 months)</li>
-              </ul>
-            </div>
+            <p class="outcome">A system you own and understand, yours to run for years to come.</p>
+            <ul>
+              <li>Complete SOP library for running your system long-term</li>
+              <li>Loom training videos walking through every part</li>
+              <li>Written next-steps plan on what to do from here</li>
+              <li>30 days of post-handoff email support</li>
+              <li>Optional ongoing management ($297/mo for beta clients, first 6 months)</li>
+            </ul>
           </div>
         </div>
         <p class="reveal center" style="color: var(--text-muted); font-style: italic; margin-top: var(--s-4);">
