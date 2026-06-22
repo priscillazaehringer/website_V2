@@ -190,22 +190,12 @@
     .receipt span { font-size: 0.82rem; color: var(--text-muted); }
     .receipt strong { font-family: var(--font-display); color: var(--c-ink); }
 
-    /* ---- Coffee-budget proof paired with its calculator ---- */
-    /* Binds the $5 case study to the calculator it feeds, as one asymmetric
-       two-up. The calculator is staggered down so the tops do not align. */
-    .proof-pair { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--s-4); align-items: start; margin-top: var(--s-3); }
-    .proof-pair .proof-card { grid-template-columns: 1fr; gap: var(--s-3); align-items: start; }
-    .proof-pair .proof-card .fig { text-align: left; }
-    .proof-pair .calc { max-width: none; margin: var(--s-5) 0 0; }
-    @media (max-width: 820px) {
-      .proof-pair { grid-template-columns: 1fr; gap: var(--s-4); }
-      .proof-pair .calc { margin-top: 0; }
-    }
-
-    /* ---- Coffee budget calculator ---- */
-    /* NEW COMPONENT: interactive spend slider + live leads output. */
-    .calc { max-width: 560px; margin-right: auto; margin-top: var(--s-5); padding: var(--s-5); }
+    /* ---- Coffee budget: real result + run-it-yourself calculator ---- */
+    /* NEW COMPONENT: a client result that doubles as the calculator's start. */
+    .calc { max-width: 620px; margin-right: auto; margin-top: var(--s-4); padding: var(--s-5); }
     .calc h3 { margin: var(--s-1) 0 0; }
+    .calc-intro { margin: var(--s-2) 0 0; color: var(--text-muted); }
+    .calc-intro strong { color: var(--c-ink); }
     .calc-control { margin-top: var(--s-4); }
     .calc-row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-2); }
     .calc-row label { font-size: 0.95rem; color: var(--text); }
@@ -221,14 +211,12 @@
     .calc-slider::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: var(--c-pink-deep);
       border: 3px solid var(--c-cream); box-shadow: 0 2px 6px rgba(29,30,38,0.25); cursor: pointer; }
     .calc-slider:focus-visible { outline: 2px solid var(--c-pink-deep); outline-offset: 4px; }
-    .calc-out { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s-3) var(--s-5); margin-top: var(--s-4); }
+    .calc-out { margin-top: var(--s-4); }
     .calc-anchor { font-family: var(--font-display); font-size: clamp(3rem, 9vw, 5rem); line-height: 0.9; color: var(--c-ink); }
     .calc-cap { display: block; font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
-    .calc-cpl { padding-left: var(--s-4); border-left: 1px solid var(--line); }
-    .calc-cpl .n { font-family: var(--font-display); font-size: 1.9rem; color: var(--c-pink-deep); line-height: 1; display: block; }
     .calc-math { font-size: 0.95rem; color: var(--text); margin: var(--s-4) 0 0; font-variant-numeric: tabular-nums; }
     .calc-note { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin: var(--s-1) 0 0; }
-    @media (max-width: 600px) { .calc { padding: var(--s-4); } .calc-cpl { padding-left: 0; border-left: 0; } }
+    @media (max-width: 600px) { .calc { padding: var(--s-4); } }
 
     /* ---- Pricing ---- */
     .pricing { padding: var(--s-5); }
@@ -539,31 +527,15 @@
         </article>
       </div>
 
-      <!-- Coffee-budget proof paired with the calculator it feeds -->
-      <div class="proof-pair">
-        <!-- TODO: replace "Solo practitioner" with the approved descriptor. -->
-        <article class="proof-card coffee panel reveal">
-          <div class="fig">
-            <div class="big"><span class="sym">$</span>5</div>
-            <div class="cap">a day, seven new leads</div>
-          </div>
-          <div class="story">
-            <div class="client">Solo practitioner</div>
-            <h3>Steady leads on a <strong>coffee budget</strong>.</h3>
-            <p class="body">A small daily spend, set up with care, brought fresh leads in every morning.
-              Strong strategy did the work a big budget usually gets credit for.</p>
-            <div class="cbar">
-              <div class="cbar-head"><span class="cbar-key">The Lead Stream</span><span class="cbar-val">7 leads / day</span></div>
-              <div class="cbar-track"><div class="cbar-fill us" style="--w: 100%;"></div></div>
-            </div>
-            <div class="receipt"><span><strong>$0.70</strong> per lead</span><span><strong>$5</strong> a day</span></div>
-          </div>
-        </article>
-
-        <!-- COFFEE BUDGET CALCULATOR -->
-        <div class="calc panel reveal">
-          <p class="eyebrow"><span class="heart">&#9829;</span>That same $0.70, on your budget</p>
-          <h3>What a coffee budget could buy.</h3>
+      <!-- COFFEE BUDGET: a real client result that doubles as the calculator's
+           starting point. One panel, no repeated numbers. -->
+      <!-- TODO: replace "A solo practitioner" with the approved descriptor. -->
+      <div class="calc panel reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>Steady leads on a coffee budget</p>
+        <h3>What a coffee budget could buy.</h3>
+        <p class="calc-intro">A solo practitioner ran this at <strong>$5 a day</strong> and paid about
+          <strong>$0.70 a lead</strong>, roughly seven new leads every morning. Move the slider to see
+          what other budgets could look like at that same cost per lead.</p>
         <div class="calc-control">
           <div class="calc-row">
             <label for="calc-spend">Daily ad spend</label>
@@ -574,18 +546,11 @@
           <div class="calc-scale"><span>$5</span><span>$20</span></div>
         </div>
         <div class="calc-out">
-          <div>
-            <div class="calc-anchor" id="calc-leads" aria-live="polite">214</div>
-            <span class="calc-cap">leads a month, give or take</span>
-          </div>
-          <div class="calc-cpl">
-            <span class="n">$0.70</span>
-            <span class="calc-cap">reference cost per lead</span>
-          </div>
+          <div class="calc-anchor" id="calc-leads" aria-live="polite">214</div>
+          <span class="calc-cap">leads a month, give or take, at that same $0.70 a lead</span>
         </div>
         <p class="calc-math" id="calc-math" aria-live="polite">$5/day ÷ $0.70 per lead ≈ 7 leads/day ≈ 214/month</p>
-        <p class="calc-note" id="calc-note">Based on a recent client's $0.70 cost per lead. Your numbers will vary, this is an example, not a promise.</p>
-        </div>
+        <p class="calc-note" id="calc-note">This is a recent client's result, not a guarantee. Your numbers will vary, it's an example, not a promise.</p>
       </div>
 
       <div class="center reveal" style="margin-top: var(--s-5);">
