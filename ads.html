@@ -86,15 +86,11 @@
 
     /* ---- Hero (type-led on ombre) ---- */
     .hero { background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 60%, #FBE2D6 100%); }
-    .hero .container { max-width: 820px; text-align: center; padding-top: 130px; padding-bottom: var(--s-8); }
+    .hero .container { max-width: 820px; text-align: center; padding-top: 130px; padding-bottom: var(--s-6); }
     .hero h1 { margin-inline: auto; max-width: 18ch; }
     .hero .lede { margin: var(--s-3) auto 0; max-width: 56ch; color: var(--text); }
     .hero .cta { margin-top: var(--s-4); }
     .hero .micro { margin-top: var(--s-2); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-    .hero .stats { display: flex; justify-content: center; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-5); }
-    .stat { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-2) var(--s-3); box-shadow: var(--shadow); }
-    .stat .n { font-family: var(--font-display); font-size: 1.8rem; color: var(--c-pink-deep); line-height: 1; }
-    .stat .l { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
 
     /* ---- Ombre/band helpers ---- */
     .alt-pink  { background: linear-gradient(180deg, #F7EEE7 0%, #FCE4EF 100%); }
@@ -107,15 +103,14 @@
       box-shadow: 0 -16px 40px rgba(29,30,38,0.08); padding-top: calc(var(--section-y) + 44px); }
 
     /* ---- Reality: the options that don't work ---- */
-    .struck { border-top: 1px solid var(--line); margin-top: var(--s-4); }
-    .struck-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-3); align-items: center;
-      padding-block: var(--s-3); border-bottom: 1px solid var(--line); }
+    .reality-col { max-width: 620px; margin-right: auto; text-align: left; }
+    .struck { margin-top: var(--s-5); display: grid; gap: var(--s-5); }
+    .struck-item { display: grid; grid-template-columns: auto 1fr; gap: var(--s-3); align-items: start; }
     .struck-item .ic { font-size: 1.5rem; }
     .struck-item .t { font-family: var(--font-display); font-size: 1.2rem; position: relative; display: inline-block; }
     .struck-item .t::after { content: ''; position: absolute; left: -2%; right: -2%; top: 52%; height: 2px; background: var(--c-pink-deep); }
     .struck-item p { color: var(--text-muted); font-size: 0.92rem; margin: 4px 0 0; }
-    .struck-item .x { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--c-pink-deep); }
-    @media (max-width: 600px) { .struck-item { grid-template-columns: auto 1fr; } .struck-item .x { display: none; } }
+    @media (max-width: 860px) { .reality-col { max-width: 100%; margin-right: 0; } }
     .callout-box { background: var(--c-pink); border-radius: var(--radius); padding: clamp(var(--s-3), 4vw, var(--s-5));
       margin-top: var(--s-5); text-align: center; }
     .callout-box p { font-family: var(--font-display); font-size: clamp(1.2rem, 2.4vw, 1.6rem); line-height: 1.4; margin: 0; max-width: 34ch; margin-inline: auto; }
@@ -296,18 +291,13 @@
         the leads coming in long after we're done.</p>
       <div class="cta"><a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn">Book a Clarity Call</a></div>
       <p class="micro">Beta pricing · 5 spots · $997</p>
-      <div class="stats">
-        <div class="stat"><div class="n">8 weeks</div><div class="l">build to handoff</div></div>
-        <div class="stat"><div class="n">Yours to keep</div><div class="l">no retainers</div></div>
-        <div class="stat"><div class="n">$997</div><div class="l">beta · 5 spots</div></div>
-      </div>
     </div>
   </section>
 
   <!-- REALITY -->
   <section class="section alt overlap" id="gap">
     <div class="container">
-      <div class="col reveal">
+      <div class="col reveal reality-col">
         <p class="eyebrow"><span class="heart">&#9829;</span>The gap I'm filling</p>
         <h2>You're doing the work. The number still won't move.</h2>
         <p style="margin-top: var(--s-3); color: var(--text-muted);">You've built something solid. Clients
@@ -318,17 +308,14 @@
           <div class="struck-item">
             <span class="ic">💸</span>
             <div><span class="t">Hire an agency</span><p>$2,000 to $5,000 a month, and the day you stop paying, the system stops with you. They built it, they know it, you don't get the keys.</p></div>
-            <span class="x">nope</span>
           </div>
           <div class="struck-item">
             <span class="ic">🤹</span>
             <div><span class="t">Find someone cheap</span><p>Templated work, no real strategy, ghost emails by month two. Even when it kind of works, you're still locked into someone else's system.</p></div>
-            <span class="x">nope</span>
           </div>
           <div class="struck-item">
             <span class="ic">😵‍💫</span>
             <div><span class="t">Figure it out yourself</span><p>YouTube tutorials and a prayer. The pixel, the audiences, the creative, the reporting. You don't have time for this.</p></div>
-            <span class="x">nope</span>
           </div>
         </div>
         <div class="callout-box">
