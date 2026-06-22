@@ -22,8 +22,8 @@
       font-size: var(--body); line-height: var(--lh-body); font-weight: 400; -webkit-font-smoothing: antialiased; }
     h1, h2, h3, h4, .display { font-family: var(--font-display); font-weight: 400; font-synthesis: none;
       line-height: var(--lh-tight); margin: 0; }
-    h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); }
-    h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); }
+    h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); letter-spacing: 0.012em; }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); letter-spacing: 0.012em; }
     h3 { font-size: clamp(1.3rem, 2.2vw, 1.6rem); }
     p { margin: 0 0 var(--s-2); }
     a { color: var(--link); }
@@ -207,13 +207,16 @@
     /* ---- Two-column lists (honesty / fit) ---- */
     .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); margin-top: var(--s-4); }
     @media (max-width: 760px) { .twocol { grid-template-columns: 1fr; } }
-    .listcard { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-4); }
-    .listcard.warm { background: var(--bg-alt); }
+    .listcard.panel { padding: var(--s-4); }
     .listcard h3 { font-size: 1.4rem; margin-bottom: var(--s-2); padding-bottom: var(--s-2); border-bottom: 1px solid var(--line); }
     .listcard ul { list-style: none; margin: 0; padding: 0; }
     .listcard li { font-size: 1rem; color: var(--text); padding: 8px 0 8px 26px; position: relative; line-height: 1.6; }
     .listcard.can li::before { content: '\2713'; position: absolute; left: 0; top: 8px; color: var(--c-mint-deep); font-weight: 700; }
     .listcard.cant li::before { content: '\2715'; position: absolute; left: 0; top: 8px; color: var(--c-pink-deep); font-weight: 700; }
+    /* Fit check: lighter two-up, no card containers, divider instead of boxes */
+    .twocol.bare { gap: var(--s-5); margin-top: var(--s-5); }
+    @media (min-width: 761px) { .twocol.bare > * + * { border-left: 1px solid var(--line); padding-left: var(--s-5); } }
+    @media (max-width: 760px) { .twocol.bare > * + * { border-top: 1px solid var(--line); padding-top: var(--s-4); } }
 
     /* ---- Final steps (timeline) ---- */
     .timeline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4); margin-top: var(--s-6); }
@@ -565,7 +568,7 @@
       </div>
       <div class="col">
         <div class="twocol reveal">
-          <div class="listcard can">
+          <div class="listcard can panel">
             <h3>Ads can</h3>
             <ul>
               <li>Put your offer in front of the right people, consistently</li>
@@ -575,7 +578,7 @@
               <li>Play multiple roles: awareness, nurturing, retargeting, conversion</li>
             </ul>
           </div>
-          <div class="listcard cant warm">
+          <div class="listcard cant panel">
             <h3>Ads can't</h3>
             <ul>
               <li>Fix a broken offer</li>
@@ -596,10 +599,10 @@
   <section class="section alt">
     <div class="container">
       <div class="col reveal">
-        <h2 class="center">Is The Lead Stream right for you?</h2>
+        <h2>Is The Lead Stream right for you?</h2>
       </div>
       <div class="col">
-        <div class="twocol reveal">
+        <div class="twocol bare reveal">
           <div class="listcard can">
             <h3>This works best when…</h3>
             <ul>
@@ -612,7 +615,7 @@
               <li>You have a team ready to take it over after handoff (though it's simple enough to run on your own, too)</li>
             </ul>
           </div>
-          <div class="listcard cant warm">
+          <div class="listcard cant">
             <h3>Probably not the right fit if…</h3>
             <ul>
               <li>You're just getting started and figuring out your offer</li>
