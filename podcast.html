@@ -147,13 +147,10 @@
     .keep-item p { color: var(--text-muted); margin: 0; }
 
     /* ---- Shows ---- */
-    .shows { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); margin-top: var(--s-5); }
+    .shows { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); margin-top: var(--s-5); align-items: start; }
     @media (max-width: 760px) { .shows { grid-template-columns: 1fr; } }
     .show { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-    .show .art { aspect-ratio: 1; display: grid; place-items: center; font-size: 2.4rem; color: rgba(29,30,38,0.5); }
-    .show .a1 { background: linear-gradient(150deg,#FFC8E5,#F7CBBB); }
-    .show .a2 { background: linear-gradient(150deg,#B1DED9,#EFF8F5); }
-    .show .a3 { background: linear-gradient(150deg,#F7CBBB,#FFC8E5); }
+    .show .art { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
     .show .b { padding: var(--s-2) var(--s-3); }
     .show h3 { font-size: 1.15rem; }
     .show p { color: var(--text-muted); margin: 2px 0 0; font-size: 0.9rem; }
@@ -411,9 +408,9 @@
         <h2>Podcasts I've had the honor of producing.</h2>
       </div>
       <div class="shows reveal">
-        <div class="show"><div class="art a1" aria-hidden="true">🎧</div><div class="b"><h3>The Brand Gravity Show</h3><p>Kaye Putnam</p></div></div>
-        <div class="show"><div class="art a2" aria-hidden="true">🎙️</div><div class="b"><h3>JAW Talk</h3><p>Tiffany Lamberton</p></div></div>
-        <div class="show"><div class="art a3" aria-hidden="true">🎤</div><div class="b"><h3>The Growth Show</h3><p>Whitney Bateson</p></div></div>
+        <div class="show"><img class="art" src="/assets/img/show-brand-gravity.webp" width="447" height="447" loading="lazy" alt="The Brand Gravity Show with Kaye Putnam"></div>
+        <div class="show"><img class="art" src="/assets/img/show-jaw-talk.webp" width="600" height="600" loading="lazy" alt="Jaw Talk with Dr. Tiffany Lamberton"></div>
+        <div class="show"><img class="art" src="/assets/img/show-growth.webp" width="225" height="225" loading="lazy" alt="The Growth Show with Whitney Bateson"></div>
       </div>
       <p class="reveal center" style="color: var(--text-muted); font-style: italic; margin-top: var(--s-4);">
         Every show I produce is built around a real strategy, then set up to keep running long after launch.</p>
