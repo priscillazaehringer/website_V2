@@ -203,6 +203,24 @@
     .tw { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }
     @media (prefers-reduced-motion: reduce) { .tw { animation: none; } }
 
+    /* ---- Niche trust strip ---- */
+    .niches { max-width: 640px; margin: var(--s-5) auto 0; text-align: center; }
+    .niches-label { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; margin: 0 0 var(--s-1); }
+    .niches-list { font-family: var(--font-display); font-size: clamp(1.2rem, 2.2vw, 1.5rem); line-height: 1.4; color: var(--text); margin: 0; }
+
+    /* ---- Deliverable mockup placeholder ---- */
+    .mock { margin: var(--s-5) 0 0; }
+    .mock-ph { position: relative; aspect-ratio: 16 / 10; border-radius: var(--radius); border: 1px solid var(--line);
+      background: var(--bg-alt); display: grid; place-items: center; overflow: hidden; }
+    .mock-ph::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 34px; background: #fff; border-bottom: 1px solid var(--line); }
+    .mock-dots { position: absolute; top: 12px; left: 14px; display: flex; gap: 7px; z-index: 1; }
+    .mock-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--c-coral); }
+    .mock-dots i:nth-child(2) { background: var(--c-mint); }
+    .mock-dots i:nth-child(3) { background: var(--c-pink); }
+    .mock-label { position: relative; text-align: center; color: var(--text-muted); font-size: 1rem; padding: var(--s-4); }
+    .mock-label small { opacity: 0.8; }
+    .mock figcaption { text-align: center; color: var(--text-muted); font-size: 0.9rem; font-style: italic; margin-top: var(--s-2); }
+
     /* ---- Pricing ---- */
     .pricing { padding: var(--s-5); }
     .pricing .label { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; margin-bottom: var(--s-2); }
@@ -397,6 +415,17 @@
           <div class="tstep"><div class="num">02</div><div><h3>I run it</h3><p>Once we launch, I'm in your ad account daily for a couple of weeks. Testing, optimizing, refreshing creative, watching the data come in. Your only job is to approve.</p></div></div>
           <div class="tstep"><div class="num">03</div><div><h3>You keep it</h3><p>At week eight I hand off the SOP library, Loom training videos, and a written plan for what's next. You own the system, and it keeps generating leads with or without me.</p></div></div>
         </div>
+
+        <!-- MOCKUP PLACEHOLDER: replace the .mock-ph block with a real <img> of a
+             deliverable (ad dashboard, lead form, or branded thank-you page). -->
+        <figure class="mock reveal">
+          <div class="mock-ph" role="img" aria-label="Placeholder for a deliverable screenshot">
+            <span class="mock-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="mock-label">Your dashboard, lead form, and thank-you page<br><small>real screenshot goes here</small></span>
+          </div>
+          <figcaption>A peek at the system I build and hand off to you.</figcaption>
+        </figure>
+
         <p class="reveal" style="text-align:center; color: var(--text-muted); font-style: italic; margin-top: var(--s-4);">
           Prefer to keep me on after handoff? Ongoing management is $397/mo. Beta clients lock in $297/mo for their first 6 months.</p>
       </div>
@@ -502,6 +531,13 @@
             <div class="receipt"><span><strong>$0.70</strong> per lead</span><span><strong>$5</strong> a day</span></div>
           </div>
         </article>
+      </div>
+
+      <!-- Who I've worked with: breadth-of-credibility trust strip -->
+      <div class="niches reveal">
+        <p class="niches-label">Who I've worked with</p>
+        <p class="niches-list">Brand strategists, coaches, nutritionists, dietitians, dentists, artists, and my
+          own business. Different audiences, same system.</p>
       </div>
 
       <div class="center reveal" style="margin-top: var(--s-5);">
