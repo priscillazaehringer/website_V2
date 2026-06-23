@@ -190,6 +190,19 @@
     .receipt span { font-size: 0.82rem; color: var(--text-muted); }
     .receipt strong { font-family: var(--font-display); color: var(--c-ink); }
 
+    /* ---- Sticker / emphasis kit (approved motif) ---- */
+    /* Key word in a filled block, slight tilt, soft offset shadow. */
+    .sticker { display: inline-block; padding: 0.04em 0.34em; border-radius: 8px; line-height: 1.1; transform: rotate(-3deg); }
+    .sticker.teal  { background: var(--c-mint-deep); color: var(--c-cream); box-shadow: 4px 5px 0 rgba(25,87,80,0.18); }
+    .sticker.pink  { background: var(--c-pink); color: var(--c-pink-deep); box-shadow: 4px 5px 0 rgba(158,0,83,0.16); }
+    .sticker.coral { background: var(--c-coral); color: var(--c-coral-deep); box-shadow: 4px 5px 0 rgba(142,46,11,0.16); }
+    /* Sparkle punctuation: small, beside a word or number. */
+    .spark { position: relative; display: inline-block; }
+    .spark > svg { position: absolute; top: -0.45em; right: -0.55em; width: 0.55em; height: 0.55em; overflow: visible; }
+    @keyframes twinkle { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.55; transform: scale(0.82); } }
+    .tw { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) { .tw { animation: none; } }
+
     /* ---- Coffee budget: real result + run-it-yourself calculator ---- */
     /* NEW COMPONENT: a client result that doubles as the calculator's start. */
     .calc { max-width: 620px; margin-right: auto; margin-top: var(--s-4); padding: var(--s-5); }
@@ -532,7 +545,7 @@
       <!-- TODO: replace "A solo practitioner" with the approved descriptor. -->
       <div class="calc panel reveal">
         <p class="eyebrow"><span class="heart">&#9829;</span>Steady leads on a coffee budget</p>
-        <h3>What a coffee budget could buy.</h3>
+        <h3>What a <span class="sticker pink">coffee budget</span> could buy.</h3>
         <p class="calc-intro">A solo practitioner ran this at <strong>$5 a day</strong> and paid about
           <strong>$0.70 a lead</strong>, roughly seven new leads every morning. Move the slider to see
           what other budgets could look like at that same cost per lead.</p>
@@ -546,7 +559,10 @@
           <div class="calc-scale"><span>$5</span><span>$20</span></div>
         </div>
         <div class="calc-out">
-          <div class="calc-anchor" id="calc-leads" aria-live="polite">214</div>
+          <span class="spark">
+            <span class="calc-anchor" id="calc-leads" aria-live="polite">214</span>
+            <svg viewBox="0 0 40 40" aria-hidden="true"><path class="tw" d="M20 3 C22 15 25 18 37 20 C25 22 22 25 20 37 C18 25 15 22 3 20 C15 18 18 15 20 3Z" fill="#9E0053"/></svg>
+          </span>
           <span class="calc-cap">leads a month, give or take, at that same $0.70 a lead</span>
         </div>
         <p class="calc-math" id="calc-math" aria-live="polite">$5/day ÷ $0.70 per lead ≈ 7 leads/day ≈ 214/month</p>

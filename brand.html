@@ -298,6 +298,28 @@
     .circled { position: relative; display: inline-block; padding: 0 6px; }
     .circled svg { position: absolute; inset: -30% -8%; width: 116%; height: 160%; overflow: visible; }
 
+    /* Sticker / emphasis kit: type as the graphic. Key word in a filled block,
+       slight tilt, soft offset shadow. Highlight box and tag chip are lighter
+       cousins. Serif and palette only. Used sparingly, a few per page. */
+    .sticker { display: inline-block; font-family: var(--font-display); padding: 0.04em 0.34em; border-radius: 8px; line-height: 1.1; transform: rotate(-3deg); }
+    .sticker.teal  { background: var(--c-mint-deep); color: var(--c-cream); box-shadow: 4px 5px 0 rgba(25,87,80,0.18); }
+    .sticker.pink  { background: var(--c-pink); color: var(--c-pink-deep); box-shadow: 4px 5px 0 rgba(158,0,83,0.16); }
+    .sticker.coral { background: var(--c-coral); color: var(--c-coral-deep); box-shadow: 4px 5px 0 rgba(142,46,11,0.16); }
+    .hl { position: relative; display: inline-block; padding: 0 0.12em; }
+    .hl::before { content: ''; position: absolute; left: 0; right: 0; top: 16%; bottom: 8%; border-radius: 4px; transform: rotate(-1.5deg); z-index: 0; }
+    .hl.pink::before { background: var(--c-pink); opacity: 0.6; }
+    .hl.coral::before { background: var(--c-coral); opacity: 0.6; }
+    .hl.teal::before { background: var(--c-mint); opacity: 0.7; }
+    .hl > span { position: relative; z-index: 1; }
+    .tag-chip { display: inline-flex; align-items: center; gap: 0.4em; font-family: var(--font-body); font-weight: 600; font-size: 0.8rem; padding: 0.42em 0.8em; border-radius: 6px; transform: rotate(-2deg); }
+    .tag-chip.ink { background: var(--c-ink); color: var(--c-cream); }
+    .tag-chip.plum { background: var(--c-pink-deep); color: var(--c-cream); }
+    .spark { position: relative; display: inline-block; }
+    .spark > svg { position: absolute; top: -0.45em; right: -0.55em; width: 0.55em; height: 0.55em; overflow: visible; }
+    @keyframes twinkle { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.55; transform: scale(0.82); } }
+    .tw { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) { .tw { animation: none; } }
+
     /* The banned pattern, shown only to name what we avoid. */
     .banned-card { background: #fff; border: 1px solid var(--line); border-radius: 14px;
       box-shadow: var(--shadow); padding: var(--s-4); text-align: center; max-width: 280px; }
@@ -947,6 +969,24 @@
           <span class="draw"><svg width="40" height="34" viewBox="0 0 40 34"><path d="M5 18 L16 28 L35 6"/></svg></span>
           <span class="cap">check doodle</span>
         </div>
+      </div>
+
+      <h3 style="margin: var(--s-5) 0 var(--s-2);">Sticker and emphasis kit</h3>
+      <p style="margin-bottom: var(--s-3);">Type as the graphic. A key word sits in a
+        filled block, tilted a few degrees with a soft offset shadow so it reads stuck
+        on. The highlight box and tag chip are lighter cousins. Serif and palette only,
+        no loud sans, used a few times per page where the buyer's eye should land.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--s-4) var(--s-5); align-items: center;">
+        <span class="display" style="font-size: var(--h3);"><span class="sticker teal">yours to keep</span></span>
+        <span class="display" style="font-size: var(--h3);"><span class="sticker pink">coffee budget</span></span>
+        <span class="display" style="font-size: var(--h3);"><span class="sticker coral">done for you</span></span>
+      </div>
+      <p class="display" style="font-size: var(--h3); margin: var(--s-4) 0 0;">Your list, finally
+        <span class="hl pink"><span>growing</span></span>, on a
+        <span class="spark"><span class="sticker teal">coffee budget</span><svg viewBox="0 0 40 40" aria-hidden="true"><path class="tw" d="M20 3 C22 15 25 18 37 20 C25 22 22 25 20 37 C18 25 15 22 3 20 C15 18 18 15 20 3Z" fill="#9E0053"/></svg></span>.</p>
+      <div style="display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-4);">
+        <span class="tag-chip ink">here's how <span aria-hidden="true">&#8595;</span></span>
+        <span class="tag-chip plum">the honest version</span>
       </div>
     </div>
   </section>
