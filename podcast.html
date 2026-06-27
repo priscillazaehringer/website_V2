@@ -140,17 +140,19 @@
     .trust-item p { margin: 0; font-size: 0.95rem; color: var(--text); }
     .trust-item em { font-style: italic; color: var(--c-pink-deep); }
 
-    /* ---- "What we build" 2x2 ---- */
-    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); margin-top: var(--s-4); }
-    @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
-    .gcard { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-3); }
-    .gcard .k { font-size: 1.5rem; line-height: 1; }
-    .gcard h3 { font-size: 1.2rem; margin: var(--s-1) 0; }
-    .gcard p { color: var(--text-muted); margin: 0; font-size: 0.95rem; }
-    .gcard ul { list-style: none; margin: var(--s-2) 0 0; padding: 0; }
-    .gcard li { position: relative; padding: 4px 0 4px 18px; font-size: 0.95rem; color: var(--text-muted); }
-    .gcard li::before { content: '\2022'; position: absolute; left: 0; color: var(--c-pink); font-weight: 700; }
-    .gcard .tail { margin-top: var(--s-2); font-size: 0.95rem; color: var(--text); }
+    /* ---- "What we build" hairline rows ---- */
+    .build-list { margin-top: var(--s-5); }
+    .build-row { display: grid; grid-template-columns: 190px 1fr; gap: var(--s-4); align-items: start;
+      padding: var(--s-4) 0; border-top: 1px solid var(--line); }
+    .build-row:last-child { border-bottom: 1px solid var(--line); }
+    .build-label { display: flex; align-items: baseline; gap: 10px; }
+    .build-label .ic { font-size: 1.35rem; line-height: 1; flex: 0 0 auto; }
+    .build-label h3 { font-size: 1.3rem; }
+    .build-body p { margin: 0; color: var(--text-muted); }
+    .build-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--s-2); }
+    .build-tags span { background: #fff; border: 1px solid var(--line); border-radius: 999px;
+      padding: 5px 12px; font-size: 0.85rem; color: var(--text); }
+    @media (max-width: 640px) { .build-row { grid-template-columns: 1fr; gap: var(--s-1); } }
 
     /* ---- Checklist grid (what you leave with) ---- */
     .checks { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-1) var(--s-4); margin-top: var(--s-4);
@@ -294,7 +296,7 @@
   <div class="top-stack" id="hdr-stack">
     <a class="promo-bar" href="/ads.html">
       <span class="promo-tag">New</span>
-      <span class="promo-text"><strong>The Lead Stream</strong> — done-for-you Meta ads. Beta pricing, 5 spots open.</span>
+      <span class="promo-text"><strong>The Lead Stream</strong>, done-for-you Meta ads. Beta pricing, 5 spots open.</span>
       <span class="promo-cta">See the service →</span>
     </a>
     <header class="site-header" id="hdr">
@@ -322,7 +324,7 @@
       <h1>Build a podcast that becomes one of your best marketing
         <span class="sig">assets<svg viewBox="0 0 110 12" preserveAspectRatio="none"><path d="M3 8 C 28 2, 72 2, 107 6"/></svg></span>.</h1>
       <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn">Submit an Inquiry</a></div>
-      <p class="micro">Founding Pricing — $1,297</p>
+      <p class="micro">Founding Pricing · $1,297</p>
       <div class="stats">
         <div class="stat"><div class="n">Top 10%</div><div class="l">client podcast ranking</div></div>
         <div class="stat"><div class="n">15+</div><div class="l">content pieces per episode</div></div>
@@ -360,7 +362,7 @@
         <div class="trustbar reveal">
           <div class="trust-item"><span class="c">&#10003;</span><p>Produced shows including <em>The Growth Show</em>, <em>Jaw Talk</em>, and <em>The Brand Gravity Show</em></p></div>
           <div class="trust-item"><span class="c">&#10003;</span><p>Systems built to keep running long after launch</p></div>
-          <div class="trust-item"><span class="c">&#10003;</span><p>Strategy-first approach—not just editing</p></div>
+          <div class="trust-item"><span class="c">&#10003;</span><p>Strategy-first approach, not just editing</p></div>
         </div>
       </div>
     </div>
@@ -375,8 +377,8 @@
         <p style="margin-top: var(--s-3);">Very few let someone spend thirty minutes with you every week.</p>
         <p>That's why podcasting works.</p>
         <p>It creates trust in a way social media can't. It gives you long-form content that can be repurposed
-          everywhere else. It builds a library that keeps introducing people to your work months—and even
-          years—after each episode goes live.</p>
+          everywhere else. It builds a library that keeps introducing people to your work months, and even
+          years, after each episode goes live.</p>
         <p>But only when it's built with intention.</p>
         <p class="big-state" style="margin-top: var(--s-5);">Most podcasts start the <span class="em">same way</span>.</p>
         <p style="margin-top: var(--s-2);">Someone buys a microphone. Records a trailer. Uploads one episode.
@@ -394,12 +396,12 @@
     <div class="container">
       <div class="col reveal">
         <p class="eyebrow"><span class="heart">&#9829;</span>Introducing The Signal</p>
-        <img class="section-mark" src="/assets/img/the-signal-dark.png" width="1162" height="536" alt="The Signal — launch your podcast">
+        <img class="section-mark" src="/assets/img/the-signal-dark.png" width="1162" height="536" alt="The Signal, launch your podcast">
         <h2>A done-for-you podcast launch built around your business.</h2>
         <p style="margin-top: var(--s-3);">This isn't an editing package. It isn't an open-ended retainer.
           It's a complete podcast build.</p>
         <p>Over the course of three to four weeks, I'll help you create a podcast that's designed to support
-          your business—not become another full-time job.</p>
+          your business, not become another full-time job.</p>
         <p>By launch day, everything is connected, professionally branded, live on every major platform, and
           supported by simple systems you'll actually use.</p>
         <p>You own everything from day one.</p>
@@ -419,30 +421,40 @@
           We'll start with something much more important.</p>
       </div>
       <div class="col">
-        <div class="grid2 reveal">
-          <div class="gcard"><span class="k">🧭</span><h3>Positioning</h3><p>We'll define what your show is really about, who it's for, how it supports your business, and why people will keep coming back.</p></div>
-          <div class="gcard"><span class="k">🎨</span><h3>Branding</h3><p>Together we'll create a professional identity for your show, including:</p>
-            <ul>
-              <li>podcast name (if needed)</li>
-              <li>cover artwork</li>
-              <li>intro and outro</li>
-              <li>music</li>
-              <li>overall brand direction</li>
-            </ul>
+        <div class="build-list reveal">
+          <div class="build-row">
+            <div class="build-label"><span class="ic">🧭</span><h3>Positioning</h3></div>
+            <div class="build-body">
+              <p>We'll define what your show is really about, who it's for, how it supports your business, and
+                why people will keep coming back.</p>
+            </div>
           </div>
-          <div class="gcard"><span class="k">⚙️</span><h3>The platform</h3><p>I'll handle the technical setup, including:</p>
-            <ul>
-              <li>hosting</li>
-              <li>RSS feed</li>
-              <li>Apple Podcasts</li>
-              <li>Spotify</li>
-              <li>YouTube Podcasts</li>
-              <li>recording workflow</li>
-              <li>audio setup recommendations</li>
-            </ul>
-            <p class="tail">Everything connected. Everything tested. Everything ready.</p>
+          <div class="build-row">
+            <div class="build-label"><span class="ic">🎨</span><h3>Branding</h3></div>
+            <div class="build-body">
+              <p>Together we'll create a professional identity for your show.</p>
+              <div class="build-tags">
+                <span>podcast name (if needed)</span><span>cover artwork</span><span>intro and outro</span><span>music</span><span>overall brand direction</span>
+              </div>
+            </div>
           </div>
-          <div class="gcard"><span class="k">🚀</span><h3>The launch</h3><p>We won't launch with one lonely episode. We'll launch with a small catalog so listeners immediately have something to binge. That means producing your first episodes, getting everything scheduled, and making sure launch week actually feels like a launch.</p></div>
+          <div class="build-row">
+            <div class="build-label"><span class="ic">⚙️</span><h3>The platform</h3></div>
+            <div class="build-body">
+              <p>I'll handle the technical setup, then make sure everything is connected, tested, and ready.</p>
+              <div class="build-tags">
+                <span>hosting</span><span>RSS feed</span><span>Apple Podcasts</span><span>Spotify</span><span>YouTube Podcasts</span><span>recording workflow</span><span>audio setup</span>
+              </div>
+            </div>
+          </div>
+          <div class="build-row">
+            <div class="build-label"><span class="ic">🚀</span><h3>The launch</h3></div>
+            <div class="build-body">
+              <p>We won't launch with one lonely episode. We'll launch with a small catalog so listeners
+                immediately have something to binge. That means producing your first episodes, getting
+                everything scheduled, and making sure launch week actually feels like a launch.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -488,7 +500,7 @@
         <div class="pricing reveal">
           <p class="tag">Founding Pricing</p>
           <div class="price"><span class="cur">$</span>1,297</div>
-          <p>A complete done-for-you podcast launch—strategy, branding, the full tech setup, your first batch
+          <p>A complete done-for-you podcast launch. Strategy, branding, the full tech setup, your first batch
             of episodes, and the systems to run it all. The founding rate is locked in for early clients.</p>
           <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn btn-cream">Submit an Inquiry</a></div>
         </div>
@@ -508,7 +520,7 @@
       <div class="col">
         <div class="repurpose reveal">
           <div class="rep-item"><span class="ic">🎙️</span><h3>Podcast feed</h3><p>The full episode</p></div>
-          <div class="rep-item"><span class="ic">▶️</span><h3>YouTube</h3><p>Long video + 2–4 Shorts</p></div>
+          <div class="rep-item"><span class="ic">▶️</span><h3>YouTube</h3><p>Long video + 2 to 4 Shorts</p></div>
           <div class="rep-item"><span class="ic">📸</span><h3>Instagram &amp; Facebook</h3><p>Reels, a carousel, quote graphics</p></div>
           <div class="rep-item"><span class="ic">💼</span><h3>LinkedIn</h3><p>The carousel + a few posts</p></div>
           <div class="rep-item"><span class="ic">✉️</span><h3>Inbox</h3><p>Newsletter + episode email</p></div>
@@ -535,7 +547,7 @@
           <p class="eyebrow"><span class="heart">&#9829;</span>Meet Priscilla</p>
           <h2>Hi, I'm Priscilla.</h2>
           <p style="margin-top: var(--s-3);">I'm an operations person first. That's why I don't just produce
-            podcasts—I build systems that make podcasting sustainable.</p>
+            podcasts. I build systems that make podcasting sustainable.</p>
           <p>I originally stepped into podcast production while working as an Online Business Manager. At first
             I was editing episodes. Before long I was helping shape launch strategy, creating workflows,
             coordinating guests, building content systems, and making sure every episode supported the
@@ -583,7 +595,7 @@
             <ul>
               <li>You already have a business you're proud of.</li>
               <li>You know podcasting could become a major marketing asset.</li>
-              <li>You'd rather launch once—and launch well.</li>
+              <li>You'd rather launch once, and launch well.</li>
               <li>You want systems instead of guesswork.</li>
               <li>You're committed to showing up consistently.</li>
             </ul>
@@ -690,7 +702,7 @@
   <!-- FINAL CTA -->
   <section class="section band-ink overlap" id="book">
     <div class="container col reveal center">
-      <img class="cta-logo" src="/assets/img/the-signal-light.png" width="1162" height="536" alt="The Signal — launch your podcast">
+      <img class="cta-logo" src="/assets/img/the-signal-light.png" width="1162" height="536" alt="The Signal, launch your podcast">
       <h2>Ready to build your show?</h2>
       <p class="lede" style="margin: var(--s-3) auto var(--s-2); max-width: 52ch;">Imagine six months from now.
         Instead of still thinking about starting a podcast, you've published twenty episodes. You've built a
