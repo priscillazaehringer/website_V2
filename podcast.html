@@ -289,20 +289,21 @@
     .invite .wave { display: flex; justify-content: center; margin: 0 auto var(--s-3); height: 26px; }
     .invite .eyebrow { display: inline-block; }
     .invite-title { font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2rem); }
-    .invite-price { font-family: var(--font-display); line-height: 1; margin: var(--s-3) 0 var(--s-2); }
-    .invite-price .was { font-size: clamp(1.3rem, 2.6vw, 1.9rem); color: var(--text-muted);
-      text-decoration: line-through; margin-right: 14px; vertical-align: middle; }
+    .invite-price { font-family: var(--font-display); line-height: 1; margin: var(--s-2) 0 var(--s-3);
+      display: flex; align-items: baseline; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    .invite-price .was { font-size: clamp(1.4rem, 3vw, 2.1rem); color: var(--text-muted); text-decoration: line-through; }
     .invite-price .now { font-size: clamp(3.4rem, 9vw, 5.2rem); color: var(--c-ink); }
-    .invite-price .cur { font-size: 0.4em; vertical-align: super; color: var(--c-pink-deep); margin-right: 2px; }
+    .invite-price .cur { font-size: 0.42em; vertical-align: super; color: var(--c-pink-deep); margin-right: 1px; }
     .invite-save { display: inline-block; background: var(--c-mint); color: var(--c-mint-deep); font-weight: 700;
-      font-size: 0.9rem; padding: 6px 14px; border-radius: 999px; margin: 0 0 var(--s-3); }
-    .invite-sub { color: var(--text-muted); font-size: 1.15rem; }
+      font-size: 0.9rem; padding: 6px 14px; border-radius: 999px; margin: 0; }
+    .invite-sub { color: var(--text-muted); font-size: 1.15rem; margin: var(--s-3) 0 0; }
     .invite-grid { list-style: none; padding: 0; margin: var(--s-4) auto 0; max-width: 440px;
       display: grid; grid-template-columns: 1fr 1fr; gap: 10px var(--s-3); text-align: left; }
     .invite-grid li { position: relative; padding-left: 26px; line-height: 1.4; }
     .invite-grid li::before { content: '\2713'; position: absolute; left: 0; top: 1px; color: var(--c-mint-deep); font-weight: 700; }
     @media (max-width: 460px) { .invite-grid { grid-template-columns: 1fr; max-width: 260px; } }
-    .invite-note { color: var(--text-muted); font-size: 0.9rem; margin: var(--s-4) 0 0; }
+    .invite-note { color: var(--text-muted); font-size: 0.9rem; margin: var(--s-4) 0 var(--s-3); }
+    .invite .cta { margin-top: 0; }
 
     /* ---- FAQ — borderless, hairline dividers ---- */
     .faq { margin-top: var(--s-4); border-top: 1px solid var(--line); }
