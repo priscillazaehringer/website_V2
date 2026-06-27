@@ -85,6 +85,25 @@
     .btn-lg { padding: 20px 40px; font-size: 1.1rem; }
     .scarcity { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
       color: var(--c-pink); margin: 0 0 var(--s-2); }
+
+    /* ---- Inquiry form (Formspree) ---- */
+    .inquiry-form { max-width: 680px; margin: var(--s-5) auto 0; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }
+    @media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } }
+    .field { display: block; margin-bottom: var(--s-3); }
+    .field > span { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .field input, .field select, .field textarea { width: 100%; padding: 13px 14px; border-radius: var(--radius);
+      border: 1px solid var(--line); background: #fff; font: inherit; color: var(--text); }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+      outline: 2px solid var(--c-pink-deep); outline-offset: 1px; border-color: var(--c-pink-deep); }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .form-actions { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-2); }
+    .form-note { color: var(--text-muted); font-size: 0.9rem; }
+    .form-status { margin: var(--s-3) 0 0; font-weight: 600; }
+    .form-status.ok { color: var(--c-mint-deep); font-family: var(--font-display); font-size: 1.3rem; }
+    .form-status.err { color: var(--c-pink-deep); }
+    .inquiry-form.sent > *:not(.form-status) { display: none; }
     /* primary + quiet text-link pairing (brand standard) */
     .cta { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
     .center .cta, .hero .cta, .invite .cta { justify-content: center; }
@@ -363,7 +382,7 @@
         <span>Done-for-you podcast strategy, setup, and launch for business owners</span></p>
       <h1>Build a podcast that becomes one of your best marketing
         <span class="sig">assets<svg viewBox="0 0 110 12" preserveAspectRatio="none"><path d="M3 8 C 28 2, 72 2, 107 6"/></svg></span>.</h1>
-      <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn">Submit an Inquiry</a><a href="#fit" class="textlink">See if this is for you &#8595;</a></div>
+      <div class="cta"><a href="#inquiry" class="btn">Submit an Inquiry</a><a href="#fit" class="textlink">See if this is for you &#8595;</a></div>
       <p class="micro">Founding Pricing · $1,297</p>
       <div class="stats">
         <div class="stat"><div class="n">Top 10%</div><div class="l">client podcast ranking</div></div>
@@ -528,7 +547,7 @@
             <li>Systems</li>
             <li>Training</li>
           </ul>
-          <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn">Reserve your project &#8594;</a><a href="#faq" class="textlink">Questions first? Read the FAQ &#8595;</a></div>
+          <div class="cta"><a href="#inquiry" class="btn">Reserve your project &#8594;</a><a href="#faq" class="textlink">Questions first? Read the FAQ &#8595;</a></div>
         </div>
       </div>
     </div>
@@ -841,6 +860,56 @@
     </div>
   </section>
 
+  <!-- INQUIRY FORM -->
+  <section class="section" id="inquiry">
+    <div class="container">
+      <div class="col reveal center">
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Start here</p>
+        <h2>Submit an inquiry.</h2>
+        <p style="margin-top: var(--s-3); color: var(--text-muted); max-width: 52ch; margin-inline: auto;">Tell me
+          a little about you and your show. I read every one personally and reply within a couple of business days.</p>
+      </div>
+      <div class="col">
+        <!-- Formspree: replace YOUR_FORM_ID below with your form's ID (Formspree dashboard → your form → endpoint). -->
+        <form class="inquiry-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="hidden" name="_subject" value="New Signal podcast inquiry">
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="field-row">
+            <label class="field"><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
+            <label class="field"><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
+          </div>
+          <label class="field"><span>Business name or website</span><input type="text" name="business" autocomplete="organization"></label>
+          <div class="field-row">
+            <label class="field"><span>Where are you with podcasting?</span>
+              <select name="podcast status">
+                <option value="" selected disabled>Choose one</option>
+                <option>Just an idea</option>
+                <option>Planning it</option>
+                <option>Recording, not launched yet</option>
+                <option>Already launched</option>
+              </select>
+            </label>
+            <label class="field"><span>Ideal timeline</span>
+              <select name="timeline">
+                <option value="" selected disabled>Choose one</option>
+                <option>As soon as possible</option>
+                <option>In 1 to 3 months</option>
+                <option>In 3 to 6 months</option>
+                <option>Just exploring for now</option>
+              </select>
+            </label>
+          </div>
+          <label class="field"><span>Tell me about your show, or what you want to build</span><textarea name="message" rows="5" required></textarea></label>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-lg">Send inquiry &#8594;</button>
+            <span class="form-note">No pressure, no spam. Just a real reply.</span>
+          </div>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <section class="section band-ink overlap" id="book">
     <div class="container col reveal center">
@@ -849,7 +918,7 @@
       <h2>Ready to build your show? <span class="sticker">let's go!</span></h2>
       <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 50ch;">Tell me about your business
         and what you want to build. If we're a fit, we'll map out your launch.</p>
-      <div class="cta" style="justify-content: center;"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn btn-cream btn-lg">Reserve your project &#8594;</a><a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="textlink">Or book a call &#8594;</a></div>
+      <div class="cta" style="justify-content: center;"><a href="#inquiry" class="btn btn-cream btn-lg">Reserve your project &#8594;</a><a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="textlink">Or book a call &#8594;</a></div>
     </div>
   </section>
 
@@ -905,6 +974,40 @@
     const onScroll = () => hdr.classList.toggle('stuck', window.scrollY > 60);
     onScroll(); addEventListener('scroll', onScroll, { passive: true });
     document.getElementById('yr').textContent = new Date().getFullYear();
+
+    /* Inquiry form: submit to Formspree via fetch, show inline success */
+    const iform = document.querySelector('.inquiry-form');
+    if (iform) {
+      iform.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const status = iform.querySelector('.form-status');
+        const btn = iform.querySelector('button[type="submit"]');
+        status.className = 'form-status';
+        status.textContent = '';
+        btn.disabled = true; btn.textContent = 'Sending…';
+        try {
+          const res = await fetch(iform.action, {
+            method: 'POST', body: new FormData(iform), headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            iform.reset();
+            iform.classList.add('sent');
+            status.className = 'form-status ok';
+            status.textContent = "Thank you. Your inquiry is in, and I'll reply personally within a couple of business days.";
+          } else {
+            const data = await res.json().catch(() => ({}));
+            status.className = 'form-status err';
+            status.textContent = (data.errors && data.errors.map(x => x.message).join(', '))
+              || 'Something went wrong. Please email me directly and I’ll take it from there.';
+            btn.disabled = false; btn.textContent = 'Send inquiry →';
+          }
+        } catch (err) {
+          status.className = 'form-status err';
+          status.textContent = 'Something went wrong. Please check your connection and try again.';
+          btn.disabled = false; btn.textContent = 'Send inquiry →';
+        }
+      });
+    }
   </script>
 
   <script type="application/ld+json">
