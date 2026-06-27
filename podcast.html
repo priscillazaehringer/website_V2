@@ -81,6 +81,31 @@
       text-decoration: none; cursor: pointer; transition: opacity 0.14s ease, transform 0.12s ease; }
     .btn:hover { opacity: 0.88; } .btn:active { transform: translateY(1px); }
     .btn-cream { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
+    /* primary + quiet text-link pairing (brand standard) */
+    .cta { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
+    .center .cta, .hero .cta, .pricing .cta { justify-content: center; }
+    .textlink { color: var(--link); font-weight: 600; text-decoration: none;
+      border-bottom: 2px solid currentColor; padding-bottom: 1px; white-space: nowrap; }
+    .textlink:hover { color: var(--c-ink); }
+    .band-ink .textlink, .pricing .textlink { color: var(--c-pink); }
+    .band-ink .textlink:hover, .pricing .textlink:hover { color: var(--c-cream); }
+
+    /* script "sticker" — Caveat accent note, used sparingly on feature moments */
+    .sticker { font-family: var(--font-script); font-weight: 700; color: var(--c-pink-deep);
+      font-size: clamp(1.3rem, 2.4vw, 1.85rem); line-height: 1; display: inline-block;
+      transform: rotate(-4deg); margin-left: 12px; vertical-align: middle; }
+    .band-ink .sticker, .pricing .sticker { color: var(--c-pink); }
+
+    /* tone-on-tone trust cards (the one deliberate boxed module) */
+    .trust-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); margin-top: var(--s-3); }
+    @media (max-width: 760px) { .trust-cards { grid-template-columns: 1fr; } }
+    .tcard { border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-3); }
+    .tcard .c { font-weight: 700; font-size: 1.15rem; line-height: 1; }
+    .tcard p { margin: var(--s-1) 0 0; font-size: 0.95rem; }
+    .tcard em { font-style: italic; }
+    .tcard.pink { background: var(--c-pink); } .tcard.pink, .tcard.pink .c { color: var(--c-pink-deep); }
+    .tcard.mint { background: var(--c-mint); } .tcard.mint, .tcard.mint .c { color: var(--c-mint-deep); }
+    .tcard.coral { background: var(--c-coral); } .tcard.coral, .tcard.coral .c { color: var(--c-coral-deep); }
 
     /* ---- Hero ---- */
     .hero { background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 60%, #FBE2D6 100%); }
@@ -191,14 +216,14 @@
     .fitcol .checks { margin-top: var(--s-2); }
 
     /* ---- Upsell card ---- */
-    .upsell { background: var(--c-mint); border-radius: var(--radius); padding: clamp(var(--s-4), 5vw, var(--s-6)); margin-top: var(--s-4); }
+    .upsell { background: var(--c-mint); border-radius: var(--radius); padding: clamp(var(--s-4), 5vw, var(--s-6)); margin-top: var(--s-4); box-shadow: var(--shadow); }
     .upsell .eyebrow { color: var(--c-mint-deep); } .upsell .eyebrow .heart { color: var(--c-mint-deep); }
     .upsell h3 { color: var(--c-mint-deep); }
     .upsell p { color: var(--c-ink); margin: var(--s-2) 0 0; max-width: 56ch; }
 
     /* ---- Pricing ---- */
     .pricing { background: var(--bg-feature); color: var(--c-cream); border-radius: var(--radius);
-      padding: clamp(var(--s-5), 6vw, var(--s-7)); margin-top: var(--s-4); text-align: center; }
+      padding: clamp(var(--s-5), 6vw, var(--s-7)); margin-top: var(--s-4); text-align: center; box-shadow: var(--shadow); }
     .pricing .eyebrow, .pricing .eyebrow .heart { color: var(--c-pink); }
     .pricing h2 { color: var(--c-pink); }
     .pricing .price { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 4.6rem); line-height: 1;
@@ -307,7 +332,7 @@
         <span>Done-for-you podcast strategy, setup, and launch for business owners</span></p>
       <h1>Build a podcast that becomes one of your best marketing
         <span class="sig">assets<svg viewBox="0 0 110 12" preserveAspectRatio="none"><path d="M3 8 C 28 2, 72 2, 107 6"/></svg></span>.</h1>
-      <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn">Submit an Inquiry</a></div>
+      <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn">Submit an Inquiry</a><a href="#fit" class="textlink">See if this is for you &#8595;</a></div>
       <p class="micro">Founding Pricing · $1,297</p>
       <div class="stats">
         <div class="stat"><div class="n">Top 10%</div><div class="l">client podcast ranking</div></div>
@@ -341,11 +366,11 @@
     <div class="container">
       <div class="col reveal">
         <h2 class="center" style="max-width: 24ch; margin-inline: auto;">Trusted by podcasts ranked in the Top 10% globally.</h2>
-        <ul class="checks cols-3" style="margin-top: var(--s-3);">
-          <li>Produced shows including <em>The Growth Show</em>, <em>Jaw Talk</em>, and <em>The Brand Gravity Show</em></li>
-          <li>Systems built to keep running long after launch</li>
-          <li>Strategy-first approach, not just editing</li>
-        </ul>
+        <div class="trust-cards" style="margin-top: var(--s-3);">
+          <div class="tcard pink"><span class="c">&#10003;</span><p>Produced shows including <em>The Growth Show</em>, <em>Jaw Talk</em>, and <em>The Brand Gravity Show</em></p></div>
+          <div class="tcard mint"><span class="c">&#10003;</span><p>Systems built to keep running long after launch</p></div>
+          <div class="tcard coral"><span class="c">&#10003;</span><p>Strategy-first approach, not just editing</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -447,7 +472,7 @@
     <div class="container">
       <div class="col reveal">
         <p class="eyebrow"><span class="heart">&#9829;</span>What you leave with</p>
-        <h2>A podcast. And the system behind it.</h2>
+        <h2>A podcast. And the system behind it. <span class="sticker">all yours!</span></h2>
         <p style="margin-top: var(--s-3);">Launching the show is only half the project. The real value is
           that you'll know exactly how to keep it going.</p>
         <p>You'll walk away with:</p>
@@ -480,11 +505,11 @@
       </div>
       <div class="col">
         <div class="pricing reveal">
-          <p class="tag">Founding Pricing</p>
+          <p class="tag">Founding Pricing <span class="sticker">lock it in</span></p>
           <div class="price"><span class="cur">$</span>1,297</div>
           <p>A complete done-for-you podcast launch. Strategy, branding, the full tech setup, your first batch
             of episodes, and the systems to run it all. The founding rate is locked in for early clients.</p>
-          <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn btn-cream">Submit an Inquiry</a></div>
+          <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn btn-cream">Submit an Inquiry</a><a href="#faq" class="textlink">Questions first? Read the FAQ &#8595;</a></div>
         </div>
       </div>
     </div>
@@ -564,7 +589,7 @@
   </section>
 
   <!-- FIT CHECK -->
-  <section class="section alt">
+  <section class="section alt" id="fit">
     <div class="container">
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Is this the right fit?</p>
@@ -629,7 +654,7 @@
   </section>
 
   <!-- FAQ -->
-  <section class="section alt">
+  <section class="section alt" id="faq">
     <div class="container">
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>FAQ</p>
@@ -685,14 +710,14 @@
   <section class="section band-ink overlap" id="book">
     <div class="container col reveal center">
       <img class="cta-logo" src="/assets/img/the-signal-light.png" width="1162" height="536" alt="The Signal, launch your podcast">
-      <h2>Ready to build your show?</h2>
+      <h2>Ready to build your show? <span class="sticker">let's go!</span></h2>
       <p class="lede" style="margin: var(--s-3) auto var(--s-2); max-width: 52ch;">Imagine six months from now.
         Instead of still thinking about starting a podcast, you've published twenty episodes. You've built a
         library of content. New clients are finding you through conversations you recorded months ago.</p>
       <p class="lede" style="margin: 0 auto var(--s-4); max-width: 52ch;">Your podcast has become one of the
         first places people go to decide whether they want to work with you. That's what we're building.
         Let's get your show out into the world.</p>
-      <a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn btn-cream">Submit Your Inquiry</a>
+      <div class="cta" style="justify-content: center;"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn btn-cream">Submit Your Inquiry</a><a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="textlink">Or book a call &#8594;</a></div>
     </div>
   </section>
 
