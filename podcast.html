@@ -185,14 +185,23 @@
     .build-step .incl { margin-top: 6px; font-size: 0.95rem; }
     @media (max-width: 600px) { .build-step { grid-template-columns: 1fr; gap: 6px; } }
 
-    /* ---- Repurpose — content system flow ---- */
-    .flow { max-width: 360px; margin: var(--s-5) auto 0; display: grid; justify-items: center; gap: var(--s-1); }
-    .flow .node { display: flex; align-items: center; gap: 10px; }
-    .flow .node .ic { font-size: 1.25rem; line-height: 1; }
-    .flow .node .label { font-size: 1.05rem; }
-    .flow .node.cap .label { font-family: var(--font-display); font-size: 1.35rem; }
-    .flow .node.end { color: var(--c-pink-deep); }
-    .flow .arrow { color: var(--c-pink); font-size: 1.25rem; line-height: 1; }
+    /* ---- Repurpose — content constellation ---- */
+    .constellation { display: block; width: 100%; height: auto; max-width: 960px; margin: var(--s-4) auto 0; overflow: visible; }
+    .cn-wave { fill: none; stroke: var(--c-pink); stroke-width: 1.5; transform-box: fill-box; transform-origin: center; }
+    .cn-pulse { fill: none; stroke: var(--c-pink); stroke-width: 1.5; transform-box: fill-box; transform-origin: center;
+      animation: cn-pulse 5s ease-out infinite; }
+    .cn-pulse.b { animation-delay: 2.5s; }
+    @keyframes cn-pulse { 0% { transform: scale(0.5); opacity: 0.55; } 80% { opacity: 0.06; } 100% { transform: scale(2.6); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .cn-pulse { display: none; } }
+    .cn-link { stroke: rgba(29,30,38,0.16); stroke-width: 1; }
+    .cn-link.glow { stroke: var(--c-pink); stroke-width: 1.2; opacity: 0.4; }
+    .cn-dot { fill: var(--c-pink-deep); }
+    .cn-label { font-family: var(--font-body); font-size: 19px; font-weight: 500; fill: var(--text); }
+    .cn-hub { fill: var(--c-ink); }
+    .cn-hub-ring { fill: none; stroke: var(--c-pink); stroke-width: 1.5; opacity: 0.7; }
+    .cn-hub-text { font-family: var(--font-display); font-size: 20px; fill: var(--c-cream); }
+    .cn-out-text { font-family: var(--font-display); font-size: 27px; }
+    @media (max-width: 600px) { .cn-label { font-size: 22px; } .cn-out-text { font-size: 30px; } .cn-hub-text { font-size: 23px; } }
 
     /* ---- Shows — minimal gallery, straight + equal ---- */
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); margin-top: var(--s-6); }
@@ -533,23 +542,85 @@
         <p style="margin-top: var(--s-3); color: var(--text-muted);">One recording, turned into a system that
           keeps bringing the right people back to you:</p>
       </div>
-      <div class="col">
-        <div class="flow reveal">
-          <div class="node cap start"><span class="ic" aria-hidden="true">🎙️</span><span class="label">One podcast episode</span></div>
-          <span class="arrow" aria-hidden="true">↓</span>
-          <div class="node"><span class="ic" aria-hidden="true">✉️</span><span class="label">Newsletter</span></div>
-          <span class="arrow" aria-hidden="true">↓</span>
-          <div class="node"><span class="ic" aria-hidden="true">💼</span><span class="label">LinkedIn post</span></div>
-          <span class="arrow" aria-hidden="true">↓</span>
-          <div class="node"><span class="ic" aria-hidden="true">📸</span><span class="label">Instagram carousel</span></div>
-          <span class="arrow" aria-hidden="true">↓</span>
-          <div class="node"><span class="ic" aria-hidden="true">▶️</span><span class="label">YouTube Short</span></div>
-          <span class="arrow" aria-hidden="true">↓</span>
-          <div class="node cap end"><span class="ic" aria-hidden="true">🤝</span><span class="label">A client books a call</span></div>
-        </div>
-        <p class="reveal center" style="margin-top: var(--s-5); color: var(--text-muted);">Instead of
-          wondering what to post each week, you'll have a repeatable content engine working for you.</p>
-      </div>
+      <svg class="constellation reveal" viewBox="0 0 1040 720" role="img"
+           aria-label="A constellation diagram: one podcast episode at the center connects out to a newsletter, LinkedIn post, Instagram carousel, YouTube Short, blog, website, and email welcome sequence, and the whole network builds toward trust, authority, and clients.">
+        <defs>
+          <filter id="cnGlow" x="-70%" y="-70%" width="240%" height="240%">
+            <feGaussianBlur stdDeviation="7" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- connecting lines: hub to assets -->
+        <g>
+          <line class="cn-link" x1="520" y1="360" x2="318" y2="286"/>
+          <line class="cn-link" x1="520" y1="360" x2="402" y2="156"/>
+          <line class="cn-link" x1="520" y1="360" x2="597" y2="148"/>
+          <line class="cn-link" x1="520" y1="360" x2="746" y2="254"/>
+          <line class="cn-link" x1="520" y1="360" x2="736" y2="439"/>
+          <line class="cn-link" x1="520" y1="360" x2="621" y2="577"/>
+          <line class="cn-link" x1="520" y1="360" x2="400" y2="568"/>
+        </g>
+        <!-- network leading to the outcomes -->
+        <g>
+          <line class="cn-link glow" x1="520" y1="360" x2="150" y2="402"/>
+          <line class="cn-link glow" x1="318" y1="286" x2="150" y2="402"/>
+          <line class="cn-link glow" x1="400" y1="568" x2="150" y2="402"/>
+          <line class="cn-link glow" x1="520" y1="360" x2="520" y2="60"/>
+          <line class="cn-link glow" x1="402" y1="156" x2="520" y2="60"/>
+          <line class="cn-link glow" x1="597" y1="148" x2="520" y2="60"/>
+          <line class="cn-link glow" x1="520" y1="360" x2="868" y2="560"/>
+          <line class="cn-link glow" x1="621" y1="577" x2="868" y2="560"/>
+          <line class="cn-link glow" x1="736" y1="439" x2="868" y2="560"/>
+          <line class="cn-link glow" x1="746" y1="254" x2="868" y2="560"/>
+        </g>
+
+        <!-- radio waves around the hub -->
+        <g>
+          <circle class="cn-wave" cx="520" cy="360" r="80" style="opacity:.5"/>
+          <circle class="cn-wave" cx="520" cy="360" r="124" style="opacity:.32"/>
+          <circle class="cn-wave" cx="520" cy="360" r="174" style="opacity:.18"/>
+          <circle class="cn-pulse" cx="520" cy="360" r="80"/>
+          <circle class="cn-pulse b" cx="520" cy="360" r="80"/>
+        </g>
+
+        <!-- asset nodes -->
+        <g>
+          <circle class="cn-dot" cx="318" cy="286" r="6"/>
+          <text class="cn-label" x="302" y="291" text-anchor="end">Newsletter</text>
+          <circle class="cn-dot" cx="402" cy="156" r="6"/>
+          <text class="cn-label" x="388" y="161" text-anchor="end">LinkedIn Post</text>
+          <circle class="cn-dot" cx="597" cy="148" r="6"/>
+          <text class="cn-label" x="611" y="153" text-anchor="start">Instagram Carousel</text>
+          <circle class="cn-dot" cx="746" cy="254" r="6"/>
+          <text class="cn-label" x="760" y="259" text-anchor="start">YouTube Short</text>
+          <circle class="cn-dot" cx="736" cy="439" r="6"/>
+          <text class="cn-label" x="750" y="444" text-anchor="start">Blog</text>
+          <circle class="cn-dot" cx="621" cy="577" r="6"/>
+          <text class="cn-label" x="635" y="582" text-anchor="start">Website</text>
+          <circle class="cn-dot" cx="400" cy="568" r="6"/>
+          <text class="cn-label" x="386" y="573" text-anchor="end">Email Welcome Sequence</text>
+        </g>
+
+        <!-- hub -->
+        <g>
+          <circle class="cn-hub-ring" cx="520" cy="360" r="60"/>
+          <circle class="cn-hub" cx="520" cy="360" r="50"/>
+          <text class="cn-hub-text" x="520" y="356" text-anchor="middle">Podcast<tspan x="520" dy="22">episode</tspan></text>
+        </g>
+
+        <!-- outcome nodes -->
+        <g>
+          <circle cx="150" cy="402" r="30" fill="#B1DED9" filter="url(#cnGlow)"/>
+          <text class="cn-out-text" x="150" y="462" text-anchor="middle" fill="#195750">Trust</text>
+          <circle cx="520" cy="60" r="30" fill="#FFC8E5" filter="url(#cnGlow)"/>
+          <text class="cn-out-text" x="520" y="120" text-anchor="middle" fill="#9E0053">Authority</text>
+          <circle cx="868" cy="560" r="30" fill="#F7CBBB" filter="url(#cnGlow)"/>
+          <text class="cn-out-text" x="868" y="620" text-anchor="middle" fill="#8E2E0B">Clients</text>
+        </g>
+      </svg>
+      <p class="reveal center" style="max-width: 60ch; margin: var(--s-4) auto 0; color: var(--text-muted);">Instead of
+        wondering what to post each week, you'll have a repeatable content engine working for you.</p>
     </div>
   </section>
 
