@@ -140,19 +140,38 @@
     .trust-item p { margin: 0; font-size: 0.95rem; color: var(--text); }
     .trust-item em { font-style: italic; color: var(--c-pink-deep); }
 
-    /* ---- "What we build" hairline rows ---- */
-    .build-list { margin-top: var(--s-5); }
-    .build-row { display: grid; grid-template-columns: 190px 1fr; gap: var(--s-4); align-items: start;
-      padding: var(--s-4) 0; border-top: 1px solid var(--line); }
-    .build-row:last-child { border-bottom: 1px solid var(--line); }
-    .build-label { display: flex; align-items: baseline; gap: 10px; }
-    .build-label .ic { font-size: 1.35rem; line-height: 1; flex: 0 0 auto; }
-    .build-label h3 { font-size: 1.3rem; }
-    .build-body p { margin: 0; color: var(--text-muted); }
+    /* ---- "What we build" — alternating numbered color tiles ---- */
+    .build-list { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
+    .build-step { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: var(--s-4); align-items: stretch; }
+    .build-tile { border-radius: var(--radius); padding: var(--s-4);
+      display: flex; flex-direction: column; justify-content: center; gap: 6px; min-height: 160px; }
+    .build-tile .top { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); }
+    .build-tile .num { font-family: var(--font-display); font-size: clamp(2.6rem, 5.5vw, 3.6rem); line-height: 1; }
+    .build-tile .ic { font-size: 1.7rem; line-height: 1; }
+    .build-tile h3 { font-size: 1.5rem; }
+    .build-text { align-self: center; }
+    .build-text p { margin: 0; color: var(--text-muted); }
+    .build-text .note-script { display: inline-block; transform: rotate(-3deg);
+      font-size: 1.45rem; margin-bottom: var(--s-1); }
     .build-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--s-2); }
     .build-tags span { background: #fff; border: 1px solid var(--line); border-radius: 999px;
       padding: 5px 12px; font-size: 0.85rem; color: var(--text); }
-    @media (max-width: 640px) { .build-row { grid-template-columns: 1fr; gap: var(--s-1); } }
+    /* tone-on-tone color variants */
+    .build-step:nth-child(1) .build-tile { background: var(--c-pink); }
+    .build-step:nth-child(1) .build-tile .num, .build-step:nth-child(1) .build-tile h3 { color: var(--c-pink-deep); }
+    .build-step:nth-child(2) .build-tile { background: var(--c-mint); }
+    .build-step:nth-child(2) .build-tile .num, .build-step:nth-child(2) .build-tile h3 { color: var(--c-mint-deep); }
+    .build-step:nth-child(3) .build-tile { background: var(--c-coral); }
+    .build-step:nth-child(3) .build-tile .num, .build-step:nth-child(3) .build-tile h3 { color: var(--c-coral-deep); }
+    .build-step:nth-child(4) .build-tile { background: var(--bg-feature); }
+    .build-step:nth-child(4) .build-tile .num, .build-step:nth-child(4) .build-tile h3 { color: var(--c-pink); }
+    /* alternate the tile side */
+    .build-step:nth-child(even) .build-tile { order: 2; }
+    @media (max-width: 720px) {
+      .build-step { grid-template-columns: 1fr; gap: var(--s-2); }
+      .build-step:nth-child(even) .build-tile { order: 0; }
+      .build-tile { min-height: 0; }
+    }
 
     /* ---- Checklist grid (what you leave with) ---- */
     .checks { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-1) var(--s-4); margin-top: var(--s-4);
@@ -418,40 +437,51 @@
         <p style="margin-top: var(--s-3); color: var(--text-muted);">Most people obsess over microphones.
           We'll start with something much more important.</p>
       </div>
-      <div class="col">
-        <div class="build-list reveal">
-          <div class="build-row">
-            <div class="build-label"><span class="ic">🧭</span><h3>Positioning</h3></div>
-            <div class="build-body">
-              <p>We'll define what your show is really about, who it's for, how it supports your business, and
-                why people will keep coming back.</p>
+      <div class="build-list reveal">
+        <div class="build-step">
+          <div class="build-tile">
+            <div class="top"><span class="num">01</span><span class="ic">🧭</span></div>
+            <h3>Positioning</h3>
+          </div>
+          <div class="build-text">
+            <p>We'll define what your show is really about, who it's for, how it supports your business, and
+              why people will keep coming back.</p>
+          </div>
+        </div>
+        <div class="build-step">
+          <div class="build-tile">
+            <div class="top"><span class="num">02</span><span class="ic">🎨</span></div>
+            <h3>Branding</h3>
+          </div>
+          <div class="build-text">
+            <p class="note-script">my favorite part</p>
+            <p>Together we'll create a professional identity for your show.</p>
+            <div class="build-tags">
+              <span>podcast name (if needed)</span><span>cover artwork</span><span>intro and outro</span><span>music</span><span>overall brand direction</span>
             </div>
           </div>
-          <div class="build-row">
-            <div class="build-label"><span class="ic">🎨</span><h3>Branding</h3></div>
-            <div class="build-body">
-              <p>Together we'll create a professional identity for your show.</p>
-              <div class="build-tags">
-                <span>podcast name (if needed)</span><span>cover artwork</span><span>intro and outro</span><span>music</span><span>overall brand direction</span>
-              </div>
+        </div>
+        <div class="build-step">
+          <div class="build-tile">
+            <div class="top"><span class="num">03</span><span class="ic">⚙️</span></div>
+            <h3>The platform</h3>
+          </div>
+          <div class="build-text">
+            <p>I'll handle the technical setup, then make sure everything is connected, tested, and ready.</p>
+            <div class="build-tags">
+              <span>hosting</span><span>RSS feed</span><span>Apple Podcasts</span><span>Spotify</span><span>YouTube Podcasts</span><span>recording workflow</span><span>audio setup</span>
             </div>
           </div>
-          <div class="build-row">
-            <div class="build-label"><span class="ic">⚙️</span><h3>The platform</h3></div>
-            <div class="build-body">
-              <p>I'll handle the technical setup, then make sure everything is connected, tested, and ready.</p>
-              <div class="build-tags">
-                <span>hosting</span><span>RSS feed</span><span>Apple Podcasts</span><span>Spotify</span><span>YouTube Podcasts</span><span>recording workflow</span><span>audio setup</span>
-              </div>
-            </div>
+        </div>
+        <div class="build-step">
+          <div class="build-tile">
+            <div class="top"><span class="num">04</span><span class="ic">🚀</span></div>
+            <h3>The launch</h3>
           </div>
-          <div class="build-row">
-            <div class="build-label"><span class="ic">🚀</span><h3>The launch</h3></div>
-            <div class="build-body">
-              <p>We won't launch with one lonely episode. We'll launch with a small catalog so listeners
-                immediately have something to binge. That means producing your first episodes, getting
-                everything scheduled, and making sure launch week actually feels like a launch.</p>
-            </div>
+          <div class="build-text">
+            <p>We won't launch with one lonely episode. We'll launch with a small catalog so listeners
+              immediately have something to binge. That means producing your first episodes, getting
+              everything scheduled, and making sure launch week actually feels like a launch.</p>
           </div>
         </div>
       </div>
