@@ -185,23 +185,25 @@
     .build-step .incl { margin-top: 6px; font-size: 0.95rem; }
     @media (max-width: 600px) { .build-step { grid-template-columns: 1fr; gap: 6px; } }
 
-    /* ---- Repurpose — content constellation ---- */
-    .constellation { display: block; width: 100%; height: auto; max-width: 960px; margin: var(--s-4) auto 0; overflow: visible; }
-    .cn-wave { fill: none; stroke: var(--c-pink); stroke-width: 1.5; transform-box: fill-box; transform-origin: center; }
+    /* ---- Repurpose — concentric signal rings (stages) ---- */
+    .constellation { display: block; width: 100%; height: auto; max-width: 660px; margin: var(--s-4) auto 0; overflow: visible; }
+    .cn-ring { fill: none; stroke: rgba(29,30,38,0.14); stroke-width: 1.2; }
+    .cn-ring.outer { stroke: var(--c-pink-deep); opacity: 0.45; }
+    .cn-spoke { stroke: rgba(29,30,38,0.06); stroke-width: 1; }
+    .cn-orbit { fill: var(--c-pink-deep); opacity: 0.8; }
+    .cn-mark { fill: var(--bg-alt); stroke: var(--c-ink); stroke-width: 1.5; }
+    .cn-mark.result { fill: var(--c-pink-deep); stroke: var(--c-pink-deep); }
+    .cn-eyebrow { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; fill: var(--c-pink-deep); }
+    .cn-stage { font-family: var(--font-display); font-size: 19px; fill: var(--text); }
+    .cn-hub { fill: var(--c-ink); }
+    .cn-hub-ring { fill: none; stroke: var(--c-pink); stroke-width: 1.5; opacity: 0.7; }
+    .cn-hub-text { font-family: var(--font-display); font-size: 18px; fill: var(--c-cream); }
     .cn-pulse { fill: none; stroke: var(--c-pink); stroke-width: 1.5; transform-box: fill-box; transform-origin: center;
       animation: cn-pulse 5s ease-out infinite; }
     .cn-pulse.b { animation-delay: 2.5s; }
-    @keyframes cn-pulse { 0% { transform: scale(0.5); opacity: 0.55; } 80% { opacity: 0.06; } 100% { transform: scale(2.6); opacity: 0; } }
+    @keyframes cn-pulse { 0% { transform: scale(0.5); opacity: 0.5; } 80% { opacity: 0.05; } 100% { transform: scale(2.5); opacity: 0; } }
     @media (prefers-reduced-motion: reduce) { .cn-pulse { display: none; } }
-    .cn-link { stroke: rgba(29,30,38,0.16); stroke-width: 1; }
-    .cn-link.glow { stroke: var(--c-pink); stroke-width: 1.2; opacity: 0.4; }
-    .cn-dot { fill: var(--c-pink-deep); }
-    .cn-label { font-family: var(--font-body); font-size: 19px; font-weight: 500; fill: var(--text); }
-    .cn-hub { fill: var(--c-ink); }
-    .cn-hub-ring { fill: none; stroke: var(--c-pink); stroke-width: 1.5; opacity: 0.7; }
-    .cn-hub-text { font-family: var(--font-display); font-size: 20px; fill: var(--c-cream); }
-    .cn-out-text { font-family: var(--font-display); font-size: 27px; }
-    @media (max-width: 600px) { .cn-label { font-size: 22px; } .cn-out-text { font-size: 30px; } .cn-hub-text { font-size: 23px; } }
+    @media (max-width: 600px) { .cn-stage { font-size: 21px; } .cn-eyebrow { font-size: 12px; } .cn-hub-text { font-size: 20px; } }
 
     /* ---- Shows — minimal gallery, straight + equal ---- */
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); margin-top: var(--s-6); }
@@ -537,90 +539,84 @@
   <section class="section alt">
     <div class="container">
       <div class="col reveal center">
-        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Repurposing</p>
-        <h2>One episode becomes weeks of content.</h2>
-        <p style="margin-top: var(--s-3); color: var(--text-muted);">One recording, turned into a system that
-          keeps bringing the right people back to you:</p>
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>How it compounds</p>
+        <h2>One conversation, working for months.</h2>
+        <p style="margin-top: var(--s-3); color: var(--text-muted);">Every episode sends a signal outward: it
+          becomes content, content becomes visibility, visibility becomes trust, until the right clients come
+          to you.</p>
       </div>
-      <svg class="constellation reveal" viewBox="0 0 1040 720" role="img"
-           aria-label="A constellation diagram: one podcast episode at the center connects out to a newsletter, LinkedIn post, Instagram carousel, YouTube Short, blog, website, and email welcome sequence, and the whole network builds toward trust, authority, and clients.">
-        <defs>
-          <filter id="cnGlow" x="-70%" y="-70%" width="240%" height="240%">
-            <feGaussianBlur stdDeviation="7" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-
-        <!-- connecting lines: hub to assets -->
+      <svg class="constellation reveal" viewBox="0 0 760 800" role="img"
+           aria-label="Concentric signal rings radiating from The Signal at the center: podcast (one conversation), content (months of visibility), visibility (recognized expertise), trust (people trust you), and clients (they reach out).">
+        <!-- radial spokes -->
         <g>
-          <line class="cn-link" x1="520" y1="360" x2="318" y2="286"/>
-          <line class="cn-link" x1="520" y1="360" x2="402" y2="156"/>
-          <line class="cn-link" x1="520" y1="360" x2="597" y2="148"/>
-          <line class="cn-link" x1="520" y1="360" x2="746" y2="254"/>
-          <line class="cn-link" x1="520" y1="360" x2="736" y2="439"/>
-          <line class="cn-link" x1="520" y1="360" x2="621" y2="577"/>
-          <line class="cn-link" x1="520" y1="360" x2="400" y2="568"/>
-        </g>
-        <!-- network leading to the outcomes -->
-        <g>
-          <line class="cn-link glow" x1="520" y1="360" x2="150" y2="402"/>
-          <line class="cn-link glow" x1="318" y1="286" x2="150" y2="402"/>
-          <line class="cn-link glow" x1="400" y1="568" x2="150" y2="402"/>
-          <line class="cn-link glow" x1="520" y1="360" x2="520" y2="60"/>
-          <line class="cn-link glow" x1="402" y1="156" x2="520" y2="60"/>
-          <line class="cn-link glow" x1="597" y1="148" x2="520" y2="60"/>
-          <line class="cn-link glow" x1="520" y1="360" x2="868" y2="560"/>
-          <line class="cn-link glow" x1="621" y1="577" x2="868" y2="560"/>
-          <line class="cn-link glow" x1="736" y1="439" x2="868" y2="560"/>
-          <line class="cn-link glow" x1="746" y1="254" x2="868" y2="560"/>
+          <line class="cn-spoke" x1="380" y1="400" x2="690.5" y2="271.3"/>
+          <line class="cn-spoke" x1="380" y1="400" x2="508.7" y2="89.5"/>
+          <line class="cn-spoke" x1="380" y1="400" x2="251.3" y2="89.5"/>
+          <line class="cn-spoke" x1="380" y1="400" x2="69.5" y2="271.3"/>
+          <line class="cn-spoke" x1="380" y1="400" x2="69.5" y2="528.7"/>
+          <line class="cn-spoke" x1="380" y1="400" x2="251.3" y2="710.5"/>
+          <line class="cn-spoke" x1="380" y1="400" x2="508.7" y2="710.5"/>
+          <line class="cn-spoke" x1="380" y1="400" x2="690.5" y2="528.7"/>
         </g>
 
-        <!-- radio waves around the hub -->
+        <!-- stage rings -->
         <g>
-          <circle class="cn-wave" cx="520" cy="360" r="80" style="opacity:.5"/>
-          <circle class="cn-wave" cx="520" cy="360" r="124" style="opacity:.32"/>
-          <circle class="cn-wave" cx="520" cy="360" r="174" style="opacity:.18"/>
-          <circle class="cn-pulse" cx="520" cy="360" r="80"/>
-          <circle class="cn-pulse b" cx="520" cy="360" r="80"/>
+          <circle class="cn-ring" cx="380" cy="400" r="72"/>
+          <circle class="cn-ring" cx="380" cy="400" r="138"/>
+          <circle class="cn-ring" cx="380" cy="400" r="204"/>
+          <circle class="cn-ring" cx="380" cy="400" r="270"/>
+          <circle class="cn-ring outer" cx="380" cy="400" r="336"/>
         </g>
 
-        <!-- asset nodes -->
+        <!-- broadcasting pulse from the source -->
         <g>
-          <circle class="cn-dot" cx="318" cy="286" r="6"/>
-          <text class="cn-label" x="302" y="291" text-anchor="end">Newsletter</text>
-          <circle class="cn-dot" cx="402" cy="156" r="6"/>
-          <text class="cn-label" x="388" y="161" text-anchor="end">LinkedIn Post</text>
-          <circle class="cn-dot" cx="597" cy="148" r="6"/>
-          <text class="cn-label" x="611" y="153" text-anchor="start">Instagram Carousel</text>
-          <circle class="cn-dot" cx="746" cy="254" r="6"/>
-          <text class="cn-label" x="760" y="259" text-anchor="start">YouTube Short</text>
-          <circle class="cn-dot" cx="736" cy="439" r="6"/>
-          <text class="cn-label" x="750" y="444" text-anchor="start">Blog</text>
-          <circle class="cn-dot" cx="621" cy="577" r="6"/>
-          <text class="cn-label" x="635" y="582" text-anchor="start">Website</text>
-          <circle class="cn-dot" cx="400" cy="568" r="6"/>
-          <text class="cn-label" x="386" y="573" text-anchor="end">Email Welcome Sequence</text>
+          <circle class="cn-pulse" cx="380" cy="400" r="50"/>
+          <circle class="cn-pulse b" cx="380" cy="400" r="50"/>
         </g>
 
-        <!-- hub -->
+        <!-- content pieces orbiting the content ring -->
         <g>
-          <circle class="cn-hub-ring" cx="520" cy="360" r="60"/>
-          <circle class="cn-hub" cx="520" cy="360" r="50"/>
-          <text class="cn-hub-text" x="520" y="356" text-anchor="middle">Podcast<tspan x="520" dy="22">episode</tspan></text>
+          <circle class="cn-orbit" cx="514.6" cy="369.3" r="5"/>
+          <circle class="cn-orbit" cx="439.9" cy="275.7" r="5"/>
+          <circle class="cn-orbit" cx="320.1" cy="275.7" r="5"/>
+          <circle class="cn-orbit" cx="245.4" cy="369.3" r="5"/>
+          <circle class="cn-orbit" cx="272.2" cy="486.1" r="5"/>
+          <circle class="cn-orbit" cx="380" cy="538" r="5"/>
+          <circle class="cn-orbit" cx="487.8" cy="486.1" r="5"/>
         </g>
 
-        <!-- outcome nodes -->
+        <!-- stage markers + labels, read outward from the center -->
+        <g text-anchor="middle">
+          <text class="cn-eyebrow" x="380" y="298">PODCAST</text>
+          <text class="cn-stage" x="380" y="314">One conversation</text>
+          <circle class="cn-mark" cx="380" cy="328" r="5"/>
+
+          <text class="cn-eyebrow" x="380" y="232">CONTENT</text>
+          <text class="cn-stage" x="380" y="248">Months of visibility</text>
+          <circle class="cn-mark" cx="380" cy="262" r="5"/>
+
+          <text class="cn-eyebrow" x="380" y="166">VISIBILITY</text>
+          <text class="cn-stage" x="380" y="182">Recognized expertise</text>
+          <circle class="cn-mark" cx="380" cy="196" r="5"/>
+
+          <text class="cn-eyebrow" x="380" y="100">TRUST</text>
+          <text class="cn-stage" x="380" y="116">People trust you</text>
+          <circle class="cn-mark" cx="380" cy="130" r="5"/>
+
+          <text class="cn-eyebrow" x="380" y="34">CLIENTS</text>
+          <text class="cn-stage" x="380" y="50" fill="#9E0053">They reach out</text>
+          <circle class="cn-mark result" cx="380" cy="64" r="6"/>
+        </g>
+
+        <!-- The Signal, the source -->
         <g>
-          <circle cx="150" cy="402" r="30" fill="#B1DED9" filter="url(#cnGlow)"/>
-          <text class="cn-out-text" x="150" y="462" text-anchor="middle" fill="#195750">Trust</text>
-          <circle cx="520" cy="60" r="30" fill="#FFC8E5" filter="url(#cnGlow)"/>
-          <text class="cn-out-text" x="520" y="120" text-anchor="middle" fill="#9E0053">Authority</text>
-          <circle cx="868" cy="560" r="30" fill="#F7CBBB" filter="url(#cnGlow)"/>
-          <text class="cn-out-text" x="868" y="620" text-anchor="middle" fill="#8E2E0B">Clients</text>
+          <circle class="cn-hub-ring" cx="380" cy="400" r="58"/>
+          <circle class="cn-hub" cx="380" cy="400" r="50"/>
+          <text class="cn-hub-text" x="380" y="396" text-anchor="middle">The<tspan x="380" dy="21">Signal</tspan></text>
         </g>
       </svg>
-      <p class="reveal center" style="max-width: 60ch; margin: var(--s-4) auto 0; color: var(--text-muted);">Instead of
-        wondering what to post each week, you'll have a repeatable content engine working for you.</p>
+      <p class="reveal center" style="max-width: 56ch; margin: var(--s-5) auto 0; color: var(--text-muted);">You're not
+        chasing attention every week. You're building an asset that compounds.</p>
     </div>
   </section>
 
