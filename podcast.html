@@ -205,12 +205,13 @@
     @media (prefers-reduced-motion: reduce) { .cn-pulse { display: none; } }
     @media (max-width: 600px) { .cn-stage { font-size: 21px; } .cn-eyebrow { font-size: 12px; } .cn-hub-text { font-size: 20px; } }
 
-    /* ---- Shows — minimal gallery, straight + equal ---- */
-    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); margin-top: var(--s-6); }
-    @media (max-width: 720px) { .gallery { grid-template-columns: 1fr; gap: var(--s-5); max-width: 340px; margin-inline: auto; } }
+    /* ---- Shows — matched gallery, uniform frames ---- */
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); margin-top: var(--s-6); align-items: start; }
+    @media (max-width: 720px) { .gallery { grid-template-columns: 1fr; gap: var(--s-5); max-width: 320px; margin-inline: auto; } }
     .gallery figure { margin: 0; text-align: center; }
-    .gallery .cover { width: 100%; aspect-ratio: 1 / 1; border-radius: var(--radius); object-fit: cover;
-      display: block; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .gallery .cover-frame { position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: var(--radius);
+      overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .gallery .cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
     .gallery figcaption { margin-top: var(--s-2); }
     .gallery .name { font-family: var(--font-display); font-size: 1.2rem; display: block; }
     .gallery .cat { color: var(--text-muted); font-size: 0.82rem; letter-spacing: 0.06em; }
@@ -672,15 +673,15 @@
       </div>
       <div class="gallery reveal">
         <figure>
-          <img class="cover" src="/assets/img/show-brand-gravity.webp" width="447" height="447" loading="lazy" alt="The Brand Gravity Show with Kaye Putnam">
+          <div class="cover-frame"><img class="cover" src="/assets/img/show-brand-gravity.webp" width="447" height="447" loading="lazy" alt="The Brand Gravity Show with Kaye Putnam"></div>
           <figcaption><span class="name">The Brand Gravity Show</span><span class="cat">Business Podcast</span></figcaption>
         </figure>
         <figure>
-          <img class="cover" src="/assets/img/show-growth.webp" width="600" height="600" loading="lazy" alt="The Growth Show with Whitney Bateson">
+          <div class="cover-frame"><img class="cover" src="/assets/img/show-growth.webp" width="600" height="600" loading="lazy" alt="The Growth Show with Whitney Bateson"></div>
           <figcaption><span class="name">The Growth Show</span><span class="cat">Marketing Podcast</span></figcaption>
         </figure>
         <figure>
-          <img class="cover" src="/assets/img/show-jaw-talk.webp" width="600" height="600" loading="lazy" alt="Jaw Talk with Dr. Tiffany Lamberton">
+          <div class="cover-frame"><img class="cover" src="/assets/img/show-jaw-talk.webp" width="600" height="600" loading="lazy" alt="Jaw Talk with Dr. Tiffany Lamberton"></div>
           <figcaption><span class="name">Jaw Talk</span><span class="cat">Healthcare Podcast</span></figcaption>
         </figure>
       </div>
