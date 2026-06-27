@@ -90,8 +90,6 @@
     .section-mark { width: clamp(250px, 33vw, 330px); height: auto; display: block; margin: 0 0 var(--s-3); }
     .hero h1 { margin-inline: auto; max-width: 18ch; }
     .hero .lede { margin: var(--s-3) auto 0; max-width: 54ch; color: var(--text); }
-    .hero-intro { max-width: 56ch; margin: var(--s-4) auto 0; }
-    .hero-intro p { margin: 0 0 var(--s-2); }
     .hero .cta { margin-top: var(--s-4); }
     .hero .micro { margin-top: var(--s-2); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
     .hero .stats { display: flex; justify-content: center; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-3); }
@@ -207,16 +205,17 @@
     .upsell h3 { color: var(--c-mint-deep); }
     .upsell p { color: var(--c-ink); margin: var(--s-2) 0 0; max-width: 56ch; }
 
-    /* ---- Freebie ---- */
-    .freebie { background: var(--c-pink); border-radius: var(--radius); padding: clamp(var(--s-4), 5vw, var(--s-6)); }
-    .freebie .eyebrow { color: var(--c-pink-deep); }
-    .freebie h2, .freebie h3 { color: var(--c-ink); }
-    .freebie p { color: var(--c-ink); opacity: 0.85; }
-    .freebie-form { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-3); }
-    .freebie-form input { flex: 1 1 180px; min-width: 0; padding: 14px 16px; border-radius: var(--radius);
-      border: 1.5px solid rgba(29,30,38,0.18); background: #fff; font: inherit; color: var(--text); }
-    .freebie-form input:focus-visible { outline: 2px solid var(--c-pink-deep); outline-offset: 1px; }
-    .freebie-form .btn { flex: 0 0 auto; }
+    /* ---- Pricing ---- */
+    .pricing { background: var(--bg-feature); color: var(--c-cream); border-radius: var(--radius);
+      padding: clamp(var(--s-5), 6vw, var(--s-7)); margin-top: var(--s-4); text-align: center; }
+    .pricing .eyebrow, .pricing .eyebrow .heart { color: var(--c-pink); }
+    .pricing h2 { color: var(--c-pink); }
+    .pricing .price { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 4.6rem); line-height: 1;
+      color: var(--c-cream); margin: var(--s-3) 0 var(--s-1); }
+    .pricing .price .cur { font-size: 0.5em; vertical-align: super; margin-right: 2px; }
+    .pricing .tag { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-pink); }
+    .pricing p { color: var(--c-cream); opacity: 0.85; max-width: 48ch; margin: var(--s-2) auto 0; }
+    .pricing .cta { margin-top: var(--s-4); }
 
     /* ---- FAQ ---- */
     .faq { margin-top: var(--s-4); }
@@ -318,18 +317,6 @@
         <span>Done-for-you podcast strategy, setup, and launch for business owners</span></p>
       <h1>Build a podcast that becomes one of your best marketing
         <span class="sig">assets<svg viewBox="0 0 110 12" preserveAspectRatio="none"><path d="M3 8 C 28 2, 72 2, 107 6"/></svg></span>.</h1>
-      <div class="hero-intro">
-        <p>A podcast isn't just another piece of content.</p>
-        <p>Done well, it's the place future clients get to know you before they ever book a call. Every
-          episode builds trust, creates content for every platform, and gives your business an asset that
-          keeps working long after you hit publish.</p>
-        <p>The problem is getting started.</p>
-        <p>Between microphones, hosting, branding, Apple Podcasts, Spotify, YouTube, editing, workflows, and
-          launch strategy, there are dozens of decisions before you ever record your first episode.</p>
-        <p>That's where I come in.</p>
-        <p>I'll build the entire foundation for you so you can focus on the one thing only you can do: having
-          conversations worth listening to.</p>
-      </div>
       <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn">Submit an Inquiry</a></div>
       <p class="micro">Founding Pricing — $1,297</p>
       <div class="stats">
@@ -339,8 +326,26 @@
     </div>
   </section>
 
-  <!-- TRUST BAR -->
+  <!-- INTRO -->
   <section class="section alt overlap">
+    <div class="container">
+      <div class="col reveal">
+        <p>A podcast isn't just another piece of content.</p>
+        <p>Done well, it's the place future clients get to know you before they ever book a call. Every
+          episode builds trust, creates content for every platform, and gives your business an asset that
+          keeps working long after you hit publish.</p>
+        <p>The problem is getting started.</p>
+        <p>Between microphones, hosting, branding, Apple Podcasts, Spotify, YouTube, editing, workflows, and
+          launch strategy, there are dozens of decisions before you ever record your first episode.</p>
+        <p>That's where I come in.</p>
+        <p class="big-state" style="margin-top: var(--s-4);">I'll build the entire <span class="em">foundation</span>
+          for you so you can focus on the one thing only you can do: having conversations worth listening to.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="section">
     <div class="container">
       <div class="col reveal center">
         <h2>Trusted by podcasts ranked in the Top 10% globally.</h2>
@@ -356,7 +361,7 @@
   </section>
 
   <!-- WHY PODCASTING -->
-  <section class="section">
+  <section class="section alt">
     <div class="container">
       <div class="col reveal">
         <p class="eyebrow"><span class="heart">&#9829;</span>Why podcasting?</p>
@@ -379,7 +384,7 @@
   </section>
 
   <!-- INTRODUCING THE SIGNAL -->
-  <section class="section alt">
+  <section class="section">
     <div class="container">
       <div class="col reveal">
         <p class="eyebrow"><span class="heart">&#9829;</span>Introducing The Signal</p>
@@ -399,7 +404,7 @@
   </section>
 
   <!-- WHAT WE BUILD -->
-  <section class="section">
+  <section class="section alt">
     <div class="container">
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>What we build</p>
@@ -466,8 +471,27 @@
     </div>
   </section>
 
-  <!-- ONE EPISODE, WEEKS OF CONTENT -->
+  <!-- PRICING -->
   <section class="section">
+    <div class="container">
+      <div class="col reveal center">
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Investment</p>
+        <h2>One project. One price. Everything included.</h2>
+      </div>
+      <div class="col">
+        <div class="pricing reveal">
+          <p class="tag">Founding Pricing</p>
+          <div class="price"><span class="cur">$</span>1,297</div>
+          <p>A complete done-for-you podcast launch—strategy, branding, the full tech setup, your first batch
+            of episodes, and the systems to run it all. The founding rate is locked in for early clients.</p>
+          <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn btn-cream">Submit an Inquiry</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE EPISODE, WEEKS OF CONTENT -->
+  <section class="section alt">
     <div class="container">
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Repurposing</p>
@@ -606,27 +630,8 @@
     </div>
   </section>
 
-  <!-- FREEBIE -->
-  <section class="section alt">
-    <div class="container">
-      <div class="col reveal">
-        <div class="freebie">
-          <p class="eyebrow"><span class="heart">&#9829;</span>Free resource</p>
-          <h2>Pitch Yourself Confidently</h2>
-          <p style="margin-top: var(--s-2);">A free resource to help you put yourself out there with clarity
-            and confidence.</p>
-          <form class="freebie-form" action="https://app.kit.com/forms/9140164/subscriptions" method="post" target="_blank">
-            <input type="text" name="fields[first_name]" placeholder="First name" aria-label="First name">
-            <input type="email" name="email_address" placeholder="Email address" required aria-label="Email address">
-            <button type="submit" class="btn">Grab it</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FAQ -->
-  <section class="section">
+  <section class="section alt">
     <div class="container">
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>FAQ</p>
