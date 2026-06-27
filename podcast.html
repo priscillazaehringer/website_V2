@@ -82,6 +82,9 @@
     .btn { transition: opacity 0.14s ease, transform 0.12s ease, box-shadow 0.25s ease; }
     .btn:hover { opacity: 0.88; box-shadow: 0 0 0 4px rgba(158,0,83,0.14); } .btn:active { transform: translateY(1px); }
     .btn-cream { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
+    .btn-lg { padding: 20px 40px; font-size: 1.1rem; }
+    .scarcity { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+      color: var(--c-pink); margin: 0 0 var(--s-2); }
     /* primary + quiet text-link pairing (brand standard) */
     .cta { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
     .center .cta, .hero .cta, .invite .cta { justify-content: center; }
@@ -389,43 +392,6 @@
     </div>
   </section>
 
-  <!-- TRUST BAR -->
-  <section class="section" style="padding-block: var(--s-6);">
-    <div class="container">
-      <div class="col reveal">
-        <h2 class="center" style="max-width: 24ch; margin-inline: auto;">Trusted by podcasts ranked in the Top 10% globally.</h2>
-        <div class="trust-cards" style="margin-top: var(--s-3);">
-          <div class="tcard pink"><span class="c">&#10003;</span><p>Produced shows including <em>The Growth Show</em>, <em>Jaw Talk</em>, and <em>The Brand Gravity Show</em></p></div>
-          <div class="tcard mint"><span class="c">&#10003;</span><p>Systems built to keep running long after launch</p></div>
-          <div class="tcard coral"><span class="c">&#10003;</span><p>Strategy-first approach, not just editing</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY PODCASTING -->
-  <section class="section alt">
-    <div class="container">
-      <div class="col reveal">
-        <p class="eyebrow"><span class="heart">&#9829;</span>Why podcasting?</p>
-        <h2>There are plenty of ways to market your business.</h2>
-        <p style="margin-top: var(--s-3);">Very few let someone spend thirty minutes with you every week.</p>
-        <p>That's why podcasting works.</p>
-        <p>It creates trust in a way social media can't. It gives you long-form content that can be repurposed
-          everywhere else. It builds a library that keeps introducing people to your work months, and even
-          years, after each episode goes live.</p>
-        <p>But only when it's built with intention.</p>
-        <p class="big-state" style="margin-top: var(--s-5);">Most podcasts start the <span class="em">same way</span>.</p>
-        <p style="margin-top: var(--s-2);">Someone buys a microphone. Records a trailer. Uploads one episode.
-          Then spends the next three months wondering what to talk about, how to stay consistent, and whether
-          anyone is listening.</p>
-        <p>The problem isn't motivation.</p>
-        <p class="quote-soft">The problem is they built a podcast instead of building a system. That's exactly
-          what we'll build together.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- INTRODUCING THE SIGNAL -->
   <section class="section">
     <div class="container">
@@ -446,8 +412,22 @@
     </div>
   </section>
 
+  <!-- TRUST BAR -->
+  <section class="section alt" style="padding-block: var(--s-6);">
+    <div class="container">
+      <div class="col reveal">
+        <h2 class="center" style="max-width: 24ch; margin-inline: auto;">Trusted by podcasts ranked in the Top 10% globally.</h2>
+        <div class="trust-cards" style="margin-top: var(--s-3);">
+          <div class="tcard pink"><span class="c">&#10003;</span><p>Produced shows including <em>The Growth Show</em>, <em>Jaw Talk</em>, and <em>The Brand Gravity Show</em></p></div>
+          <div class="tcard mint"><span class="c">&#10003;</span><p>Systems built to keep running long after launch</p></div>
+          <div class="tcard coral"><span class="c">&#10003;</span><p>Strategy-first approach, not just editing</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- WHAT WE BUILD -->
-  <section class="section alt">
+  <section class="section">
     <div class="container">
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>What we build</p>
@@ -527,6 +507,13 @@
   <!-- PRICING -->
   <section class="section" id="pricing">
     <div class="container">
+      <div class="col reveal center" style="margin-bottom: var(--s-5);">
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>What you're really buying</p>
+        <h2>Everything above, in one project.</h2>
+        <p style="margin-top: var(--s-3); color: var(--text-muted); max-width: 54ch; margin-inline: auto;">The
+          strategy, the branding, the full setup, your first episodes, and the systems to run it. One flat fee.
+          No retainer, no per-episode billing, no agency markup, and you own all of it.</p>
+      </div>
       <div class="col">
         <div class="invite reveal">
           <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -547,8 +534,31 @@
     </div>
   </section>
 
-  <!-- ONE EPISODE, WEEKS OF CONTENT -->
+  <!-- WHY PODCASTING -->
   <section class="section alt">
+    <div class="container">
+      <div class="col reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>Why podcasting?</p>
+        <h2>There are plenty of ways to market your business.</h2>
+        <p style="margin-top: var(--s-3);">Very few let someone spend thirty minutes with you every week.</p>
+        <p>That's why podcasting works.</p>
+        <p>It creates trust in a way social media can't. It gives you long-form content that can be repurposed
+          everywhere else. It builds a library that keeps introducing people to your work months, and even
+          years, after each episode goes live.</p>
+        <p>But only when it's built with intention.</p>
+        <p class="big-state" style="margin-top: var(--s-5);">Most podcasts start the <span class="em">same way</span>.</p>
+        <p style="margin-top: var(--s-2);">Someone buys a microphone. Records a trailer. Uploads one episode.
+          Then spends the next three months wondering what to talk about, how to stay consistent, and whether
+          anyone is listening.</p>
+        <p>The problem isn't motivation.</p>
+        <p class="quote-soft">The problem is they built a podcast instead of building a system. That's exactly
+          what we'll build together.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE EPISODE, WEEKS OF CONTENT -->
+  <section class="section">
     <div class="container">
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>How it compounds</p>
@@ -809,18 +819,37 @@
     </div>
   </section>
 
+  <!-- SIX MONTHS FROM NOW (vision) -->
+  <section class="section alt" id="vision">
+    <div class="container">
+      <div class="col reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>Six months from now</p>
+        <h2>Picture opening Riverside once a week.</h2>
+        <p style="margin-top: var(--s-3); color: var(--text-muted);">Instead of wondering what to post, you sit
+          down and record one good conversation. That single episode goes to work everywhere:</p>
+        <ul class="checks">
+          <li>A LinkedIn post</li>
+          <li>A newsletter</li>
+          <li>An Instagram carousel</li>
+          <li>A referral tool</li>
+          <li>A sales conversation</li>
+          <li>Google traffic</li>
+        </ul>
+        <p class="quote-soft">Instead of chasing visibility, people keep discovering you, because your ideas
+          are already out there. That's what you're building.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <section class="section band-ink overlap" id="book">
     <div class="container col reveal center">
       <img class="cta-logo" src="/assets/img/the-signal-light.png" width="1162" height="536" alt="The Signal, launch your podcast">
+      <p class="scarcity">Now booking July &amp; August launches</p>
       <h2>Ready to build your show? <span class="sticker">let's go!</span></h2>
-      <p class="lede" style="margin: var(--s-3) auto var(--s-2); max-width: 52ch;">Imagine six months from now.
-        Instead of still thinking about starting a podcast, you've published twenty episodes. You've built a
-        library of content. New clients are finding you through conversations you recorded months ago.</p>
-      <p class="lede" style="margin: 0 auto var(--s-4); max-width: 52ch;">Your podcast has become one of the
-        first places people go to decide whether they want to work with you. That's what we're building.
-        Let's get your show out into the world.</p>
-      <div class="cta" style="justify-content: center;"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn btn-cream">Submit Your Inquiry</a><a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="textlink">Or book a call &#8594;</a></div>
+      <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 50ch;">Tell me about your business
+        and what you want to build. If we're a fit, we'll map out your launch.</p>
+      <div class="cta" style="justify-content: center;"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn btn-cream btn-lg">Reserve your project &#8594;</a><a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="textlink">Or book a call &#8594;</a></div>
     </div>
   </section>
 
