@@ -160,10 +160,14 @@
     .checks li::before { content: '\2713'; position: absolute; left: 0; top: 8px; color: var(--c-mint-deep); font-weight: 700; }
 
     /* ---- Repurpose grid ---- */
-    .repurpose { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-2); margin-top: var(--s-4); }
-    @media (max-width: 760px) { .repurpose { grid-template-columns: 1fr 1fr; } }
+    .repurpose { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); margin-top: var(--s-4); }
+    @media (max-width: 720px) { .repurpose { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 460px) { .repurpose { grid-template-columns: 1fr; } }
     .rep-item { background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
-      padding: var(--s-3); text-align: center; font-size: 0.95rem; }
+      padding: var(--s-3); display: flex; flex-direction: column; gap: 4px; }
+    .rep-item .ic { font-size: 1.45rem; line-height: 1; }
+    .rep-item h3 { font-size: 1.05rem; }
+    .rep-item p { color: var(--text-muted); margin: 0; font-size: 0.88rem; line-height: 1.4; }
 
     /* ---- "What you walk away with" checklist ---- */
     .keep { display: grid; gap: var(--s-3); margin-top: var(--s-4); }
@@ -329,17 +333,19 @@
   <!-- INTRO -->
   <section class="section alt overlap">
     <div class="container">
-      <div class="col reveal">
-        <p>A podcast isn't just another piece of content.</p>
-        <p>Done well, it's the place future clients get to know you before they ever book a call. Every
-          episode builds trust, creates content for every platform, and gives your business an asset that
-          keeps working long after you hit publish.</p>
-        <p>The problem is getting started.</p>
-        <p>Between microphones, hosting, branding, Apple Podcasts, Spotify, YouTube, editing, workflows, and
-          launch strategy, there are dozens of decisions before you ever record your first episode.</p>
-        <p>That's where I come in.</p>
-        <p class="big-state" style="margin-top: var(--s-4);">I'll build the entire <span class="em">foundation</span>
-          for you so you can focus on the one thing only you can do: having conversations worth listening to.</p>
+      <div class="col reveal center">
+        <h2 style="max-width: 16ch; margin-inline: auto;">A podcast isn't just another piece of content.</h2>
+        <p class="lede" style="margin: var(--s-3) auto 0; max-width: 52ch;">Done well, it's the place future
+          clients get to know you before they ever book a call. Every episode builds trust, creates content
+          for every platform, and gives your business an asset that keeps working long after you hit publish.</p>
+        <p class="note-script" style="font-size: clamp(1.6rem, 3.4vw, 2.2rem); margin: var(--s-6) 0 var(--s-2);">
+          The problem is getting started.</p>
+        <p style="max-width: 50ch; margin-inline: auto; color: var(--text-muted);">Between microphones, hosting,
+          branding, Apple Podcasts, Spotify, YouTube, editing, workflows, and launch strategy, there are dozens
+          of decisions before you ever record your first episode.</p>
+        <p class="big-state" style="margin: var(--s-6) auto 0; max-width: 26ch; text-align: center;">That's where
+          I come in. I'll build the entire <span class="em">foundation</span> so you can focus on the one thing
+          only you can do: having conversations worth listening to.</p>
       </div>
     </div>
   </section>
@@ -496,19 +502,17 @@
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Repurposing</p>
         <h2>One episode becomes weeks of content.</h2>
-        <p style="margin-top: var(--s-3); color: var(--text-muted);">Your podcast isn't just a podcast.
-          One conversation can become:</p>
+        <p style="margin-top: var(--s-3); color: var(--text-muted);">From a single episode, your audience
+          finds you on:</p>
       </div>
       <div class="col">
         <div class="repurpose reveal">
-          <div class="rep-item">YouTube video</div>
-          <div class="rep-item">Blog post</div>
-          <div class="rep-item">Newsletter</div>
-          <div class="rep-item">Instagram captions</div>
-          <div class="rep-item">LinkedIn content</div>
-          <div class="rep-item">Short-form clips</div>
-          <div class="rep-item">Audiograms</div>
-          <div class="rep-item">Quote graphics</div>
+          <div class="rep-item"><span class="ic">🎙️</span><h3>Podcast feed</h3><p>The full episode</p></div>
+          <div class="rep-item"><span class="ic">▶️</span><h3>YouTube</h3><p>Long video + 2–4 Shorts</p></div>
+          <div class="rep-item"><span class="ic">📸</span><h3>Instagram &amp; Facebook</h3><p>Reels, a carousel, quote graphics</p></div>
+          <div class="rep-item"><span class="ic">💼</span><h3>LinkedIn</h3><p>The carousel + a few posts</p></div>
+          <div class="rep-item"><span class="ic">✉️</span><h3>Inbox</h3><p>Newsletter + episode email</p></div>
+          <div class="rep-item"><span class="ic">🌐</span><h3>Website</h3><p>Search-friendly show notes</p></div>
         </div>
         <p class="reveal center" style="margin-top: var(--s-4); color: var(--text-muted);">Instead of
           wondering what to post each week, you'll have a repeatable content engine working for you.</p>
