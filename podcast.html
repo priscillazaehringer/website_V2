@@ -185,37 +185,24 @@
     .build-step .incl { margin-top: 6px; font-size: 0.95rem; }
     @media (max-width: 600px) { .build-step { grid-template-columns: 1fr; gap: 6px; } }
 
-    /* ---- Repurpose — borderless icon list ---- */
-    .repurpose { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3) var(--s-5); margin-top: var(--s-4); }
-    @media (max-width: 720px) { .repurpose { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 460px) { .repurpose { grid-template-columns: 1fr; } }
-    .rep-item { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; }
-    .rep-item .ic { font-size: 1.3rem; line-height: 1.2; }
-    .rep-item h3 { font-size: 1.05rem; }
-    .rep-item p { color: var(--text-muted); margin: 0; font-size: 0.88rem; line-height: 1.4; }
+    /* ---- Repurpose — content system flow ---- */
+    .flow { max-width: 360px; margin: var(--s-5) auto 0; display: grid; justify-items: center; gap: var(--s-1); }
+    .flow .node { display: flex; align-items: center; gap: 10px; }
+    .flow .node .ic { font-size: 1.25rem; line-height: 1; }
+    .flow .node .label { font-size: 1.05rem; }
+    .flow .node.cap .label { font-family: var(--font-display); font-size: 1.35rem; }
+    .flow .node.end { color: var(--c-pink-deep); }
+    .flow .arrow { color: var(--c-pink); font-size: 1.25rem; line-height: 1; }
 
-    /* ---- Shows — gallery / shelf with signal rings ---- */
-    .gallery { position: relative; display: flex; justify-content: center; align-items: center; margin-top: var(--s-6); }
-    .gallery .rings { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-      width: min(640px, 96%); aspect-ratio: 1; border-radius: 50%; z-index: 0; pointer-events: none;
-      background: repeating-radial-gradient(circle, transparent 0 26px, rgba(158,0,83,0.05) 26px 28px);
-      -webkit-mask-image: radial-gradient(circle, #000 58%, transparent 72%);
-              mask-image: radial-gradient(circle, #000 58%, transparent 72%); }
-    .gallery .cover { position: relative; z-index: 1; width: clamp(150px, 22vw, 250px); aspect-ratio: 1;
-      border-radius: var(--radius); object-fit: cover; box-shadow: var(--shadow); background: #fff;
-      transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .gallery .cover:nth-of-type(2) { width: clamp(180px, 27vw, 300px); z-index: 2; }
-    .gallery .cover:nth-of-type(1) { transform: rotate(-4deg); margin-right: -22px; }
-    .gallery .cover:nth-of-type(3) { transform: rotate(4deg); margin-left: -22px; }
-    .gallery .cover:hover { transform: translateY(-10px) rotate(0); z-index: 3;
-      box-shadow: 0 26px 60px rgba(29,30,38,0.18); }
-    @media (prefers-reduced-motion: reduce) { .gallery .cover { transition: none; } }
-    @media (max-width: 640px) {
-      .gallery { flex-direction: column; gap: var(--s-3); }
-      .gallery .cover, .gallery .cover:nth-of-type(1), .gallery .cover:nth-of-type(2),
-      .gallery .cover:nth-of-type(3) { width: 78%; margin: 0; transform: none; }
-      .gallery .rings { display: none; }
-    }
+    /* ---- Shows — minimal gallery, straight + equal ---- */
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); margin-top: var(--s-6); }
+    @media (max-width: 720px) { .gallery { grid-template-columns: 1fr; gap: var(--s-5); max-width: 340px; margin-inline: auto; } }
+    .gallery figure { margin: 0; text-align: center; }
+    .gallery .cover { width: 100%; aspect-ratio: 1; border-radius: var(--radius); object-fit: cover;
+      box-shadow: var(--shadow); display: block; }
+    .gallery figcaption { margin-top: var(--s-2); }
+    .gallery .name { font-family: var(--font-display); font-size: 1.2rem; display: block; }
+    .gallery .cat { color: var(--text-muted); font-size: 0.82rem; letter-spacing: 0.06em; }
 
     /* ---- Beliefs — borderless columns on ink band ---- */
     .talk { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); margin-top: var(--s-5); }
@@ -543,19 +530,24 @@
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Repurposing</p>
         <h2>One episode becomes weeks of content.</h2>
-        <p style="margin-top: var(--s-3); color: var(--text-muted);">From a single episode, your audience
-          finds you on:</p>
+        <p style="margin-top: var(--s-3); color: var(--text-muted);">One recording, turned into a system that
+          keeps bringing the right people back to you:</p>
       </div>
       <div class="col">
-        <div class="repurpose reveal">
-          <div class="rep-item"><span class="ic">🎙️</span><div><h3>Podcast feed</h3><p>The full episode</p></div></div>
-          <div class="rep-item"><span class="ic">▶️</span><div><h3>YouTube</h3><p>Long video + 2 to 4 Shorts</p></div></div>
-          <div class="rep-item"><span class="ic">📸</span><div><h3>Instagram &amp; Facebook</h3><p>Reels, a carousel, quote graphics</p></div></div>
-          <div class="rep-item"><span class="ic">💼</span><div><h3>LinkedIn</h3><p>The carousel + a few posts</p></div></div>
-          <div class="rep-item"><span class="ic">✉️</span><div><h3>Inbox</h3><p>Newsletter + episode email</p></div></div>
-          <div class="rep-item"><span class="ic">🌐</span><div><h3>Website</h3><p>Search-friendly show notes</p></div></div>
+        <div class="flow reveal">
+          <div class="node cap start"><span class="ic" aria-hidden="true">🎙️</span><span class="label">One podcast episode</span></div>
+          <span class="arrow" aria-hidden="true">↓</span>
+          <div class="node"><span class="ic" aria-hidden="true">✉️</span><span class="label">Newsletter</span></div>
+          <span class="arrow" aria-hidden="true">↓</span>
+          <div class="node"><span class="ic" aria-hidden="true">💼</span><span class="label">LinkedIn post</span></div>
+          <span class="arrow" aria-hidden="true">↓</span>
+          <div class="node"><span class="ic" aria-hidden="true">📸</span><span class="label">Instagram carousel</span></div>
+          <span class="arrow" aria-hidden="true">↓</span>
+          <div class="node"><span class="ic" aria-hidden="true">▶️</span><span class="label">YouTube Short</span></div>
+          <span class="arrow" aria-hidden="true">↓</span>
+          <div class="node cap end"><span class="ic" aria-hidden="true">🤝</span><span class="label">A client books a call</span></div>
         </div>
-        <p class="reveal center" style="margin-top: var(--s-4); color: var(--text-muted);">Instead of
+        <p class="reveal center" style="margin-top: var(--s-5); color: var(--text-muted);">Instead of
           wondering what to post each week, you'll have a repeatable content engine working for you.</p>
       </div>
     </div>
@@ -601,10 +593,18 @@
         <h2>Podcasts I've had the honor of producing.</h2>
       </div>
       <div class="gallery reveal">
-        <span class="rings" aria-hidden="true"></span>
-        <img class="cover" src="/assets/img/show-brand-gravity.webp" width="447" height="447" loading="lazy" alt="The Brand Gravity Show with Kaye Putnam">
-        <img class="cover" src="/assets/img/show-jaw-talk.webp" width="600" height="600" loading="lazy" alt="Jaw Talk with Dr. Tiffany Lamberton">
-        <img class="cover" src="/assets/img/show-growth.webp" width="600" height="600" loading="lazy" alt="The Growth Show with Whitney Bateson">
+        <figure>
+          <img class="cover" src="/assets/img/show-brand-gravity.webp" width="447" height="447" loading="lazy" alt="The Brand Gravity Show with Kaye Putnam">
+          <figcaption><span class="name">The Brand Gravity Show</span><span class="cat">Business Podcast</span></figcaption>
+        </figure>
+        <figure>
+          <img class="cover" src="/assets/img/show-growth.webp" width="600" height="600" loading="lazy" alt="The Growth Show with Whitney Bateson">
+          <figcaption><span class="name">The Growth Show</span><span class="cat">Marketing Podcast</span></figcaption>
+        </figure>
+        <figure>
+          <img class="cover" src="/assets/img/show-jaw-talk.webp" width="600" height="600" loading="lazy" alt="Jaw Talk with Dr. Tiffany Lamberton">
+          <figcaption><span class="name">Jaw Talk</span><span class="cat">Healthcare Podcast</span></figcaption>
+        </figure>
       </div>
       <p class="reveal center" style="color: var(--text-muted); font-style: italic; margin-top: var(--s-4);">
         Every show I produce is built around a real strategy, then set up to keep running long after launch.</p>
