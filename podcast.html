@@ -293,10 +293,16 @@
       color: var(--c-ink); margin: var(--s-2) 0 var(--s-1); }
     .invite-price .cur { font-size: 0.4em; vertical-align: super; color: var(--c-pink-deep); margin-right: 2px; }
     .invite-sub { color: var(--text-muted); font-size: 1.15rem; }
-    .invite-list { list-style: none; padding: 0; margin: var(--s-3) auto var(--s-4); max-width: 46ch;
-      display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-1) var(--s-4); }
-    .invite-list li { position: relative; padding-left: 24px; }
-    .invite-list li::before { content: '\2713'; position: absolute; left: 0; color: var(--c-mint-deep); font-weight: 700; }
+    .invite-grid { list-style: none; padding: 0; margin: var(--s-4) auto 0; max-width: 440px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px var(--s-3); text-align: left; }
+    .invite-grid li { position: relative; padding-left: 26px; line-height: 1.4; }
+    .invite-grid li::before { content: '\2713'; position: absolute; left: 0; top: 1px; color: var(--c-mint-deep); font-weight: 700; }
+    @media (max-width: 460px) { .invite-grid { grid-template-columns: 1fr; max-width: 260px; } }
+    .invite-note { color: var(--text-muted); font-size: 0.9rem; margin: var(--s-4) 0 0; }
+    /* peel-style price sticker */
+    .price-sticker { display: inline-block; transform: rotate(-7deg); margin-left: 12px; vertical-align: middle;
+      background: var(--c-pink); color: var(--c-pink-deep); font-family: var(--font-script); font-weight: 700;
+      font-size: 1.15rem; line-height: 1; padding: 8px 15px; border-radius: 999px; box-shadow: var(--shadow); }
 
     /* ---- FAQ — borderless, hairline dividers ---- */
     .faq { margin-top: var(--s-4); border-top: 1px solid var(--line); }
@@ -554,28 +560,23 @@
   <!-- PRICING -->
   <section class="section" id="pricing">
     <div class="container">
-      <div class="col reveal center" style="margin-bottom: var(--s-5);">
-        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>What you're really buying</p>
-        <h2>Everything above, in one project.</h2>
-        <p style="margin-top: var(--s-3); color: var(--text-muted); max-width: 54ch; margin-inline: auto;">The
-          strategy, the branding, the full setup, your first episodes, and the systems to run it. One flat fee.
-          No retainer, no per-episode billing, no agency markup, and you own all of it.</p>
-      </div>
       <div class="col">
         <div class="invite reveal">
           <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-          <p class="eyebrow"><span class="heart">&#9829;</span>The investment</p>
-          <h3 class="invite-title">Done-for-you podcast launch</h3>
-          <div class="invite-price"><span class="cur">$</span>1,297 <span class="sticker">lock it in</span></div>
-          <p class="invite-sub">One project. Everything included.</p>
-          <ul class="invite-list">
-            <li>Strategy</li>
-            <li>Branding</li>
-            <li>Launch assets</li>
-            <li>Systems</li>
-            <li>Training</li>
+          <p class="eyebrow"><span class="heart">&#9829;</span>The Investment</p>
+          <h3 class="invite-title">Everything you need to launch your podcast.</h3>
+          <div class="invite-price"><span class="cur">$</span>1,297 <span class="price-sticker">lock it in</span></div>
+          <p class="invite-sub">One project. One flat investment. Everything included.</p>
+          <ul class="invite-grid">
+            <li>Podcast Strategy</li>
+            <li>Brand Identity</li>
+            <li>Recording Setup</li>
+            <li>Launch Assets</li>
+            <li>Content Workflow</li>
+            <li>Training &amp; Handoff</li>
           </ul>
-          <div class="cta"><button type="button" class="btn" data-open-inquiry>Start Your Project</button><a href="#faq" class="textlink">Questions first? Read the FAQ &#8595;</a></div>
+          <p class="invite-note">No retainer. No per-episode billing. You own all of it.</p>
+          <div class="cta"><button type="button" class="btn" data-open-inquiry>Start My Project</button></div>
         </div>
       </div>
     </div>
