@@ -289,9 +289,13 @@
     .invite .wave { display: flex; justify-content: center; margin: 0 auto var(--s-3); height: 26px; }
     .invite .eyebrow { display: inline-block; }
     .invite-title { font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2rem); }
-    .invite-price { font-family: var(--font-display); font-size: clamp(3.4rem, 9vw, 5.5rem); line-height: 1;
-      color: var(--c-ink); margin: var(--s-2) 0 var(--s-1); }
+    .invite-price { font-family: var(--font-display); line-height: 1; margin: var(--s-3) 0 var(--s-2); }
+    .invite-price .was { font-size: clamp(1.3rem, 2.6vw, 1.9rem); color: var(--text-muted);
+      text-decoration: line-through; margin-right: 14px; vertical-align: middle; }
+    .invite-price .now { font-size: clamp(3.4rem, 9vw, 5.2rem); color: var(--c-ink); }
     .invite-price .cur { font-size: 0.4em; vertical-align: super; color: var(--c-pink-deep); margin-right: 2px; }
+    .invite-save { display: inline-block; background: var(--c-mint); color: var(--c-mint-deep); font-weight: 700;
+      font-size: 0.9rem; padding: 6px 14px; border-radius: 999px; margin: 0 0 var(--s-3); }
     .invite-sub { color: var(--text-muted); font-size: 1.15rem; }
     .invite-grid { list-style: none; padding: 0; margin: var(--s-4) auto 0; max-width: 440px;
       display: grid; grid-template-columns: 1fr 1fr; gap: 10px var(--s-3); text-align: left; }
@@ -299,10 +303,6 @@
     .invite-grid li::before { content: '\2713'; position: absolute; left: 0; top: 1px; color: var(--c-mint-deep); font-weight: 700; }
     @media (max-width: 460px) { .invite-grid { grid-template-columns: 1fr; max-width: 260px; } }
     .invite-note { color: var(--text-muted); font-size: 0.9rem; margin: var(--s-4) 0 0; }
-    /* peel-style price sticker */
-    .price-sticker { display: inline-block; transform: rotate(-7deg); margin-left: 12px; vertical-align: middle;
-      background: var(--c-pink); color: var(--c-pink-deep); font-family: var(--font-script); font-weight: 700;
-      font-size: 1.15rem; line-height: 1; padding: 8px 15px; border-radius: 999px; box-shadow: var(--shadow); }
 
     /* ---- FAQ — borderless, hairline dividers ---- */
     .faq { margin-top: var(--s-4); border-top: 1px solid var(--line); }
@@ -567,10 +567,10 @@
       <div class="col">
         <div class="invite reveal">
           <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-          <p class="eyebrow"><span class="heart">&#9829;</span>The Investment</p>
-          <h3 class="invite-title">Everything you need to launch your podcast.</h3>
-          <div class="invite-price"><span class="cur">$</span>1,297 <span class="price-sticker">lock it in</span></div>
-          <p class="invite-sub">One project. One flat investment. Everything included.</p>
+          <p class="eyebrow"><span class="heart">&#9829;</span>Founding Investment</p>
+          <div class="invite-price"><span class="was">$1,997</span><span class="now"><span class="cur">$</span>1,297</span></div>
+          <p class="invite-save">Save $700 during founding pricing.</p>
+          <p class="invite-sub">One investment. Everything included.</p>
           <ul class="invite-grid">
             <li>Podcast Strategy</li>
             <li>Brand Identity</li>
@@ -579,7 +579,7 @@
             <li>Content Workflow</li>
             <li>Training &amp; Handoff</li>
           </ul>
-          <p class="invite-note">And it's all yours, from day one.</p>
+          <p class="invite-note">You own everything. From day one.</p>
           <div class="cta"><button type="button" class="btn" data-open-inquiry>Start My Project</button></div>
         </div>
       </div>
