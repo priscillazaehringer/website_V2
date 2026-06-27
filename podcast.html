@@ -79,22 +79,23 @@
       font-weight: 600; line-height: 1; padding: 16px 28px; border-radius: var(--radius);
       border: 1.5px solid var(--action); background: var(--action); color: var(--action-text);
       text-decoration: none; cursor: pointer; transition: opacity 0.14s ease, transform 0.12s ease; }
-    .btn:hover { opacity: 0.88; } .btn:active { transform: translateY(1px); }
+    .btn { transition: opacity 0.14s ease, transform 0.12s ease, box-shadow 0.25s ease; }
+    .btn:hover { opacity: 0.88; box-shadow: 0 0 0 4px rgba(158,0,83,0.14); } .btn:active { transform: translateY(1px); }
     .btn-cream { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
     /* primary + quiet text-link pairing (brand standard) */
     .cta { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
-    .center .cta, .hero .cta, .pricing .cta { justify-content: center; }
+    .center .cta, .hero .cta, .invite .cta { justify-content: center; }
     .textlink { color: var(--link); font-weight: 600; text-decoration: none;
       border-bottom: 2px solid currentColor; padding-bottom: 1px; white-space: nowrap; }
     .textlink:hover { color: var(--c-ink); }
-    .band-ink .textlink, .pricing .textlink { color: var(--c-pink); }
-    .band-ink .textlink:hover, .pricing .textlink:hover { color: var(--c-cream); }
+    .band-ink .textlink { color: var(--c-pink); }
+    .band-ink .textlink:hover { color: var(--c-cream); }
 
     /* script "sticker" — Caveat accent note, used sparingly on feature moments */
     .sticker { font-family: var(--font-script); font-weight: 700; color: var(--c-pink-deep);
       font-size: clamp(1.3rem, 2.4vw, 1.85rem); line-height: 1; display: inline-block;
       transform: rotate(-4deg); margin-left: 12px; vertical-align: middle; }
-    .band-ink .sticker, .pricing .sticker { color: var(--c-pink); }
+    .band-ink .sticker { color: var(--c-pink); }
 
     /* tone-on-tone trust cards (the one deliberate boxed module) */
     .trust-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); margin-top: var(--s-3); }
@@ -193,14 +194,28 @@
     .rep-item h3 { font-size: 1.05rem; }
     .rep-item p { color: var(--text-muted); margin: 0; font-size: 0.88rem; line-height: 1.4; }
 
-    /* ---- Shows ---- */
-    .shows { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); margin-top: var(--s-5); align-items: start; }
-    @media (max-width: 760px) { .shows { grid-template-columns: 1fr; } }
-    .show { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-    .show .art { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
-    .show .b { padding: var(--s-2) var(--s-3); }
-    .show h3 { font-size: 1.15rem; }
-    .show p { color: var(--text-muted); margin: 2px 0 0; font-size: 0.9rem; }
+    /* ---- Shows — gallery / shelf with signal rings ---- */
+    .gallery { position: relative; display: flex; justify-content: center; align-items: center; margin-top: var(--s-6); }
+    .gallery .rings { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      width: min(640px, 96%); aspect-ratio: 1; border-radius: 50%; z-index: 0; pointer-events: none;
+      background: repeating-radial-gradient(circle, transparent 0 26px, rgba(158,0,83,0.05) 26px 28px);
+      -webkit-mask-image: radial-gradient(circle, #000 58%, transparent 72%);
+              mask-image: radial-gradient(circle, #000 58%, transparent 72%); }
+    .gallery .cover { position: relative; z-index: 1; width: clamp(150px, 22vw, 250px); aspect-ratio: 1;
+      border-radius: var(--radius); object-fit: cover; box-shadow: var(--shadow); background: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .gallery .cover:nth-of-type(2) { width: clamp(180px, 27vw, 300px); z-index: 2; }
+    .gallery .cover:nth-of-type(1) { transform: rotate(-4deg); margin-right: -22px; }
+    .gallery .cover:nth-of-type(3) { transform: rotate(4deg); margin-left: -22px; }
+    .gallery .cover:hover { transform: translateY(-10px) rotate(0); z-index: 3;
+      box-shadow: 0 26px 60px rgba(29,30,38,0.18); }
+    @media (prefers-reduced-motion: reduce) { .gallery .cover { transition: none; } }
+    @media (max-width: 640px) {
+      .gallery { flex-direction: column; gap: var(--s-3); }
+      .gallery .cover, .gallery .cover:nth-of-type(1), .gallery .cover:nth-of-type(2),
+      .gallery .cover:nth-of-type(3) { width: 78%; margin: 0; transform: none; }
+      .gallery .rings { display: none; }
+    }
 
     /* ---- Beliefs — borderless columns on ink band ---- */
     .talk { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); margin-top: var(--s-5); }
@@ -221,17 +236,20 @@
     .upsell h3 { color: var(--c-mint-deep); }
     .upsell p { color: var(--c-ink); margin: var(--s-2) 0 0; max-width: 56ch; }
 
-    /* ---- Pricing ---- */
-    .pricing { background: var(--bg-feature); color: var(--c-cream); border-radius: var(--radius);
-      padding: clamp(var(--s-5), 6vw, var(--s-7)); margin-top: var(--s-4); text-align: center; box-shadow: var(--shadow); }
-    .pricing .eyebrow, .pricing .eyebrow .heart { color: var(--c-pink); }
-    .pricing h2 { color: var(--c-pink); }
-    .pricing .price { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 4.6rem); line-height: 1;
-      color: var(--c-cream); margin: var(--s-3) 0 var(--s-1); }
-    .pricing .price .cur { font-size: 0.5em; vertical-align: super; margin-right: 2px; }
-    .pricing .tag { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-pink); }
-    .pricing p { color: var(--c-cream); opacity: 0.85; max-width: 48ch; margin: var(--s-2) auto 0; }
-    .pricing .cta { margin-top: var(--s-4); }
+    /* ---- Pricing as an editorial invitation ---- */
+    .invite { text-align: center; border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--bg-alt); padding: clamp(var(--s-5), 6vw, var(--s-7)); margin-top: var(--s-2); }
+    .invite .wave { display: flex; justify-content: center; margin: 0 auto var(--s-3); height: 26px; }
+    .invite .eyebrow { display: inline-block; }
+    .invite-title { font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2rem); }
+    .invite-price { font-family: var(--font-display); font-size: clamp(3.4rem, 9vw, 5.5rem); line-height: 1;
+      color: var(--c-ink); margin: var(--s-2) 0 var(--s-1); }
+    .invite-price .cur { font-size: 0.4em; vertical-align: super; color: var(--c-pink-deep); margin-right: 2px; }
+    .invite-sub { color: var(--text-muted); font-size: 1.15rem; }
+    .invite-list { list-style: none; padding: 0; margin: var(--s-3) auto var(--s-4); max-width: 46ch;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-1) var(--s-4); }
+    .invite-list li { position: relative; padding-left: 24px; }
+    .invite-list li::before { content: '\2713'; position: absolute; left: 0; color: var(--c-mint-deep); font-weight: 700; }
 
     /* ---- FAQ — borderless, hairline dividers ---- */
     .faq { margin-top: var(--s-4); border-top: 1px solid var(--line); }
@@ -497,19 +515,23 @@
   </section>
 
   <!-- PRICING -->
-  <section class="section">
+  <section class="section" id="pricing">
     <div class="container">
-      <div class="col reveal center">
-        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Investment</p>
-        <h2>One project. One price. Everything included.</h2>
-      </div>
       <div class="col">
-        <div class="pricing reveal">
-          <p class="tag">Founding Pricing <span class="sticker">lock it in</span></p>
-          <div class="price"><span class="cur">$</span>1,297</div>
-          <p>A complete done-for-you podcast launch. Strategy, branding, the full tech setup, your first batch
-            of episodes, and the systems to run it all. The founding rate is locked in for early clients.</p>
-          <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn btn-cream">Submit an Inquiry</a><a href="#faq" class="textlink">Questions first? Read the FAQ &#8595;</a></div>
+        <div class="invite reveal">
+          <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <p class="eyebrow"><span class="heart">&#9829;</span>The investment</p>
+          <h3 class="invite-title">Done-for-you podcast launch</h3>
+          <div class="invite-price"><span class="cur">$</span>1,297 <span class="sticker">lock it in</span></div>
+          <p class="invite-sub">One project. Everything included.</p>
+          <ul class="invite-list">
+            <li>Strategy</li>
+            <li>Branding</li>
+            <li>Launch assets</li>
+            <li>Systems</li>
+            <li>Training</li>
+          </ul>
+          <div class="cta"><a href="https://airtable.com/app8DpJx3YXpj9SN3/pagvkC3QPvpknEQRC/form" target="_blank" rel="noopener" class="btn">Reserve your project &#8594;</a><a href="#faq" class="textlink">Questions first? Read the FAQ &#8595;</a></div>
         </div>
       </div>
     </div>
@@ -578,10 +600,11 @@
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Shows I've produced</p>
         <h2>Podcasts I've had the honor of producing.</h2>
       </div>
-      <div class="shows reveal">
-        <div class="show"><img class="art" src="/assets/img/show-brand-gravity.webp" width="447" height="447" loading="lazy" alt="The Brand Gravity Show with Kaye Putnam"></div>
-        <div class="show"><img class="art" src="/assets/img/show-jaw-talk.webp" width="600" height="600" loading="lazy" alt="Jaw Talk with Dr. Tiffany Lamberton"></div>
-        <div class="show"><img class="art" src="/assets/img/show-growth.webp" width="600" height="600" loading="lazy" alt="The Growth Show with Whitney Bateson"></div>
+      <div class="gallery reveal">
+        <span class="rings" aria-hidden="true"></span>
+        <img class="cover" src="/assets/img/show-brand-gravity.webp" width="447" height="447" loading="lazy" alt="The Brand Gravity Show with Kaye Putnam">
+        <img class="cover" src="/assets/img/show-jaw-talk.webp" width="600" height="600" loading="lazy" alt="Jaw Talk with Dr. Tiffany Lamberton">
+        <img class="cover" src="/assets/img/show-growth.webp" width="600" height="600" loading="lazy" alt="The Growth Show with Whitney Bateson">
       </div>
       <p class="reveal center" style="color: var(--text-muted); font-style: italic; margin-top: var(--s-4);">
         Every show I produce is built around a real strategy, then set up to keep running long after launch.</p>
@@ -625,6 +648,7 @@
   <section class="section band-ink overlap">
     <div class="container">
       <div class="col reveal center">
+        <span class="wave" aria-hidden="true" style="display:flex; justify-content:center; margin:0 auto var(--s-2);"><i></i><i></i><i></i><i></i><i></i><i></i></span>
         <p class="eyebrow"><span class="heart">&#9829;</span>A few things I believe</p>
         <h2>Podcasting is a long game.</h2>
         <p class="lede" style="margin: var(--s-2) auto 0;">Every episode becomes more valuable because it
