@@ -209,8 +209,8 @@
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); margin-top: var(--s-6); }
     @media (max-width: 720px) { .gallery { grid-template-columns: 1fr; gap: var(--s-5); max-width: 340px; margin-inline: auto; } }
     .gallery figure { margin: 0; text-align: center; }
-    .gallery .cover { width: 100%; aspect-ratio: 1; border-radius: var(--radius); object-fit: cover;
-      box-shadow: var(--shadow); display: block; }
+    .gallery .cover { width: 100%; aspect-ratio: 1 / 1; border-radius: var(--radius); object-fit: cover;
+      display: block; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
     .gallery figcaption { margin-top: var(--s-2); }
     .gallery .name { font-family: var(--font-display); font-size: 1.2rem; display: block; }
     .gallery .cat { color: var(--text-muted); font-size: 0.82rem; letter-spacing: 0.06em; }
@@ -259,16 +259,27 @@
     .faq details[open] summary::after { content: '\2212'; }
     .faq details p { margin: var(--s-2) 0 0; color: var(--text-muted); }
 
-    /* ---- Timeline (next steps) ---- */
-    .timeline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4); margin-top: var(--s-6); }
-    .timeline::before { content: ""; position: absolute; top: 28px; left: calc(100%/8); right: calc(100%/8); height: 2px; background: var(--line); z-index: 0; }
-    .tl-step { position: relative; z-index: 1; text-align: center; }
-    .tl-step .marker { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--c-ink); background: var(--bg);
-      display: grid; place-items: center; margin: 0 auto; font-family: var(--font-display); font-size: 1.5rem; color: var(--c-pink-deep); }
-    .tl-step h4 { margin: var(--s-2) 0 var(--s-1); font-size: 1.15rem; }
-    .tl-step p { color: var(--text-muted); margin: 0 auto; max-width: 26ch; font-size: 0.95rem; }
-    @media (max-width: 760px) { .timeline { grid-template-columns: 1fr 1fr; gap: var(--s-5); } .timeline::before { display: none; } }
-    @media (max-width: 440px) { .timeline { grid-template-columns: 1fr; } }
+    /* ---- Process — four-step journey, editorial ---- */
+    .process { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); margin-top: var(--s-7); }
+    /* whisper-thin connector that fades at both ends */
+    .process::before { content: ""; position: absolute; top: 33px; left: 9%; right: 9%; height: 1px; z-index: 0;
+      background: linear-gradient(90deg, transparent, rgba(29,30,38,0.12) 16%, rgba(29,30,38,0.12) 84%, transparent); }
+    .pstep { position: relative; z-index: 1; text-align: center; }
+    /* numbered marker with faint concentric signal rings */
+    .pstep .ring { width: 66px; height: 66px; margin: 0 auto; border-radius: 50%; display: grid; place-items: center;
+      background: var(--bg); border: 1px solid var(--line); font-family: var(--font-display); font-size: 1.45rem;
+      color: var(--c-ink); box-shadow: 0 0 0 6px rgba(158,0,83,0.04), 0 0 0 13px rgba(158,0,83,0.022); }
+    .pstep h4 { margin: var(--s-3) 0 var(--s-1); font-size: 1.15rem; }
+    .pstep p { color: var(--text-muted); margin: 0 auto; max-width: 22ch; font-size: 0.95rem; line-height: 1.55; }
+    /* final step: the destination — same size, ink fill, a soft pulse */
+    .pstep.dest .ring { background: var(--c-ink); color: var(--c-cream); border-color: var(--c-ink);
+      animation: pstep-pulse 4.5s ease-in-out infinite; }
+    @keyframes pstep-pulse { 0%, 100% { box-shadow: 0 0 0 6px rgba(158,0,83,0.07), 0 0 0 13px rgba(158,0,83,0.035); }
+      50% { box-shadow: 0 0 0 9px rgba(158,0,83,0.11), 0 0 0 19px rgba(158,0,83,0.05); } }
+    @media (prefers-reduced-motion: reduce) { .pstep.dest .ring { animation: none;
+      box-shadow: 0 0 0 6px rgba(158,0,83,0.08), 0 0 0 13px rgba(158,0,83,0.04); } }
+    @media (max-width: 760px) { .process { grid-template-columns: 1fr 1fr; gap: var(--s-6); } .process::before { display: none; } }
+    @media (max-width: 440px) { .process { grid-template-columns: 1fr; gap: var(--s-6); } }
 
     /* ---- grain + reveal + footer ---- */
     #grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04; mix-blend-mode: multiply;
@@ -784,15 +795,15 @@
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>What happens next</p>
         <h2>It starts with one honest conversation.</h2>
-        <p class="lede" style="margin: var(--s-2) auto 0;">Tell me about your business, where you are with
+        <p class="lede" style="margin: var(--s-3) auto 0;">Tell me about your business, where you are with
           podcasting, and what you want to build. I'll tell you honestly whether I think we're a fit, and if
           we are, we'll map out a plan built around your show, your audience, and your goals.</p>
       </div>
-      <div class="timeline reveal">
-        <div class="tl-step"><div class="marker">01</div><h4>Submit an inquiry</h4><p>You tell me about your business.</p></div>
-        <div class="tl-step"><div class="marker">02</div><h4>We get on a call</h4><p>And figure out if this is the right fit.</p></div>
-        <div class="tl-step"><div class="marker">03</div><h4>Your custom plan</h4><p>I put together a plan and timeline for your launch.</p></div>
-        <div class="tl-step"><div class="marker">04</div><h4>We build your show</h4><p>And you walk away ready to run it.</p></div>
+      <div class="process reveal">
+        <div class="pstep"><div class="ring">01</div><h4>Submit an inquiry</h4><p>You tell me about your business.</p></div>
+        <div class="pstep"><div class="ring">02</div><h4>We get on a call</h4><p>We figure out if it's the right fit.</p></div>
+        <div class="pstep"><div class="ring">03</div><h4>Your custom plan</h4><p>I map a plan and timeline for your launch.</p></div>
+        <div class="pstep dest"><div class="ring">04</div><h4>We build your show</h4><p>You walk away ready to run it.</p></div>
       </div>
     </div>
   </section>
