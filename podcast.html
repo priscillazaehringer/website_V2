@@ -156,29 +156,33 @@
     .tcard.mint { background: var(--c-mint); } .tcard.mint, .tcard.mint .c { color: var(--c-mint-deep); }
     .tcard.coral { background: var(--c-coral); } .tcard.coral, .tcard.coral .c { color: var(--c-coral-deep); }
 
-    /* ---- Hero ---- */
+    /* ---- Hero (typography-first, minimal) ---- */
     .hero { background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 60%, #FBE2D6 100%); }
-    .hero .container { max-width: 840px; text-align: center; padding-top: 130px; padding-bottom: var(--s-6); }
-    .hero-logo { width: clamp(230px, 34vw, 320px); height: auto; display: block; margin: 0 auto var(--s-3); }
+    .hero .container { max-width: 720px; text-align: center;
+      padding-top: clamp(120px, 17vh, 184px); padding-bottom: clamp(var(--s-7), 12vh, var(--s-8)); }
     .cta-logo { width: clamp(190px, 28vw, 270px); height: auto; display: block; margin: 0 auto var(--s-3); }
     .section-mark { width: clamp(250px, 33vw, 330px); height: auto; display: block; margin: 0 0 var(--s-3); }
-    .hero h1 { margin-inline: auto; max-width: 18ch; }
-    .hero .lede { margin: var(--s-3) auto 0; max-width: 54ch; color: var(--text); }
-    .hero .cta { margin-top: var(--s-4); }
-    .hero .micro { margin-top: var(--s-2); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-    .hero .stats { display: flex; justify-content: center; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-3); }
-    .stat { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-2) var(--s-3); box-shadow: var(--shadow); }
-    .stat .n { font-family: var(--font-display); font-size: 1.5rem; color: var(--c-pink-deep); line-height: 1.1; }
-    .stat .l { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
-    /* tighter, calmer hero on phones */
+    .hero-kicker { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+      color: var(--c-pink-deep); margin: 0 0 var(--s-3); }
+    .hero h1 { margin: 0 auto; max-width: 15ch; font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.05; }
+    .hero-lede { margin: var(--s-4) auto 0; max-width: 44ch; color: var(--text-muted);
+      font-size: clamp(1.1rem, 1.5vw, 1.3rem); line-height: 1.55; }
+    .hero-actions { margin-top: var(--s-6); display: flex; flex-direction: column; align-items: center; gap: var(--s-2); }
+    .hero-price { margin: 0; font-size: 0.95rem; letter-spacing: 0.04em; color: var(--text-muted); }
+    .hero-price strong { color: var(--c-ink); font-weight: 600; }
+    .hero-secondary { display: inline-block; margin-top: var(--s-4); }
+    .hero-proof { margin-top: var(--s-6); display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: center; gap: var(--s-2) var(--s-4); font-size: 0.78rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted); }
+    .hero-proof span { display: inline-flex; align-items: baseline; gap: 8px; }
+    .hero-proof b { font-family: var(--font-display); font-weight: 400; font-size: 1.4rem; line-height: 1;
+      color: var(--c-ink); letter-spacing: 0; }
+    .hero-proof .sep { width: 1px; height: 22px; background: var(--line); align-self: center; }
     @media (max-width: 560px) {
-      .hero .container { padding-top: 104px; padding-bottom: var(--s-5); }
-      .hero h1 { font-size: clamp(1.9rem, 8vw, 2.5rem); max-width: 15ch; }
-      .hero .lede { font-size: 1.05rem; margin-top: var(--s-2); }
-      .hero .stats { gap: 10px; }
-      .hero .stats .stat { flex: 1 1 0; min-width: 0; padding: var(--s-2); }
-      .hero .stat .n { font-size: 1.25rem; }
-      .hero .stat .l { font-size: 0.66rem; }
+      .hero .container { padding-top: 104px; }
+      .hero h1 { font-size: clamp(2rem, 9vw, 2.6rem); max-width: 14ch; }
+      .hero-lede { font-size: 1.05rem; }
+      .hero-proof .sep { display: none; }
     }
 
     /* waveform accent */
@@ -436,18 +440,20 @@
   <!-- HERO -->
   <section class="section hero" id="top">
     <div class="container">
-      <p class="eyebrow" style="display:inline-flex; align-items:center; gap:10px;">
-        <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-        <span>Done-for-you podcast strategy, setup &amp; launch</span></p>
+      <p class="hero-kicker">Done-for-you podcast launch</p>
       <h1>Build a podcast that becomes one of your best marketing
         <span class="sig">assets<svg viewBox="0 0 110 12" preserveAspectRatio="none"><path d="M3 8 C 28 2, 72 2, 107 6"/></svg></span>.</h1>
-      <p class="lede" style="margin-top: var(--s-3);">Everything you need to launch a podcast that builds trust,
-        creates content, and grows your business, in about four weeks.</p>
-      <p class="micro">Founding Pricing &bull; $1,297</p>
-      <div class="cta"><button type="button" class="btn" data-open-inquiry>Start Your Project</button><a href="#pricing" class="textlink">See what's included &#8595;</a></div>
-      <div class="stats">
-        <div class="stat"><div class="n">4 Weeks</div><div class="l">Kickoff &#8594; Launch</div></div>
-        <div class="stat"><div class="n">15+</div><div class="l">Content Assets Per Episode</div></div>
+      <p class="hero-lede">Everything you need to launch a podcast that builds trust, creates content, and grows
+        your business, in about four weeks.</p>
+      <div class="hero-actions">
+        <button type="button" class="btn btn-lg" data-open-inquiry>Start My Project</button>
+        <p class="hero-price">Founding pricing &middot; <strong>$1,297</strong></p>
+      </div>
+      <a class="hero-secondary textlink" href="#pricing">See what's included &#8595;</a>
+      <div class="hero-proof">
+        <span><b>4-week</b> launch</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span><b>15+</b> content assets per episode</span>
       </div>
     </div>
   </section>
