@@ -156,33 +156,43 @@
     .tcard.mint { background: var(--c-mint); } .tcard.mint, .tcard.mint .c { color: var(--c-mint-deep); }
     .tcard.coral { background: var(--c-coral); } .tcard.coral, .tcard.coral .c { color: var(--c-coral-deep); }
 
-    /* ---- Hero (typography-first, minimal) ---- */
-    .hero { background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 60%, #FBE2D6 100%); }
-    .hero .container { max-width: 720px; text-align: center;
-      padding-top: clamp(120px, 17vh, 184px); padding-bottom: clamp(var(--s-7), 12vh, var(--s-8)); }
+    /* ---- Hero (editorial, left-aligned, signal field) ---- */
+    .hero { position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #FBF6F1 0%, #F7EEE7 46%, #FBEAF1 100%); }
     .cta-logo { width: clamp(190px, 28vw, 270px); height: auto; display: block; margin: 0 auto var(--s-3); }
     .section-mark { width: clamp(250px, 33vw, 330px); height: auto; display: block; margin: 0 0 var(--s-3); }
+    /* faint concentric "signal" field bleeding off the right edge */
+    .hero-rings { position: absolute; top: 50%; right: -200px; transform: translateY(-50%);
+      width: 820px; height: 820px; border-radius: 50%; z-index: 0; pointer-events: none;
+      background: repeating-radial-gradient(circle, transparent 0 47px, rgba(158,0,83,0.07) 47px 49px);
+      -webkit-mask-image: radial-gradient(circle, #000 0 52%, transparent 74%);
+              mask-image: radial-gradient(circle, #000 0 52%, transparent 74%); }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-content { max-width: 600px;
+      padding-top: clamp(132px, 21vh, 210px); padding-bottom: clamp(var(--s-7), 14vh, var(--s-8)); }
     .hero-kicker { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
       color: var(--c-pink-deep); margin: 0 0 var(--s-3); }
-    .hero h1 { margin: 0 auto; max-width: 15ch; font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.05; }
-    .hero-lede { margin: var(--s-4) auto 0; max-width: 44ch; color: var(--text-muted);
+    .hero h1 { max-width: 13ch; font-size: clamp(2.7rem, 6vw, 4.6rem); line-height: 1.02; }
+    .hero-lede { margin-top: var(--s-6); max-width: 40ch; color: var(--text-muted);
       font-size: clamp(1.1rem, 1.5vw, 1.3rem); line-height: 1.55; }
-    .hero-actions { margin-top: var(--s-6); display: flex; flex-direction: column; align-items: center; gap: var(--s-2); }
-    .hero-price { margin: 0; font-size: 0.95rem; letter-spacing: 0.04em; color: var(--text-muted); }
-    .hero-price strong { color: var(--c-ink); font-weight: 600; }
-    .hero-secondary { display: inline-block; margin-top: var(--s-4); }
-    .hero-proof { margin-top: var(--s-6); display: flex; flex-wrap: wrap; align-items: center;
-      justify-content: center; gap: var(--s-2) var(--s-4); font-size: 0.78rem; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--text-muted); }
+    .hero-cta-row { margin-top: var(--s-7); display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+    .hero-proof { margin-top: var(--s-7); display: flex; flex-wrap: wrap; align-items: baseline;
+      gap: var(--s-2) var(--s-4); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); }
     .hero-proof span { display: inline-flex; align-items: baseline; gap: 8px; }
-    .hero-proof b { font-family: var(--font-display); font-weight: 400; font-size: 1.4rem; line-height: 1;
+    .hero-proof b { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; line-height: 1;
       color: var(--c-ink); letter-spacing: 0; }
-    .hero-proof .sep { width: 1px; height: 22px; background: var(--line); align-self: center; }
+    .hero-proof .sep { width: 1px; height: 18px; background: var(--line); align-self: center; }
+    @media (max-width: 860px) { .hero-rings { right: -45%; opacity: 0.7; } }
     @media (max-width: 560px) {
-      .hero .container { padding-top: 104px; }
-      .hero h1 { font-size: clamp(2rem, 9vw, 2.6rem); max-width: 14ch; }
-      .hero-lede { font-size: 1.05rem; }
+      .hero-rings { display: none; }
+      .hero-content { padding-top: 116px; max-width: none; }
+      .hero h1 { font-size: clamp(2.2rem, 9vw, 2.8rem); max-width: 16ch; }
+      .hero-lede { margin-top: var(--s-4); font-size: 1.05rem; }
+      .hero-cta-row { margin-top: var(--s-5); gap: var(--s-3); }
+      .hero-proof { margin-top: var(--s-6); }
       .hero-proof .sep { display: none; }
+      .hero-proof span { flex: 1 0 100%; }
     }
 
     /* waveform accent */
@@ -445,21 +455,25 @@
 
   <!-- HERO -->
   <section class="section hero" id="top">
+    <span class="hero-rings" aria-hidden="true"></span>
     <div class="container">
-      <p class="hero-kicker">Done-for-you podcast launch</p>
-      <h1>Build a podcast that becomes one of your best marketing
-        <span class="sig">assets<svg viewBox="0 0 110 12" preserveAspectRatio="none"><path d="M3 8 C 28 2, 72 2, 107 6"/></svg></span>.</h1>
-      <p class="hero-lede">Everything you need to launch a podcast that builds trust, creates content, and grows
-        your business, in about four weeks.</p>
-      <div class="hero-actions">
-        <button type="button" class="btn btn-lg" data-open-inquiry>Start My Project</button>
-        <p class="hero-price">Founding pricing &middot; <strong>$1,297</strong></p>
-      </div>
-      <a class="hero-secondary textlink" href="#pricing">See what's included &#8595;</a>
-      <div class="hero-proof">
-        <span><b>4-week</b> launch</span>
-        <span class="sep" aria-hidden="true"></span>
-        <span><b>15+</b> content assets per episode</span>
+      <div class="hero-content">
+        <p class="hero-kicker">The Signal &middot; Done-for-you podcast launch</p>
+        <h1>Build a podcast that becomes one of your best marketing
+          <span class="sig">assets.<svg viewBox="0 0 120 12" preserveAspectRatio="none"><path d="M3 8 C 30 2, 78 2, 117 6"/></svg></span></h1>
+        <p class="hero-lede">Everything you need to launch a podcast that builds trust, creates content, and
+          grows your business, in about four weeks.</p>
+        <div class="hero-cta-row">
+          <button type="button" class="btn btn-lg" data-open-inquiry>Start My Project</button>
+          <a class="textlink" href="#pricing">See what's included &#8595;</a>
+        </div>
+        <div class="hero-proof">
+          <span><b>4-week</b> launch</span>
+          <span class="sep" aria-hidden="true"></span>
+          <span><b>15+</b> content assets per episode</span>
+          <span class="sep" aria-hidden="true"></span>
+          <span>Founding pricing <b>$1,297</b></span>
+        </div>
       </div>
     </div>
   </section>
