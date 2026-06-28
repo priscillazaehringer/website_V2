@@ -261,7 +261,23 @@
     .cn-pulse.b { animation-delay: 2.5s; }
     @keyframes cn-pulse { 0% { transform: scale(0.5); opacity: 0.5; } 80% { opacity: 0.05; } 100% { transform: scale(2.5); opacity: 0; } }
     @media (prefers-reduced-motion: reduce) { .cn-pulse { display: none; } }
-    @media (max-width: 600px) { .cn-stage { font-size: 30px; } .cn-eyebrow { font-size: 21px; } .cn-hub-text { font-size: 28px; } }
+    /* On phones the radial diagram is too cramped: show a clean vertical list instead */
+    .signal-stages { display: none; }
+    @media (max-width: 600px) {
+      .constellation { display: none; }
+      .signal-stages { display: grid; gap: var(--s-3); list-style: none; position: relative;
+        max-width: 320px; margin: var(--s-5) auto 0; padding: 0 0 0 30px; }
+      .signal-stages::before { content: ""; position: absolute; left: 6px; top: 10px; bottom: 10px; width: 2px;
+        background: linear-gradient(var(--c-pink-deep), var(--c-pink), transparent); opacity: 0.6; }
+      .signal-stages li { position: relative; }
+      .signal-stages li::before { content: ""; position: absolute; left: -30px; top: 3px; width: 14px; height: 14px;
+        border-radius: 50%; background: var(--bg); border: 2px solid var(--c-pink); }
+      .signal-stages li:last-child::before { background: var(--c-pink-deep); border-color: var(--c-pink-deep); }
+      .s-eyebrow { display: block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+        font-weight: 700; color: var(--c-pink-deep); margin-bottom: 2px; }
+      .s-stage { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.15; }
+      .signal-stages li:last-child .s-stage { color: var(--c-pink-deep); }
+    }
 
     /* ---- Shows — matched gallery, uniform frames ---- */
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); margin-top: var(--s-6); align-items: start; }
@@ -701,6 +717,13 @@
           <text class="cn-hub-text" x="380" y="396" text-anchor="middle">The<tspan x="380" dy="21">Signal</tspan></text>
         </g>
       </svg>
+      <ol class="signal-stages reveal">
+        <li><span class="s-eyebrow">Podcast</span><span class="s-stage">One conversation</span></li>
+        <li><span class="s-eyebrow">Content</span><span class="s-stage">Months of visibility</span></li>
+        <li><span class="s-eyebrow">Visibility</span><span class="s-stage">Recognized expertise</span></li>
+        <li><span class="s-eyebrow">Trust</span><span class="s-stage">People trust you</span></li>
+        <li><span class="s-eyebrow">Clients</span><span class="s-stage">They reach out</span></li>
+      </ol>
       <p class="reveal center" style="max-width: 56ch; margin: var(--s-5) auto 0; color: var(--text-muted);">You're not
         chasing attention every week. You're building a signal that compounds.</p>
     </div>
