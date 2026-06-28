@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Brand Mood Board · Priscilla Zähringer</title>
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body);
+      font-size: var(--body); line-height: var(--lh-body); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4, .display { font-family: var(--font-display); font-weight: 400; font-synthesis: none;
+      line-height: var(--lh-tight); margin: 0; }
+    p { margin: 0; }
+
+    .wrap { max-width: var(--container); margin-inline: auto; padding: clamp(var(--s-4), 6vw, var(--s-8)) var(--s-3); }
+    .eyebrow { font-family: var(--font-body); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--c-pink-deep); margin: 0 0 var(--s-2); }
+    .script { font-family: var(--font-script); font-weight: 700; color: var(--c-pink-deep); line-height: 1; }
+    .muted { color: var(--text-muted); }
+
+    /* grain, same as the site */
+    #grain { position: fixed; inset: 0; z-index: 99; pointer-events: none; opacity: 0.04; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+    /* ---- Masthead ---- */
+    .masthead { position: relative; overflow: hidden; border-radius: var(--radius);
+      background: linear-gradient(135deg, #FBF6F1 0%, #F7EEE7 46%, #FBEAF1 100%);
+      padding: clamp(var(--s-5), 7vw, var(--s-8)) clamp(var(--s-4), 5vw, var(--s-7)); margin-bottom: var(--s-7); }
+    .masthead h1 { font-size: clamp(2.6rem, 6.5vw, 5rem); max-width: 16ch; }
+    .masthead .lede { margin-top: var(--s-3); max-width: 46ch; font-size: clamp(1.1rem, 1.5vw, 1.3rem); color: var(--text-muted); }
+    .masthead .rings { position: absolute; top: 50%; right: -120px; transform: translateY(-50%);
+      width: min(560px, 46vw); height: auto; z-index: 0; pointer-events: none; }
+    .hr-ring { fill: none; stroke: rgba(158,0,83,0.13); stroke-width: 1.4; }
+    .hr-ring.o { stroke: rgba(158,0,83,0.24); }
+    .hr-dot { fill: var(--c-pink-deep); opacity: 0.5; }
+    .masthead-in { position: relative; z-index: 1; }
+    .feel { display: flex; flex-wrap: wrap; gap: 10px; margin-top: var(--s-4); }
+    .feel span { font-family: var(--font-display); font-size: 1.1rem; background: rgba(255,255,255,0.6);
+      border: 1px solid var(--line); border-radius: 999px; padding: 7px 18px; }
+
+    /* ---- Section scaffolding ---- */
+    .block { margin-bottom: var(--s-8); }
+    .block > h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+    .block > .sub { margin: var(--s-1) 0 var(--s-4); max-width: 60ch; color: var(--text-muted); }
+    .rule { height: 1px; background: var(--line); border: 0; margin: 0 0 var(--s-5); }
+
+    /* ---- Color ---- */
+    .swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-3); }
+    @media (max-width: 820px) { .swatches { grid-template-columns: repeat(2, 1fr); } }
+    .sw { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .sw .chip { height: 120px; display: flex; align-items: flex-end; padding: 12px 14px; font-size: 0.8rem; font-weight: 600; }
+    .sw .meta { background: #fff; padding: 12px 14px; }
+    .sw .meta .nm { font-family: var(--font-display); font-size: 1.1rem; }
+    .sw .meta .hex { font-size: 0.8rem; letter-spacing: 0.04em; color: var(--text-muted); text-transform: uppercase; }
+    .sw .meta .role { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
+    .pairs { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); margin-top: var(--s-3); }
+    @media (max-width: 820px) { .pairs { grid-template-columns: 1fr; } }
+    .pair { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .pair .duo { display: grid; grid-template-columns: 1fr 1fr; height: 120px; }
+    .pair .duo span { display: flex; align-items: flex-end; padding: 10px 12px; font-size: 0.74rem; font-weight: 700; }
+    .pair .meta { background: #fff; padding: 12px 14px; }
+    .pair .meta .nm { font-family: var(--font-display); font-size: 1.1rem; }
+    .pair .meta .role { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+    .pair .meta .hex { font-size: 0.74rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; }
+
+    /* ---- Type ---- */
+    .type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+    @media (max-width: 820px) { .type-grid { grid-template-columns: 1fr; } }
+    .type-card { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: var(--s-4); }
+    .type-card .label { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--c-pink-deep); }
+    .type-card .big { margin: var(--s-2) 0 var(--s-1); line-height: 1; }
+    .type-card .specimen-serif { font-family: var(--font-display); font-size: 3.4rem; }
+    .type-card .specimen-sans { font-family: var(--font-body); font-size: 2.4rem; font-weight: 600; }
+    .type-card .specimen-script { font-family: var(--font-script); font-weight: 700; color: var(--c-pink-deep); font-size: 3.4rem; }
+    .type-card .glyphs { font-size: 1rem; color: var(--text-muted); margin-top: var(--s-2); word-spacing: 2px; }
+    .type-card .use { font-size: 0.85rem; color: var(--text-muted); margin-top: var(--s-2); }
+    .type-card .use b { color: var(--text); font-weight: 600; }
+
+    .hier { border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-alt); padding: clamp(var(--s-4), 4vw, var(--s-6)); margin-top: var(--s-3); }
+    .hier .d1 { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.04; max-width: 18ch; }
+    .hier .sig { position: relative; display: inline-block; }
+    .hier .sig svg { position: absolute; left: 0; bottom: -0.1em; width: 100%; height: 0.3em; overflow: visible; }
+    .hier .sig svg path { stroke: var(--c-pink); stroke-width: 5; fill: none; stroke-linecap: round; }
+    .hier .d2 { font-family: var(--font-display); font-size: 1.5rem; margin-top: var(--s-3); color: var(--c-pink-deep); }
+    .hier p { margin-top: var(--s-2); max-width: 56ch; color: var(--text-muted); }
+
+    /* ---- Motifs ---- */
+    .motifs { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-3); }
+    @media (max-width: 820px) { .motifs { grid-template-columns: repeat(2, 1fr); } }
+    .motif { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: var(--s-4);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s-3); min-height: 190px; text-align: center; }
+    .motif .cap { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--text-muted); }
+    .wave { display: inline-flex; align-items: flex-end; gap: 4px; height: 54px; }
+    .wave i { width: 6px; border-radius: 3px; background: var(--c-pink-deep); }
+    .wave i:nth-child(1){height:34%} .wave i:nth-child(2){height:72%} .wave i:nth-child(3){height:100%}
+    .wave i:nth-child(4){height:48%} .wave i:nth-child(5){height:84%} .wave i:nth-child(6){height:58%}
+    .sticker-demo { font-family: var(--font-script); font-weight: 700; color: var(--c-pink-deep); font-size: 2.4rem; transform: rotate(-5deg); }
+    .grain-chip { width: 100%; height: 70px; border-radius: var(--radius); background: var(--c-ink); position: relative; overflow: hidden; }
+    .grain-chip::after { content: ""; position: absolute; inset: 0; opacity: 0.12; mix-blend-mode: screen;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .mini-rings { width: 96px; height: 96px; }
+    .mr { fill: none; stroke: rgba(158,0,83,0.3); stroke-width: 2; }
+    .mr.o { stroke: var(--c-pink-deep); }
+
+    /* ---- UI kit ---- */
+    .kit { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--s-5); align-items: start; }
+    @media (max-width: 820px) { .kit { grid-template-columns: 1fr; } }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 1rem;
+      font-weight: 600; line-height: 1; padding: 15px 26px; border-radius: var(--radius);
+      border: 1.5px solid var(--c-ink); background: var(--c-ink); color: var(--c-cream); text-decoration: none; }
+    .btn.cream { background: var(--c-cream); color: var(--c-ink); }
+    .btn.ghost { background: transparent; color: var(--c-ink); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .textlink { color: var(--c-pink-deep); font-weight: 600; text-decoration: none; border-bottom: 2px solid currentColor; padding-bottom: 1px; }
+    .pill { display: inline-block; background: var(--c-pink-deep); color: var(--c-cream); font-size: 0.66rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 11px; border-radius: 999px; }
+    .chiprow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: var(--s-3); }
+    .chip { display: inline-flex; align-items: baseline; gap: 6px; background: #fff; border: 1px solid var(--line);
+      border-radius: 999px; padding: 8px 14px; font-size: 0.85rem; }
+    .chip b { font-family: var(--font-display); color: var(--c-pink-deep); }
+    .tone-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .tcard { border-radius: var(--radius); padding: var(--s-3); }
+    .tcard .c { font-weight: 700; font-size: 1.1rem; line-height: 1; }
+    .tcard p { font-size: 0.85rem; margin-top: 8px; }
+    .tcard.pink { background: var(--c-pink); color: var(--c-pink-deep); }
+    .tcard.mint { background: var(--c-mint); color: var(--c-mint-deep); }
+    .tcard.coral { background: var(--c-coral); color: var(--c-coral-deep); }
+    .kit .label { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--c-pink-deep); margin-bottom: var(--s-2); }
+    .kit-group + .kit-group { margin-top: var(--s-5); }
+
+    /* ---- Voice ---- */
+    .voice { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }
+    @media (max-width: 820px) { .voice { grid-template-columns: 1fr; } }
+    .vcol { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: var(--s-4); }
+    .vcol h3 { font-size: 1.2rem; margin-bottom: var(--s-2); }
+    .vcol.do h3 { color: var(--c-mint-deep); }
+    .vcol.dont h3 { color: var(--c-pink-deep); }
+    .vlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .vlist li { position: relative; padding-left: 26px; line-height: 1.5; }
+    .vcol.do .vlist li::before { content: "\2713"; position: absolute; left: 0; color: var(--c-mint-deep); font-weight: 700; }
+    .vcol.dont .vlist li::before { content: "\2715"; position: absolute; left: 0; color: var(--c-pink-deep); font-weight: 700; }
+    .pull { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.3; max-width: 24ch;
+      border-left: 3px solid var(--c-pink); padding-left: var(--s-3); margin-top: var(--s-4); }
+    .pull .em { color: var(--c-pink-deep); }
+
+    /* ---- Imagery ---- */
+    .img-strip { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: var(--s-3); align-items: start; }
+    @media (max-width: 820px) { .img-strip { grid-template-columns: 1fr 1fr; } }
+    .img-strip .ph { min-width: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--c-cream-soft); aspect-ratio: 1; }
+    .img-strip .ph.tall { aspect-ratio: 4 / 5; }
+    .img-strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-notes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: var(--s-3); }
+    .img-notes span { font-size: 0.85rem; color: var(--text-muted); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; background: #fff; }
+
+    .footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding-top: var(--s-5); border-top: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+  <div id="grain" aria-hidden="true"></div>
+
+  <div class="wrap">
+
+    <!-- MASTHEAD -->
+    <header class="masthead">
+      <svg class="rings" aria-hidden="true" viewBox="0 0 720 720">
+        <circle class="hr-ring o" cx="360" cy="360" r="348"/>
+        <circle class="hr-ring" cx="360" cy="360" r="282"/>
+        <circle class="hr-ring" cx="360" cy="360" r="214"/>
+        <circle class="hr-ring" cx="360" cy="360" r="146"/>
+        <circle class="hr-ring" cx="360" cy="360" r="78"/>
+        <circle class="hr-dot" cx="360" cy="360" r="6"/>
+      </svg>
+      <div class="masthead-in">
+        <p class="eyebrow">Brand mood board</p>
+        <h1>Calm, editorial, and quietly premium.</h1>
+        <p class="lede">A warm, paper-soft world with one confident voice. Meaning carried in ink,
+          mood carried in three soft accents, and a little marker-script warmth where it earns a smile.</p>
+        <div class="feel">
+          <span>Warm</span><span>Editorial</span><span>Calm</span><span>Premium</span>
+          <span>Human</span><span>Considered</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- COLOR -->
+    <section class="block">
+      <p class="eyebrow">01 · Color</p>
+      <h2>The "8 + 1" palette.</h2>
+      <p class="sub">Four neutrals form the backbone. Three accent hues, each in a light fill and a deep tone,
+        add mood without taking over. The rule of thumb: meaning in ink, mood in the accents.</p>
+      <hr class="rule">
+
+      <div class="swatches">
+        <div class="sw">
+          <div class="chip" style="background:#F7EEE7; color:#1D1E26;">Cream</div>
+          <div class="meta"><span class="nm">Cream</span><div class="hex">#F7EEE7</div><div class="role">Page background</div></div>
+        </div>
+        <div class="sw">
+          <div class="chip" style="background:#FBF6F1; color:#1D1E26;">Cream soft</div>
+          <div class="meta"><span class="nm">Cream Soft</span><div class="hex">#FBF6F1</div><div class="role">Alternate sections</div></div>
+        </div>
+        <div class="sw">
+          <div class="chip" style="background:#6A5E53; color:#F7EEE7;">Warm gray</div>
+          <div class="meta"><span class="nm">Warm Gray</span><div class="hex">#6A5E53</div><div class="role">Muted text, labels</div></div>
+        </div>
+        <div class="sw">
+          <div class="chip" style="background:#1D1E26; color:#F7EEE7;">Ink</div>
+          <div class="meta"><span class="nm">Ink</span><div class="hex">#1D1E26</div><div class="role">Text, dark sections, buttons</div></div>
+        </div>
+      </div>
+
+      <div class="pairs">
+        <div class="pair">
+          <div class="duo">
+            <span style="background:#FFC8E5; color:#9E0053;">Light</span>
+            <span style="background:#9E0053; color:#FFC8E5;">Deep</span>
+          </div>
+          <div class="meta"><span class="nm">Pink → Plum</span><div class="role">Signature accent · links &amp; emphasis</div><div class="hex">#FFC8E5 / #9E0053</div></div>
+        </div>
+        <div class="pair">
+          <div class="duo">
+            <span style="background:#B1DED9; color:#195750;">Light</span>
+            <span style="background:#195750; color:#B1DED9;">Deep</span>
+          </div>
+          <div class="meta"><span class="nm">Mint → Teal</span><div class="role">Cool note · checks, calm cards</div><div class="hex">#B1DED9 / #195750</div></div>
+        </div>
+        <div class="pair">
+          <div class="duo">
+            <span style="background:#F7CBBB; color:#8E2E0B;">Light</span>
+            <span style="background:#8E2E0B; color:#F7CBBB;">Deep</span>
+          </div>
+          <div class="meta"><span class="nm">Coral → Rust</span><div class="role">Warm support · promos, highlights</div><div class="hex">#F7CBBB / #8E2E0B</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPE -->
+    <section class="block">
+      <p class="eyebrow">02 · Typography</p>
+      <h2>One serif voice, one workhorse, one wink.</h2>
+      <p class="sub">Golden Batch carries every headline at a single weight. Hanken Grotesk does all the reading.
+        Caveat appears only as an accent word, never as a sentence.</p>
+      <hr class="rule">
+
+      <div class="type-grid">
+        <div class="type-card">
+          <span class="label">Display · 400 only</span>
+          <div class="big specimen-serif">Golden Batch</div>
+          <div class="glyphs">Aa Bb Gg Rr · 1 2 3 4 5 &amp; ?</div>
+          <p class="use"><b>Headlines and feature moments.</b> Elegant serif, regular weight only, never faux-bold.</p>
+        </div>
+        <div class="type-card">
+          <span class="label">Body · 100–900</span>
+          <div class="big specimen-sans">Hanken Grotesk</div>
+          <div class="glyphs">Aa Bb Gg Rr · 1 2 3 4 5 &amp; ?</div>
+          <p class="use"><b>Everything you read.</b> Body, labels, buttons, captions. Flexible weight range.</p>
+        </div>
+        <div class="type-card">
+          <span class="label">Script · accent only</span>
+          <div class="big specimen-script">all yours!</div>
+          <div class="glyphs script" style="font-size:1.4rem;">that's me! · let's go!</div>
+          <p class="use"><b>Accent words only.</b> A handwritten wink on stickers and notes. Never body text.</p>
+        </div>
+      </div>
+
+      <div class="hier">
+        <div class="d1">A headline that becomes one of your best
+          <span class="sig">assets.<svg viewBox="0 0 120 12" preserveAspectRatio="none"><path d="M3 8 C 30 2, 78 2, 117 6"/></svg></span></div>
+        <div class="d2">A deep-plum supporting line in the display face.</div>
+        <p>And body copy in Hanken Grotesk: calm, generous line height, warm gray for anything secondary.
+          The hierarchy does the work so the page can stay quiet.</p>
+      </div>
+    </section>
+
+    <!-- MOTIFS -->
+    <section class="block">
+      <p class="eyebrow">03 · Motifs &amp; texture</p>
+      <h2>The signal, made visible.</h2>
+      <p class="sub">A small kit of recurring marks: concentric "signal" rings, a soft waveform, a marker-script
+        sticker, the hand-drawn underline, and a whisper of paper grain over everything.</p>
+      <hr class="rule">
+
+      <div class="motifs">
+        <div class="motif">
+          <svg class="mini-rings" viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="mr o" cx="50" cy="50" r="46"/>
+            <circle class="mr" cx="50" cy="50" r="33"/>
+            <circle class="mr" cx="50" cy="50" r="20"/>
+            <circle cx="50" cy="50" r="4" fill="#9E0053"/>
+          </svg>
+          <span class="cap">Signal rings</span>
+        </div>
+        <div class="motif">
+          <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="cap">Waveform</span>
+        </div>
+        <div class="motif">
+          <span class="sticker-demo">all yours!</span>
+          <span class="cap">Script sticker</span>
+        </div>
+        <div class="motif">
+          <div class="grain-chip" aria-hidden="true"></div>
+          <span class="cap">Paper grain</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- UI KIT -->
+    <section class="block">
+      <p class="eyebrow">04 · Interface kit</p>
+      <h2>Quiet shapes, soft edges.</h2>
+      <p class="sub">A 4px radius, a single soft shadow, and tone-on-tone cards. Borders stay hairline.
+        One primary action per view, paired with a quiet text link.</p>
+      <hr class="rule">
+
+      <div class="kit">
+        <div>
+          <div class="kit-group">
+            <div class="label">Buttons &amp; links</div>
+            <div class="btn-row">
+              <a class="btn" href="#">Start my project</a>
+              <a class="btn cream" href="#">Book a call</a>
+              <a class="textlink" href="#">See what's included &#8595;</a>
+            </div>
+          </div>
+          <div class="kit-group">
+            <div class="label">Tags &amp; chips</div>
+            <div class="btn-row"><span class="pill">New</span></div>
+            <div class="chiprow">
+              <span class="chip"><b>Top 2.5%</b> client ranking</span>
+              <span class="chip"><b>4-week</b> launch</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="label">Tone-on-tone cards</div>
+          <div class="tone-cards">
+            <div class="tcard pink"><span class="c">&#10003;</span><p>Signature pink</p></div>
+            <div class="tcard mint"><span class="c">&#10003;</span><p>Cool mint</p></div>
+            <div class="tcard coral"><span class="c">&#10003;</span><p>Warm coral</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOICE -->
+    <section class="block">
+      <p class="eyebrow">05 · Voice &amp; tone</p>
+      <h2>Warm, direct, and unhurried.</h2>
+      <p class="sub">Plain language a real person would say out loud. Confident without hype.
+        Done with you, not at you.</p>
+      <hr class="rule">
+
+      <div class="voice">
+        <div class="vcol do">
+          <h3>We sound like</h3>
+          <ul class="vlist">
+            <li>Short, plain sentences with room to breathe.</li>
+            <li>"I'll build the foundation so you can focus on the conversations."</li>
+            <li>Specific proof over adjectives.</li>
+            <li>Periods and commas for rhythm.</li>
+          </ul>
+        </div>
+        <div class="vcol dont">
+          <h3>We avoid</h3>
+          <ul class="vlist">
+            <li>Em dashes for the dramatic pause.</li>
+            <li>Elevate, unlock, leverage, seamless, robust.</li>
+            <li>Hype and exclamation stacks.</li>
+            <li>Jargon that hides the meaning.</li>
+          </ul>
+        </div>
+      </div>
+
+      <blockquote class="pull">You bring the expertise. I'll build the <span class="em">podcast</span> around it,
+        launch it, and hand you the keys.</blockquote>
+    </section>
+
+    <!-- IMAGERY -->
+    <section class="block">
+      <p class="eyebrow">06 · Imagery</p>
+      <h2>Natural light, real work, soft frames.</h2>
+      <p class="sub">Warm, candid photography on cream-toned backgrounds. Square or 4:5 frames, gentle radius,
+        the soft shadow. Show covers and portraits sit in the same calm system.</p>
+      <hr class="rule">
+
+      <div class="img-strip">
+        <div class="ph tall"><img src="/assets/img/about.webp" alt="Portrait"></div>
+        <div class="ph"><img src="/assets/img/show-brand-gravity.webp" alt="The Brand Gravity Show"></div>
+        <div class="ph"><img src="/assets/img/show-growth.webp" alt="The Growth Show"></div>
+        <div class="ph"><img src="/assets/img/show-jaw-talk.webp" alt="Jaw Talk"></div>
+      </div>
+      <div class="img-notes">
+        <span>Warm natural light</span>
+        <span>Cream / paper backdrops</span>
+        <span>Candid, not stiff</span>
+        <span>Square &amp; 4:5 frames</span>
+        <span>4px radius + soft shadow</span>
+      </div>
+    </section>
+
+    <p class="footer">Brand mood board · built from the live token system ·
+      <span class="script" style="font-size:1.4rem;">Priscilla Zähringer</span></p>
+
+  </div>
+</body>
+</html>
