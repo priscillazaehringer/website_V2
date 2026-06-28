@@ -157,8 +157,9 @@
     .tcard.coral { background: var(--c-coral); } .tcard.coral, .tcard.coral .c { color: var(--c-coral-deep); }
 
     /* ---- Hero (editorial, left-aligned, signal field) ---- */
-    .hero { position: relative; overflow: hidden;
+    .hero { position: relative; overflow: hidden; padding-block: 0;
       background: linear-gradient(135deg, #FBF6F1 0%, #F7EEE7 46%, #FBEAF1 100%); }
+    .btn-price { opacity: 0.72; font-weight: 500; margin-left: 4px; }
     .cta-logo { width: clamp(190px, 28vw, 270px); height: auto; display: block; margin: 0 auto var(--s-3); }
     .section-mark { width: clamp(250px, 33vw, 330px); height: auto; display: block; margin: 0 0 var(--s-3); }
     /* faint concentric "signal" field, pulled in to overlap the composition */
@@ -171,7 +172,7 @@
       text-transform: uppercase; fill: rgba(29,30,38,0.26); }
     .hero .container { position: relative; z-index: 1; }
     .hero-content { max-width: 600px;
-      padding-top: clamp(132px, 21vh, 210px); padding-bottom: clamp(var(--s-7), 14vh, var(--s-8)); }
+      padding-top: clamp(112px, 13vh, 160px); padding-bottom: clamp(var(--s-6), 9vh, var(--s-7)); }
     .hero-kicker { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
       color: var(--c-pink-deep); margin: 0 0 var(--s-3); }
     .hero h1 { max-width: 13ch; font-size: clamp(2.7rem, 6vw, 4.6rem); line-height: 1.02; }
@@ -483,12 +484,10 @@
         <p class="hero-lede">You bring the expertise. I'll build the podcast around it, launch it, and hand you
           a system you can run long after we're done.</p>
         <div class="hero-cta-row">
-          <button type="button" class="btn btn-lg" data-open-inquiry>Start My Project</button>
+          <button type="button" class="btn btn-lg" data-open-inquiry>Start My Project <span class="btn-price">&#183; $1,297</span></button>
           <a class="textlink" href="#pricing">See what's included &#8595;</a>
         </div>
         <div class="hero-proof">
-          <span>Founding pricing <b>$1,297</b></span>
-          <span class="sep" aria-hidden="true"></span>
           <span><b>4-week</b> launch</span>
           <span class="sep" aria-hidden="true"></span>
           <span><b>15+</b> content assets per episode</span>
