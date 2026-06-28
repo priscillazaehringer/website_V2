@@ -161,12 +161,14 @@
       background: linear-gradient(135deg, #FBF6F1 0%, #F7EEE7 46%, #FBEAF1 100%); }
     .cta-logo { width: clamp(190px, 28vw, 270px); height: auto; display: block; margin: 0 auto var(--s-3); }
     .section-mark { width: clamp(250px, 33vw, 330px); height: auto; display: block; margin: 0 0 var(--s-3); }
-    /* faint concentric "signal" field bleeding off the right edge */
-    .hero-rings { position: absolute; top: 50%; right: -200px; transform: translateY(-50%);
-      width: 820px; height: 820px; border-radius: 50%; z-index: 0; pointer-events: none;
-      background: repeating-radial-gradient(circle, transparent 0 47px, rgba(158,0,83,0.07) 47px 49px);
-      -webkit-mask-image: radial-gradient(circle, #000 0 52%, transparent 74%);
-              mask-image: radial-gradient(circle, #000 0 52%, transparent 74%); }
+    /* faint concentric "signal" field, pulled in to overlap the composition */
+    .hero-rings { position: absolute; top: 50%; right: -100px; transform: translateY(-50%);
+      width: min(740px, 62vw); height: auto; z-index: 0; pointer-events: none; }
+    .hr-ring { fill: none; stroke: rgba(158,0,83,0.12); stroke-width: 1.4; }
+    .hr-ring.o { stroke: rgba(158,0,83,0.22); }
+    .hr-dot { fill: var(--c-pink-deep); opacity: 0.5; }
+    .hr-label { font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; fill: rgba(29,30,38,0.26); }
     .hero .container { position: relative; z-index: 1; }
     .hero-content { max-width: 600px;
       padding-top: clamp(132px, 21vh, 210px); padding-bottom: clamp(var(--s-7), 14vh, var(--s-8)); }
@@ -176,6 +178,8 @@
     .hero-lede { margin-top: var(--s-6); max-width: 40ch; color: var(--text-muted);
       font-size: clamp(1.1rem, 1.5vw, 1.3rem); line-height: 1.55; }
     .hero-cta-row { margin-top: var(--s-7); display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+    .hero-cta-row .textlink { font-size: 0.92rem; font-weight: 500; border-bottom-color: transparent; }
+    .hero-cta-row .textlink:hover { border-bottom-color: currentColor; }
     .hero-proof { margin-top: var(--s-7); display: flex; flex-wrap: wrap; align-items: baseline;
       gap: var(--s-2) var(--s-4); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--text-muted); }
@@ -264,18 +268,19 @@
     @media (max-width: 600px) { .build-step { grid-template-columns: 1fr; gap: 6px; } }
 
     /* ---- Repurpose — concentric signal rings (stages) ---- */
-    .constellation { display: block; width: 100%; height: auto; max-width: 660px; margin: var(--s-4) auto 0; overflow: visible; }
-    .cn-ring { fill: none; stroke: rgba(29,30,38,0.14); stroke-width: 1.2; }
+    .constellation { display: block; width: 100%; height: auto; max-width: 760px; margin: var(--s-5) auto 0; overflow: visible; }
+    .cn-ring { fill: none; stroke: rgba(29,30,38,0.13); stroke-width: 1.2; }
     .cn-ring.outer { stroke: var(--c-pink-deep); opacity: 0.45; }
-    .cn-spoke { stroke: rgba(29,30,38,0.06); stroke-width: 1; }
+    .cn-spoke { stroke: rgba(29,30,38,0.05); stroke-width: 1; }
     .cn-orbit { fill: var(--c-pink-deep); opacity: 0.8; }
-    .cn-mark { fill: var(--bg-alt); stroke: var(--c-ink); stroke-width: 1.5; }
+    .cn-mark { fill: var(--bg); stroke: var(--c-ink); stroke-width: 1.5; }
     .cn-mark.result { fill: var(--c-pink-deep); stroke: var(--c-pink-deep); }
-    .cn-eyebrow { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; fill: var(--c-pink-deep); }
-    .cn-stage { font-family: var(--font-display); font-size: 19px; fill: var(--text); }
+    .cn-eyebrow { font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: 0.14em; fill: var(--c-pink-deep); }
+    .cn-num { font-size: 1.05em; }
+    .cn-stage { font-family: var(--font-display); font-size: 22px; fill: var(--text); }
     .cn-hub { fill: var(--c-ink); }
     .cn-hub-ring { fill: none; stroke: var(--c-pink); stroke-width: 1.5; opacity: 0.7; }
-    .cn-hub-text { font-family: var(--font-display); font-size: 18px; fill: var(--c-cream); }
+    .cn-hub-text { font-family: var(--font-display); font-size: 21px; fill: var(--c-cream); }
     .cn-pulse { fill: none; stroke: var(--c-pink); stroke-width: 1.5; transform-box: fill-box; transform-origin: center;
       animation: cn-pulse 5s ease-out infinite; }
     .cn-pulse.b { animation-delay: 2.5s; }
@@ -455,24 +460,38 @@
 
   <!-- HERO -->
   <section class="section hero" id="top">
-    <span class="hero-rings" aria-hidden="true"></span>
+    <svg class="hero-rings" aria-hidden="true" viewBox="0 0 720 720">
+      <circle class="hr-ring o" cx="360" cy="360" r="348"/>
+      <circle class="hr-ring" cx="360" cy="360" r="282"/>
+      <circle class="hr-ring" cx="360" cy="360" r="214"/>
+      <circle class="hr-ring" cx="360" cy="360" r="146"/>
+      <circle class="hr-ring" cx="360" cy="360" r="78"/>
+      <circle class="hr-dot" cx="360" cy="360" r="6"/>
+      <g text-anchor="middle">
+        <text class="hr-label" x="360" y="36">Clients</text>
+        <text class="hr-label" x="360" y="102">Trust</text>
+        <text class="hr-label" x="360" y="170">Visibility</text>
+        <text class="hr-label" x="360" y="238">Content</text>
+        <text class="hr-label" x="360" y="306">Conversation</text>
+      </g>
+    </svg>
     <div class="container">
       <div class="hero-content">
-        <p class="hero-kicker">The Signal &middot; Done-for-you podcast launch</p>
+        <p class="hero-kicker">The Signal &middot; Strategy-first podcast launches</p>
         <h1>Build a podcast that becomes one of your best marketing
           <span class="sig">assets.<svg viewBox="0 0 120 12" preserveAspectRatio="none"><path d="M3 8 C 30 2, 78 2, 117 6"/></svg></span></h1>
-        <p class="hero-lede">Everything you need to launch a podcast that builds trust, creates content, and
-          grows your business, in about four weeks.</p>
+        <p class="hero-lede">You bring the expertise. I'll build the podcast around it, launch it, and hand you
+          a system you can run long after we're done.</p>
         <div class="hero-cta-row">
           <button type="button" class="btn btn-lg" data-open-inquiry>Start My Project</button>
           <a class="textlink" href="#pricing">See what's included &#8595;</a>
         </div>
         <div class="hero-proof">
+          <span>Founding pricing <b>$1,297</b></span>
+          <span class="sep" aria-hidden="true"></span>
           <span><b>4-week</b> launch</span>
           <span class="sep" aria-hidden="true"></span>
           <span><b>15+</b> content assets per episode</span>
-          <span class="sep" aria-hidden="true"></span>
-          <span>Founding pricing <b>$1,297</b></span>
         </div>
       </div>
     </div>
@@ -674,82 +693,82 @@
           becomes content, content becomes visibility, visibility becomes trust, until the right clients come
           to you.</p>
       </div>
-      <svg class="constellation reveal" viewBox="0 0 760 800" role="img"
-           aria-label="Concentric signal rings radiating from The Signal at the center: podcast (one conversation), content (months of visibility), visibility (recognized expertise), trust (people trust you), and clients (they reach out).">
+      <svg class="constellation reveal" viewBox="0 0 900 940" role="img"
+           aria-label="Concentric signal rings radiating outward from The Signal at the center, read 1 to 5: 1 podcast (one conversation), 2 content (months of visibility), 3 visibility (recognized expertise), 4 trust (people trust you), 5 clients (they reach out).">
         <!-- radial spokes -->
         <g>
-          <line class="cn-spoke" x1="380" y1="400" x2="690.5" y2="271.3"/>
-          <line class="cn-spoke" x1="380" y1="400" x2="508.7" y2="89.5"/>
-          <line class="cn-spoke" x1="380" y1="400" x2="251.3" y2="89.5"/>
-          <line class="cn-spoke" x1="380" y1="400" x2="69.5" y2="271.3"/>
-          <line class="cn-spoke" x1="380" y1="400" x2="69.5" y2="528.7"/>
-          <line class="cn-spoke" x1="380" y1="400" x2="251.3" y2="710.5"/>
-          <line class="cn-spoke" x1="380" y1="400" x2="508.7" y2="710.5"/>
-          <line class="cn-spoke" x1="380" y1="400" x2="690.5" y2="528.7"/>
+          <line class="cn-spoke" x1="450" y1="480" x2="839.9" y2="318.5"/>
+          <line class="cn-spoke" x1="450" y1="480" x2="611.5" y2="90.1"/>
+          <line class="cn-spoke" x1="450" y1="480" x2="288.5" y2="90.1"/>
+          <line class="cn-spoke" x1="450" y1="480" x2="60.1" y2="318.5"/>
+          <line class="cn-spoke" x1="450" y1="480" x2="60.1" y2="641.5"/>
+          <line class="cn-spoke" x1="450" y1="480" x2="288.5" y2="869.9"/>
+          <line class="cn-spoke" x1="450" y1="480" x2="611.5" y2="869.9"/>
+          <line class="cn-spoke" x1="450" y1="480" x2="839.9" y2="641.5"/>
         </g>
 
         <!-- stage rings -->
         <g>
-          <circle class="cn-ring" cx="380" cy="400" r="72"/>
-          <circle class="cn-ring" cx="380" cy="400" r="138"/>
-          <circle class="cn-ring" cx="380" cy="400" r="204"/>
-          <circle class="cn-ring" cx="380" cy="400" r="270"/>
-          <circle class="cn-ring outer" cx="380" cy="400" r="336"/>
+          <circle class="cn-ring" cx="450" cy="480" r="86"/>
+          <circle class="cn-ring" cx="450" cy="480" r="170"/>
+          <circle class="cn-ring" cx="450" cy="480" r="254"/>
+          <circle class="cn-ring" cx="450" cy="480" r="338"/>
+          <circle class="cn-ring outer" cx="450" cy="480" r="422"/>
         </g>
 
         <!-- broadcasting pulse from the source -->
         <g>
-          <circle class="cn-pulse" cx="380" cy="400" r="50"/>
-          <circle class="cn-pulse b" cx="380" cy="400" r="50"/>
+          <circle class="cn-pulse" cx="450" cy="480" r="58"/>
+          <circle class="cn-pulse b" cx="450" cy="480" r="58"/>
         </g>
 
         <!-- content pieces orbiting the content ring -->
         <g>
-          <circle class="cn-orbit" cx="514.6" cy="369.3" r="5"/>
-          <circle class="cn-orbit" cx="439.9" cy="275.7" r="5"/>
-          <circle class="cn-orbit" cx="320.1" cy="275.7" r="5"/>
-          <circle class="cn-orbit" cx="245.4" cy="369.3" r="5"/>
-          <circle class="cn-orbit" cx="272.2" cy="486.1" r="5"/>
-          <circle class="cn-orbit" cx="380" cy="538" r="5"/>
-          <circle class="cn-orbit" cx="487.8" cy="486.1" r="5"/>
+          <circle class="cn-orbit" cx="615.7" cy="442.2" r="5"/>
+          <circle class="cn-orbit" cx="523.7" cy="326.8" r="5"/>
+          <circle class="cn-orbit" cx="376.3" cy="326.8" r="5"/>
+          <circle class="cn-orbit" cx="284.3" cy="442.2" r="5"/>
+          <circle class="cn-orbit" cx="317.3" cy="586.2" r="5"/>
+          <circle class="cn-orbit" cx="450" cy="650" r="5"/>
+          <circle class="cn-orbit" cx="582.7" cy="586.2" r="5"/>
         </g>
 
-        <!-- stage markers + labels, read outward from the center -->
+        <!-- stage markers + labels, read 1 to 5 outward from the center -->
         <g text-anchor="middle">
-          <text class="cn-eyebrow" x="380" y="298">PODCAST</text>
-          <text class="cn-stage" x="380" y="314">One conversation</text>
-          <circle class="cn-mark" cx="380" cy="328" r="5"/>
+          <text class="cn-eyebrow" x="450" y="360"><tspan class="cn-num">1</tspan> &#183; PODCAST</text>
+          <text class="cn-stage" x="450" y="380">One conversation</text>
+          <circle class="cn-mark" cx="450" cy="394" r="5"/>
 
-          <text class="cn-eyebrow" x="380" y="232">CONTENT</text>
-          <text class="cn-stage" x="380" y="248">Months of visibility</text>
-          <circle class="cn-mark" cx="380" cy="262" r="5"/>
+          <text class="cn-eyebrow" x="450" y="276"><tspan class="cn-num">2</tspan> &#183; CONTENT</text>
+          <text class="cn-stage" x="450" y="296">Months of visibility</text>
+          <circle class="cn-mark" cx="450" cy="310" r="5"/>
 
-          <text class="cn-eyebrow" x="380" y="166">VISIBILITY</text>
-          <text class="cn-stage" x="380" y="182">Recognized expertise</text>
-          <circle class="cn-mark" cx="380" cy="196" r="5"/>
+          <text class="cn-eyebrow" x="450" y="192"><tspan class="cn-num">3</tspan> &#183; VISIBILITY</text>
+          <text class="cn-stage" x="450" y="212">Recognized expertise</text>
+          <circle class="cn-mark" cx="450" cy="226" r="5"/>
 
-          <text class="cn-eyebrow" x="380" y="100">TRUST</text>
-          <text class="cn-stage" x="380" y="116">People trust you</text>
-          <circle class="cn-mark" cx="380" cy="130" r="5"/>
+          <text class="cn-eyebrow" x="450" y="108"><tspan class="cn-num">4</tspan> &#183; TRUST</text>
+          <text class="cn-stage" x="450" y="128">People trust you</text>
+          <circle class="cn-mark" cx="450" cy="142" r="5"/>
 
-          <text class="cn-eyebrow" x="380" y="34">CLIENTS</text>
-          <text class="cn-stage" x="380" y="50" fill="#9E0053">They reach out</text>
-          <circle class="cn-mark result" cx="380" cy="64" r="6"/>
+          <text class="cn-eyebrow" x="450" y="24"><tspan class="cn-num">5</tspan> &#183; CLIENTS</text>
+          <text class="cn-stage" x="450" y="44" fill="#9E0053">They reach out</text>
+          <circle class="cn-mark result" cx="450" cy="58" r="6"/>
         </g>
 
         <!-- The Signal, the source -->
         <g>
-          <circle class="cn-hub-ring" cx="380" cy="400" r="58"/>
-          <circle class="cn-hub" cx="380" cy="400" r="50"/>
-          <text class="cn-hub-text" x="380" y="396" text-anchor="middle">The<tspan x="380" dy="21">Signal</tspan></text>
+          <circle class="cn-hub-ring" cx="450" cy="480" r="64"/>
+          <circle class="cn-hub" cx="450" cy="480" r="56"/>
+          <text class="cn-hub-text" x="450" y="476" text-anchor="middle">The<tspan x="450" dy="22">Signal</tspan></text>
         </g>
       </svg>
       <ol class="signal-stages reveal">
-        <li><span class="s-eyebrow">Podcast</span><span class="s-stage">One conversation</span></li>
-        <li><span class="s-eyebrow">Content</span><span class="s-stage">Months of visibility</span></li>
-        <li><span class="s-eyebrow">Visibility</span><span class="s-stage">Recognized expertise</span></li>
-        <li><span class="s-eyebrow">Trust</span><span class="s-stage">People trust you</span></li>
-        <li><span class="s-eyebrow">Clients</span><span class="s-stage">They reach out</span></li>
+        <li><span class="s-eyebrow">1 &#183; Podcast</span><span class="s-stage">One conversation</span></li>
+        <li><span class="s-eyebrow">2 &#183; Content</span><span class="s-stage">Months of visibility</span></li>
+        <li><span class="s-eyebrow">3 &#183; Visibility</span><span class="s-stage">Recognized expertise</span></li>
+        <li><span class="s-eyebrow">4 &#183; Trust</span><span class="s-stage">People trust you</span></li>
+        <li><span class="s-eyebrow">5 &#183; Clients</span><span class="s-stage">They reach out</span></li>
       </ol>
       <p class="reveal center" style="max-width: 56ch; margin: var(--s-5) auto 0; color: var(--text-muted);">You're not
         chasing attention every week. You're building a signal that compounds.</p>
@@ -938,29 +957,6 @@
       </div>
     </div>
   </section>
-
-  <!-- SIX MONTHS FROM NOW (vision) -->
-  <section class="section alt" id="vision">
-    <div class="container">
-      <div class="col reveal">
-        <p class="eyebrow"><span class="heart">&#9829;</span>Six months from now</p>
-        <h2>Picture opening Riverside once a week.</h2>
-        <p style="margin-top: var(--s-3); color: var(--text-muted);">Instead of wondering what to post, you sit
-          down and record one good conversation. That single episode goes to work everywhere:</p>
-        <ul class="checks">
-          <li>A LinkedIn post</li>
-          <li>A newsletter</li>
-          <li>An Instagram carousel</li>
-          <li>A referral tool</li>
-          <li>A sales conversation</li>
-          <li>Google traffic</li>
-        </ul>
-        <p class="quote-soft">Instead of chasing visibility, people keep discovering you, because your ideas
-          are already out there. That's your signal, and it only gets stronger.</p>
-      </div>
-    </div>
-  </section>
-
 
   <!-- FINAL CTA -->
   <section class="section band-ink overlap" id="book">
