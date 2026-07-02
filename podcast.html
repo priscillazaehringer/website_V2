@@ -70,7 +70,8 @@
     .nav-center a:hover { opacity: 1; }
     .nav-cta { justify-self: end; }
     .nav-pill { display: inline-block; background: var(--c-cream); color: var(--c-ink); font-weight: 600;
-      font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease; }
+      font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease;
+      border: none; cursor: pointer; font-family: var(--font-body); }
     .nav-pill:hover { opacity: 0.9; }
     @media (max-width: 760px) { .nav-center { display: none; } .nav { grid-template-columns: 1fr auto; } .promo-cta { display: none; } }
 
@@ -450,7 +451,7 @@
           <a href="/about.html">About</a>
         </nav>
         <div class="nav-cta">
-          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="nav-pill">Book a call</a>
+          <button type="button" class="nav-pill" data-open-inquiry>Start My Project</button>
         </div>
       </div>
     </header>
@@ -966,7 +967,7 @@
       <h2>Ready to build your show? <span class="sticker">let's go!</span></h2>
       <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 50ch;">Tell me about your business
         and what you want to build. If we're a fit, we'll map out your launch.</p>
-      <div class="cta" style="justify-content: center;"><button type="button" class="btn btn-cream btn-lg" data-open-inquiry>Start Your Project</button><a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="textlink">Or book a call &#8594;</a></div>
+      <div class="cta" style="justify-content: center;"><button type="button" class="btn btn-cream btn-lg" data-open-inquiry>Start Your Project</button></div>
     </div>
   </section>
 
@@ -997,7 +998,6 @@
             <a href="/podcast.html">The Signal</a>
             <a href="/ads.html">The Lead Stream</a>
             <a href="/#offer">Work with me</a>
-            <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a call</a>
           </div>
         </nav>
       </div>
