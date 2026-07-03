@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- noindex while staging. Remove this tag at launch. -->
   <meta name="robots" content="noindex, nofollow">
-  <title>Marketing Field Notes · A podcast by Priscilla Zaehringer</title>
-  <meta name="description" content="Marketing Field Notes: short, honest episodes on what's actually happening in marketing, from someone doing the work. 10–15 minutes. Launching August 2026.">
+  <title>Episode title · Marketing Field Notes · Priscilla Zaehringer</title>
+  <meta name="description" content="An episode of Marketing Field Notes — short, honest notes on what's actually happening in marketing, from someone doing the work.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Marketing Field Notes · A podcast by Priscilla Zaehringer">
-  <meta property="og:description" content="Short, honest episodes on what's actually happening in marketing, from someone doing the work. 10–15 minutes. Launching August 2026.">
-  <meta property="og:url" content="https://priscillazaehringer.com/field-notes">
+  <meta property="og:title" content="Episode title · Marketing Field Notes">
+  <meta property="og:description" content="Short, honest notes on what's actually happening in marketing, from someone doing the work.">
+  <meta property="og:url" content="https://priscillazaehringer.com/field-notes/episode-template">
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <style>
     /* ================================================================
@@ -212,18 +212,40 @@
     .reveal.in { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
-    /* ---- Episode cards (episode list on this page) ---- */
-    .eps { display:grid; gap:var(--s-2); margin-top:var(--s-4); }
-    .ep-card { display:grid; grid-template-columns:auto 1fr auto; gap:var(--s-3); align-items:center;
-      background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:var(--s-3) var(--s-4);
-      text-decoration:none; color:var(--c-ink); transition:transform .12s ease, box-shadow .15s ease; }
-    .ep-card:hover { transform:translateY(-1px); box-shadow:var(--shadow); }
-    .ep-card .n { font-family:var(--font-display); font-size:1.9rem; color:var(--c-pink-deep); line-height:1; }
-    .ep-card h3 { font-size:1.2rem; margin:0 0 3px; }
-    .ep-card p { color:var(--text-muted); margin:0; font-size:0.95rem; }
-    .ep-card .when { font-size:0.76rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); margin-top:6px; display:inline-block; }
-    .ep-card .go { flex:0 0 auto; font-weight:600; color:var(--c-pink-deep); white-space:nowrap; }
-    @media (max-width:620px){ .ep-card{ grid-template-columns:auto 1fr; } .ep-card .go{ grid-column:2; justify-self:start; } }
+    /* ---- Single episode page ---- */
+    .ep-hero .container { max-width: 860px; padding-top: 128px; padding-bottom: var(--s-6); }
+    .ep-kicker { display:inline-flex; align-items:center; gap:8px; font-size:0.72rem; font-weight:700;
+      letter-spacing:0.14em; text-transform:uppercase; color:var(--c-pink); text-decoration:none; margin-bottom:var(--s-3); }
+    .ep-kicker:hover { opacity:0.85; }
+    .ep-hero h1 { color:var(--c-cream); max-width:24ch; }
+    .ep-meta { display:flex; flex-wrap:wrap; gap:var(--s-2) var(--s-3); margin-top:var(--s-3);
+      color:var(--c-cream); opacity:0.85; font-size:0.9rem; }
+    .ep-meta .dot { color:var(--c-pink); margin-right:6px; }
+    .player-embed { margin-top:var(--s-4); border-radius:var(--radius); overflow:hidden;
+      background:rgba(247,238,231,0.06); border:1px solid rgba(247,238,231,0.16); }
+    .player-embed iframe { display:block; width:100%; border:0; }
+    .player-ph { display:grid; place-items:center; text-align:center; padding:var(--s-5) var(--s-3); color:var(--c-cream); }
+    .player-ph .k { font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--c-pink); margin-bottom:8px; display:block; }
+    .ep-body { max-width:760px; }
+    .ep-body h2 { margin-top:var(--s-5); }
+    .ep-body > h2:first-child { margin-top:0; }
+    .timestamps { list-style:none; margin:var(--s-2) 0 0; padding:0; }
+    .timestamps li { display:grid; grid-template-columns:70px 1fr; gap:var(--s-2); padding:9px 0; border-bottom:1px solid var(--line); }
+    .timestamps .ts { font-family:var(--font-display); color:var(--c-pink-deep); font-size:1.05rem; }
+    .ep-links { list-style:none; margin:var(--s-2) 0 0; padding:0; }
+    .ep-links li { padding:6px 0 6px 24px; position:relative; }
+    .ep-links li::before { content:'\2192'; position:absolute; left:0; color:var(--c-pink-deep); }
+    .transcript { margin-top:var(--s-5); border-top:1px solid var(--line); padding-top:var(--s-3); }
+    .transcript > summary { cursor:pointer; font-family:var(--font-display); font-size:1.3rem; list-style:none; }
+    .transcript > summary::-webkit-details-marker { display:none; }
+    .transcript > summary::after { content:' \25BE'; color:var(--c-pink-deep); }
+    .transcript[open] > summary::after { content:' \25B4'; }
+    .transcript .tx { margin-top:var(--s-3); color:var(--text-muted); }
+    .ep-nav { display:flex; justify-content:space-between; gap:var(--s-3); margin-top:var(--s-6);
+      border-top:1px solid var(--line); padding-top:var(--s-4); flex-wrap:wrap; }
+    .ep-nav a { text-decoration:none; font-weight:600; color:var(--c-ink); }
+    .ep-nav a:hover { color:var(--c-pink-deep); }
+    .ep-nav .disabled { opacity:0.4; pointer-events:none; }
   </style>
 </head>
 <body>
@@ -257,135 +279,86 @@
     </header>
   </div>
 
-  <!-- ===================== HERO ===================== -->
-  <section class="show-hero" id="top">
+  <!-- ===================== EPISODE HERO ===================== -->
+  <!-- ================================================================
+       EPISODE TEMPLATE. To publish an episode:
+         1. Copy this file to /field-notes/<episode-slug>.html
+         2. Replace every value marked EXAMPLE (title, meta, notes, links).
+         3. Paste your real player embed where the placeholder box is.
+         4. Add a matching card to the "Episodes" list on /field-notes.html
+       ================================================================ -->
+  <section class="show-hero ep-hero" id="top">
     <div class="container">
-      <div class="hero-grid">
-        <div class="reveal">
-          <div class="cover-frame">
-            <span class="block" aria-hidden="true"></span>
-            <img class="cover-art" src="/assets/img/marketing-field-notes.webp" width="1000" height="1000"
-                 alt="Marketing Field Notes — a podcast by Priscilla Zaehringer">
-          </div>
+      <div class="reveal">
+        <a class="ep-kicker" href="/field-notes.html">&#9829; Marketing Field Notes</a>
+        <h1>EXAMPLE &mdash; The ad test that saved a $4k launch</h1>
+        <div class="ep-meta">
+          <span><span class="dot">&#9679;</span>Episode 01</span>
+          <span><span class="dot">&#9679;</span>August 12, 2026</span>
+          <span><span class="dot">&#9679;</span>14 min</span>
         </div>
-        <div class="reveal">
-          <span class="coming-badge">&#9829; Launching August 2026</span>
-          <h1>Marketing Field Notes</h1>
-          <p class="tagline">What's actually happening in marketing — from someone doing the work.</p>
-          <div class="hero-meta">
-            <span><span class="dot">&#9679;</span> Short episodes</span>
-            <span><span class="dot">&#9679;</span> 10–15 minutes</span>
-            <span><span class="dot">&#9679;</span> No bro-marketing</span>
-          </div>
 
-          <form class="notify-form" id="notify" action="https://app.kit.com/forms/KIT_FORM_ID/subscriptions" method="post" target="_blank">
-            <!-- TODO: replace KIT_FORM_ID with the Marketing Field Notes Kit form id -->
-            <input type="email" name="email_address" placeholder="Your email" required aria-label="Email address">
-            <button type="submit" class="btn btn-cream">Get notified</button>
-          </form>
-          <p class="notify-note">Be first to know when episode one drops. No spam, unsubscribe anytime.</p>
-
-          <p class="sub-label">Follow along</p>
-          <div class="subscribe-row">
-            <a class="sub-btn soon" aria-disabled="true"><span class="ic">&#63743;</span> Apple Podcasts <span style="opacity:.7">· soon</span></a>
-            <a class="sub-btn soon" aria-disabled="true"><span class="ic">&#127911;</span> Spotify <span style="opacity:.7">· soon</span></a>
-            <a class="sub-btn soon" aria-disabled="true"><span class="ic">&#9654;</span> YouTube <span style="opacity:.7">· soon</span></a>
+        <!-- ===== PLAYER =====
+             Paste ONE embed below and delete the .player-ph placeholder.
+             Spotify:  <iframe src="https://open.spotify.com/embed/episode/EPISODE_ID" height="152" loading="lazy" allow="clipboard-write; encrypted-media; picture-in-picture"></iframe>
+             Apple:    <iframe src="https://embed.podcasts.apple.com/us/podcast/SLUG/idPODCAST_ID?i=EPISODE_ID" height="175" loading="lazy" allow="autoplay *; encrypted-media *"></iframe>
+             YouTube:  <iframe src="https://www.youtube.com/embed/VIDEO_ID" height="315" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        -->
+        <div class="player-embed">
+          <div class="player-ph">
+            <div><span class="k">Player</span>Paste your Spotify, Apple, or YouTube embed here.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== EPISODES ===================== -->
-  <section class="section alt" id="episodes">
-    <div class="container">
-      <div class="col reveal">
-        <p class="eyebrow"><span class="heart">&#9829;</span>Episodes</p>
-        <h2>Where the episodes will live.</h2>
-        <p class="subhead">The first one drops August 2026. As they go live, every episode gets its own page &mdash;
-          player, show notes, and links &mdash; and shows up here, newest first.</p>
-        <!-- EPISODE LIST: duplicate one .ep-card per episode (newest on top). Replace the EXAMPLE card below. -->
-        <div class="eps">
-          <a class="ep-card" href="/field-notes/episode-template.html">
-            <span class="n">01</span>
-            <span>
-              <h3>Example episode &mdash; preview the layout</h3>
-              <p>This card links to the episode template so you can see how a single episode page looks.</p>
-              <span class="when">Preview &middot; August 2026</span>
-            </span>
-            <span class="go">Listen &rarr;</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== WHAT IT IS ===================== -->
-  <section class="section" id="about">
-    <div class="container">
-      <div class="col reveal">
-        <p class="eyebrow"><span class="heart">&#9829;</span>What it is</p>
-        <h2>Marketing, minus the theory.</h2>
-        <p class="subhead">A behind-the-scenes look at the work, as it actually happens.</p>
-        <p>Most marketing advice comes from people who stopped doing the work years ago. This is the opposite.
-          I'm in ad accounts, funnels, launches, and podcasts every single week — and Marketing Field Notes is
-          where I share what's working, what's not, and what I'm changing my mind about right now.</p>
-        <p>Quick, honest episodes you can listen to on a coffee break and actually use the same day. No guru
-          energy, no recycled hot takes. Just field notes from someone still in it.</p>
-        <p class="lead-state" style="margin-top: var(--s-4);">If you run your own marketing, this is the
-          show that <span class="em">makes you feel less alone in it</span>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== WHAT TO EXPECT ===================== -->
-  <section class="section alt">
-    <div class="container">
-      <div class="col reveal">
-        <p class="eyebrow"><span class="heart">&#9829;</span>What we'll get into</p>
-        <h2>The stuff I'm actually thinking about.</h2>
-        <ul class="topic-list">
-          <li class="topic"><span class="ic">&#128227;</span><span><span class="t">What's working in ads this month</span>
-            <p class="s">Real tests, real numbers, and the changes I'd make before you spend another dollar.</p></span></li>
-          <li class="topic"><span class="ic">&#129522;</span><span><span class="t">Funnels &amp; launches, unfiltered</span>
-            <p class="s">What held up under pressure, what quietly broke, and why.</p></span></li>
-          <li class="topic"><span class="ic">&#127908;</span><span><span class="t">Content &amp; podcasting that compounds</span>
-            <p class="s">Turning one idea into months of visibility without burning out.</p></span></li>
-          <li class="topic"><span class="ic">&#9881;&#65039;</span><span><span class="t">Systems behind the scenes</span>
-            <p class="s">The tools, automations, and small decisions that keep it all moving.</p></span></li>
-          <li class="topic"><span class="ic">&#128173;</span><span><span class="t">What I'm changing my mind about</span>
-            <p class="s">The advice I used to give that I don't anymore — and what replaced it.</p></span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== MEET THE HOST ===================== -->
+  <!-- ===================== EPISODE BODY ===================== -->
   <section class="section">
     <div class="container">
-      <div class="host-grid">
-        <div class="reveal"><div class="host-photo" role="img" aria-label="Portrait of Priscilla Zaehringer"></div></div>
-        <div class="reveal">
-          <p class="eyebrow"><span class="heart">&#9829;</span>Your host</p>
-          <h2>Hi, I'm Priscilla.</h2>
-          <p style="margin-top: var(--s-3);">I'm a 1:1 marketing partner for online business owners — the person
-            who runs the strategy, the ads, the launches, and the systems behind them. I don't teach from theory;
-            I teach from whatever I shipped last week.</p>
-          <p>Marketing Field Notes is my way of thinking out loud, so you get the real version of this work —
-            not the polished-after-the-fact version.</p>
-          <p style="margin-bottom:0;"><a href="/about.html" class="proj-link" style="font-weight:600; border-bottom:2px solid currentColor; text-decoration:none;">More about me →</a></p>
-        </div>
+      <div class="ep-body col reveal">
+        <h2>Show notes</h2>
+        <p>EXAMPLE &mdash; A short paragraph on what this episode is about: the story, the takeaway, and who it's
+          for. Write it like you'd tell a friend what this one is really about.</p>
+        <p>EXAMPLE &mdash; An optional second paragraph to set up the key idea or the moment worth sticking around for.</p>
+
+        <h2>In this episode</h2>
+        <ul class="timestamps">
+          <li><span class="ts">00:00</span><span>EXAMPLE &mdash; Cold open / the setup</span></li>
+          <li><span class="ts">02:15</span><span>EXAMPLE &mdash; What was actually going wrong</span></li>
+          <li><span class="ts">06:40</span><span>EXAMPLE &mdash; The one change that moved it</span></li>
+          <li><span class="ts">11:20</span><span>EXAMPLE &mdash; What I'd do differently next time</span></li>
+        </ul>
+
+        <h2>Links &amp; mentions</h2>
+        <ul class="ep-links">
+          <li><a href="#">EXAMPLE &mdash; a tool, article, or account mentioned</a></li>
+          <li><a href="#">EXAMPLE &mdash; another link</a></li>
+        </ul>
+
+        <details class="transcript">
+          <summary>Read the transcript</summary>
+          <div class="tx">
+            <p>EXAMPLE &mdash; paste the full transcript here. Optional, but great for accessibility and SEO.</p>
+          </div>
+        </details>
+
+        <nav class="ep-nav" aria-label="Episode navigation">
+          <a class="disabled" href="#">&larr; Previous episode</a>
+          <a href="/field-notes.html">All episodes</a>
+          <a class="disabled" href="#">Next episode &rarr;</a>
+        </nav>
       </div>
     </div>
   </section>
 
-  <!-- ===================== FINAL NOTIFY (Ink band) ===================== -->
-  <section class="section band-ink center">
+  <!-- ===================== SUBSCRIBE (Ink band) ===================== -->
+  <section class="section band-ink center" id="notify">
     <div class="container col reveal">
-      <p class="eyebrow"><span class="heart">&#9829;</span>Launching August 2026</p>
-      <h2>Be there for episode one.</h2>
-      <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 46ch;">Drop your email and I'll let
-        you know the moment the first episode is live. That's it — just a heads up when it drops.</p>
+      <p class="eyebrow"><span class="heart">&#9829;</span>Marketing Field Notes</p>
+      <h2>Never miss an episode.</h2>
+      <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 46ch;">New field notes every couple of
+        weeks. Follow wherever you listen, or get an email the moment each one drops.</p>
       <form class="notify-form" action="https://app.kit.com/forms/KIT_FORM_ID/subscriptions" method="post" target="_blank">
         <!-- TODO: replace KIT_FORM_ID with the Marketing Field Notes Kit form id -->
         <input type="email" name="email_address" placeholder="Your email" required aria-label="Email address">
