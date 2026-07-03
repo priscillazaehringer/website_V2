@@ -75,6 +75,27 @@
     .nav-pill:hover { opacity: 0.9; }
     @media (max-width: 760px) { .nav-center { display: none; } .nav { grid-template-columns: 1fr auto; } .promo-cta { display: none; } }
 
+    /* ---- Nav dropdowns ---- */
+    .nav-item { position: relative; display: inline-flex; align-items: center; }
+    .nav-link { font: inherit; font-size: 0.95rem; font-weight: 500; color: var(--c-cream); opacity: 0.9;
+      background: none; border: 0; padding: 0; margin: 0; cursor: pointer; display: inline-flex; align-items: center;
+      gap: 5px; white-space: nowrap; line-height: 1; }
+    .nav-item:hover .nav-link, .nav-item:focus-within .nav-link, .nav-link:hover { opacity: 1; }
+    .nav-item:has(.submenu a[aria-current]) .nav-link { opacity: 1; }
+    .nav-link .caret { font-size: 0.6em; transition: transform 0.18s ease; }
+    .nav-item:hover .caret, .nav-item:focus-within .caret, .nav-item.open .caret { transform: rotate(180deg); }
+    .submenu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
+      min-width: 190px; background: var(--c-cream); border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 6px; display: flex; flex-direction: column; gap: 2px;
+      opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.16s ease, transform 0.16s ease; z-index: 60; }
+    .submenu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+    .nav-item:hover .submenu, .nav-item:focus-within .submenu, .nav-item.open .submenu {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(4px); }
+    .submenu a { display: block; color: var(--c-ink); opacity: 1; font-size: 0.92rem; font-weight: 500;
+      padding: 9px 12px; border-radius: 3px; white-space: nowrap; }
+    .submenu a:hover { background: var(--c-pink); color: var(--c-ink); }
+    .submenu a[aria-current] { color: var(--c-pink-deep); font-weight: 700; }
+
     /* ---- Buttons ---- */
     .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 1rem;
       font-weight: 600; line-height: 1; padding: 16px 28px; border-radius: var(--radius);
@@ -445,10 +466,19 @@
       <div class="container nav">
         <a href="/" class="wordmark">Priscilla Zaehringer</a>
         <nav class="nav-center">
-          <a href="/#offer">Work with me</a>
-          <a href="/ads.html">Meta Ads</a>
-          <a href="/podcast.html">Podcast Production</a>
-          <a href="/field-notes.html">Field Notes</a>
+          <div class="nav-item has-sub">
+            <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <div class="submenu" role="menu">
+              <a role="menuitem" href="/ads.html">Meta Ads</a>
+              <a role="menuitem" href="/podcast.html">Podcast Production</a>
+            </div>
+          </div>
+          <div class="nav-item has-sub">
+            <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Field Notes <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <div class="submenu" role="menu">
+              <a role="menuitem" href="/field-notes.html">Listen to the podcast</a>
+            </div>
+          </div>
           <a href="/about.html">About</a>
         </nav>
         <div class="nav-cta">
@@ -1105,6 +1135,24 @@
     const hdr = document.getElementById('hdr');
     const onScroll = () => hdr.classList.toggle('stuck', window.scrollY > 60);
     onScroll(); addEventListener('scroll', onScroll, { passive: true });
+
+    // Nav dropdowns: click to toggle (hover/focus handled in CSS), Escape + outside-click to close.
+    const subs = document.querySelectorAll('.nav-item.has-sub');
+    subs.forEach(item => {
+      const btn = item.querySelector('.nav-link');
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      item.addEventListener('keyup', (e) => {
+        if (e.key === 'Escape') { item.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+      });
+    });
+    document.addEventListener('click', () => subs.forEach(item => {
+      item.classList.remove('open');
+      item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
+    }));
     document.getElementById('yr').textContent = new Date().getFullYear();
 
     /* Inquiry drawer: open from any [data-open-inquiry], close via overlay / button / Esc */
