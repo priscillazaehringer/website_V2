@@ -212,23 +212,49 @@
     .reveal.in { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
-    /* ---- Single episode page ---- */
-    .ep-hero .container { max-width: 860px; padding-top: 128px; padding-bottom: var(--s-6); }
-    .ep-kicker { display:inline-flex; align-items:center; gap:8px; font-size:0.72rem; font-weight:700;
-      letter-spacing:0.14em; text-transform:uppercase; color:var(--c-pink); text-decoration:none; margin-bottom:var(--s-3); }
-    .ep-kicker:hover { opacity:0.85; }
-    .ep-hero h1 { color:var(--c-cream); max-width:24ch; }
-    .ep-meta { display:flex; flex-wrap:wrap; gap:var(--s-2) var(--s-3); margin-top:var(--s-3);
-      color:var(--c-cream); opacity:0.85; font-size:0.9rem; }
-    .ep-meta .dot { color:var(--c-pink); margin-right:6px; }
-    .player-embed { margin-top:var(--s-4); border-radius:var(--radius); overflow:hidden;
-      background:rgba(247,238,231,0.06); border:1px solid rgba(247,238,231,0.16); }
+    /* ---- Episode cards (episode list on this page) ---- */
+    .eps { display:grid; gap:var(--s-2); margin-top:var(--s-4); }
+    .ep-card { display:grid; grid-template-columns:auto 1fr auto; gap:var(--s-3); align-items:center;
+      background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:var(--s-3) var(--s-4);
+      text-decoration:none; color:var(--c-ink); transition:transform .12s ease, box-shadow .15s ease; }
+    .ep-card:hover { transform:translateY(-1px); box-shadow:var(--shadow); }
+    .ep-card .n { font-family:var(--font-display); font-size:1.9rem; color:var(--c-pink-deep); line-height:1; }
+    .ep-card h3 { font-size:1.2rem; margin:0 0 3px; }
+    .ep-card p { color:var(--text-muted); margin:0; font-size:0.95rem; }
+    .ep-card .when { font-size:0.76rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); margin-top:6px; display:inline-block; }
+    .ep-card .go { flex:0 0 auto; font-weight:600; color:var(--c-pink-deep); white-space:nowrap; }
+    @media (max-width:620px){ .ep-card{ grid-template-columns:auto 1fr; } .ep-card .go{ grid-column:2; justify-self:start; } }
+
+    /* ================= Shownotes / blog layout (single episode) ================= */
+    .post { position:relative; z-index:1; padding-bottom: var(--s-8); }
+    .post-grid { display:grid; grid-template-columns:minmax(0,1fr) 330px; gap:clamp(var(--s-4),4vw,var(--s-6));
+      align-items:start; padding-top:118px; }
+    @media (max-width:940px){ .post-grid { grid-template-columns:1fr; padding-top:104px; } .post-side { order:2; } }
+
+    .post-eyebrow { margin:0; font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--c-pink-deep); }
+    .post-eyebrow .sep { color:var(--c-coral-deep); margin:0 8px; }
+    .post-title { margin-top:var(--s-2); }
+    .post-figure { position:relative; margin:var(--s-4) 0 0; }
+    .post-figure .main { display:block; width:100%; height:auto; border-radius:var(--radius); }
+    .post-badge { position:absolute; right:-10px; bottom:-10px; width:clamp(88px,13vw,122px); height:auto;
+      border-radius:50%; border:4px solid var(--c-cream); box-shadow:var(--shadow); }
+
+    .player-embed { margin-top:var(--s-4); border-radius:var(--radius); overflow:hidden; background:#fff; border:1px solid var(--line); box-shadow:var(--shadow); }
     .player-embed iframe { display:block; width:100%; border:0; }
-    .player-ph { display:grid; place-items:center; text-align:center; padding:var(--s-5) var(--s-3); color:var(--c-cream); }
-    .player-ph .k { font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--c-pink); margin-bottom:8px; display:block; }
-    .ep-body { max-width:760px; }
-    .ep-body h2 { margin-top:var(--s-5); }
-    .ep-body > h2:first-child { margin-top:0; }
+    .player-ph { display:grid; place-items:center; text-align:center; padding:var(--s-5) var(--s-3); }
+    .player-ph .k { display:block; font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--c-pink-deep); margin-bottom:8px; }
+    .player-ph .sub { color:var(--text-muted); font-size:0.92rem; }
+    .platforms { margin:var(--s-3) 0 0; text-align:center; font-family:var(--font-display); font-size:1.3rem; }
+    .platforms a { color:var(--c-pink-deep); text-decoration:none; }
+    .platforms a:hover { text-decoration:underline; }
+    .platforms .sep { color:var(--c-coral-deep); margin:0 10px; }
+
+    .post-body { margin-top:var(--s-5); max-width:66ch; }
+    .post-body p { margin:0 0 var(--s-3); }
+    .post-body .lead-in { font-weight:700; }
+    .post-body h2 { margin:var(--s-5) 0 var(--s-2); }
+    .post-body h3 { color:var(--c-mint-deep); font-family:var(--font-display); font-size:1.3rem; margin:var(--s-4) 0 var(--s-1); }
+
     .timestamps { list-style:none; margin:var(--s-2) 0 0; padding:0; }
     .timestamps li { display:grid; grid-template-columns:70px 1fr; gap:var(--s-2); padding:9px 0; border-bottom:1px solid var(--line); }
     .timestamps .ts { font-family:var(--font-display); color:var(--c-pink-deep); font-size:1.05rem; }
@@ -246,6 +272,37 @@
     .ep-nav a { text-decoration:none; font-weight:600; color:var(--c-ink); }
     .ep-nav a:hover { color:var(--c-pink-deep); }
     .ep-nav .disabled { opacity:0.4; pointer-events:none; }
+
+    /* ---- Sidebar ---- */
+    .post-side { display:flex; flex-direction:column; gap:var(--s-4); position:sticky; top:92px; }
+    @media (max-width:940px){ .post-side { position:static; } }
+    .card { background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:var(--s-4); }
+    .side-bio { text-align:center; }
+    .side-bio .ph { width:118px; height:118px; margin:0 auto var(--s-2);
+      background:url('/assets/img/about.webp') center 20%/cover; border-radius:46% 54% 52% 48% / 54% 46% 54% 46%; }
+    .side-bio h3 { font-size:1.4rem; }
+    .side-bio p { color:var(--text-muted); font-size:0.92rem; margin:var(--s-1) 0 var(--s-2); }
+    .textlink { color:var(--c-pink-deep); font-weight:600; text-decoration:none; border-bottom:2px solid var(--c-pink); }
+    .textlink:hover { border-color:var(--c-pink-deep); }
+    .promo-card { border-radius:var(--radius); padding:var(--s-4); text-align:center; }
+    .promo-card.coral { background:var(--c-coral); } .promo-card.mint { background:var(--c-mint); }
+    .promo-card h4 { font-family:var(--font-display); font-size:1.35rem; color:var(--c-ink); }
+    .promo-card p { color:var(--c-ink); opacity:0.82; font-size:0.9rem; margin:var(--s-1) 0 var(--s-3); }
+    .btn-sm { display:inline-block; background:var(--c-ink); color:var(--c-cream); font-weight:700; font-size:0.72rem;
+      letter-spacing:0.08em; text-transform:uppercase; padding:11px 18px; border-radius:999px; text-decoration:none; }
+    .btn-sm:hover { opacity:0.9; }
+    .promo-img { display:flex; flex-direction:column; justify-content:flex-end; min-height:148px; border-radius:var(--radius);
+      padding:var(--s-4); text-decoration:none; background:linear-gradient(160deg,var(--c-pink),var(--c-coral)); }
+    .promo-img .k { font-family:var(--font-display); font-size:1.55rem; color:var(--c-ink); line-height:1.05; }
+    .promo-img .t { font-weight:600; color:var(--c-ink); font-size:0.9rem; margin-top:4px; }
+    .faves h4, .newsletter h4 { font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--c-pink-deep); margin:0 0 var(--s-2); }
+    .fave { display:grid; grid-template-columns:auto 1fr; gap:var(--s-2); padding:var(--s-2) 0; border-top:1px solid var(--line); align-items:baseline; }
+    .fave:first-of-type { border-top:0; padding-top:0; }
+    .fave .num { font-family:var(--font-display); font-size:1.3rem; color:var(--c-coral-deep); line-height:1; }
+    .fave h5 { font-family:var(--font-display); font-size:1.1rem; color:var(--c-pink-deep); margin:0; }
+    .fave p { margin:2px 0 0; font-size:0.84rem; color:var(--text-muted); }
+    .newsletter .notify-form { margin-top:var(--s-1); flex-wrap:wrap; }
+    .newsletter .notify-form input { flex:1 1 100%; }
   </style>
 </head>
 <body>
@@ -279,91 +336,127 @@
     </header>
   </div>
 
-  <!-- ===================== EPISODE HERO ===================== -->
   <!-- ================================================================
-       EPISODE TEMPLATE. To publish an episode:
+       EPISODE / SHOWNOTES TEMPLATE. To publish an episode:
          1. Copy this file to /field-notes/<episode-slug>.html
-         2. Replace every value marked EXAMPLE (title, meta, notes, links).
-         3. Paste your real player embed where the placeholder box is.
-         4. Add a matching card to the "Episodes" list on /field-notes.html
+         2. Replace every value marked EXAMPLE (title, date, image, notes, links).
+         3. Paste your real player embed where the .player-ph placeholder is.
+         4. Fill the sidebar "favorite tools" with your real picks (optional).
+         5. Add a matching card to the "Episodes" list on /field-notes.html
        ================================================================ -->
-  <section class="show-hero ep-hero" id="top">
+  <section class="post" id="top">
     <div class="container">
-      <div class="reveal">
-        <a class="ep-kicker" href="/field-notes.html">&#9829; Marketing Field Notes</a>
-        <h1>EXAMPLE &mdash; The ad test that saved a $4k launch</h1>
-        <div class="ep-meta">
-          <span><span class="dot">&#9679;</span>Episode 01</span>
-          <span><span class="dot">&#9679;</span>August 12, 2026</span>
-          <span><span class="dot">&#9679;</span>14 min</span>
-        </div>
+      <div class="post-grid">
 
-        <!-- ===== PLAYER =====
-             Paste ONE embed below and delete the .player-ph placeholder.
-             Spotify:  <iframe src="https://open.spotify.com/embed/episode/EPISODE_ID" height="152" loading="lazy" allow="clipboard-write; encrypted-media; picture-in-picture"></iframe>
-             Apple:    <iframe src="https://embed.podcasts.apple.com/us/podcast/SLUG/idPODCAST_ID?i=EPISODE_ID" height="175" loading="lazy" allow="autoplay *; encrypted-media *"></iframe>
-             YouTube:  <iframe src="https://www.youtube.com/embed/VIDEO_ID" height="315" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
-        -->
-        <div class="player-embed">
-          <div class="player-ph">
-            <div><span class="k">Player</span>Paste your Spotify, Apple, or YouTube embed here.</div>
+        <!-- ===================== MAIN COLUMN ===================== -->
+        <article class="post-main reveal">
+          <p class="post-eyebrow">Marketing Field Notes <span class="sep">&bull;</span> August 12, 2026</p>
+          <h1 class="post-title">EXAMPLE &mdash; The ad test that saved a $4k launch</h1>
+
+          <figure class="post-figure">
+            <img class="main" src="/assets/img/about.webp" width="510" height="637" alt="EXAMPLE — episode feature image">
+            <img class="post-badge" src="/assets/img/marketing-field-notes.webp" width="1000" height="1000" alt="Marketing Field Notes">
+          </figure>
+
+          <!-- ===== PLAYER =====
+               Paste ONE embed below and delete the .player-ph placeholder.
+               Spotify:  <iframe src="https://open.spotify.com/embed/episode/EPISODE_ID" height="152" loading="lazy" allow="clipboard-write; encrypted-media; picture-in-picture"></iframe>
+               Apple:    <iframe src="https://embed.podcasts.apple.com/us/podcast/SLUG/idPODCAST_ID?i=EPISODE_ID" height="175" loading="lazy" allow="autoplay *; encrypted-media *"></iframe>
+               YouTube:  <iframe src="https://www.youtube.com/embed/VIDEO_ID" height="315" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+          -->
+          <div class="player-embed">
+            <div class="player-ph"><div><span class="k">Player</span><span class="sub">Paste your Spotify, Apple, or YouTube embed here.</span></div></div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+          <p class="platforms"><a href="#">Apple Podcasts</a><span class="sep">|</span><a href="#">Spotify</a><span class="sep">|</span><a href="#">YouTube</a></p>
 
-  <!-- ===================== EPISODE BODY ===================== -->
-  <section class="section">
-    <div class="container">
-      <div class="ep-body col reveal">
-        <h2>Show notes</h2>
-        <p>EXAMPLE &mdash; A short paragraph on what this episode is about: the story, the takeaway, and who it's
-          for. Write it like you'd tell a friend what this one is really about.</p>
-        <p>EXAMPLE &mdash; An optional second paragraph to set up the key idea or the moment worth sticking around for.</p>
+          <div class="post-body">
+            <p><span class="lead-in">EXAMPLE &mdash;</span> Open with the hook: the story or the stakes that make someone
+              want to hear this one. Two or three sentences that pull them in before you get into the how.</p>
+            <p>A second paragraph to set the scene &mdash; what was going on, what you were trying to solve, and why it
+              matters for anyone running their own marketing.</p>
 
-        <h2>In this episode</h2>
-        <ul class="timestamps">
-          <li><span class="ts">00:00</span><span>EXAMPLE &mdash; Cold open / the setup</span></li>
-          <li><span class="ts">02:15</span><span>EXAMPLE &mdash; What was actually going wrong</span></li>
-          <li><span class="ts">06:40</span><span>EXAMPLE &mdash; The one change that moved it</span></li>
-          <li><span class="ts">11:20</span><span>EXAMPLE &mdash; What I'd do differently next time</span></li>
-        </ul>
+            <h2>You have to decide it's worth doing</h2>
+            <p>EXAMPLE &mdash; The first big idea of the episode. Keep it in your voice: plain, honest, specific. Short
+              paragraphs read better than long ones.</p>
 
-        <h2>Links &amp; mentions</h2>
-        <ul class="ep-links">
-          <li><a href="#">EXAMPLE &mdash; a tool, article, or account mentioned</a></li>
-          <li><a href="#">EXAMPLE &mdash; another link</a></li>
-        </ul>
+            <h3>Give yourself permission first</h3>
+            <p>EXAMPLE &mdash; A supporting point under that idea. Use these accent sub-headings to break the post into
+              skimmable moments.</p>
 
-        <details class="transcript">
-          <summary>Read the transcript</summary>
-          <div class="tx">
-            <p>EXAMPLE &mdash; paste the full transcript here. Optional, but great for accessibility and SEO.</p>
+            <h2>In this episode</h2>
+            <ul class="timestamps">
+              <li><span class="ts">00:00</span><span>EXAMPLE &mdash; Cold open / the setup</span></li>
+              <li><span class="ts">02:15</span><span>EXAMPLE &mdash; What was actually going wrong</span></li>
+              <li><span class="ts">06:40</span><span>EXAMPLE &mdash; The one change that moved it</span></li>
+              <li><span class="ts">11:20</span><span>EXAMPLE &mdash; What I'd do differently next time</span></li>
+            </ul>
+
+            <h2>Links &amp; mentions</h2>
+            <ul class="ep-links">
+              <li><a href="#">EXAMPLE &mdash; a tool, article, or account mentioned</a></li>
+              <li><a href="#">EXAMPLE &mdash; another link</a></li>
+            </ul>
+
+            <details class="transcript">
+              <summary>Read the transcript</summary>
+              <div class="tx"><p>EXAMPLE &mdash; paste the full transcript here. Optional, but great for accessibility and SEO.</p></div>
+            </details>
+
+            <nav class="ep-nav" aria-label="Episode navigation">
+              <a class="disabled" href="#">&larr; Previous episode</a>
+              <a href="/field-notes.html">All episodes</a>
+              <a class="disabled" href="#">Next episode &rarr;</a>
+            </nav>
           </div>
-        </details>
+        </article>
 
-        <nav class="ep-nav" aria-label="Episode navigation">
-          <a class="disabled" href="#">&larr; Previous episode</a>
-          <a href="/field-notes.html">All episodes</a>
-          <a class="disabled" href="#">Next episode &rarr;</a>
-        </nav>
+        <!-- ===================== SIDEBAR ===================== -->
+        <aside class="post-side reveal">
+          <div class="card side-bio">
+            <div class="ph" role="img" aria-label="Priscilla Zaehringer"></div>
+            <h3>Hey there, I'm Priscilla</h3>
+            <p>I'm a 1:1 marketing partner for online business owners &mdash; the person who runs the strategy, the ads,
+              the launches, and the systems behind them. Field Notes is where I think out loud about the work.</p>
+            <a class="textlink" href="/about.html">More about me &rarr;</a>
+          </div>
+
+          <div class="promo-card coral">
+            <h4>Want your marketing handled?</h4>
+            <p>One partner for strategy, ads, launches, and the systems behind them.</p>
+            <a class="btn-sm" href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a clarity call</a>
+          </div>
+
+          <a class="promo-img" href="/ads.html">
+            <span class="k">The Lead Stream</span>
+            <span class="t">Done-for-you Meta ads &rarr;</span>
+          </a>
+
+          <div class="card faves">
+            <h4>A few of my favorite tools</h4>
+            <!-- EXAMPLE — swap these for your real recommendations / affiliate links -->
+            <div class="fave"><span class="num">01</span><div><h5>EXAMPLE Tool</h5><p>One line on why you love it.</p></div></div>
+            <div class="fave"><span class="num">02</span><div><h5>EXAMPLE Tool</h5><p>One line on why you love it.</p></div></div>
+            <div class="fave"><span class="num">03</span><div><h5>EXAMPLE Tool</h5><p>One line on why you love it.</p></div></div>
+            <div class="fave"><span class="num">04</span><div><h5>EXAMPLE Tool</h5><p>One line on why you love it.</p></div></div>
+          </div>
+
+          <div class="promo-card mint">
+            <h4>Want to start a podcast?</h4>
+            <p>I build the whole thing and hand you a system simple enough to run yourself.</p>
+            <a class="btn-sm" href="/podcast.html">See Podcast Production</a>
+          </div>
+
+          <div class="card newsletter" id="notify">
+            <h4>Get new episodes by email</h4>
+            <form class="notify-form" action="https://app.kit.com/forms/KIT_FORM_ID/subscriptions" method="post" target="_blank">
+              <!-- TODO: replace KIT_FORM_ID with the Marketing Field Notes Kit form id -->
+              <input type="email" name="email_address" placeholder="Your email" required aria-label="Email address">
+              <button type="submit" class="btn btn-cream">Get notified</button>
+            </form>
+          </div>
+        </aside>
+
       </div>
-    </div>
-  </section>
-
-  <!-- ===================== SUBSCRIBE (Ink band) ===================== -->
-  <section class="section band-ink center" id="notify">
-    <div class="container col reveal">
-      <p class="eyebrow"><span class="heart">&#9829;</span>Marketing Field Notes</p>
-      <h2>Never miss an episode.</h2>
-      <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 46ch;">New field notes every couple of
-        weeks. Follow wherever you listen, or get an email the moment each one drops.</p>
-      <form class="notify-form" action="https://app.kit.com/forms/KIT_FORM_ID/subscriptions" method="post" target="_blank">
-        <!-- TODO: replace KIT_FORM_ID with the Marketing Field Notes Kit form id -->
-        <input type="email" name="email_address" placeholder="Your email" required aria-label="Email address">
-        <button type="submit" class="btn btn-cream">Get notified</button>
-      </form>
     </div>
   </section>
 
