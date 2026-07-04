@@ -97,7 +97,7 @@
     .btn-cream { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
 
     /* ================= HERO (dark, echoes the cover) ================= */
-    .show-hero { background: linear-gradient(158deg, #1D1E26 0%, #2A2140 52%, #3B2333 100%); color: var(--c-cream); }
+    .show-hero { background: linear-gradient(158deg, #1D1E26 0%, #34122A 52%, #47102C 100%); color: var(--c-cream); }
     .show-hero .container { padding-top: 132px; padding-bottom: var(--s-8); }
     .hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(var(--s-4), 5vw, var(--s-7)); align-items: center; }
     @media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; gap: var(--s-5); } }
@@ -108,10 +108,10 @@
       background: var(--c-pink); border-radius: var(--radius); }
     .cover-art { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; border-radius: 10px;
       box-shadow: var(--shadow); background: /* placeholder until real cover art is added */
-      linear-gradient(158deg, #2A2140, #3B2333); }
+      linear-gradient(158deg, #34122A, #47102C); }
     .cover-ph { position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 10px; box-shadow: var(--shadow);
       display: grid; place-content: center; text-align: center; color: var(--c-cream);
-      background: linear-gradient(158deg, #2A2140, #3B2333); }
+      background: linear-gradient(158deg, #34122A, #47102C); }
     .cover-ph .k { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-pink); margin-bottom: 6px; }
     .cover-ph .n { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3rem); line-height: 0.92; }
 
@@ -257,7 +257,11 @@
     @media (max-width:820px){ .arch-grid { grid-template-columns:1fr 1fr; } }
     @media (max-width:560px){ .arch-grid { grid-template-columns:1fr; } }
     .arch-card { text-decoration:none; color:var(--c-ink); }
-    .arch-card img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:var(--radius); display:block; }
+        .arch-thumb { aspect-ratio:3/2; border-radius:var(--radius); display:grid; place-items:center; position:relative; overflow:hidden; }
+    .arch-thumb .num { font-family:var(--font-display); font-size:2.8rem; color:var(--c-ink); line-height:1; }
+    .arch-thumb .lab { position:absolute; top:10px; left:12px; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--c-ink); opacity:0.62; }
+    .arch-thumb.t-pink { background:var(--c-pink); } .arch-thumb.t-mint { background:var(--c-mint); } .arch-thumb.t-coral { background:var(--c-coral); }
+    img.arch-thumb { width:100%; height:100%; object-fit:cover; }
     .arch-card .date { display:block; margin:var(--s-2) 0 4px; color:var(--c-pink-deep); font-size:0.76rem;
       font-weight:700; letter-spacing:0.07em; text-transform:uppercase; }
     .arch-card h3 { font-size:1.25rem; margin:0; transition:color .12s ease; }
@@ -320,32 +324,32 @@
       <!-- EXAMPLE episodes — replace with real ones. Each links to /field-notes/<slug>.html -->
       <div class="arch-grid reveal" id="ep-grid">
         <a class="arch-card" href="/field-notes/episode-template.html" data-title="Episode 06: Why six-figure offers stall before scale">
-          <img src="/assets/img/marketing-field-notes.webp" width="1000" height="1000" alt="" loading="lazy">
+          <div class="arch-thumb t-pink"><span class="lab">Marketing Field Notes</span><span class="num">06</span></div>
           <span class="date">September 9, 2026</span>
           <h3>Episode 06: Why six-figure offers stall before scale</h3>
         </a>
         <a class="arch-card" href="/field-notes/episode-template.html" data-title="Episode 05: The $50 test that fixed a dead funnel">
-          <img src="/assets/img/marketing-field-notes.webp" width="1000" height="1000" alt="" loading="lazy">
+          <div class="arch-thumb t-coral"><span class="lab">Marketing Field Notes</span><span class="num">05</span></div>
           <span class="date">September 2, 2026</span>
           <h3>Episode 05: The $50 test that fixed a dead funnel</h3>
         </a>
         <a class="arch-card" href="/field-notes/episode-template.html" data-title="Episode 04: When to kill an ad, and when to wait">
-          <img src="/assets/img/marketing-field-notes.webp" width="1000" height="1000" alt="" loading="lazy">
+          <div class="arch-thumb t-mint"><span class="lab">Marketing Field Notes</span><span class="num">04</span></div>
           <span class="date">August 26, 2026</span>
           <h3>Episode 04: When to kill an ad, and when to wait</h3>
         </a>
         <a class="arch-card" href="/field-notes/episode-template.html" data-title="Episode 03: Your email list is your real audience">
-          <img src="/assets/img/marketing-field-notes.webp" width="1000" height="1000" alt="" loading="lazy">
+          <div class="arch-thumb t-pink"><span class="lab">Marketing Field Notes</span><span class="num">03</span></div>
           <span class="date">August 19, 2026</span>
           <h3>Episode 03: Your email list is your real audience</h3>
         </a>
         <a class="arch-card" href="/field-notes/episode-template.html" data-title="Episode 02: The launch debrief nobody posts">
-          <img src="/assets/img/marketing-field-notes.webp" width="1000" height="1000" alt="" loading="lazy">
+          <div class="arch-thumb t-coral"><span class="lab">Marketing Field Notes</span><span class="num">02</span></div>
           <span class="date">August 12, 2026</span>
           <h3>Episode 02: The launch debrief nobody posts</h3>
         </a>
         <a class="arch-card" href="/field-notes/episode-template.html" data-title="Episode 01: Why I stopped chasing virality">
-          <img src="/assets/img/marketing-field-notes.webp" width="1000" height="1000" alt="" loading="lazy">
+          <div class="arch-thumb t-mint"><span class="lab">Marketing Field Notes</span><span class="num">01</span></div>
           <span class="date">August 5, 2026</span>
           <h3>Episode 01: Why I stopped chasing virality</h3>
         </a>

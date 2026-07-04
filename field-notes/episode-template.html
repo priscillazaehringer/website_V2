@@ -97,7 +97,7 @@
     .btn-cream { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
 
     /* ================= HERO (dark, echoes the cover) ================= */
-    .show-hero { background: linear-gradient(158deg, #1D1E26 0%, #2A2140 52%, #3B2333 100%); color: var(--c-cream); }
+    .show-hero { background: linear-gradient(158deg, #1D1E26 0%, #34122A 52%, #47102C 100%); color: var(--c-cream); }
     .show-hero .container { padding-top: 132px; padding-bottom: var(--s-8); }
     .hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(var(--s-4), 5vw, var(--s-7)); align-items: center; }
     @media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; gap: var(--s-5); } }
@@ -108,10 +108,10 @@
       background: var(--c-pink); border-radius: var(--radius); }
     .cover-art { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; border-radius: 10px;
       box-shadow: var(--shadow); background: /* placeholder until real cover art is added */
-      linear-gradient(158deg, #2A2140, #3B2333); }
+      linear-gradient(158deg, #34122A, #47102C); }
     .cover-ph { position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 10px; box-shadow: var(--shadow);
       display: grid; place-content: center; text-align: center; color: var(--c-cream);
-      background: linear-gradient(158deg, #2A2140, #3B2333); }
+      background: linear-gradient(158deg, #34122A, #47102C); }
     .cover-ph .k { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-pink); margin-bottom: 6px; }
     .cover-ph .n { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3rem); line-height: 0.92; }
 
@@ -288,7 +288,7 @@
     .promo-card.coral { background:var(--c-coral); } .promo-card.mint { background:var(--c-mint); }
     .promo-card h4 { font-family:var(--font-display); font-size:1.35rem; color:var(--c-ink); }
     .promo-card p { color:var(--c-ink); opacity:0.82; font-size:0.9rem; margin:var(--s-1) 0 var(--s-3); }
-    .btn-sm { display:inline-block; background:var(--c-ink); color:var(--c-cream); font-weight:700; font-size:0.72rem;
+    .btn-sm { display:inline-block; border:0; cursor:pointer; font-family:var(--font-body); background:var(--c-ink); color:var(--c-cream); font-weight:700; font-size:0.72rem;
       letter-spacing:0.08em; text-transform:uppercase; padding:11px 18px; border-radius:999px; text-decoration:none; }
     .btn-sm:hover { opacity:0.9; }
     .promo-img { display:flex; flex-direction:column; justify-content:flex-end; min-height:148px; border-radius:var(--radius);
@@ -303,6 +303,64 @@
     .fave p { margin:2px 0 0; font-size:0.84rem; color:var(--text-muted); }
     .newsletter .notify-form { margin-top:var(--s-1); flex-wrap:wrap; }
     .newsletter .notify-form input { flex:1 1 100%; }
+
+    /* ---- Inquiry drawer (Formspree) ---- */
+    .drawer-overlay { position: fixed; inset: 0; z-index: 60; background: rgba(29,30,38,0.5);
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+    .drawer { position: fixed; top: 0; right: 0; height: 100%; width: min(460px, 100%); z-index: 61;
+      background: var(--bg); box-shadow: -24px 0 60px rgba(29,30,38,0.20); overflow-y: auto;
+      transform: translateX(100%); transition: transform 0.38s cubic-bezier(.2,.7,.2,1); }
+    .drawer.open { transform: translateX(0); }
+    @media (prefers-reduced-motion: reduce) { .drawer, .drawer-overlay { transition: none; } }
+    .drawer-inner { padding: clamp(var(--s-4), 5vw, var(--s-6)); }
+    .drawer-close { position: absolute; top: 14px; right: 16px; width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--line); background: #fff; color: var(--c-ink); font-size: 1.5rem; line-height: 1;
+      cursor: pointer; display: grid; place-items: center; transition: background 0.15s ease, color 0.15s ease; }
+    .drawer-close:hover { background: var(--c-ink); color: var(--c-cream); }
+    .drawer-head h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); }
+    .drawer-head p { color: var(--text-muted); margin: var(--s-2) 0 0; }
+    .inquiry-form { margin-top: var(--s-4); }
+    .field { display: block; margin-bottom: var(--s-3); }
+    .field > span { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .field .req { color: var(--c-pink-deep); }
+    .field .hint { font-weight: 400; color: var(--text-muted); }
+    .field input, .field select, .field textarea { width: 100%; padding: 12px 14px; border-radius: var(--radius);
+      border: 1px solid var(--line); background: #fff; font: inherit; color: var(--text); }
+    .field textarea { resize: vertical; min-height: 96px; }
+    .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+      outline: 2px solid var(--c-pink-deep); outline-offset: 1px; border-color: var(--c-pink-deep); }
+    .opts { display: grid; gap: 6px; }
+    .opt { display: flex; align-items: flex-start; gap: 10px; padding: 9px 12px; border: 1px solid var(--line);
+      border-radius: var(--radius); background: #fff; cursor: pointer; font-size: 0.95rem; line-height: 1.35; }
+    .opt:hover { border-color: var(--c-pink); }
+    .opt input { width: auto; margin: 2px 0 0; accent-color: var(--c-pink-deep); flex: none; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .form-actions { margin-top: var(--s-4); }
+    .form-actions .btn { width: 100%; justify-content: center; }
+    .form-note { display: block; color: var(--text-muted); font-size: 0.85rem; margin-top: var(--s-2); text-align: center; }
+    .form-status { margin: var(--s-3) 0 0; font-weight: 600; color: var(--c-pink-deep); }
+    .form-success { display: none; }
+    .inquiry-form.sent > *:not(.form-success) { display: none; }
+    .inquiry-form.sent .form-success { display: block; }
+    .form-success .emoji { font-size: 2.4rem; line-height: 1; }
+    .form-success h3 { font-size: 1.5rem; margin: var(--s-2) 0 var(--s-2); }
+    .form-success p { color: var(--text-muted); margin: 0 0 var(--s-2); }
+    .form-success a { color: var(--link); font-weight: 600; }
+
+    /* ---- Pinterest pin block ---- */
+    .pin { margin:var(--s-6) 0 0; text-align:center; }
+    .pin-img { position:relative; width:min(340px,100%); margin:0 auto; }
+    .pin-ph { aspect-ratio:2/3; border-radius:var(--radius); border:2px dashed var(--c-pink-deep);
+      background:linear-gradient(160deg, var(--c-pink), var(--c-coral)); display:grid; place-content:center; padding:var(--s-3); }
+    .pin-ph .k { display:block; font-family:var(--font-display); font-size:1.5rem; color:var(--c-ink); }
+    .pin-ph .sub { display:block; font-size:0.82rem; color:var(--c-ink); opacity:0.72; margin-top:6px; }
+    .pin-img img { display:block; width:100%; border-radius:var(--radius); }
+    .pin-save { position:absolute; top:12px; right:12px; display:inline-flex; align-items:center; gap:6px;
+      background:var(--c-ink); color:var(--c-cream); font-weight:700; font-size:0.7rem; letter-spacing:0.06em;
+      text-transform:uppercase; padding:9px 14px; border-radius:999px; text-decoration:none; }
+    .pin-save:hover { opacity:0.9; }
+    .pin figcaption { margin-top:var(--s-2); color:var(--text-muted); font-size:0.9rem; }
   </style>
 </head>
 <body>
@@ -397,6 +455,17 @@
               <li><a href="#">EXAMPLE &mdash; another link</a></li>
             </ul>
 
+            <!-- ===== PINTEREST PIN =====
+                 Replace .pin-ph with your tall 2:3 graphic: <img src="/assets/img/pins/EPISODE_SLUG.png" alt="">
+                 and point the Save button's url= at this page and media= at that image's full URL. -->
+            <figure class="pin">
+              <div class="pin-img">
+                <div class="pin-ph"><span class="k">Pinterest pin</span><span class="sub">Drop your tall 1000&times;1500 graphic here</span></div>
+                <a class="pin-save" href="https://www.pinterest.com/pin/create/button/?url=https://priscillazaehringer.com/field-notes/EPISODE_SLUG&amp;media=https://priscillazaehringer.com/assets/img/pins/EPISODE_SLUG.png&amp;description=Marketing%20Field%20Notes" target="_blank" rel="noopener"><span aria-hidden="true">&#128204;</span> Save to Pinterest</a>
+              </div>
+              <figcaption>Loved this one? Pin it for later.</figcaption>
+            </figure>
+
             <details class="transcript">
               <summary>Read the transcript</summary>
               <div class="tx"><p>EXAMPLE &mdash; paste the full transcript here. Optional, but great for accessibility and SEO.</p></div>
@@ -423,7 +492,7 @@
           <div class="promo-card coral">
             <h4>Want your marketing handled?</h4>
             <p>One partner for strategy, ads, launches, and the systems behind them.</p>
-            <a class="btn-sm" href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a clarity call</a>
+            <button type="button" class="btn-sm" data-open-inquiry>Get in touch</button>
           </div>
 
           <a class="promo-img" href="/ads.html">
@@ -496,6 +565,82 @@
     </div>
   </footer>
 
+  <!-- INQUIRY DRAWER -->
+  <div class="drawer-overlay" id="inquiryOverlay"></div>
+  <aside class="drawer" id="inquiryDrawer" role="dialog" aria-modal="true" aria-labelledby="inquiryTitle" aria-hidden="true" inert>
+    <div class="drawer-inner">
+      <button type="button" class="drawer-close" data-close-inquiry aria-label="Close">&times;</button>
+      <div class="drawer-head">
+        <p class="eyebrow"><span class="heart">&#9829;</span>Start here</p>
+        <h2 id="inquiryTitle">Let's work together.</h2>
+        <p>Pick what you're interested in and share a few details. I review every inquiry personally and
+          reach out within 24&ndash;48 hours.</p>
+      </div>
+      <form class="inquiry-form" action="https://formspree.io/f/xeebrwbl" method="POST">
+        <input type="hidden" name="_subject" value="New website inquiry">
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
+          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What are you interested in? <span class="req">*</span></span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="Interested in" value="1:1 Marketing Partnership (OBM)" required> 1:1 Marketing Partnership <span class="hint">(OBM)</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="The Signal - Podcast Production"> The Signal <span class="hint">&mdash; Podcast Production</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="The Lead Stream - Meta Ads"> The Lead Stream <span class="hint">&mdash; Meta Ads</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="Not sure yet"> Not sure yet &mdash; help me figure it out</label>
+          </div>
+        </fieldset>
+
+        <label class="field"><span>What's your name? <span class="req">*</span></span>
+          <input type="text" name="Name" autocomplete="name" required></label>
+
+        <label class="field"><span>What's the best email to reach you? <span class="req">*</span></span>
+          <input type="email" name="Email" autocomplete="email" required></label>
+
+        <label class="field"><span>Your website <span class="hint">(if you have one)</span></span>
+          <input type="url" name="Website" placeholder="https://" autocomplete="url"></label>
+
+        <label class="field"><span>Tell me about your business. <span class="req">*</span></span>
+          <textarea name="About your business" rows="3" required
+            placeholder="What do you do, and who do you help?"></textarea></label>
+
+        <label class="field"><span>What's your niche or industry?</span>
+          <input type="text" name="Niche"></label>
+
+        <label class="field"><span>If you had a magic wand, what's the one thing you'd want to improve &mdash; or the outcome you're hoping for? <span class="req">*</span></span>
+          <textarea name="Magic wand outcome" rows="3" required></textarea></label>
+
+        <label class="field"><span>Anything else you'd like me to know? <span class="hint">(optional)</span></span>
+          <textarea name="Anything else" rows="3"></textarea></label>
+
+        <label class="field"><span>How did you hear about me?</span>
+          <select name="How did you hear">
+            <option value="" selected disabled>Choose one</option>
+            <option>Instagram</option>
+            <option>A friend or referral</option>
+            <option>Google search</option>
+            <option>A podcast</option>
+            <option>Newsletter</option>
+            <option>Somewhere else</option>
+          </select></label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Send my inquiry</button>
+          <span class="form-note">No pressure, no spam. Just a real reply.</span>
+        </div>
+        <p class="form-status" role="alert" aria-live="assertive"></p>
+
+        <div class="form-success" role="status" aria-live="polite">
+          <span class="emoji" aria-hidden="true">&#127881;</span>
+          <h3>Thanks! Your inquiry is on its way.</h3>
+          <p>I personally review every inquiry and I'll get back to you within 24&ndash;48 hours. If it looks
+            like we're a good fit, I'll reach out with the next steps so we can hop on a call.</p>
+          <p>In the meantime, you can <a href="/podcast.html">listen to the podcast</a> or
+            <a href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener">connect with me on Instagram</a>.</p>
+        </div>
+      </form>
+    </div>
+  </aside>
+
   <script>
     // Scroll reveal
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -529,6 +674,74 @@
       item.classList.remove('open');
       item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
     }));
+    // Inquiry drawer: open from any [data-open-inquiry], close via overlay / button / Esc
+    const overlay = document.getElementById('inquiryOverlay');
+    const drawer = document.getElementById('inquiryDrawer');
+    if (overlay && drawer) {
+      let lastFocus = null;
+      const focusables = () => drawer.querySelectorAll('a[href], button:not([disabled]), input, select, textarea');
+      const openDrawer = (e) => {
+        if (e && e.cancelable) e.preventDefault();
+        lastFocus = document.activeElement;
+        overlay.classList.add('open');
+        drawer.classList.add('open');
+        drawer.removeAttribute('inert');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        const first = focusables()[0];
+        if (first) setTimeout(() => first.focus(), 60);
+      };
+      const closeDrawer = () => {
+        overlay.classList.remove('open');
+        drawer.classList.remove('open');
+        drawer.setAttribute('inert', '');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      };
+      document.querySelectorAll('[data-open-inquiry]').forEach(b => b.addEventListener('click', openDrawer));
+      document.querySelectorAll('[data-close-inquiry]').forEach(b => b.addEventListener('click', closeDrawer));
+      overlay.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+        if (e.key === 'Tab' && drawer.classList.contains('open')) {
+          const f = Array.from(focusables());
+          if (!f.length) return;
+          const first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+
+      // Submit to Formspree via fetch; reveal the success panel inside the drawer
+      const iform = drawer.querySelector('.inquiry-form');
+      const status = iform.querySelector('.form-status');
+      const btn = iform.querySelector('button[type="submit"]');
+      iform.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = '';
+        btn.disabled = true; btn.textContent = 'Sending…';
+        try {
+          const res = await fetch(iform.action, {
+            method: 'POST', body: new FormData(iform), headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            iform.classList.add('sent');
+            drawer.scrollTop = 0;
+          } else {
+            const data = await res.json().catch(() => ({}));
+            status.textContent = (data.errors && data.errors.map(x => x.message).join(', '))
+              || 'Something went wrong. Please try again, or email priscilla@priscillazaehringer.com.';
+            btn.disabled = false; btn.textContent = 'Send my inquiry';
+          }
+        } catch (err) {
+          status.textContent = 'Something went wrong. Please check your connection and try again.';
+          btn.disabled = false; btn.textContent = 'Send my inquiry';
+        }
+      });
+    }
+
+
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
   </script>
