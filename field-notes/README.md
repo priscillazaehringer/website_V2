@@ -21,18 +21,21 @@ Send this to Claude, filling in the blanks (attach the audio embed, episode imag
 ```
 New Field Notes episode — create the page and publish:
 - Episode #:        07
-- Title:            <title>
+- SEO title:        <how people would search it, e.g. "How to know when to kill an ad">
 - Publish date:     Sept 16, 2026
 - Duration:         14 min
+- Meta description: <~155 chars, what the episode covers + who it's for>
 - Player embed:     <paste Spotify/Apple/YouTube embed code, or the links>
+- Key takeaways:    <3–5 crisp bullets — the stuff Google/AI will quote>
 - Show notes:       <a few paragraphs>
 - Timestamps:       00:00 …, 02:15 …, 06:40 …
 - Links mentioned:  <list>
+- FAQ:              <2–4 real questions + short answers>
 - Transcript:       <paste, or "add later">
 - Episode image:    <attach, or "use placeholder">
 - Pin graphic:      <attach, or "add later">
 
-Make it the featured "Latest" episode, add it to the archive, and push to main.
+Make it the featured "Latest" episode, add it to the archive and sitemap, and push to main.
 ```
 
 What Claude does with that:
@@ -58,6 +61,25 @@ everywhere.
 
 (Note: sidebar **copy/links** are shared. Sidebar **styling** still lives in each page's CSS — ask Claude if you
 want a global style change and it'll update all at once.)
+
+## SEO / AI-SEO (built into the template)
+
+The show-notes page is the *text* version of your episode — it's what Google, ChatGPT, and Perplexity
+can actually read. Every episode page is pre-wired for this; you just fill it in:
+
+- **Unique title + meta description** — write the title how people *search*, not "Episode 07".
+- **Key takeaways** box at the top — 3–5 quotable bullets (what AI answers pull from).
+- **FAQ** ("Questions people ask") — mirror those exact Q&As in the FAQ JSON-LD near the bottom of the file.
+- **Structured data** — per-episode `PodcastEpisode` + `FAQPage` JSON-LD, plus canonical URL and author.
+- **Transcript** — paste it when you can; it's the single biggest SEO/AI boost.
+
+Write like a human answering a real question; the structure does the technical work.
+
+## Launch checklist (do once, when you go live)
+
+- **Remove `noindex`** — delete `<meta name="robots" content="noindex, nofollow">` from every page so Google can index the site.
+- **Confirm the real domain** in the JSON-LD / canonical URLs (currently `priscillazaehringer.com`).
+- **`sitemap.xml`** is at the site root; add each episode's URL on publish. `robots.txt` already points to it.
 
 ## Still to wire up (one-time)
 

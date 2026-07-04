@@ -7,10 +7,13 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Episode title · Marketing Field Notes · Priscilla Zaehringer</title>
   <meta name="description" content="An episode of Marketing Field Notes — short, honest notes on what's actually happening in marketing, from someone doing the work.">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:title" content="Episode title · Marketing Field Notes">
   <meta property="og:description" content="Short, honest notes on what's actually happening in marketing, from someone doing the work.">
   <meta property="og:url" content="https://priscillazaehringer.com/field-notes/episode-template">
+  <link rel="canonical" href="https://priscillazaehringer.com/field-notes/EPISODE_SLUG">
+  <meta name="author" content="Priscilla Zaehringer">
+  <meta property="article:published_time" content="2026-08-12">
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <style>
     /* ================================================================
@@ -364,6 +367,19 @@
       text-transform:uppercase; padding:9px 14px; border-radius:999px; text-decoration:none; }
     .pin-save:hover { opacity:0.9; }
     .pin figcaption { margin-top:var(--s-2); color:var(--text-muted); font-size:0.9rem; }
+
+    /* ---- SEO blocks: key takeaways + FAQ ---- */
+    .takeaways { background:linear-gradient(180deg,#FFFFFF 0%,#FCE4EF 100%); border:1px solid var(--line);
+      border-radius:var(--radius); padding:var(--s-4); margin:0 0 var(--s-5); }
+    .takeaways h2 { font-size:1.3rem; margin:0 0 var(--s-2); }
+    .takeaways ul { margin:0; padding-left:1.15em; }
+    .takeaways li { margin:0 0 8px; }
+    .faq { margin-top:var(--s-5); }
+    .faq > h2 { margin-bottom:var(--s-2); }
+    .faq .qa { border-top:1px solid var(--line); padding:var(--s-3) 0; }
+    .faq .qa:last-child { border-bottom:1px solid var(--line); }
+    .faq .q { font-family:var(--font-display); font-weight:400; font-size:1.25rem; color:var(--c-ink); margin:0 0 6px; }
+    .faq .a { margin:0; color:var(--text); }
   </style>
 </head>
 <body>
@@ -431,6 +447,16 @@
           <p class="platforms"><a href="#">Apple Podcasts</a><span class="sep">|</span><a href="#">Spotify</a><span class="sep">|</span><a href="#">YouTube</a></p>
 
           <div class="post-body">
+            <!-- KEY TAKEAWAYS — 3-5 crisp, skimmable bullets. This is what Google and AI tools quote,
+                 so make each a complete, useful sentence in plain language. -->
+            <div class="takeaways">
+              <h2>Key takeaways</h2>
+              <ul>
+                <li>EXAMPLE &mdash; the single most useful point from this episode, as a full sentence.</li>
+                <li>EXAMPLE &mdash; a second concrete takeaway someone could act on today.</li>
+                <li>EXAMPLE &mdash; a third, ideally with a number or specific detail.</li>
+              </ul>
+            </div>
             <p><span class="lead-in">EXAMPLE &mdash;</span> Open with the hook: the story or the stakes that make someone
               want to hear this one. Two or three sentences that pull them in before you get into the how.</p>
             <p>A second paragraph to set the scene &mdash; what was going on, what you were trying to solve, and why it
@@ -457,6 +483,14 @@
               <li><a href="#">EXAMPLE &mdash; a tool, article, or account mentioned</a></li>
               <li><a href="#">EXAMPLE &mdash; another link</a></li>
             </ul>
+
+            <!-- FAQ — 2-4 real questions people ask about this topic, answered plainly. Mirror these
+                 exact Q&As in the FAQPage JSON-LD at the bottom of the file. Strong for search + AI answers. -->
+            <section class="faq">
+              <h2>Questions people ask</h2>
+              <div class="qa"><p class="q">EXAMPLE &mdash; a question someone would type or ask an AI?</p><p class="a">EXAMPLE &mdash; a clear, direct answer in 1-3 sentences.</p></div>
+              <div class="qa"><p class="q">EXAMPLE &mdash; a second common question?</p><p class="a">EXAMPLE &mdash; a clear, direct answer.</p></div>
+            </section>
 
             <!-- ===== PINTEREST PIN =====
                  Replace .pin-ph with your tall 2:3 graphic: <img src="/assets/img/pins/EPISODE_SLUG.png" alt="">
@@ -713,6 +747,36 @@
 
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+  <!-- ============================================================
+       PER-EPISODE STRUCTURED DATA (SEO / AI). Update every EXAMPLE, EPISODE_SLUG, date and
+       duration, and make the FAQ questions here match the visible "Questions people ask" section.
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "PodcastEpisode",
+        "@id": "https://priscillazaehringer.com/field-notes/EPISODE_SLUG#episode",
+        "url": "https://priscillazaehringer.com/field-notes/EPISODE_SLUG",
+        "name": "EXAMPLE - episode title",
+        "description": "EXAMPLE - one-sentence summary of the episode.",
+        "datePublished": "2026-08-12",
+        "timeRequired": "PT14M",
+        "partOfSeries": { "@type": "PodcastSeries", "name": "Marketing Field Notes", "url": "https://priscillazaehringer.com/field-notes" },
+        "associatedMedia": { "@type": "AudioObject", "contentUrl": "EXAMPLE_AUDIO_FILE_URL" },
+        "author": { "@type": "Person", "name": "Priscilla Zaehringer", "url": "https://priscillazaehringer.com/about" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "EXAMPLE - a question someone would type or ask an AI?", "acceptedAnswer": { "@type": "Answer", "text": "EXAMPLE - a clear, direct answer in 1-3 sentences." } },
+          { "@type": "Question", "name": "EXAMPLE - a second common question?", "acceptedAnswer": { "@type": "Answer", "text": "EXAMPLE - a clear, direct answer." } }
+        ]
+      }
+    ]
+  }
   </script>
 </body>
 </html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://priscillazaehringer.com/</loc></url>
+  <url><loc>https://priscillazaehringer.com/about</loc></url>
+  <url><loc>https://priscillazaehringer.com/ads</loc></url>
+  <url><loc>https://priscillazaehringer.com/podcast</loc></url>
+  <url><loc>https://priscillazaehringer.com/field-notes</loc></url>
+  <url><loc>https://priscillazaehringer.com/episodes</loc></url>
+  <!-- Add each new episode on publish:
+  <url><loc>https://priscillazaehringer.com/field-notes/EPISODE_SLUG</loc></url> -->
+</urlset>
