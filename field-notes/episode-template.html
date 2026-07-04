@@ -484,10 +484,10 @@
               <li><a href="#">EXAMPLE &mdash; another link</a></li>
             </ul>
 
-            <!-- FAQ — 2-4 real questions people ask about this topic, answered plainly. Mirror these
-                 exact Q&As in the FAQPage JSON-LD at the bottom of the file. Strong for search + AI answers. -->
+            <!-- OPTIONAL — "Questions this episode answers." Reads as natural podcast content, and
+                 Google/AI can still read it. Delete this whole <section> for any episode where it doesn't fit. -->
             <section class="faq">
-              <h2>Questions people ask</h2>
+              <h2>Questions this episode answers</h2>
               <div class="qa"><p class="q">EXAMPLE &mdash; a question someone would type or ask an AI?</p><p class="a">EXAMPLE &mdash; a clear, direct answer in 1-3 sentences.</p></div>
               <div class="qa"><p class="q">EXAMPLE &mdash; a second common question?</p><p class="a">EXAMPLE &mdash; a clear, direct answer.</p></div>
             </section>
@@ -750,7 +750,7 @@
   </script>
   <!-- ============================================================
        PER-EPISODE STRUCTURED DATA (SEO / AI). Update every EXAMPLE, EPISODE_SLUG, date and
-       duration, and make the FAQ questions here match the visible "Questions people ask" section.
+       duration.
        ============================================================ -->
   <script type="application/ld+json">
   {
@@ -767,13 +767,6 @@
         "partOfSeries": { "@type": "PodcastSeries", "name": "Marketing Field Notes", "url": "https://priscillazaehringer.com/field-notes" },
         "associatedMedia": { "@type": "AudioObject", "contentUrl": "EXAMPLE_AUDIO_FILE_URL" },
         "author": { "@type": "Person", "name": "Priscilla Zaehringer", "url": "https://priscillazaehringer.com/about" }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          { "@type": "Question", "name": "EXAMPLE - a question someone would type or ask an AI?", "acceptedAnswer": { "@type": "Answer", "text": "EXAMPLE - a clear, direct answer in 1-3 sentences." } },
-          { "@type": "Question", "name": "EXAMPLE - a second common question?", "acceptedAnswer": { "@type": "Answer", "text": "EXAMPLE - a clear, direct answer." } }
-        ]
       }
     ]
   }

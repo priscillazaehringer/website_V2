@@ -30,7 +30,7 @@ New Field Notes episode — create the page and publish:
 - Show notes:       <a few paragraphs>
 - Timestamps:       00:00 …, 02:15 …, 06:40 …
 - Links mentioned:  <list>
-- FAQ:              <2–4 real questions + short answers>
+- Q&A (optional):   <a couple of natural questions this episode answers, or "skip">
 - Transcript:       <paste, or "add later">
 - Episode image:    <attach, or "use placeholder">
 - Pin graphic:      <attach, or "add later">
@@ -69,8 +69,8 @@ can actually read. Every episode page is pre-wired for this; you just fill it in
 
 - **Unique title + meta description** — write the title how people *search*, not "Episode 07".
 - **Key takeaways** box at the top — 3–5 quotable bullets (what AI answers pull from).
-- **FAQ** ("Questions people ask") — mirror those exact Q&As in the FAQ JSON-LD near the bottom of the file.
-- **Structured data** — per-episode `PodcastEpisode` + `FAQPage` JSON-LD, plus canonical URL and author.
+- **"Questions this episode answers"** (optional) — a couple of natural Q&As; delete the section on any episode where it doesn't fit.
+- **Structured data** — per-episode `PodcastEpisode` JSON-LD, plus canonical URL and author.
 - **Transcript** — paste it when you can; it's the single biggest SEO/AI boost.
 
 Write like a human answering a real question; the structure does the technical work.
