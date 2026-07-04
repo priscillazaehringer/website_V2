@@ -224,6 +224,25 @@
     .ep-card .when { font-size:0.76rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); margin-top:6px; display:inline-block; }
     .ep-card .go { flex:0 0 auto; font-weight:600; color:var(--c-pink-deep); white-space:nowrap; }
     @media (max-width:620px){ .ep-card{ grid-template-columns:auto 1fr; } .ep-card .go{ grid-column:2; justify-self:start; } }
+
+    /* ---- "The Latest" newest-episode list ---- */
+    .latest-head { display:flex; align-items:flex-end; justify-content:space-between; gap:var(--s-3); flex-wrap:wrap; }
+    .latest-head h2 { margin-top:2px; }
+    .btn-outline { display:inline-block; border:1.5px solid var(--c-pink-deep); color:var(--c-pink-deep);
+      border-radius:999px; padding:11px 24px; font-weight:700; font-size:0.74rem; letter-spacing:0.1em;
+      text-transform:uppercase; text-decoration:none; transition:background .15s ease, color .15s ease; }
+    .btn-outline:hover { background:var(--c-pink-deep); color:var(--c-cream); }
+    .latest-list { margin-top:var(--s-4); border-top:1px solid var(--line); }
+    .latest-row { display:grid; grid-template-columns:1fr auto auto; gap:var(--s-3); align-items:center;
+      padding:var(--s-3) 0; border-bottom:1px solid var(--line); text-decoration:none; }
+    .latest-row h3 { font-size:clamp(1.2rem,2.1vw,1.5rem); color:var(--c-pink-deep); margin:0; max-width:40ch; transition:color .12s ease; }
+    .latest-row:hover h3 { color:var(--c-ink); }
+    .latest-badge { display:inline-block; background:var(--c-coral); color:var(--c-ink); font-size:0.66rem; font-weight:700;
+      letter-spacing:0.1em; text-transform:uppercase; padding:8px 14px; white-space:nowrap; }
+    .play-btn { width:46px; height:46px; border-radius:50%; border:1.5px solid var(--c-pink-deep);
+      display:grid; place-items:center; color:var(--c-pink-deep); flex:0 0 auto; transition:background .15s ease, color .15s ease; }
+    .latest-row:hover .play-btn { background:var(--c-pink-deep); color:var(--c-cream); }
+    @media (max-width:560px){ .latest-row h3 { font-size:1.1rem; } .latest-badge { display:none; } }
   </style>
 </head>
 <body>
@@ -296,29 +315,48 @@
     </div>
   </section>
 
-  <!-- ===================== EPISODES ===================== -->
+  <!-- ===================== THE LATEST (newest episodes) ===================== -->
   <section class="section alt" id="episodes">
     <div class="container">
-      <div class="col reveal">
-        <p class="eyebrow"><span class="heart">&#9829;</span>Episodes</p>
-        <h2>Where the episodes will live.</h2>
-        <p class="subhead">The first one drops August 2026. As they go live, every episode gets its own page &mdash;
-          player, show notes, and links &mdash; and shows up here, newest first.</p>
-        <!-- EPISODE LIST: duplicate one .ep-card per episode (newest on top). Replace the EXAMPLE card below. -->
-        <div class="eps">
-          <a class="ep-card" href="/field-notes/episode-template.html">
-            <span class="n">01</span>
-            <span>
-              <h3>Example episode &mdash; preview the layout</h3>
-              <p>This card links to the episode template so you can see how a single episode page looks.</p>
-              <span class="when">Preview &middot; August 2026</span>
-            </span>
-            <span class="go">Listen &rarr;</span>
-          </a>
+      <div class="latest-head reveal">
+        <div>
+          <p class="eyebrow"><span class="heart">&#9829;</span>Newest episodes</p>
+          <h2>The Latest</h2>
         </div>
+        <a class="btn-outline" href="/episodes.html">View all</a>
+      </div>
+      <p class="subhead reveal" style="margin-top:var(--s-2);">The first episode drops August 2026 &mdash; new field notes every couple of weeks after that.</p>
+      <!-- EXAMPLE episodes — replace with real ones; each links to its /field-notes/<slug>.html page. -->
+      <div class="latest-list reveal">
+        <a class="latest-row" href="/field-notes/episode-template.html">
+          <h3>Episode 06: Why six-figure offers stall before scale</h3>
+          <span class="badge-slot"><span class="latest-badge">New</span></span>
+          <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        </a>
+        <a class="latest-row" href="/field-notes/episode-template.html">
+          <h3>Episode 05: The $50 test that fixed a dead funnel</h3>
+          <span class="badge-slot"></span>
+          <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        </a>
+        <a class="latest-row" href="/field-notes/episode-template.html">
+          <h3>Episode 04: When to kill an ad, and when to wait</h3>
+          <span class="badge-slot"><span class="latest-badge">Trending</span></span>
+          <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        </a>
+        <a class="latest-row" href="/field-notes/episode-template.html">
+          <h3>Episode 03: Your email list is your real audience</h3>
+          <span class="badge-slot"></span>
+          <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        </a>
+        <a class="latest-row" href="/field-notes/episode-template.html">
+          <h3>Episode 02: The launch debrief nobody posts</h3>
+          <span class="badge-slot"></span>
+          <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        </a>
       </div>
     </div>
   </section>
+
 
   <!-- ===================== WHAT IT IS ===================== -->
   <section class="section" id="about">
