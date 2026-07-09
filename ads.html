@@ -74,7 +74,8 @@
     .nav-center a:hover { opacity: 1; }
     .nav-cta { justify-self: end; }
     .nav-pill { display: inline-block; background: var(--c-cream); color: var(--c-ink); font-weight: 600;
-      font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease; }
+      font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease;
+      border: none; cursor: pointer; font-family: var(--font-body); }
     .nav-pill:hover { opacity: 0.9; }
     @media (max-width: 760px) { .nav-center { display: none; } .nav { grid-template-columns: 1fr auto; } .promo-cta { display: none; } }
 
@@ -106,6 +107,52 @@
       text-decoration: none; cursor: pointer; transition: opacity 0.14s ease, transform 0.12s ease; }
     .btn:hover { opacity: 0.88; } .btn:active { transform: translateY(1px); }
     .btn-cream { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
+    .btn-lg { padding: 20px 40px; font-size: 1.1rem; }
+
+    /* ---- Inquiry drawer (Formspree) ---- */
+    .drawer-overlay { position: fixed; inset: 0; z-index: 60; background: rgba(29,30,38,0.5);
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+    .drawer { position: fixed; top: 0; right: 0; height: 100%; width: min(460px, 100%); z-index: 61;
+      background: var(--bg); box-shadow: -24px 0 60px rgba(29,30,38,0.20); overflow-y: auto;
+      transform: translateX(100%); transition: transform 0.38s cubic-bezier(.2,.7,.2,1); }
+    .drawer.open { transform: translateX(0); }
+    @media (prefers-reduced-motion: reduce) { .drawer, .drawer-overlay { transition: none; } }
+    .drawer-inner { padding: clamp(var(--s-4), 5vw, var(--s-6)); }
+    .drawer-close { position: absolute; top: 14px; right: 16px; width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--line); background: #fff; color: var(--c-ink); font-size: 1.5rem; line-height: 1;
+      cursor: pointer; display: grid; place-items: center; transition: background 0.15s ease, color 0.15s ease; }
+    .drawer-close:hover { background: var(--c-ink); color: var(--c-cream); }
+    .drawer-head h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); }
+    .drawer-head p { color: var(--text-muted); margin: var(--s-2) 0 0; }
+
+    .inquiry-form { margin-top: var(--s-4); }
+    .field { display: block; margin-bottom: var(--s-3); }
+    .field > span { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .field .req { color: var(--c-pink-deep); }
+    .field .hint { font-weight: 400; color: var(--text-muted); }
+    .field input, .field select, .field textarea { width: 100%; padding: 12px 14px; border-radius: var(--radius);
+      border: 1px solid var(--line); background: #fff; font: inherit; color: var(--text); }
+    .field textarea { resize: vertical; min-height: 96px; }
+    .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+      outline: 2px solid var(--c-pink-deep); outline-offset: 1px; border-color: var(--c-pink-deep); }
+    .opts { display: grid; gap: 6px; }
+    .opt { display: flex; align-items: flex-start; gap: 10px; padding: 9px 12px; border: 1px solid var(--line);
+      border-radius: var(--radius); background: #fff; cursor: pointer; font-size: 0.95rem; line-height: 1.35; }
+    .opt:hover { border-color: var(--c-pink); }
+    .opt input { width: auto; margin: 2px 0 0; accent-color: var(--c-pink-deep); flex: none; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .form-actions { margin-top: var(--s-4); }
+    .form-actions .btn { width: 100%; justify-content: center; }
+    .form-note { display: block; color: var(--text-muted); font-size: 0.85rem; margin-top: var(--s-2); text-align: center; }
+    .form-status { margin: var(--s-3) 0 0; font-weight: 600; color: var(--c-pink-deep); }
+    .form-success { display: none; }
+    .inquiry-form.sent > *:not(.form-success) { display: none; }
+    .inquiry-form.sent .form-success { display: block; }
+    .form-success .emoji { font-size: 2.4rem; line-height: 1; }
+    .form-success h3 { font-size: 1.5rem; margin: var(--s-2) 0 var(--s-2); }
+    .form-success p { color: var(--text-muted); margin: 0 0 var(--s-2); }
+    .form-success a { color: var(--link); font-weight: 600; }
 
     /* ---- Announce bar ---- */
     .announce { background: var(--c-ink); color: var(--c-cream); text-align: center; font-size: 0.92rem;
@@ -338,7 +385,7 @@
   <div id="grain" aria-hidden="true"></div>
 
   <div class="top-stack" id="hdr-stack">
-    <a class="promo-bar" href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener"><span class="promo-tag">Now booking</span><span class="promo-text">Done-for-you Meta ads, <strong>$1,297</strong>. A few new projects each month.</span><span class="promo-cta">Book a clarity call →</span></a>
+    <a class="promo-bar" href="/podcast.html"><span class="promo-tag">New</span><span class="promo-text"><strong>The Signal</strong> — done-for-you podcast launch, $1,297. A few projects each month.</span><span class="promo-cta">See the service →</span></a>
     <header class="site-header" id="hdr">
       <div class="container nav">
         <a href="/" class="wordmark">Priscilla Zaehringer</a>
@@ -354,7 +401,7 @@
           <a href="/about.html">About</a>
         </nav>
         <div class="nav-cta">
-          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="nav-pill">Book a call</a>
+          <button type="button" class="nav-pill" data-open-inquiry>Book a call</button>
         </div>
       </div>
     </header>
@@ -370,7 +417,7 @@
       <p class="lede">A done-for-you lead-gen ad system, built for established online business owners with
         room in the budget to grow. I set it up, run it for a couple of weeks, and hand it off. You keep
         the leads coming in long after we're done.</p>
-      <div class="cta"><a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn">Book a Clarity Call</a></div>
+      <div class="cta"><button type="button" class="btn" data-open-inquiry>Book a Clarity Call</button></div>
       <p class="micro">Founding rate · $1,297</p>
     </div>
   </section>
@@ -575,7 +622,7 @@
       </div>
 
       <div class="center reveal" style="margin-top: var(--s-5);">
-        <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn">Book a Clarity Call</a>
+        <button type="button" class="btn" data-open-inquiry>Book a Clarity Call</button>
       </div>
     </div>
   </section>
@@ -609,7 +656,7 @@
           <div class="honest">Everything you need to build a lead generation system you own. Because every
             build is done personally by me, I only take on a <strong>few new projects each month</strong>.</div>
           <div class="spots">Now booking: <span>a few projects each month</span></div>
-          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn" style="width:100%; justify-content:center;">Book a Clarity Call</a>
+          <button type="button" class="btn" style="width:100%; justify-content:center;" data-open-inquiry>Book a Clarity Call</button>
         </div>
       </div>
     </div>
@@ -711,7 +758,7 @@
       <h2>Let's get your email list growing again.</h2>
       <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 52ch;">The founding rate is
         $1,297, and I take on just a few new projects each month. Book a clarity call and let's see if it's a fit.</p>
-      <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn btn-cream">Book a Clarity Call</a>
+      <button type="button" class="btn btn-cream" data-open-inquiry>Book a Clarity Call</button>
     </div>
   </section>
 
@@ -741,7 +788,7 @@
             <a href="/about.html">About</a>
             <a href="/ads.html">Meta Ads</a>
             <a href="/podcast.html">Podcast Production</a>
-            <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a call</a>
+            <a href="#book" data-open-inquiry>Book a call</a>
           </div>
         </nav>
       </div>
@@ -751,6 +798,97 @@
       </div>
     </div>
   </footer>
+
+  <!-- INQUIRY DRAWER -->
+  <div class="drawer-overlay" id="inquiryOverlay"></div>
+  <aside class="drawer" id="inquiryDrawer" role="dialog" aria-modal="true" aria-labelledby="inquiryTitle" aria-hidden="true" inert>
+    <div class="drawer-inner">
+      <button type="button" class="drawer-close" data-close-inquiry aria-label="Close">&times;</button>
+      <div class="drawer-head">
+        <p class="eyebrow"><span class="heart">&#9829;</span>Start here</p>
+        <h2 id="inquiryTitle">Let's build your lead system.</h2>
+        <p>Tell me a little about your business and where you're stuck. I read every inquiry personally.</p>
+      </div>
+      <form class="inquiry-form" action="https://formspree.io/f/mykqjeak" method="POST">
+        <input type="hidden" name="_subject" value="New Lead Stream inquiry">
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <label class="field"><span>What's your name? <span class="req">*</span></span>
+          <input type="text" name="Name" autocomplete="name" required></label>
+
+        <label class="field"><span>What's the best email address to reach you? <span class="req">*</span></span>
+          <input type="email" name="Email" autocomplete="email" required></label>
+
+        <label class="field"><span>Tell me about your business. <span class="req">*</span></span>
+          <textarea name="About your business" rows="3" required
+            placeholder="What do you do? Who do you help? What are you selling?"></textarea></label>
+
+        <label class="field"><span>What are you hoping paid ads will do for you? <span class="req">*</span></span>
+          <textarea name="What you want from ads" rows="3" required></textarea></label>
+
+        <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
+          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">Where are you at? <span class="req">*</span></span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="Where you're at" value="My offer is validated and selling" required> My offer is validated and selling.</label>
+            <label class="opt"><input type="radio" name="Where you're at" value="I'm getting sales but it's inconsistent"> I'm getting sales, but it's inconsistent.</label>
+            <label class="opt"><input type="radio" name="Where you're at" value="I'm still refining my offer"> I'm still refining my offer.</label>
+            <label class="opt"><input type="radio" name="Where you're at" value="I'm just getting started"> I'm just getting started.</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
+          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What do you want ads to do? <span class="req">*</span> <span class="hint">(choose any)</span></span>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="Goals" value="Grow my email list"> Grow my email list</label>
+            <label class="opt"><input type="checkbox" name="Goals" value="Get consistent leads"> Get consistent leads</label>
+            <label class="opt"><input type="checkbox" name="Goals" value="Scale what's already working"> Scale what's already working</label>
+            <label class="opt"><input type="checkbox" name="Goals" value="Book more calls or sales"> Book more calls or sales</label>
+            <label class="opt"><input type="checkbox" name="Goals" value="Build awareness"> Build awareness</label>
+            <label class="opt"><input type="checkbox" name="Goals" value="Something else"> Something else</label>
+          </div>
+        </fieldset>
+
+        <label class="field"><span>What's your monthly ad budget, roughly? <span class="hint">(optional)</span></span>
+          <select name="Monthly ad budget">
+            <option value="" selected disabled>Choose one</option>
+            <option>Around $150&ndash;300/mo ($5&ndash;10/day)</option>
+            <option>Around $300&ndash;600/mo</option>
+            <option>$600&ndash;1,000/mo</option>
+            <option>$1,000+/mo</option>
+            <option>Not sure yet</option>
+          </select></label>
+
+        <label class="field"><span>Anything else I should know? <span class="hint">(optional)</span></span>
+          <textarea name="Anything else" rows="3"></textarea></label>
+
+        <label class="field"><span>How did you hear about me?</span>
+          <select name="How did you hear">
+            <option value="" selected disabled>Choose one</option>
+            <option>Instagram</option>
+            <option>A friend or referral</option>
+            <option>Google search</option>
+            <option>A podcast</option>
+            <option>Newsletter</option>
+            <option>Somewhere else</option>
+          </select></label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-lg">Request My Clarity Call</button>
+          <span class="form-note">No pressure, no spam. Just a real reply.</span>
+        </div>
+        <p class="form-status" role="alert" aria-live="assertive"></p>
+
+        <div class="form-success" role="status" aria-live="polite">
+          <span class="emoji" aria-hidden="true">&#127881;</span>
+          <h3>Thanks! Your inquiry is on its way.</h3>
+          <p>I personally review every inquiry and typically respond within two business days. If it looks like
+            we're a good fit, I'll reach out to set up your clarity call.</p>
+          <p>In the meantime, you can <a href="/podcast.html">explore The Signal</a> or
+            <a href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener">connect with me on Instagram</a>.</p>
+        </div>
+      </form>
+    </div>
+  </aside>
 
   <script>
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -784,6 +922,79 @@
       item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
     }));
     document.getElementById('yr').textContent = new Date().getFullYear();
+
+    /* Inquiry drawer: open from any [data-open-inquiry], close via overlay / button / Esc */
+    const overlay = document.getElementById('inquiryOverlay');
+    const drawer = document.getElementById('inquiryDrawer');
+    if (overlay && drawer) {
+      let lastFocus = null;
+      const focusables = () => drawer.querySelectorAll('a[href], button:not([disabled]), input, select, textarea');
+      const openDrawer = (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        lastFocus = document.activeElement;
+        overlay.classList.add('open');
+        drawer.classList.add('open');
+        drawer.removeAttribute('inert');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        const first = focusables()[0];
+        if (first) setTimeout(() => first.focus(), 60);
+      };
+      const closeDrawer = () => {
+        overlay.classList.remove('open');
+        drawer.classList.remove('open');
+        drawer.setAttribute('inert', '');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      };
+      document.querySelectorAll('[data-open-inquiry]').forEach(b => b.addEventListener('click', openDrawer));
+      document.querySelectorAll('[data-close-inquiry]').forEach(b => b.addEventListener('click', closeDrawer));
+      overlay.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+        if (e.key === 'Tab' && drawer.classList.contains('open')) {
+          const f = Array.from(focusables());
+          if (!f.length) return;
+          const first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+
+      /* Submit to Formspree via fetch; reveal the success panel inside the drawer */
+      const iform = drawer.querySelector('.inquiry-form');
+      const status = iform.querySelector('.form-status');
+      const btn = iform.querySelector('button[type="submit"]');
+      iform.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = '';
+        if (!iform.querySelectorAll('input[name="Goals"]:checked').length) {
+          status.textContent = 'Please choose at least one goal.';
+          const g = iform.querySelector('input[name="Goals"]');
+          if (g) g.focus();
+          return;
+        }
+        btn.disabled = true; btn.textContent = 'Sending…';
+        try {
+          const res = await fetch(iform.action, {
+            method: 'POST', body: new FormData(iform), headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            iform.classList.add('sent');
+            drawer.scrollTop = 0;
+          } else {
+            const data = await res.json().catch(() => ({}));
+            status.textContent = (data.errors && data.errors.map(x => x.message).join(', '))
+              || 'Something went wrong. Please try again, or email priscilla@priscillazaehringer.com.';
+            btn.disabled = false; btn.textContent = 'Request My Clarity Call';
+          }
+        } catch (err) {
+          status.textContent = 'Something went wrong. Please check your connection and try again.';
+          btn.disabled = false; btn.textContent = 'Request My Clarity Call';
+        }
+      });
+    }
   </script>
 
   <script type="application/ld+json">
