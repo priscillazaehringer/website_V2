@@ -69,6 +69,27 @@
     .nav-pill:hover { opacity: 0.9; }
     @media (max-width: 760px) { .nav-center { display: none; } .nav { grid-template-columns: 1fr auto; } .promo-cta { display: none; } }
 
+    /* ---- Nav dropdowns ---- */
+    .nav-item { position: relative; display: inline-flex; align-items: center; }
+    .nav-link { font: inherit; font-size: 0.95rem; font-weight: 500; color: var(--c-cream); opacity: 0.9;
+      background: none; border: 0; padding: 0; margin: 0; cursor: pointer; display: inline-flex; align-items: center;
+      gap: 5px; white-space: nowrap; line-height: 1; }
+    .nav-item:hover .nav-link, .nav-item:focus-within .nav-link, .nav-link:hover { opacity: 1; }
+    .nav-item:has(.submenu a[aria-current]) .nav-link { opacity: 1; }
+    .nav-link .caret { font-size: 0.6em; transition: transform 0.18s ease; }
+    .nav-item:hover .caret, .nav-item:focus-within .caret, .nav-item.open .caret { transform: rotate(180deg); }
+    .submenu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
+      min-width: 190px; background: var(--c-cream); border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 6px; display: flex; flex-direction: column; gap: 2px;
+      opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.16s ease, transform 0.16s ease; z-index: 60; }
+    .submenu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+    .nav-item:hover .submenu, .nav-item:focus-within .submenu, .nav-item.open .submenu {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(4px); }
+    .submenu a { display: block; color: var(--c-ink); opacity: 1; font-size: 0.92rem; font-weight: 500;
+      padding: 9px 12px; border-radius: 3px; white-space: nowrap; }
+    .submenu a:hover { background: var(--c-pink); color: var(--c-ink); }
+    .submenu a[aria-current] { color: var(--c-pink-deep); font-weight: 700; }
+
     /* ---- Buttons ---- */
     .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 1rem;
       font-weight: 600; line-height: 1; padding: 16px 28px; border-radius: var(--radius);
@@ -249,11 +270,16 @@
     </a>
     <header class="site-header" id="hdr">
       <div class="container nav">
-        <a href="/" class="wordmark">Priscilla Zähringer</a>
+        <a href="/" class="wordmark">Priscilla Zaehringer</a>
         <nav class="nav-center">
-          <a href="/#offer">Work with me</a>
-          <a href="/podcast.html">The Signal</a>
-          <a href="/ads.html">The Lead Stream</a>
+          <div class="nav-item has-sub">
+            <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <div class="submenu" role="menu">
+              <a role="menuitem" href="/ads.html">Meta Ads</a>
+              <a role="menuitem" href="/podcast.html">Podcast Production</a>
+            </div>
+          </div>
+          <a href="/field-notes.html">Listen to the podcast</a>
           <a href="/about.html">About</a>
         </nav>
         <div class="nav-cta">
@@ -456,16 +482,16 @@
     <div class="container">
       <div class="foot-grid">
         <div class="foot-brand">
-          <a href="#top" class="foot-script">Priscilla Zähringer</a>
+          <a href="#top" class="foot-script">Priscilla Zaehringer</a>
           <div class="foot-intro">
-            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" alt="Priscilla Zähringer"></span>
+            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" alt="Priscilla Zaehringer"></span>
             <p class="foot-bio">I'm a 1:1 marketing partner for small business owners who'd rather grow than build a team.
               Real strategy, run end to end, done with you and not at you.</p>
           </div>
           <div class="foot-social">
-            <a class="social-btn" href="https://www.instagram.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
-            <a class="social-btn" href="/podcast.html"><span class="ic">🎙️</span>Listen to The Signal</a>
-            <a class="social-btn" href="https://www.facebook.com/priscillazaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
+            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
+            <a class="social-btn" href="/field-notes.html"><span class="ic">🎙️</span>Listen to the podcast</a>
+            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
             <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📌</span>Pin along with me</a>
           </div>
         </div>
@@ -474,15 +500,14 @@
           <div class="explore-cols">
             <a href="/">Home</a>
             <a href="/about.html">About</a>
-            <a href="/podcast.html">The Signal</a>
-            <a href="/ads.html">The Lead Stream</a>
-            <a href="/#offer">Work with me</a>
+            <a href="/ads.html">Meta Ads</a>
+            <a href="/podcast.html">Podcast Production</a>
             <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a call</a>
           </div>
         </nav>
       </div>
       <div class="foot-bottom">
-        <span>© <span id="yr"></span> Priscilla Zähringer. All rights reserved.</span>
+        <span>© <span id="yr"></span> Priscilla Zaehringer. All rights reserved.</span>
         <span>Your marketing, finally handled.</span>
       </div>
     </div>
@@ -503,6 +528,24 @@
     const hdr = document.getElementById('hdr');
     const onScroll = () => hdr.classList.toggle('stuck', window.scrollY > 60);
     onScroll(); addEventListener('scroll', onScroll, { passive: true });
+
+    // Nav dropdowns: click to toggle (hover/focus handled in CSS), Escape + outside-click to close.
+    const subs = document.querySelectorAll('.nav-item.has-sub');
+    subs.forEach(item => {
+      const btn = item.querySelector('.nav-link');
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      item.addEventListener('keyup', (e) => {
+        if (e.key === 'Escape') { item.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+      });
+    });
+    document.addEventListener('click', () => subs.forEach(item => {
+      item.classList.remove('open');
+      item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
+    }));
     document.getElementById('yr').textContent = new Date().getFullYear();
 
     // Quiz flip
@@ -535,8 +578,8 @@
         "description": "Iowa-based marketing partner offering Meta ads management, podcast production, and business operations support for small business owners.",
         "address": { "@type": "PostalAddress", "addressRegion": "IA", "addressCountry": "US" },
         "sameAs": [
-          "https://www.instagram.com/priscillazaehringer/",
-          "https://www.facebook.com/priscillazaehringer",
+          "https://www.instagram.com/cillaz.co/",
+          "https://www.facebook.com/pzaehringer",
           "https://www.pinterest.com/priscillazaehringer/"
         ]
       },

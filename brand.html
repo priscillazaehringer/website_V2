@@ -121,19 +121,27 @@
       margin-bottom: var(--s-1);
     }
 
+    /* The one containment treatment: teal left-accent, subtle tint, minimal
+       radius, left-aligned. This replaces the banned white-card-on-cream. */
+    .panel {
+      border-left: 4px solid var(--c-mint-deep);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: var(--s-4);
+      background: rgba(177, 222, 217, 0.16);
+    }
+
     .callout {
-      border: 1px solid var(--line);
-      border-left: 4px solid var(--accent);
-      border-radius: var(--radius);
+      border-left: 4px solid var(--c-mint-deep);
+      border-radius: 0 var(--radius) var(--radius) 0;
       padding: var(--s-3);
-      background: #fff;
+      background: rgba(177, 222, 217, 0.16);
     }
     .callout strong { font-weight: 700; }
 
     .compare { gap: var(--s-3); }
-    .compare .card { background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:var(--s-3); }
-    .compare .good { border-left: 4px solid var(--c-mint); }
-    .compare .bad  { border-left: 4px solid var(--c-pink); }
+    .compare .card { background: rgba(177, 222, 217, 0.10); border-radius: 0 var(--radius) var(--radius) 0; padding: var(--s-3); }
+    .compare .good { border-left: 4px solid var(--c-mint-deep); }
+    .compare .bad  { border-left: 4px solid var(--c-pink-deep); }
     .compare .tag { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.12em; font-weight:600; color:var(--text-muted); margin-bottom: var(--s-1); }
     .fake-bold { font-weight: 700; } /* used only to show what we are avoiding */
 
@@ -216,7 +224,8 @@
 
     /* ---- Working rules ---- */
     .rules { display: grid; gap: var(--s-3); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-    .rule { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-3); }
+    .rule { background: rgba(177, 222, 217, 0.12); border-left: 4px solid var(--c-mint-deep);
+      border-radius: 0 var(--radius) var(--radius) 0; padding: var(--s-3); }
     .rule h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; margin: 0 0 var(--s-1); }
     .rule p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
     .rule .mk { color: var(--link); font-weight: 600; }
@@ -262,6 +271,62 @@
     .block-demo .note { font-family: var(--font-script); color: var(--c-pink-deep); font-size: 1.3rem;
       position: absolute; top: -14px; left: -8px; transform: rotate(-7deg); z-index: 2; }
 
+    /* ---- Signature components: timeline, stat anchor, hand-drawn kit ---- */
+    /* Timeline: teal nodes on a connecting teal line. The recurring motif for
+       any sequence or process. Reuse is intentional, not repetition. */
+    .tl { display: grid; gap: var(--s-4); margin-top: var(--s-3); max-width: 560px; }
+    .tl-step { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: var(--s-3); align-items: start; }
+    .tl-step::after { content: ''; position: absolute; z-index: 0; width: 2px; left: 28px; transform: translateX(-50%);
+      top: 28px; bottom: calc(-1 * (var(--s-4) + 28px)); background: var(--c-mint); }
+    .tl-step:last-child::after { display: none; }
+    .tl-node { position: relative; z-index: 1; width: 56px; height: 56px; display: grid; place-items: center;
+      font-family: var(--font-display); font-size: 1.5rem; line-height: 1; color: var(--c-pink-deep);
+      background: var(--c-mint); border-radius: 50%; }
+    .tl-step h4 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; margin: 0 0 4px; }
+    .tl-step p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+
+    /* Stat anchor: an oversized numeral as a visual anchor (the 6x, the $5). */
+    .stat-anchor { font-family: var(--font-display); font-size: clamp(3.5rem, 8vw, 6rem); line-height: 0.9; color: var(--c-ink); }
+    .stat-anchor .sym { color: var(--c-pink-deep); font-size: 0.5em; vertical-align: 0.12em; }
+
+    /* Hand-drawn accent kit: a defined set, used sparingly. Pink strokes. */
+    .draw { display: inline-block; vertical-align: middle; }
+    .draw path, .draw circle, .draw line { stroke: var(--c-pink); stroke-width: 5; fill: none; stroke-linecap: round; }
+    .kit { display: flex; flex-wrap: wrap; gap: var(--s-4); align-items: center; margin-top: var(--s-3); }
+    .kit .item { text-align: center; }
+    .kit .item .cap { display: block; font-size: 0.8rem; color: var(--text-muted); margin-top: var(--s-1); }
+    .circled { position: relative; display: inline-block; padding: 0 6px; }
+    .circled svg { position: absolute; inset: -30% -8%; width: 116%; height: 160%; overflow: visible; }
+
+    /* Sticker / emphasis kit: type as the graphic. Key word in a filled block,
+       slight tilt, soft offset shadow. Highlight box and tag chip are lighter
+       cousins. Serif and palette only. Used sparingly, a few per page. */
+    .sticker { display: inline-block; font-family: var(--font-display); padding: 0.04em 0.34em; border-radius: 8px; line-height: 1.1; transform: rotate(-3deg); }
+    .sticker.teal  { background: var(--c-mint-deep); color: var(--c-cream); box-shadow: 4px 5px 0 rgba(25,87,80,0.18); }
+    .sticker.pink  { background: var(--c-pink); color: var(--c-pink-deep); box-shadow: 4px 5px 0 rgba(158,0,83,0.16); }
+    .sticker.coral { background: var(--c-coral); color: var(--c-coral-deep); box-shadow: 4px 5px 0 rgba(142,46,11,0.16); }
+    .hl { position: relative; display: inline-block; padding: 0 0.12em; }
+    .hl::before { content: ''; position: absolute; left: 0; right: 0; top: 16%; bottom: 8%; border-radius: 4px; transform: rotate(-1.5deg); z-index: 0; }
+    .hl.pink::before { background: var(--c-pink); opacity: 0.6; }
+    .hl.coral::before { background: var(--c-coral); opacity: 0.6; }
+    .hl.teal::before { background: var(--c-mint); opacity: 0.7; }
+    .hl > span { position: relative; z-index: 1; }
+    .tag-chip { display: inline-flex; align-items: center; gap: 0.4em; font-family: var(--font-body); font-weight: 600; font-size: 0.8rem; padding: 0.42em 0.8em; border-radius: 6px; transform: rotate(-2deg); }
+    .tag-chip.ink { background: var(--c-ink); color: var(--c-cream); }
+    .tag-chip.plum { background: var(--c-pink-deep); color: var(--c-cream); }
+    .spark { position: relative; display: inline-block; }
+    .spark > svg { position: absolute; top: -0.45em; right: -0.55em; width: 0.55em; height: 0.55em; overflow: visible; }
+    @keyframes twinkle { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.55; transform: scale(0.82); } }
+    .tw { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) { .tw { animation: none; } }
+
+    /* The banned pattern, shown only to name what we avoid. */
+    .banned-card { background: #fff; border: 1px solid var(--line); border-radius: 14px;
+      box-shadow: var(--shadow); padding: var(--s-4); text-align: center; max-width: 280px; }
+
+    /* Large display headings: nudge tracking so serif swashes do not collide. */
+    .display.lg { letter-spacing: 0.012em; }
+
     .page-footer { padding-block: var(--s-5); border-top: 1px solid var(--line); }
     .page-footer p { color: var(--text-muted); font-size: 0.9rem; }
   </style>
@@ -291,10 +356,22 @@
         <p class="eyebrow">01 · Color</p>
         <h2>Palette</h2>
         <p>Four warm neutrals and three accent hues. Each accent comes in a light
-          fill and a deep tone. Cream carries the page, Ink does the talking. Pink
-          is the warm signature, Mint holds the cool side, Soft Coral is gentle
-          warm support. Use the role tokens (<code>--bg</code>, <code>--text</code>,
-          <code>--accent</code>, <code>--link</code>) in real pages, not the raw hex.</p>
+          fill and a deep tone. Cream carries the page, Ink does the talking.
+          Magenta is the warm signature; teal is the secondary system accent;
+          soft coral is gentle warm support. Use the role tokens (<code>--bg</code>,
+          <code>--text</code>, <code>--accent</code>, <code>--link</code>) in real
+          pages, not the raw hex.</p>
+      </div>
+
+      <!-- UPDATE: palette discipline now magenta + teal only -->
+      <div class="callout" style="margin-bottom: var(--s-5);">
+        <p style="margin:0;"><strong>Update · the discipline rule.</strong> Accents
+          are magenta and teal only. Magenta (pink and deep pink) carries emphasis,
+          numbers, X marks, and key-phrase highlights. Teal (mint and deep mint)
+          owns the structural and connective work: panel left-borders, timeline
+          lines and nodes, checkmarks. Soft coral stays a quiet warm support for
+          backgrounds and blocks, never for meaning. No green, the green checkmarks
+          were a drift and are now teal. No stray colors.</p>
       </div>
 
       <h3 style="margin-bottom: var(--s-3);">Neutrals</h3>
@@ -364,14 +441,14 @@
         </div>
       </div>
 
-      <div class="pair-label"><span class="dot" style="background:#B1DED9;"></span>Mint · cool counterweight</div>
+      <div class="pair-label"><span class="dot" style="background:#B1DED9;"></span>Teal (mint) · secondary system accent</div>
       <div class="grid cols-2">
         <div class="swatch">
           <div class="chip on-light" style="background:#B1DED9;">Aa</div>
           <div class="meta">
-            <div class="name">Mint</div>
+            <div class="name">Mint (teal, light fill)</div>
             <div class="hex">#B1DED9</div>
-            <div class="role">Cool supporting blocks, quotes, calmer sections.</div>
+            <div class="role">Panel tint, timeline nodes, checkmark fill. The connective accent.</div>
             <span class="token">--c-mint</span>
           </div>
         </div>
@@ -380,7 +457,7 @@
           <div class="meta">
             <div class="name">Deep Mint (Teal)</div>
             <div class="hex">#195750</div>
-            <div class="role">Accent headings, labels. Text on Mint.</div>
+            <div class="role">Panel left-borders, timeline lines, checkmarks, accent headings. Text on Mint.</div>
             <span class="token">--c-mint-deep</span>
           </div>
         </div>
@@ -477,9 +554,10 @@
         <div class="rule"><h4>Tone-on-tone for depth</h4>
           <p>Pink card with Deep Pink text, Mint with Teal, Coral with Deep Coral.
             Same hue, far apart in lightness. The considered, layered look.</p></div>
-        <div class="rule"><h4>Three accents, three jobs</h4>
-          <p>Pink is the signature, Coral its warm support, Mint the lone cool
-            note. Keep Mint in the mix so the warm side does not take over.</p></div>
+        <div class="rule"><h4>Magenta and teal, two jobs</h4>
+          <p>Magenta is the signature for emphasis and highlights. Teal is the
+            secondary accent for structure: panels, timelines, checks. Coral is a
+            quiet warm support. Magenta and teal only carry meaning.</p></div>
         <div class="rule"><h4>Meaning in Ink, mood in accents</h4>
           <p>Anything that must be read at a glance on a light page lives in Ink
             or a deep tone, never in a pastel. Pastels are decoration.</p></div>
@@ -501,7 +579,7 @@
           <h4>Don't</h4>
           <ul>
             <li>Set Pink, Mint, or Coral as text on cream.</li>
-            <li>Layer one pastel accent directly on another.</li>
+            <li>Introduce green, or any color outside magenta and teal accents.</li>
             <li>Rely on the Cream / Cream Soft difference to separate sections.</li>
             <li>Use more than three text colors in one layout.</li>
             <li>Let key information live in a pastel accent color.</li>
@@ -544,6 +622,17 @@
             With <code>font-synthesis: none</code> live, this stays at 400 in the
             real system. Shown here only to name what we avoid.</p>
         </div>
+      </div>
+
+      <!-- UPDATE: swash-collision caution at large sizes -->
+      <div class="callout" style="margin-bottom: var(--s-5);">
+        <p style="margin:0;"><strong>Caution · swashes collide at large sizes.</strong>
+          Golden Batch has swash glyphs that overlap neighboring letters and any
+          adjacent emoji once a heading gets big (the swash on "This", the "r" in
+          "right", an emoji butting the title). For large display headings, add a
+          little letter-spacing (about 0.012em) and give emoji their own space with
+          a flex gap rather than inlining them in the text. Check the rendered
+          headers, not just the markup.</p>
       </div>
 
       <h3 style="margin-bottom: var(--s-3);">Display scale · Golden Batch 400</h3>
@@ -691,11 +780,41 @@
           sections, overlap at a few moments, and photos paired with color blocks.</p>
       </div>
 
-      <h3 style="margin-bottom: var(--s-2);">One text column</h3>
-      <p>Text sections (intro, offer, lists, process) live in a single centered
-        column, max-width about 680px, left-aligned on one axis. Wide media (cards,
-        the timeline) can break out to the full 1120px container, but every heading
-        and paragraph stays on the 680px axis.</p>
+      <!-- UPDATE: was "everything centered on one column"; now break the axis -->
+      <h3 style="margin-bottom: var(--s-2);">Break the center axis</h3>
+      <p>Not everything is centered. Centered is fine for short horizontal strips
+        and the occasional section header. Body sections break left or sit
+        asymmetric, off-center, so the page does not read as a stack of centered
+        blocks. A centered hero followed by a left-broken section below it is the
+        contrast we want. The reading column is still about 680px, it just does not
+        have to sit dead-center.</p>
+
+      <h3 style="margin: var(--s-5) 0 var(--s-2);">Overlap and layering</h3>
+      <p>The primary "designed by a person, not a template" lever. Photos break
+        their frames, oversized numerals overlap panels, and accents cross
+        boundaries instead of sitting politely inside them. Used at a few moments,
+        not everywhere.</p>
+
+      <!-- UPDATE: containment is panels, not white cards -->
+      <h3 style="margin: var(--s-5) 0 var(--s-2);">Panels, not white cards</h3>
+      <p>Containment is done with panels: a teal left-accent, a very subtle tint,
+        minimal border-radius, left-aligned. The banned pattern is the white
+        rounded card on cream, repeated and centered, which is the main reason a
+        page reads templated. The two, side by side:</p>
+      <div class="grid cols-2" style="margin-top: var(--s-3); align-items: start;">
+        <div class="panel">
+          <div class="eyebrow-fun" style="margin-bottom: var(--s-1);">Do</div>
+          <p style="margin:0;">A panel. Teal rail, faint tint, left-aligned, barely
+            any radius. Reads as part of the system.</p>
+        </div>
+        <div>
+          <div class="banned-card">
+            <p style="margin:0; color: var(--text-muted);">A white rounded card,
+              centered, with a drop shadow. Banned.</p>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--s-2);">Shown only to name what we avoid.</p>
+        </div>
+      </div>
 
       <h3 style="margin: var(--s-5) 0 var(--s-2);">Ombre on alternate sections</h3>
       <p>Cream is the base. Alternate sections carry a soft top-to-bottom ombre
@@ -731,10 +850,157 @@
         </div>
       </div>
 
-      <h3 style="margin: var(--s-6) 0 var(--s-2);">Texture and motion</h3>
-      <p style="margin-bottom: 0;">A very subtle paper grain sits over the page
-        (about 4% opacity) for warmth. Sections fade and rise in gently on scroll.
-        Both stay quiet, and motion respects <code>prefers-reduced-motion</code>.</p>
+      <h3 style="margin: var(--s-6) 0 var(--s-2);">Motion and engagement</h3>
+      <p>A very subtle paper grain sits over the page (about 4% opacity) for warmth.
+        Motion is quiet and earns its place. Restraint is the credibility signal,
+        the brand is anti-hype.</p>
+      <div class="dodont" style="margin-top: var(--s-3);">
+        <div class="do">
+          <h4>Use</h4>
+          <ul>
+            <li>Scroll reveals: a fade plus a small rise on section entry, one easing, fast.</li>
+            <li>Count-up on key stats when scrolled into view, firing once.</li>
+            <li>A sticky clarity-call CTA that stays reachable.</li>
+            <li>Content readable without JS, and motion that honors prefers-reduced-motion.</li>
+          </ul>
+        </div>
+        <div class="dont">
+          <h4>Avoid</h4>
+          <ul>
+            <li>Scroll-jacking or hijacking the scroll position.</li>
+            <li>Heavy parallax and cursor-follow effects.</li>
+            <li>Autoplay-heavy motion that competes for attention.</li>
+            <li>Any animation that gates content until it finishes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMPONENTS & MOTIFS ===================== -->
+  <section class="alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">06 · Components &amp; motifs</p>
+        <h2>The signature pieces</h2>
+        <p>The canonical patterns. Reuse across pages is intentional, it is how the
+          site reads as one designed system rather than a set of one-offs.</p>
+      </div>
+
+      <h3 style="margin-bottom: var(--s-2);">Panel · teal-accent containment</h3>
+      <p style="margin-bottom: var(--s-3);">The default container. Teal left-border,
+        subtle tint, minimal radius, left-aligned. Use it wherever a section needs
+        containment, in place of a white card.</p>
+      <div class="panel" style="margin-bottom: var(--s-5);">
+        <h4 style="font-family: var(--font-body); font-weight: 600; margin: 0 0 var(--s-1);">A panel</h4>
+        <p style="margin:0; color: var(--text-muted);">Teal rail, faint tint, no
+          shadow, content left-aligned. The phase blocks, proof cards, and pricing
+          all run through this one treatment.</p>
+      </div>
+
+      <h3 style="margin-bottom: var(--s-2);">Timeline · teal nodes on a line</h3>
+      <p style="margin-bottom: var(--s-3);">A connecting teal line with numbered
+        teal nodes. The recurring motif for any sequence or process. Numerals stay
+        magenta on a teal node.</p>
+      <div class="tl" style="margin-bottom: var(--s-5);">
+        <div class="tl-step"><div class="tl-node">01</div><div><h4>I build it</h4><p>Strategy, build, and launch, done for you.</p></div></div>
+        <div class="tl-step"><div class="tl-node">02</div><div><h4>I run it</h4><p>Daily optimization for a couple of weeks.</p></div></div>
+        <div class="tl-step"><div class="tl-node">03</div><div><h4>You keep it</h4><p>The system is yours at handoff.</p></div></div>
+      </div>
+
+      <h3 style="margin-bottom: var(--s-2);">Comparison lists · teal check, magenta X</h3>
+      <p style="margin-bottom: var(--s-3);">Two short lists for a can / can't or
+        fit / not-fit contrast. Teal checks for the yes column, magenta X marks for
+        the no column. Without forced equal heights, so a shorter list just ends.</p>
+      <div class="dodont" style="margin-bottom: var(--s-5);">
+        <div class="do"><h4>Ads can</h4><ul>
+          <li>Put your offer in front of the right people</li>
+          <li>Scale what already works</li>
+          <li>Build your list predictably</li>
+        </ul></div>
+        <div class="dont"><h4>Ads can't</h4><ul>
+          <li>Fix a broken offer</li>
+          <li>Create demand from nothing</li>
+        </ul></div>
+      </div>
+
+      <h3 style="margin-bottom: var(--s-2);">Stat anchor · an oversized numeral</h3>
+      <p style="margin-bottom: var(--s-3);">A single large display numeral as a
+        visual anchor for a result. The number does the work, the caption stays
+        small.</p>
+      <div class="grid cols-2" style="margin-bottom: var(--s-5); align-items: end;">
+        <div>
+          <div class="stat-anchor">6<span class="sym">&times;</span></div>
+          <div style="font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);">more signups, same spend</div>
+        </div>
+        <div>
+          <div class="stat-anchor"><span class="sym">$</span>5</div>
+          <div style="font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);">a day, seven new leads</div>
+        </div>
+      </div>
+
+      <h3 style="margin-bottom: var(--s-2);">Section header · eyebrow + display headline</h3>
+      <p style="margin-bottom: var(--s-3);">An in-voice eyebrow with a heart, then a
+        display headline. Favor real, playful eyebrow wording over generic all-caps
+        micro-labels.</p>
+      <div style="margin-bottom: var(--s-5);">
+        <p class="eyebrow-fun"><span class="heart">&#9829;</span>The gap I'm filling</p>
+        <div class="display lg" style="font-size: var(--h3);">You're doing the work. The number still won't move.</div>
+      </div>
+
+      <h3 style="margin-bottom: var(--s-2);">Hand-drawn accent kit</h3>
+      <p style="margin-bottom: 0;">A defined set: an underline, a circled word, an
+        arrow, a check doodle. Pink strokes, used sparingly, a handful per page, not
+        on every element.</p>
+      <div class="kit">
+        <div class="item">
+          <span class="display" style="font-size: var(--h3);"><span class="sig">perfect<svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M3 8 C 42 2, 120 2, 167 6"/></svg></span></span>
+          <span class="cap">underline</span>
+        </div>
+        <div class="item">
+          <span class="display" style="font-size: var(--h3);"><span class="circled">you<svg viewBox="0 0 120 60" preserveAspectRatio="none"><circle cx="60" cy="30" r="52"/></svg></span></span>
+          <span class="cap">circled word</span>
+        </div>
+        <div class="item">
+          <span class="draw"><svg width="64" height="34" viewBox="0 0 64 34"><path d="M4 17 H54"/><path d="M40 5 L56 17 L40 29"/></svg></span>
+          <span class="cap">arrow</span>
+        </div>
+        <div class="item">
+          <span class="draw"><svg width="40" height="34" viewBox="0 0 40 34"><path d="M5 18 L16 28 L35 6"/></svg></span>
+          <span class="cap">check doodle</span>
+        </div>
+      </div>
+
+      <h3 style="margin: var(--s-5) 0 var(--s-2);">Sticker and emphasis kit</h3>
+      <p style="margin-bottom: var(--s-3);">Type as the graphic. A key word sits in a
+        filled block, tilted a few degrees with a soft offset shadow so it reads stuck
+        on. The highlight box and tag chip are lighter cousins. Serif and palette only,
+        no loud sans, used a few times per page where the buyer's eye should land.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--s-4) var(--s-5); align-items: center;">
+        <span class="display" style="font-size: var(--h3);"><span class="sticker teal">yours to keep</span></span>
+        <span class="display" style="font-size: var(--h3);"><span class="sticker pink">coffee budget</span></span>
+        <span class="display" style="font-size: var(--h3);"><span class="sticker coral">done for you</span></span>
+      </div>
+      <p class="display" style="font-size: var(--h3); margin: var(--s-4) 0 0;">Your list, finally
+        <span class="hl pink"><span>growing</span></span>, on a
+        <span class="spark"><span class="sticker teal">coffee budget</span><svg viewBox="0 0 40 40" aria-hidden="true"><path class="tw" d="M20 3 C22 15 25 18 37 20 C25 22 22 25 20 37 C18 25 15 22 3 20 C15 18 18 15 20 3Z" fill="#9E0053"/></svg></span>.</p>
+      <div style="display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-4);">
+        <span class="tag-chip ink">here's how <span aria-hidden="true">&#8595;</span></span>
+        <span class="tag-chip plum">the honest version</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== IMAGERY =========================== -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">07 · Imagery</p>
+        <h2>What we show</h2>
+        <p>Favor real, credible imagery: ad dashboards, lead-form mockups,
+          behind-the-scenes shots of the actual work. It doubles as proof. Avoid
+          influencer-lifestyle photo density and stock that could sit on any page.</p>
+      </div>
     </div>
   </section>
 
@@ -742,7 +1008,7 @@
   <section class="feature">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">06 · Voice</p>
+        <p class="eyebrow">08 · Voice</p>
         <h2>How we write</h2>
         <p style="color: var(--c-cream); opacity:0.85;">Warm, direct, plain. Write
           the way you would talk to a client across the table. Speak to the
@@ -776,9 +1042,10 @@
           <h3 style="color: var(--c-cream); margin-bottom: var(--s-2);">Don't</h3>
           <ul style="color: var(--c-cream); opacity:0.9; line-height: var(--lh-body); padding-left: 1.1em;">
             <li>No em dashes. Use a period or a comma.</li>
-            <li>Avoid elevate, unlock, leverage, seamless, robust.</li>
-            <li>No vague promises you cannot back up.</li>
-            <li>No filler. If a word does no work, cut it.</li>
+            <li>No anaphora, no repeated sentence-opening rhythm.</li>
+            <li>No antithetical parallelism ("not this, but that").</li>
+            <li>No AI-sounding filler: elevate, unlock, leverage, seamless, robust.</li>
+            <li>No vague promises you cannot back up. Sentence case throughout.</li>
           </ul>
         </div>
       </div>

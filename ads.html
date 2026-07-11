@@ -17,13 +17,20 @@
        The Lead Stream (ads) page. Built on the homepage system.
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; }
+    /* Sales-page base is white (not the site cream). Scoped to this page only. */
+    :root { --bg: #ffffff; }
     html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
     body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body);
       font-size: var(--body); line-height: var(--lh-body); font-weight: 400; -webkit-font-smoothing: antialiased; }
+    /* Paper grain over the whole page so white reads as paper, not a SaaS blank. */
+    body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+      mix-blend-mode: multiply; opacity: 0.07;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @media print { body::after { display: none; } }
     h1, h2, h3, h4, .display { font-family: var(--font-display); font-weight: 400; font-synthesis: none;
       line-height: var(--lh-tight); margin: 0; }
-    h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); }
-    h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); }
+    h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); letter-spacing: 0.012em; }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); letter-spacing: 0.012em; }
     h3 { font-size: clamp(1.3rem, 2.2vw, 1.6rem); }
     p { margin: 0 0 var(--s-2); }
     a { color: var(--link); }
@@ -31,7 +38,7 @@
     .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--s-3); }
     .section { padding-block: var(--section-y); position: relative; z-index: 1; }
     .col { max-width: 680px; margin-inline: auto; }
-    .alt { background: var(--bg-alt); }
+    .alt { background: #fff; }
     .lede { font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--text-muted); }
     .center { text-align: center; }
 
@@ -41,6 +48,9 @@
     .sig { position: relative; display: inline-block; }
     .sig svg { position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0.32em; overflow: visible; }
     .sig svg path { stroke: var(--c-pink); stroke-width: 5; fill: none; stroke-linecap: round; }
+    /* Editorial phrase highlight — a marker sweep that wraps cleanly across lines. */
+    .hl { color: var(--c-ink); background-image: linear-gradient(transparent 58%, var(--c-pink) 58%, var(--c-pink) 94%, transparent 94%);
+      -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 0 0.06em; border-radius: 2px; }
     .note-script { font-family: var(--font-script); font-weight: 600; color: var(--c-pink-deep); line-height: 1; }
     .quote-soft { font-family: var(--font-display); font-synthesis: none; font-size: 1.3rem; line-height: 1.4;
       border-left: 3px solid var(--c-pink); padding-left: var(--s-2); margin: var(--s-3) 0 0; }
@@ -67,9 +77,31 @@
     .nav-center a:hover { opacity: 1; }
     .nav-cta { justify-self: end; }
     .nav-pill { display: inline-block; background: var(--c-cream); color: var(--c-ink); font-weight: 600;
-      font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease; }
+      font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease;
+      border: none; cursor: pointer; font-family: var(--font-body); }
     .nav-pill:hover { opacity: 0.9; }
     @media (max-width: 760px) { .nav-center { display: none; } .nav { grid-template-columns: 1fr auto; } .promo-cta { display: none; } }
+
+    /* ---- Nav dropdowns ---- */
+    .nav-item { position: relative; display: inline-flex; align-items: center; }
+    .nav-link { font: inherit; font-size: 0.95rem; font-weight: 500; color: var(--c-cream); opacity: 0.9;
+      background: none; border: 0; padding: 0; margin: 0; cursor: pointer; display: inline-flex; align-items: center;
+      gap: 5px; white-space: nowrap; line-height: 1; }
+    .nav-item:hover .nav-link, .nav-item:focus-within .nav-link, .nav-link:hover { opacity: 1; }
+    .nav-item:has(.submenu a[aria-current]) .nav-link { opacity: 1; }
+    .nav-link .caret { font-size: 0.6em; transition: transform 0.18s ease; }
+    .nav-item:hover .caret, .nav-item:focus-within .caret, .nav-item.open .caret { transform: rotate(180deg); }
+    .submenu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
+      min-width: 190px; background: var(--c-cream); border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 6px; display: flex; flex-direction: column; gap: 2px;
+      opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.16s ease, transform 0.16s ease; z-index: 60; }
+    .submenu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+    .nav-item:hover .submenu, .nav-item:focus-within .submenu, .nav-item.open .submenu {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(4px); }
+    .submenu a { display: block; color: var(--c-ink); opacity: 1; font-size: 0.92rem; font-weight: 500;
+      padding: 9px 12px; border-radius: 3px; white-space: nowrap; }
+    .submenu a:hover { background: var(--c-pink); color: var(--c-ink); }
+    .submenu a[aria-current] { color: var(--c-pink-deep); font-weight: 700; }
 
     /* ---- Buttons ---- */
     .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 1rem;
@@ -78,6 +110,52 @@
       text-decoration: none; cursor: pointer; transition: opacity 0.14s ease, transform 0.12s ease; }
     .btn:hover { opacity: 0.88; } .btn:active { transform: translateY(1px); }
     .btn-cream { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
+    .btn-lg { padding: 20px 40px; font-size: 1.1rem; }
+
+    /* ---- Inquiry drawer (Formspree) ---- */
+    .drawer-overlay { position: fixed; inset: 0; z-index: 60; background: rgba(29,30,38,0.5);
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+    .drawer { position: fixed; top: 0; right: 0; height: 100%; width: min(460px, 100%); z-index: 61;
+      background: var(--bg); box-shadow: -24px 0 60px rgba(29,30,38,0.20); overflow-y: auto;
+      transform: translateX(100%); transition: transform 0.38s cubic-bezier(.2,.7,.2,1); }
+    .drawer.open { transform: translateX(0); }
+    @media (prefers-reduced-motion: reduce) { .drawer, .drawer-overlay { transition: none; } }
+    .drawer-inner { padding: clamp(var(--s-4), 5vw, var(--s-6)); }
+    .drawer-close { position: absolute; top: 14px; right: 16px; width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--line); background: #fff; color: var(--c-ink); font-size: 1.5rem; line-height: 1;
+      cursor: pointer; display: grid; place-items: center; transition: background 0.15s ease, color 0.15s ease; }
+    .drawer-close:hover { background: var(--c-ink); color: var(--c-cream); }
+    .drawer-head h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); }
+    .drawer-head p { color: var(--text-muted); margin: var(--s-2) 0 0; }
+
+    .inquiry-form { margin-top: var(--s-4); }
+    .field { display: block; margin-bottom: var(--s-3); }
+    .field > span { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .field .req { color: var(--c-pink-deep); }
+    .field .hint { font-weight: 400; color: var(--text-muted); }
+    .field input, .field select, .field textarea { width: 100%; padding: 12px 14px; border-radius: var(--radius);
+      border: 1px solid var(--line); background: #fff; font: inherit; color: var(--text); }
+    .field textarea { resize: vertical; min-height: 96px; }
+    .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+      outline: 2px solid var(--c-pink-deep); outline-offset: 1px; border-color: var(--c-pink-deep); }
+    .opts { display: grid; gap: 6px; }
+    .opt { display: flex; align-items: flex-start; gap: 10px; padding: 9px 12px; border: 1px solid var(--line);
+      border-radius: var(--radius); background: #fff; cursor: pointer; font-size: 0.95rem; line-height: 1.35; }
+    .opt:hover { border-color: var(--c-pink); }
+    .opt input { width: auto; margin: 2px 0 0; accent-color: var(--c-pink-deep); flex: none; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .form-actions { margin-top: var(--s-4); }
+    .form-actions .btn { width: 100%; justify-content: center; }
+    .form-note { display: block; color: var(--text-muted); font-size: 0.85rem; margin-top: var(--s-2); text-align: center; }
+    .form-status { margin: var(--s-3) 0 0; font-weight: 600; color: var(--c-pink-deep); }
+    .form-success { display: none; }
+    .inquiry-form.sent > *:not(.form-success) { display: none; }
+    .inquiry-form.sent .form-success { display: block; }
+    .form-success .emoji { font-size: 2.4rem; line-height: 1; }
+    .form-success h3 { font-size: 1.5rem; margin: var(--s-2) 0 var(--s-2); }
+    .form-success p { color: var(--text-muted); margin: 0 0 var(--s-2); }
+    .form-success a { color: var(--link); font-weight: 600; }
 
     /* ---- Announce bar ---- */
     .announce { background: var(--c-ink); color: var(--c-cream); text-align: center; font-size: 0.92rem;
@@ -85,20 +163,21 @@
     .announce a { color: var(--c-pink); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; margin-left: 6px; white-space: nowrap; }
 
     /* ---- Hero (type-led on ombre) ---- */
-    .hero { background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 60%, #FBE2D6 100%); }
-    .hero .container { max-width: 820px; text-align: center; padding-top: 130px; padding-bottom: var(--s-8); }
-    .hero h1 { margin-inline: auto; max-width: 18ch; }
-    .hero .lede { margin: var(--s-3) auto 0; max-width: 56ch; color: var(--text); }
-    .hero .cta { margin-top: var(--s-4); }
-    .hero .micro { margin-top: var(--s-2); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-    .hero .stats { display: flex; justify-content: center; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-5); }
-    .stat { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-2) var(--s-3); box-shadow: var(--shadow); }
-    .stat .n { font-family: var(--font-display); font-size: 1.8rem; color: var(--c-pink-deep); line-height: 1; }
-    .stat .l { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+    .hero { background: linear-gradient(168deg, #FFFFFF 0%, #FBEAF1 58%, #FBE2D6 100%); }
+    .hero .container { max-width: 880px; text-align: center; padding-top: 154px; padding-bottom: var(--s-7); }
+    .hero .eyebrow { margin-bottom: var(--s-3); }
+    .hero h1 { margin-inline: auto; max-width: 16ch; font-size: clamp(2.9rem, 6.2vw, 5.1rem); letter-spacing: 0.008em; }
+    .hero .lede { margin: var(--s-4) auto 0; max-width: 42ch; color: var(--text); }
+    .hero .cta { margin-top: var(--s-5); }
+    .hero .cta .btn { padding: 21px 46px; font-size: 1.08rem; border-radius: 999px;
+      box-shadow: 0 14px 30px rgba(158,0,83,0.16); }
+    .hero .cta .btn:hover { opacity: 1; transform: translateY(-2px); box-shadow: 0 20px 40px rgba(158,0,83,0.24); }
+    .hero .micro { margin-top: var(--s-3); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
 
     /* ---- Ombre/band helpers ---- */
-    .alt-pink  { background: linear-gradient(180deg, #F7EEE7 0%, #FCE4EF 100%); }
-    .alt-coral { background: linear-gradient(180deg, #F7EEE7 0%, #FBE7DD 100%); }
+    .alt-pink  { background: linear-gradient(180deg, #FFFFFF 0%, #FCE4EF 100%); }
+    .alt-coral { background: linear-gradient(180deg, #FFFFFF 0%, #FBE7DD 100%); }
+    .alt-mint  { background: linear-gradient(180deg, #FFFFFF 0%, #E9F4F1 100%); }
     .band-ink { background: var(--bg-feature); color: var(--text-on-dark); }
     .band-ink h2, .band-ink h3 { color: var(--c-pink); }
     .band-ink .eyebrow, .band-ink .eyebrow .heart { color: var(--c-pink); }
@@ -106,87 +185,181 @@
     .overlap { margin-top: -44px; z-index: 2; border-radius: 40px 40px 0 0;
       box-shadow: 0 -16px 40px rgba(29,30,38,0.08); padding-top: calc(var(--section-y) + 44px); }
 
-    /* ---- Reality: the options that don't work ---- */
-    .struck { border-top: 1px solid var(--line); margin-top: var(--s-4); }
-    .struck-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-3); align-items: center;
-      padding-block: var(--s-3); border-bottom: 1px solid var(--line); }
-    .struck-item .ic { font-size: 1.5rem; }
-    .struck-item .t { font-family: var(--font-display); font-size: 1.2rem; position: relative; display: inline-block; }
-    .struck-item .t::after { content: ''; position: absolute; left: -2%; right: -2%; top: 52%; height: 2px; background: var(--c-pink-deep); }
-    .struck-item p { color: var(--text-muted); font-size: 0.92rem; margin: 4px 0 0; }
-    .struck-item .x { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--c-pink-deep); }
-    @media (max-width: 600px) { .struck-item { grid-template-columns: auto 1fr; } .struck-item .x { display: none; } }
-    .callout-box { background: var(--c-pink); border-radius: var(--radius); padding: clamp(var(--s-3), 4vw, var(--s-5));
-      margin-top: var(--s-5); text-align: center; }
-    .callout-box p { font-family: var(--font-display); font-size: clamp(1.2rem, 2.4vw, 1.6rem); line-height: 1.4; margin: 0; max-width: 34ch; margin-inline: auto; }
+    /* ---- Final CTA — the natural conclusion of the page ---- */
+    .final-cta { padding-block: calc(var(--section-y) + var(--s-5)); }
+    .final-cta .container { max-width: 780px; }
+    .final-cta h2 { font-size: clamp(2.5rem, 6vw, 4.2rem); letter-spacing: 0.01em; max-width: 16ch; margin-inline: auto; }
+    .final-cta .lede { margin: var(--s-4) auto var(--s-5); max-width: 46ch; }
+    .final-cta .btn { padding: 21px 46px; font-size: 1.08rem; border-radius: 999px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.28); transition: transform 0.14s ease, box-shadow 0.14s ease, opacity 0.14s ease; }
+    .final-cta .btn:hover { opacity: 1; transform: translateY(-2px); box-shadow: 0 22px 50px rgba(0,0,0,0.36); }
+
+    /* ---- Reality: the options that don't work (comparison cards) ---- */
+    .reality-head { max-width: 640px; margin-right: auto; text-align: left; }
+    .compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); margin-top: var(--s-5); align-items: stretch; }
+    @media (max-width: 820px) { .compare { grid-template-columns: 1fr; gap: var(--s-2); } }
+    .cmp { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line);
+      border-radius: 16px; padding: clamp(var(--s-3), 3vw, var(--s-4)); box-shadow: 0 1px 2px rgba(29,30,38,0.05); }
+    .cmp-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700;
+      color: var(--c-pink-deep); margin-bottom: var(--s-2); }
+    .cmp-cost { font-family: var(--font-display); font-size: 1.55rem; line-height: 1.05; color: var(--c-ink); }
+    .cmp-cost small { display: block; font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.08em;
+      text-transform: uppercase; font-weight: 600; color: var(--text-muted); margin-top: 6px; }
+    .cmp p { color: var(--text-muted); font-size: 0.94rem; line-height: 1.55; margin: var(--s-3) 0 0;
+      padding-top: var(--s-3); border-top: 1px solid var(--line); }
+    .cmp .catch { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: var(--s-3);
+      font-size: 0.86rem; font-weight: 600; color: var(--c-ink); }
+    .cmp .catch::before { content: '\2715'; color: var(--c-pink-deep); font-weight: 700; font-size: 0.9em; }
+    /* Conclusion callout — cream, soft border, subtle shadow, editorial. */
+    .callout-box { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 20px;
+      box-shadow: 0 20px 54px rgba(29,30,38,0.08); padding: clamp(var(--s-4), 4.5vw, var(--s-6));
+      margin-top: var(--s-4); text-align: center; }
+    .callout-box .lead-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;
+      color: var(--c-pink-deep); margin: 0 0 var(--s-2); }
+    .callout-box p { font-family: var(--font-display); font-size: clamp(1.35rem, 2.8vw, 1.9rem); line-height: 1.35;
+      margin: 0; max-width: 26ch; margin-inline: auto; }
+    .callout-box .em { color: var(--c-pink-deep); }
 
     /* ---- Split (about / budget) ---- */
-    .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--s-6); align-items: center; }
-    @media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: var(--s-4); } }
+    .split { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: clamp(var(--s-5), 7vw, var(--s-8)); align-items: center; }
+    @media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: var(--s-6); } }
+    /* Photo sits on an intentional teal panel, offset down-right as one composed block. */
     .photo-frame { position: relative; }
-    .photo-frame .block { position: absolute; z-index: 0; width: 60%; aspect-ratio: 1; background: var(--c-mint);
-      border-radius: var(--radius); right: -22px; bottom: -22px; }
-    .about-photo { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: var(--radius);
-      background-image: url('/assets/img/about.webp'); background-size: cover; background-position: 50% 22%; }
-    .photo-frame .note-script { position: absolute; z-index: 2; font-size: 2rem; transform: rotate(-7deg); top: -16px; left: -8px; }
+    .photo-frame .block { position: absolute; z-index: 0; inset: 26px -26px -26px 26px; background: var(--c-mint);
+      border-radius: 18px; }
+    .about-photo { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: 18px;
+      background-image: url('/assets/img/about.webp'); background-size: cover; background-position: 50% 22%;
+      box-shadow: 0 16px 40px rgba(29,30,38,0.12); }
+    .photo-frame .note-script { position: absolute; z-index: 2; font-size: 2.1rem; transform: rotate(-7deg); top: -18px; left: -10px; }
+    @media (max-width: 860px) { .photo-frame { max-width: 420px; } }
 
-    /* ---- Numbered step cards (the offer) ---- */
-    .steps3 { display: grid; gap: var(--s-2); margin-top: var(--s-5); }
-    .stepcard { display: grid; grid-template-columns: auto 1fr; gap: var(--s-3); align-items: start;
-      background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-4); }
-    .stepcard .num { font-family: var(--font-display); font-size: 2.4rem; color: var(--c-pink-deep); line-height: 0.9; }
-    .stepcard h3 { margin-bottom: var(--s-1); }
-    .stepcard p { color: var(--text-muted); margin: 0; }
+    /* ---- Timeline steps (the offer) ---- */
+    .steps3 { --node: 74px; display: grid; gap: var(--s-7); margin-top: var(--s-6);
+      max-width: 640px; margin-inline: auto; }
+    .tstep { position: relative; display: grid; grid-template-columns: var(--node) 1fr;
+      gap: var(--s-4); align-items: start; }
+    .tstep::after { content: ''; position: absolute; z-index: 0; width: 2px;
+      left: calc(var(--node) / 2); transform: translateX(-50%);
+      top: calc(var(--node) / 2); bottom: calc(-1 * (var(--s-7) + var(--node) / 2));
+      background: var(--c-mint); }
+    .tstep:last-child::after { display: none; }
+    .tstep .num { position: relative; z-index: 1; width: var(--node); height: var(--node);
+      display: grid; place-items: center; font-family: var(--font-display); font-size: 2.1rem;
+      line-height: 1; color: var(--c-pink-deep); background: var(--c-mint); border-radius: 50%;
+      box-shadow: 0 0 0 8px rgba(177,222,217,0.28); }
+    .tstep h3 { margin-bottom: var(--s-1); }
+    .tstep p { color: var(--text-muted); margin: 0; }
+    @media (max-width: 600px) { .steps3 { --node: 54px; gap: var(--s-6); } .tstep .num { font-size: 1.5rem; } }
     .hero-logo { width: clamp(240px, 36vw, 360px); height: auto; display: block; margin: 0 auto var(--s-3); }
     .cta-logo { width: clamp(200px, 30vw, 300px); height: auto; display: block; margin: 0 auto var(--s-3); }
-    .section-mark { width: clamp(250px, 33vw, 330px); height: auto; display: block; margin: 0 auto var(--s-3); }
+    .section-mark { width: clamp(290px, 42vw, 440px); height: auto; display: block; margin: 0 auto var(--s-3); }
 
-    /* ---- Phase cards (what you get) ---- */
+    /* ---- Shared panel: the one containment treatment (teal rail + faint tint) ---- */
+    .panel { border-left: 4px solid var(--c-mint-deep); background: rgba(177, 222, 217, 0.16);
+      border-radius: 0 var(--radius) var(--radius) 0; }
+
+    /* ---- Phase blocks (what you get) ---- */
     .phases { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
-    .phase { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-4); }
-    .phase .meta { display: flex; align-items: baseline; gap: var(--s-2); }
-    .phase .num { font-family: var(--font-display); font-size: 2rem; color: var(--c-pink-deep); line-height: 0.9; }
-    .phase .when { font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; }
-    .phase h3 { margin: var(--s-1) 0; }
-    .phase .outcome { color: var(--text-muted); font-style: italic; margin: 0 0 var(--s-2); }
-    .phase ul { list-style: none; margin: var(--s-2) 0 0; padding-top: var(--s-2); border-top: 1px solid var(--line);
-      columns: 2; column-gap: var(--s-4); }
+    .phase { padding: clamp(var(--s-4), 4vw, var(--s-5)); }
+    .phase .phead { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-2) var(--s-3); }
+    .phase .num { font-family: var(--font-display); font-size: 2.7rem; color: var(--c-pink-deep); line-height: 0.85; }
+    .phase .when { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-pink-deep);
+      font-weight: 700; background: rgba(255,200,229,0.42); padding: 5px 11px; border-radius: 999px; }
+    .phase h3 { margin: var(--s-1) 0 0; display: flex; align-items: center; gap: var(--s-3); width: 100%; }
+    .phase .emoji { font-size: 1.45rem; line-height: 1; flex: none; width: 52px; height: 52px; display: grid;
+      place-items: center; background: var(--c-mint); border-radius: 50%; }
+    .phase .outcome { color: var(--text-muted); font-style: italic; margin: var(--s-3) 0 0; }
+    .phase ul { list-style: none; margin: var(--s-3) 0 0; padding-top: var(--s-3); border-top: 1px solid var(--line);
+      columns: 2; column-gap: var(--s-5); }
     @media (max-width: 640px) { .phase ul { columns: 1; } }
     .phase li { font-size: 0.95rem; color: var(--text); padding: 5px 0 5px 22px; position: relative; break-inside: avoid; }
     .phase li::before { content: '\2713'; position: absolute; left: 0; top: 5px; color: var(--c-mint-deep); font-weight: 700; }
+    /* the handoff — the ownership payoff, given a touch more presence to break the rhythm */
+    .phase.feature { background: rgba(177,222,217,0.30); box-shadow: 0 18px 44px rgba(29,30,38,0.10); }
+    .phase.feature .emoji { background: var(--c-mint-deep); }
 
-    /* ---- Proof ---- */
-    .proof-grid { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
-    .proof-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
-      padding: clamp(var(--s-4), 4vw, var(--s-5)); display: grid; grid-template-columns: minmax(180px, 0.8fr) 1.2fr; gap: var(--s-5); align-items: center; }
-    .proof-card.flip { grid-template-columns: 1.2fr minmax(180px, 0.8fr); }
-    .proof-card.flip .fig { order: 2; } .proof-card.flip .story { order: 1; }
-    @media (max-width: 720px) { .proof-card, .proof-card.flip { grid-template-columns: 1fr; gap: var(--s-3); }
-      .proof-card.flip .fig, .proof-card.flip .story { order: 0; } }
-    .fig { text-align: center; }
-    .fig .big { font-family: var(--font-display); font-size: clamp(4rem, 10vw, 7.5rem); line-height: 0.9; color: var(--c-ink); }
-    .fig .big .sym { color: var(--c-pink-deep); font-size: 0.5em; vertical-align: 0.08em; }
-    .fig .cap { font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: var(--s-1); }
-    .story .client { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; margin-bottom: var(--s-1); }
-    .story h3 strong { color: var(--c-pink-deep); }
-    .story .body { color: var(--text-muted); margin: var(--s-2) 0 var(--s-3); }
-    .cbar { margin-bottom: var(--s-2); }
-    .cbar-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-    .cbar-key { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
-    .cbar-val { font-family: var(--font-display); font-size: 0.95rem; }
-    .cbar-track { height: 10px; background: rgba(29,30,38,0.06); border-radius: 999px; overflow: hidden; }
-    .cbar-fill { height: 100%; width: 0; border-radius: 999px; transition: width 1.3s cubic-bezier(0.2,0.7,0.2,1); }
-    .cbar-fill.us { background: var(--c-pink); } .cbar-fill.them { background: rgba(29,30,38,0.14); }
-    .proof-card.in .cbar-fill { width: var(--w); }
-    .receipt { display: flex; flex-wrap: wrap; gap: 8px 24px; padding-top: var(--s-2); border-top: 1px solid var(--line); margin-top: var(--s-2); }
-    .receipt span { font-size: 0.82rem; color: var(--text-muted); }
-    .receipt strong { font-family: var(--font-display); color: var(--c-ink); }
+    /* ---- Proof: the evidence dashboard ---- */
+    .dash { max-width: 980px; margin: var(--s-5) auto 0; background: #fff; border: 1px solid var(--line);
+      border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); }
+    .dash-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); flex-wrap: wrap;
+      padding: var(--s-3) clamp(var(--s-3), 4vw, var(--s-5)); border-bottom: 1px solid var(--line); background: var(--bg-alt); }
+    .dash-head .client { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 700; }
+    .dash-head .tag { font-size: 0.82rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 8px; }
+    .dash-head .tag::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--c-mint-deep); }
+    .dash-flow { display: grid; grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 760px) { .dash-flow { grid-template-columns: 1fr; } }
+    .metric { position: relative; padding: clamp(var(--s-4), 4.5vw, var(--s-6)) var(--s-4); text-align: center; }
+    .metric + .metric { border-left: 1px solid var(--line); }
+    @media (max-width: 760px) { .metric + .metric { border-left: 0; border-top: 1px solid var(--line); } }
+    .metric .k { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: var(--s-2); }
+    .metric .v { font-family: var(--font-display); font-size: clamp(2.6rem, 5.2vw, 3.6rem); line-height: 0.92; color: var(--c-ink); }
+    .metric .v .sym { color: var(--c-pink-deep); font-size: 0.5em; vertical-align: 0.18em; margin-right: 0.02em; }
+    .metric .u { font-size: 0.82rem; color: var(--text-muted); margin-top: var(--s-1); }
+    .metric.final { background: rgba(255,200,229,0.16); }
+    .metric.final .v { color: var(--c-pink-deep); }
+    .metric .arrow { position: absolute; z-index: 2; top: 50%; right: -13px; transform: translateY(-50%);
+      width: 26px; height: 26px; border-radius: 50%; background: var(--c-pink); color: var(--c-pink-deep);
+      display: grid; place-items: center; font-size: 0.9rem; line-height: 1; }
+    .metric:last-child .arrow { display: none; }
+    @media (max-width: 760px) { .metric .arrow { top: auto; bottom: -13px; right: 50%; transform: translate(50%, 0) rotate(90deg); } }
+    .dash-note { max-width: 620px; margin: var(--s-4) auto 0; text-align: center; font-size: 0.92rem;
+      font-style: italic; color: var(--text-muted); line-height: 1.6; }
+    /* proof screenshot slot (standalone, no overlap) */
+    .proof-shot { max-width: 760px; margin: var(--s-6) auto 0; }
+    .proof-shot .mock-ph { aspect-ratio: 16 / 9; border-radius: 16px; border: 1px solid var(--line);
+      background: var(--bg-alt); box-shadow: 0 24px 60px rgba(29,30,38,0.14); overflow: hidden; }
+    .proof-shot figcaption { text-align: center; color: var(--text-muted); font-size: 0.9rem; font-style: italic; margin-top: var(--s-3); }
 
-    /* ---- Pricing ---- */
-    .pricing { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-5); }
-    .pricing .label { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 600; margin-bottom: var(--s-2); }
+    /* ---- Sticker / emphasis kit (approved motif) ---- */
+    /* Key word in a filled block, slight tilt, soft offset shadow. */
+    .sticker { display: inline-block; padding: 0.04em 0.34em; border-radius: 8px; line-height: 1.1; transform: rotate(-3deg); }
+    .sticker.teal  { background: var(--c-mint-deep); color: var(--c-cream); box-shadow: 4px 5px 0 rgba(25,87,80,0.18); }
+    .sticker.pink  { background: var(--c-pink); color: var(--c-pink-deep); box-shadow: 4px 5px 0 rgba(158,0,83,0.16); }
+    .sticker.coral { background: var(--c-coral); color: var(--c-coral-deep); box-shadow: 4px 5px 0 rgba(142,46,11,0.16); }
+    /* Sparkle punctuation: small, beside a word or number. */
+    .spark { position: relative; display: inline-block; }
+    .spark > svg { position: absolute; top: -0.45em; right: -0.55em; width: 0.55em; height: 0.55em; overflow: visible; }
+    @keyframes twinkle { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.55; transform: scale(0.82); } }
+    .tw { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) { .tw { animation: none; } }
+
+    /* ---- Niche trust strip (industry chips) ---- */
+    .niches { max-width: 780px; margin: var(--s-7) auto 0; text-align: center; }
+    .niches-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 700; margin: 0 0 var(--s-3); }
+    .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .chip { font-size: 0.98rem; font-weight: 600; color: var(--c-ink); background: #fff; border: 1px solid var(--line);
+      padding: 10px 20px; border-radius: 999px; box-shadow: 0 1px 2px rgba(29,30,38,0.04); }
+    .chip.mine { background: var(--c-mint); border-color: transparent; }
+    .niches-note { font-family: var(--font-display); font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.4;
+      color: var(--text); margin: var(--s-4) 0 0; }
+
+    /* ---- Deliverable mockup — real product preview that overlaps the next band ---- */
+    .mock { position: relative; z-index: 4; max-width: 940px;
+      margin: var(--s-7) auto calc(-1 * clamp(var(--s-5), 8vw, var(--s-7))); }
+    .mock-ph { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; border: 1px solid var(--line);
+      background: var(--bg-alt); display: grid; place-items: center; overflow: hidden;
+      box-shadow: 0 40px 90px rgba(29,30,38,0.20), 0 8px 20px rgba(29,30,38,0.08); }
+    .mock-ph::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 42px; background: #fff; border-bottom: 1px solid var(--line); }
+    .mock-dots { position: absolute; top: 16px; left: 18px; display: flex; gap: 8px; z-index: 1; }
+    .mock-dots i { width: 11px; height: 11px; border-radius: 50%; background: var(--c-coral); }
+    .mock-dots i:nth-child(2) { background: var(--c-mint); }
+    .mock-dots i:nth-child(3) { background: var(--c-pink); }
+    .mock-label { position: relative; text-align: center; color: var(--text-muted); font-size: 1.05rem; padding: var(--s-5); }
+    .mock-label small { display: block; opacity: 0.8; margin-top: 6px; font-size: 0.85rem; }
+    .mock figcaption { text-align: center; color: var(--text-muted); font-size: 0.9rem; font-style: italic; margin-top: var(--s-3); }
+    /* section that a mockup overlaps into needs extra headroom */
+    .pull-under { padding-top: calc(var(--section-y) + clamp(var(--s-6), 9vw, var(--s-8))); }
+
+    /* ---- Investment: pricing card is the visual focus ---- */
+    .split.invest { grid-template-columns: 0.85fr 1.15fr; gap: clamp(var(--s-5), 6vw, var(--s-7)); align-items: center; }
+    @media (max-width: 860px) { .split.invest { grid-template-columns: 1fr; } }
+    .pricing { padding: clamp(var(--s-5), 5vw, var(--s-6)); background: #fff; border: 1px solid var(--line);
+      border-radius: 22px; box-shadow: 0 34px 80px rgba(29,30,38,0.16); position: relative; }
+    .pricing::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 5px; border-radius: 22px 22px 0 0;
+      background: linear-gradient(90deg, var(--c-pink) 0%, var(--c-coral) 100%); }
+    .pricing .label { font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-pink-deep); font-weight: 700; margin-bottom: var(--s-2); }
     .pricing .price-row { display: flex; align-items: baseline; gap: var(--s-2); flex-wrap: wrap; margin-bottom: var(--s-3); }
-    .pricing .price { font-family: var(--font-display); font-size: 3.2rem; color: var(--c-ink); line-height: 1; }
+    .pricing .price { font-family: var(--font-display); font-size: clamp(3.4rem, 6vw, 4.4rem); color: var(--c-ink); line-height: 1; }
     .pricing .old { font-size: 0.95rem; color: var(--text-muted); text-decoration: line-through; }
     .pricing ul { list-style: none; margin: 0 0 var(--s-3); padding-top: var(--s-2); border-top: 1px solid var(--line); }
     .pricing li { font-size: 0.98rem; color: var(--text); padding: 6px 0 6px 22px; position: relative; }
@@ -199,24 +372,44 @@
     /* ---- Two-column lists (honesty / fit) ---- */
     .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); margin-top: var(--s-4); }
     @media (max-width: 760px) { .twocol { grid-template-columns: 1fr; } }
-    .listcard { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-4); }
-    .listcard.warm { background: var(--bg-alt); }
+    .listcard.panel { padding: clamp(var(--s-4), 4vw, var(--s-5)); border-radius: 0 16px 16px 0; }
     .listcard h3 { font-size: 1.4rem; margin-bottom: var(--s-2); padding-bottom: var(--s-2); border-bottom: 1px solid var(--line); }
     .listcard ul { list-style: none; margin: 0; padding: 0; }
     .listcard li { font-size: 1rem; color: var(--text); padding: 8px 0 8px 26px; position: relative; line-height: 1.6; }
     .listcard.can li::before { content: '\2713'; position: absolute; left: 0; top: 8px; color: var(--c-mint-deep); font-weight: 700; }
     .listcard.cant li::before { content: '\2715'; position: absolute; left: 0; top: 8px; color: var(--c-pink-deep); font-weight: 700; }
+    /* Ads can / can't: distinct, subtle tints — mint green vs. soft blush */
+    .listcard.panel.can { border-left: 4px solid var(--c-mint-deep); background: rgba(177,222,217,0.22); }
+    .listcard.panel.cant { border-left: 4px solid var(--c-pink-deep); background: rgba(255,200,229,0.20); }
+    .honest-note { max-width: 60ch; margin: var(--s-5) auto 0; text-align: center; font-size: 1.08rem;
+      line-height: 1.65; color: var(--text); }
+    .honest-note em { color: var(--c-pink-deep); font-style: normal; font-weight: 600; }
+    /* Fit check: lighter two-up, no card containers, a defined center divider */
+    .twocol.bare { gap: clamp(var(--s-5), 6vw, var(--s-7)); margin-top: var(--s-6); align-items: start; }
+    @media (min-width: 761px) { .twocol.bare > * + * { border-left: 1px solid var(--line); padding-left: clamp(var(--s-5), 6vw, var(--s-7)); } }
+    @media (max-width: 760px) { .twocol.bare > * + * { border-top: 1px solid var(--line); padding-top: var(--s-5); } }
+    /* Fit headings: pill mark + short label */
+    .fitcard h3 { display: flex; align-items: center; gap: 12px; font-size: 1.55rem; border: 0; padding: 0; margin-bottom: var(--s-4); }
+    .fitcard h3 .mk { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 1rem; font-weight: 700; }
+    .fitcard.can h3 .mk { background: var(--c-mint); color: var(--c-mint-deep); }
+    .fitcard.cant h3 .mk { background: var(--c-pink); color: var(--c-pink-deep); }
+    .fitcard li { line-height: 1.65; }
 
-    /* ---- Final steps (timeline) ---- */
-    .timeline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4); margin-top: var(--s-6); }
-    .timeline::before { content: ""; position: absolute; top: 28px; left: calc(100%/8); right: calc(100%/8); height: 2px; background: var(--line); z-index: 0; }
-    .tl-step { position: relative; z-index: 1; text-align: center; }
-    .tl-step .marker { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--c-ink); background: var(--bg);
-      display: grid; place-items: center; margin: 0 auto; font-family: var(--font-display); font-size: 1.5rem; color: var(--c-pink-deep); }
-    .tl-step h4 { margin: var(--s-2) 0 var(--s-1); font-size: 1.2rem; }
-    .tl-step p { color: var(--text-muted); margin: 0 auto; max-width: 26ch; font-size: 0.95rem; }
-    @media (max-width: 760px) { .timeline { grid-template-columns: 1fr 1fr; gap: var(--s-5); } .timeline::before { display: none; } }
-    @media (max-width: 440px) { .timeline { grid-template-columns: 1fr; } }
+    /* ---- FAQ (objection handling before the final CTA) ---- */
+    .faq { max-width: 760px; margin: var(--s-6) auto 0; }
+    .faq-item { border-top: 1px solid var(--line); }
+    .faq-item:last-child { border-bottom: 1px solid var(--line); }
+    .faq-item summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between;
+      gap: var(--s-3); padding: var(--s-4) 0; font-family: var(--font-display); font-size: clamp(1.2rem, 2.1vw, 1.45rem);
+      color: var(--c-ink); line-height: 1.25; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:hover { color: var(--c-pink-deep); }
+    .faq-item summary .ico { flex: none; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line);
+      display: grid; place-items: center; font-size: 1.2rem; line-height: 1; color: var(--c-pink-deep);
+      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease; }
+    .faq-item[open] summary .ico { transform: rotate(45deg); background: var(--c-pink); border-color: transparent; }
+    .faq-item .ans { color: var(--text-muted); margin: 0; padding: 0 44px var(--s-4) 0; line-height: 1.65; max-width: 64ch; }
+    @media (prefers-reduced-motion: reduce) { .faq-item summary .ico { transition: none; } }
 
     /* ---- grain + reveal + footer ---- */
     #grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04; mix-blend-mode: multiply;
@@ -267,18 +460,23 @@
   <div id="grain" aria-hidden="true"></div>
 
   <div class="top-stack" id="hdr-stack">
-    <a class="promo-bar" href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener"><span class="promo-tag">Now booking</span><span class="promo-text">Done-for-you Meta ads, <strong>$1,297</strong>. A few new projects each month.</span><span class="promo-cta">Book a clarity call →</span></a>
+    <a class="promo-bar" href="/podcast.html"><span class="promo-tag">New</span><span class="promo-text"><strong>The Signal</strong> — done-for-you podcast launch, $1,297. A few projects each month.</span><span class="promo-cta">See the service →</span></a>
     <header class="site-header" id="hdr">
       <div class="container nav">
-        <a href="/" class="wordmark">Priscilla Zähringer</a>
+        <a href="/" class="wordmark">Priscilla Zaehringer</a>
         <nav class="nav-center">
-          <a href="/#offer">Work with me</a>
-          <a href="/podcast.html">The Signal</a>
-          <a href="/ads.html">The Lead Stream</a>
+          <div class="nav-item has-sub">
+            <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <div class="submenu" role="menu">
+              <a role="menuitem" href="/ads.html">Meta Ads</a>
+              <a role="menuitem" href="/podcast.html">Podcast Production</a>
+            </div>
+          </div>
+          <a href="/field-notes.html">Listen to the podcast</a>
           <a href="/about.html">About</a>
         </nav>
         <div class="nav-cta">
-          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="nav-pill">Book a call</a>
+          <button type="button" class="nav-pill" data-open-inquiry>Book a call</button>
         </div>
       </div>
     </header>
@@ -289,51 +487,49 @@
     <div class="container">
       <p class="eyebrow" style="display:inline-block;"><span class="heart">📣</span>Done-for-you Meta ads</p>
       <h1>Your email list shouldn't depend on a
-        <span class="sig">perfect<svg viewBox="0 0 170 12" preserveAspectRatio="none"><path d="M3 8 C 42 2, 120 2, 167 6"/></svg></span>
-        Instagram week.</h1>
+        <span class="hl">perfect Instagram week</span>.</h1>
       <p class="lede">A done-for-you lead-gen ad system, built for established online business owners with
         room in the budget to grow. I set it up, run it for a couple of weeks, and hand it off. You keep
         the leads coming in long after we're done.</p>
-      <div class="cta"><a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn">Book a Clarity Call</a></div>
+      <div class="cta"><button type="button" class="btn" data-open-inquiry>Request a Clarity Call</button></div>
       <p class="micro">Founding rate · $1,297</p>
-      <div class="stats">
-        <div class="stat"><div class="n">8 weeks</div><div class="l">build to handoff</div></div>
-        <div class="stat"><div class="n">Yours to keep</div><div class="l">no retainers</div></div>
-        <div class="stat"><div class="n">$1,297</div><div class="l">founding rate</div></div>
-      </div>
     </div>
   </section>
 
   <!-- REALITY -->
   <section class="section alt overlap" id="gap">
     <div class="container">
-      <div class="col reveal">
+      <div class="reality-head col reveal">
         <p class="eyebrow"><span class="heart">&#9829;</span>The gap I'm filling</p>
         <h2>You're doing the work. The number still won't move.</h2>
         <p style="margin-top: var(--s-3); color: var(--text-muted);">You've built something solid. Clients
           love your work. Your offer converts when people actually see it. But growth is slow, and your
           email list has been stuck at the same number for months. You've thought about ads, and you've
           looked at what's out there:</p>
-        <div class="struck">
-          <div class="struck-item">
-            <span class="ic">💸</span>
-            <div><span class="t">Hire an agency</span><p>$2,000 to $5,000 a month, and the day you stop paying, the system stops with you. They built it, they know it, you don't get the keys.</p></div>
-            <span class="x">nope</span>
-          </div>
-          <div class="struck-item">
-            <span class="ic">🤹</span>
-            <div><span class="t">Find someone cheap</span><p>Templated work, no real strategy, ghost emails by month two. Even when it kind of works, you're still locked into someone else's system.</p></div>
-            <span class="x">nope</span>
-          </div>
-          <div class="struck-item">
-            <span class="ic">😵‍💫</span>
-            <div><span class="t">Figure it out yourself</span><p>YouTube tutorials and a prayer. The pixel, the audiences, the creative, the reporting. You don't have time for this.</p></div>
-            <span class="x">nope</span>
-          </div>
+      </div>
+      <div class="compare reveal">
+        <div class="cmp">
+          <span class="cmp-label">Hire an agency</span>
+          <span class="cmp-cost">$2k&ndash;5k<small>per month</small></span>
+          <p>Real strategy, but the day you stop paying, the system stops with you. They built it, they know it.</p>
+          <span class="catch">You never get the keys</span>
         </div>
-        <div class="callout-box">
-          <p>There's a third, better option: a strategic system, built around your business, that's yours to keep when we're done.</p>
+        <div class="cmp">
+          <span class="cmp-label">Find someone cheap</span>
+          <span class="cmp-cost">Low<small>up front</small></span>
+          <p>Templated work, no real strategy, ghost emails by month two. Even when it works, it's someone else's system.</p>
+          <span class="catch">Locked out of your own setup</span>
         </div>
+        <div class="cmp">
+          <span class="cmp-label">Do it yourself</span>
+          <span class="cmp-cost">Your time<small>every week</small></span>
+          <p>The pixel, the audiences, the creative, the reporting, all learned from YouTube tutorials and a prayer.</p>
+          <span class="catch">A second full-time job</span>
+        </div>
+      </div>
+      <div class="callout-box reveal">
+        <p class="lead-label">There's a third way</p>
+        <p>A strategic system, built around your business, that's <span class="em">yours to keep</span> when we're done.</p>
       </div>
     </div>
   </section>
@@ -377,18 +573,29 @@
       </div>
       <div class="col">
         <div class="steps3 reveal">
-          <div class="stepcard"><div class="num">01</div><div><h3>I build it</h3><p>Strategy, ad creative, ad copy, native Facebook lead form, branded thank-you page, email welcome sequence, Zapier integration, and campaign launch. All done for you.</p></div></div>
-          <div class="stepcard"><div class="num">02</div><div><h3>I run it</h3><p>Once we launch, I'm in your ad account daily for a couple of weeks. Testing, optimizing, refreshing creative, watching the data come in. Your only job is to approve.</p></div></div>
-          <div class="stepcard"><div class="num">03</div><div><h3>You keep it</h3><p>At week eight I hand off the SOP library, Loom training videos, and a written plan for what's next. You own the system, and it keeps generating leads with or without me.</p></div></div>
+          <div class="tstep"><div class="num">01</div><div><h3>I build it</h3><p>Strategy, ad creative, ad copy, native Facebook lead form, branded thank-you page, email welcome sequence, Zapier integration, and campaign launch. All done for you.</p></div></div>
+          <div class="tstep"><div class="num">02</div><div><h3>I run it</h3><p>Once we launch, I'm in your ad account daily for a couple of weeks. Testing, optimizing, refreshing creative, watching the data come in. Your only job is to approve.</p></div></div>
+          <div class="tstep"><div class="num">03</div><div><h3>You keep it</h3><p>At week eight I hand off the SOP library, Loom training videos, and a written plan for what's next. You own the system, and it keeps generating leads with or without me.</p></div></div>
         </div>
-        <p class="reveal" style="text-align:center; color: var(--text-muted); font-style: italic; margin-top: var(--s-4);">
+
+        <p class="reveal" style="text-align:center; color: var(--text-muted); font-style: italic; margin-top: var(--s-5);">
           Prefer to keep me on after handoff? Ongoing management is available for $397/mo.</p>
       </div>
+
+      <!-- MOCKUP PLACEHOLDER: replace the .mock-ph block with a real <img> of a
+           deliverable (ad dashboard, lead form, or branded thank-you page). -->
+      <figure class="mock reveal">
+        <div class="mock-ph" role="img" aria-label="Placeholder for a deliverable screenshot">
+          <span class="mock-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="mock-label">Your dashboard, lead form, and thank-you page<small>real product screenshot goes here</small></span>
+        </div>
+        <figcaption>A peek at the system I build and hand off to you.</figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- WHAT YOU GET -->
-  <section class="section alt">
+  <section class="section alt-mint pull-under">
     <div class="container">
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>What you get</p>
@@ -397,9 +604,12 @@
       </div>
       <div class="col">
         <div class="phases reveal">
-          <div class="phase">
-            <div class="meta"><span class="num">01</span><span class="when">Weeks 1 &amp; 2</span></div>
-            <h3>🧱 The foundation</h3>
+          <div class="phase panel">
+            <div class="phead">
+              <span class="num">01</span>
+              <span class="when">Weeks 1 &amp; 2</span>
+              <h3><span class="emoji">🧱</span> The foundation</h3>
+            </div>
             <p class="outcome">You'll know exactly where your money is going and why.</p>
             <ul>
               <li>Full audit of your offer, audience, and current setup</li>
@@ -408,9 +618,12 @@
               <li>Realistic expectations and a clear timeline</li>
             </ul>
           </div>
-          <div class="phase">
-            <div class="meta"><span class="num">02</span><span class="when">Weeks 3 to 5</span></div>
-            <h3>🎯 The build</h3>
+          <div class="phase panel">
+            <div class="phead">
+              <span class="num">02</span>
+              <span class="when">Weeks 3 to 5</span>
+              <h3><span class="emoji">🎯</span> The build</h3>
+            </div>
             <p class="outcome">Everything built, connected, and tested before a dollar goes live.</p>
             <ul>
               <li>Ad creative direction and design</li>
@@ -421,9 +634,12 @@
               <li>Zapier integration between Meta and your email platform</li>
             </ul>
           </div>
-          <div class="phase">
-            <div class="meta"><span class="num">03</span><span class="when">Weeks 6 &amp; 7</span></div>
-            <h3>🚀 Launch and optimize</h3>
+          <div class="phase panel">
+            <div class="phead">
+              <span class="num">03</span>
+              <span class="when">Weeks 6 &amp; 7</span>
+              <h3><span class="emoji">🚀</span> Launch and optimize</h3>
+            </div>
             <p class="outcome">New leads landing in your inbox while I fine-tune the system live.</p>
             <ul>
               <li>We go live and the leads start coming in</li>
@@ -432,9 +648,12 @@
               <li>Optimizing audiences and watching cost per lead</li>
             </ul>
           </div>
-          <div class="phase">
-            <div class="meta"><span class="num">04</span><span class="when">Week 8</span></div>
-            <h3>🤝 The handoff</h3>
+          <div class="phase panel feature">
+            <div class="phead">
+              <span class="num">04</span>
+              <span class="when">Week 8</span>
+              <h3><span class="emoji">🤝</span> The handoff</h3>
+            </div>
             <p class="outcome">A system you own and understand, yours to run for years to come.</p>
             <ul>
               <li>Complete SOP library for running your system long-term</li>
@@ -457,60 +676,79 @@
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Proof it works</p>
         <h2>What it looks like when it works.</h2>
+        <p class="lede" style="margin: var(--s-2) auto 0;">Follow the money, one real $5/day test, start to finish.</p>
       </div>
-      <div class="proof-grid">
-        <!-- TODO: confirm the ~70 "typical rate" and the 6x math against approved
-             numbers, and replace "Wellness coach" with the approved descriptor. -->
-        <article class="proof-card reveal">
-          <div class="fig">
-            <div class="big">6<span class="sym">&times;</span></div>
-            <div class="cap">more signups for the same spend</div>
+
+      <!-- TODO: replace "Solo practitioner" with the approved descriptor. -->
+      <div class="dash reveal">
+        <div class="dash-head">
+          <span class="client">Solo practitioner</span>
+          <span class="tag">Live campaign · 30-day snapshot</span>
+        </div>
+        <div class="dash-flow">
+          <div class="metric">
+            <div class="k">Ad spend</div>
+            <div class="v"><span class="sym">$</span>5</div>
+            <div class="u">a day</div>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
           </div>
-          <div class="story">
-            <div class="client">Wellness coach</div>
-            <h3>A masterclass that <strong>filled itself</strong>.</h3>
-            <p class="body">We put her offer in front of the right people and kept the cost per signup low.
-              The budget that usually brings in around 70 leads brought in 425.</p>
-            <div class="cbar">
-              <div class="cbar-head"><span class="cbar-key">The Lead Stream</span><span class="cbar-val">425 signups</span></div>
-              <div class="cbar-track"><div class="cbar-fill us" style="--w: 100%;"></div></div>
-            </div>
-            <div class="cbar">
-              <div class="cbar-head"><span class="cbar-key">Typical rate</span><span class="cbar-val">~70 signups</span></div>
-              <div class="cbar-track"><div class="cbar-fill them" style="--w: 16.5%;"></div></div>
-            </div>
-            <div class="receipt"><span><strong>$4.56</strong> per signup</span><span><strong>$1,936</strong> spent</span><span><strong>$27.66</strong> typical CPL</span></div>
+          <div class="metric">
+            <div class="k">Avg. cost per lead</div>
+            <div class="v"><span class="sym">$</span>0.70</div>
+            <div class="u">per subscriber</div>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
           </div>
-        </article>
-        <!-- TODO: replace "Solo practitioner" with the approved descriptor. -->
-        <article class="proof-card flip reveal">
-          <div class="fig">
-            <div class="big"><span class="sym">$</span>5</div>
-            <div class="cap">a day, seven new leads</div>
+          <div class="metric">
+            <div class="k">Avg. daily leads</div>
+            <div class="v">7</div>
+            <div class="u">every morning</div>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
           </div>
-          <div class="story">
-            <div class="client">Solo practitioner</div>
-            <h3>Steady leads on a <strong>coffee budget</strong>.</h3>
-            <p class="body">A small daily spend, set up with care, brought fresh leads in every morning.
-              Strong strategy did the work a big budget usually gets credit for.</p>
-            <div class="cbar">
-              <div class="cbar-head"><span class="cbar-key">The Lead Stream</span><span class="cbar-val">7 leads / day</span></div>
-              <div class="cbar-track"><div class="cbar-fill us" style="--w: 100%;"></div></div>
-            </div>
-            <div class="receipt"><span><strong>$0.70</strong> per lead</span><span><strong>$5</strong> a day</span></div>
+          <div class="metric final">
+            <div class="k">Monthly lead potential</div>
+            <div class="v">~210</div>
+            <div class="u">new subscribers</div>
           </div>
-        </article>
+        </div>
       </div>
+      <p class="dash-note reveal">Set up with care, $5 a day brought fresh leads in every morning. Strong strategy
+        did the work a big budget usually gets credit for. This is one client's result, not a guarantee, and your
+        numbers will vary.</p>
+
+      <!-- PROOF SCREENSHOT: swap this placeholder for a real Ads Manager / results screenshot. -->
+      <figure class="proof-shot reveal">
+        <div class="mock-ph" role="img" aria-label="Placeholder for a results screenshot">
+          <span class="mock-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="mock-label">Meta Ads Manager — cost per lead, live<small>real results screenshot goes here</small></span>
+        </div>
+        <figcaption>The numbers, straight from the ad account.</figcaption>
+      </figure>
+
+      <!-- Who I've worked with: breadth-of-credibility trust strip -->
+      <div class="niches reveal">
+        <p class="niches-label">Who I've worked with</p>
+        <div class="chips">
+          <span class="chip">Brand strategists</span>
+          <span class="chip">Coaches</span>
+          <span class="chip">Nutritionists</span>
+          <span class="chip">Dietitians</span>
+          <span class="chip">Dentists</span>
+          <span class="chip">Artists</span>
+          <span class="chip mine">My own business</span>
+        </div>
+        <p class="niches-note">Different audiences, same system.</p>
+      </div>
+
       <div class="center reveal" style="margin-top: var(--s-5);">
-        <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn">Book a Clarity Call</a>
+        <button type="button" class="btn" data-open-inquiry>Request a Clarity Call</button>
       </div>
     </div>
   </section>
 
   <!-- INVESTMENT -->
-  <section class="section alt">
+  <section class="section alt-pink">
     <div class="container">
-      <div class="split">
+      <div class="split invest">
         <div class="reveal">
           <p class="eyebrow"><span class="heart">&#9829;</span>Investment</p>
           <h2>Here's what it costs.</h2>
@@ -536,7 +774,7 @@
           <div class="honest">Everything you need to build a lead generation system you own. Because every
             build is done personally by me, I only take on a <strong>few new projects each month</strong>.</div>
           <div class="spots">Now booking: <span>a few projects each month</span></div>
-          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn" style="width:100%; justify-content:center;">Book a Clarity Call</a>
+          <button type="button" class="btn" style="width:100%; justify-content:center;" data-open-inquiry>Request a Clarity Call</button>
         </div>
       </div>
     </div>
@@ -552,7 +790,7 @@
       </div>
       <div class="col">
         <div class="twocol reveal">
-          <div class="listcard can">
+          <div class="listcard can panel">
             <h3>Ads can</h3>
             <ul>
               <li>Put your offer in front of the right people, consistently</li>
@@ -562,7 +800,7 @@
               <li>Play multiple roles: awareness, nurturing, retargeting, conversion</li>
             </ul>
           </div>
-          <div class="listcard cant warm">
+          <div class="listcard cant panel">
             <h3>Ads can't</h3>
             <ul>
               <li>Fix a broken offer</li>
@@ -572,23 +810,23 @@
             </ul>
           </div>
         </div>
-        <p class="reveal" style="font-style: italic; color: var(--text-muted); margin-top: var(--s-4); text-align:center;">
+        <p class="honest-note reveal">
           If your offer converts at 2% organically, ads can help you get more of that 2%. They usually
-          can't magically turn it into 20%. I'd rather set honest expectations than overpromise.</p>
+          <em>can't</em> magically turn it into 20%. I'd rather set honest expectations than overpromise.</p>
       </div>
     </div>
   </section>
 
   <!-- FIT CHECK -->
-  <section class="section alt">
+  <section class="section alt-coral">
     <div class="container">
       <div class="col reveal">
-        <h2 class="center">Is The Lead Stream right for you?</h2>
+        <h2>Is The Lead Stream right for you?</h2>
       </div>
       <div class="col">
-        <div class="twocol reveal">
-          <div class="listcard can">
-            <h3>This works best when…</h3>
+        <div class="twocol bare reveal">
+          <div class="listcard can fitcard">
+            <h3><span class="mk">&#10003;</span> Great fit</h3>
             <ul>
               <li>You've made sales and validated your offer</li>
               <li>You're actively growing, not just starting out</li>
@@ -599,8 +837,8 @@
               <li>You have a team ready to take it over after handoff (though it's simple enough to run on your own, too)</li>
             </ul>
           </div>
-          <div class="listcard cant warm">
-            <h3>Probably not the right fit if…</h3>
+          <div class="listcard cant fitcard">
+            <h3><span class="mk">&#10005;</span> Probably not</h3>
             <ul>
               <li>You're just getting started and figuring out your offer</li>
               <li>You're relying on ads to fix a cash flow crisis</li>
@@ -615,30 +853,63 @@
     </div>
   </section>
 
-  <!-- NEXT STEPS -->
+  <!-- FAQ -->
   <section class="section">
     <div class="container">
       <div class="col reveal center">
-        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Next steps</p>
-        <h2>Ready to stop guessing and start growing?</h2>
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>Questions, answered</p>
+        <h2>Before you book, the honest answers.</h2>
       </div>
-      <div class="timeline reveal">
-        <div class="tl-step"><div class="marker">01</div><h4>Book a Clarity Call</h4><p>Tell me about your business, your goals, and what you've tried.</p></div>
-        <div class="tl-step"><div class="marker">02</div><h4>We talk it through</h4><p>30 minutes, honest conversation, no hard sell. We figure out if this is the right move.</p></div>
-        <div class="tl-step"><div class="marker">03</div><h4>Your onboarding</h4><p>If we're a fit, you'll get an onboarding link, your contract, and a kickoff date.</p></div>
-        <div class="tl-step"><div class="marker">04</div><h4>We build</h4><p>8 weeks, start to finish, leads to your inbox.</p></div>
+      <div class="faq reveal">
+        <details class="faq-item">
+          <summary>How much should I spend?<span class="ico" aria-hidden="true">+</span></summary>
+          <p class="ans">Plan on a minimum of about $150/mo, roughly $5 a day, in ad spend. That goes to Meta, not to me,
+            and it's enough to test, gather real data, and start seeing leads. Once something's clearly working, you can
+            scale up whenever you're ready.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How long before I see results?<span class="ico" aria-hidden="true">+</span></summary>
+          <p class="ans">Leads often start landing within the first week or two of launch. But the real goal is a stable,
+            optimized system, and that takes the full eight weeks to build, test, and refine. I'd rather set honest
+            expectations than promise overnight wins.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can you use my existing lead magnet?<span class="ico" aria-hidden="true">+</span></summary>
+          <p class="ans">Absolutely. If you already have a freebie or lead magnet that converts, we'll build the whole
+            campaign around it, no need to start from scratch.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can you build one for me?<span class="ico" aria-hidden="true">+</span></summary>
+          <p class="ans">Yes. If you don't have a lead magnet yet, we can create one together as part of the build, so your
+            ads have something genuinely worth signing up for.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I keep you on after launch?<span class="ico" aria-hidden="true">+</span></summary>
+          <p class="ans">If you'd rather not run it yourself, ongoing management is available for $397/mo. Otherwise the
+            full system is yours, along with everything you need to run it solo.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need an email platform first?<span class="ico" aria-hidden="true">+</span></summary>
+          <p class="ans">Yes, you'll want an active email platform (Kit, Mailchimp, Flodesk, and the like) so we can
+            connect new leads to a welcome sequence. Not sure which to pick? I'm happy to point you in the right direction.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Will I own everything?<span class="ico" aria-hidden="true">+</span></summary>
+          <p class="ans">Completely. The ad account, the lead form, the thank-you page, the sequences, the SOPs, all of
+            it is yours to keep. That's the whole point of how I work.</p>
+        </details>
       </div>
     </div>
   </section>
 
   <!-- FINAL CTA -->
-  <section class="section band-ink overlap" id="book">
+  <section class="section band-ink overlap final-cta" id="book">
     <div class="container col reveal center">
       <img class="cta-logo" src="/assets/img/the-lead-stream-light.png" width="1628" height="529" alt="The Lead Stream — launch your Meta ads">
       <h2>Let's get your email list growing again.</h2>
-      <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 52ch;">The founding rate is
-        $1,297, and I take on just a few new projects each month. Book a clarity call and let's see if it's a fit.</p>
-      <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn btn-cream">Book a Clarity Call</a>
+      <p class="lede">The founding rate is $1,297, and I take on just a few new projects each month.
+        Book a clarity call and let's see if it's a fit.</p>
+      <button type="button" class="btn btn-cream" data-open-inquiry>Request a Clarity Call</button>
     </div>
   </section>
 
@@ -648,16 +919,16 @@
     <div class="container">
       <div class="foot-grid">
         <div class="foot-brand">
-          <a href="#top" class="foot-script">Priscilla Zähringer</a>
+          <a href="#top" class="foot-script">Priscilla Zaehringer</a>
           <div class="foot-intro">
-            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" alt="Priscilla Zähringer"></span>
+            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" alt="Priscilla Zaehringer"></span>
             <p class="foot-bio">I'm a 1:1 marketing partner for small business owners who'd rather grow than build a team.
               Real strategy, run end to end, done with you and not at you.</p>
           </div>
           <div class="foot-social">
-            <a class="social-btn" href="https://www.instagram.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
-            <a class="social-btn" href="/podcast.html"><span class="ic">🎙️</span>Listen to The Signal</a>
-            <a class="social-btn" href="https://www.facebook.com/priscillazaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
+            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
+            <a class="social-btn" href="/field-notes.html"><span class="ic">🎙️</span>Listen to the podcast</a>
+            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
             <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📌</span>Pin along with me</a>
           </div>
         </div>
@@ -666,19 +937,109 @@
           <div class="explore-cols">
             <a href="/">Home</a>
             <a href="/about.html">About</a>
-            <a href="/podcast.html">The Signal</a>
-            <a href="/ads.html">The Lead Stream</a>
-            <a href="/#offer">Work with me</a>
-            <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a call</a>
+            <a href="/ads.html">Meta Ads</a>
+            <a href="/podcast.html">Podcast Production</a>
+            <a href="#book" data-open-inquiry>Book a call</a>
           </div>
         </nav>
       </div>
       <div class="foot-bottom">
-        <span>© <span id="yr"></span> Priscilla Zähringer. All rights reserved.</span>
+        <span>© <span id="yr"></span> Priscilla Zaehringer. All rights reserved.</span>
         <span>Your marketing, finally handled.</span>
       </div>
     </div>
   </footer>
+
+  <!-- INQUIRY DRAWER -->
+  <div class="drawer-overlay" id="inquiryOverlay"></div>
+  <aside class="drawer" id="inquiryDrawer" role="dialog" aria-modal="true" aria-labelledby="inquiryTitle" aria-hidden="true" inert>
+    <div class="drawer-inner">
+      <button type="button" class="drawer-close" data-close-inquiry aria-label="Close">&times;</button>
+      <div class="drawer-head">
+        <p class="eyebrow"><span class="heart">&#9829;</span>Start here</p>
+        <h2 id="inquiryTitle">Let's build your lead system.</h2>
+        <p>Tell me a little about your business and where you're stuck. I read every inquiry personally.</p>
+      </div>
+      <form class="inquiry-form" action="https://formspree.io/f/mykqjeak" method="POST">
+        <input type="hidden" name="_subject" value="New Lead Stream inquiry">
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <label class="field"><span>What's your name? <span class="req">*</span></span>
+          <input type="text" name="Name" autocomplete="name" required></label>
+
+        <label class="field"><span>What's the best email address to reach you? <span class="req">*</span></span>
+          <input type="email" name="Email" autocomplete="email" required></label>
+
+        <label class="field"><span>Tell me about your business. <span class="req">*</span></span>
+          <textarea name="About your business" rows="3" required
+            placeholder="What do you do? Who do you help? What are you selling?"></textarea></label>
+
+        <label class="field"><span>What are you hoping paid ads will do for you? <span class="req">*</span></span>
+          <textarea name="What you want from ads" rows="3" required></textarea></label>
+
+        <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
+          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">Where are you at? <span class="req">*</span></span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="Where you're at" value="My offer is validated and selling" required> My offer is validated and selling.</label>
+            <label class="opt"><input type="radio" name="Where you're at" value="I'm getting sales but it's inconsistent"> I'm getting sales, but it's inconsistent.</label>
+            <label class="opt"><input type="radio" name="Where you're at" value="I'm still refining my offer"> I'm still refining my offer.</label>
+            <label class="opt"><input type="radio" name="Where you're at" value="I'm just getting started"> I'm just getting started.</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
+          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What do you want ads to do? <span class="req">*</span> <span class="hint">(choose any)</span></span>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="Goals" value="Grow my email list"> Grow my email list</label>
+            <label class="opt"><input type="checkbox" name="Goals" value="Get consistent leads"> Get consistent leads</label>
+            <label class="opt"><input type="checkbox" name="Goals" value="Scale what's already working"> Scale what's already working</label>
+            <label class="opt"><input type="checkbox" name="Goals" value="Book more calls or sales"> Book more calls or sales</label>
+            <label class="opt"><input type="checkbox" name="Goals" value="Build awareness"> Build awareness</label>
+            <label class="opt"><input type="checkbox" name="Goals" value="Something else"> Something else</label>
+          </div>
+        </fieldset>
+
+        <label class="field"><span>What's your monthly ad budget, roughly? <span class="hint">(optional)</span></span>
+          <select name="Monthly ad budget">
+            <option value="" selected disabled>Choose one</option>
+            <option>Around $150&ndash;300/mo ($5&ndash;10/day)</option>
+            <option>Around $300&ndash;600/mo</option>
+            <option>$600&ndash;1,000/mo</option>
+            <option>$1,000+/mo</option>
+            <option>Not sure yet</option>
+          </select></label>
+
+        <label class="field"><span>Anything else I should know? <span class="hint">(optional)</span></span>
+          <textarea name="Anything else" rows="3"></textarea></label>
+
+        <label class="field"><span>How did you hear about me?</span>
+          <select name="How did you hear">
+            <option value="" selected disabled>Choose one</option>
+            <option>Instagram</option>
+            <option>A friend or referral</option>
+            <option>Google search</option>
+            <option>A podcast</option>
+            <option>Newsletter</option>
+            <option>Somewhere else</option>
+          </select></label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-lg">Request My Clarity Call</button>
+          <span class="form-note">No pressure, no spam. Just a real reply.</span>
+        </div>
+        <p class="form-status" role="alert" aria-live="assertive"></p>
+
+        <div class="form-success" role="status" aria-live="polite">
+          <span class="emoji" aria-hidden="true">&#127881;</span>
+          <h3>Thanks! Your inquiry is on its way.</h3>
+          <p>I personally review every inquiry and typically respond within two business days. If it looks like
+            we're a good fit, I'll reach out to set up your clarity call.</p>
+          <p>In the meantime, you can <a href="/podcast.html">explore The Signal</a> or
+            <a href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener">connect with me on Instagram</a>.</p>
+        </div>
+      </form>
+    </div>
+  </aside>
 
   <script>
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -693,7 +1054,98 @@
     const hdr = document.getElementById('hdr');
     const onScroll = () => hdr.classList.toggle('stuck', window.scrollY > 60);
     onScroll(); addEventListener('scroll', onScroll, { passive: true });
+
+    // Nav dropdowns: click to toggle (hover/focus handled in CSS), Escape + outside-click to close.
+    const subs = document.querySelectorAll('.nav-item.has-sub');
+    subs.forEach(item => {
+      const btn = item.querySelector('.nav-link');
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      item.addEventListener('keyup', (e) => {
+        if (e.key === 'Escape') { item.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+      });
+    });
+    document.addEventListener('click', () => subs.forEach(item => {
+      item.classList.remove('open');
+      item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
+    }));
     document.getElementById('yr').textContent = new Date().getFullYear();
+
+    /* Inquiry drawer: open from any [data-open-inquiry], close via overlay / button / Esc */
+    const overlay = document.getElementById('inquiryOverlay');
+    const drawer = document.getElementById('inquiryDrawer');
+    if (overlay && drawer) {
+      let lastFocus = null;
+      const focusables = () => drawer.querySelectorAll('a[href], button:not([disabled]), input, select, textarea');
+      const openDrawer = (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        lastFocus = document.activeElement;
+        overlay.classList.add('open');
+        drawer.classList.add('open');
+        drawer.removeAttribute('inert');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        const first = focusables()[0];
+        if (first) setTimeout(() => first.focus(), 60);
+      };
+      const closeDrawer = () => {
+        overlay.classList.remove('open');
+        drawer.classList.remove('open');
+        drawer.setAttribute('inert', '');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      };
+      document.querySelectorAll('[data-open-inquiry]').forEach(b => b.addEventListener('click', openDrawer));
+      document.querySelectorAll('[data-close-inquiry]').forEach(b => b.addEventListener('click', closeDrawer));
+      overlay.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+        if (e.key === 'Tab' && drawer.classList.contains('open')) {
+          const f = Array.from(focusables());
+          if (!f.length) return;
+          const first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+
+      /* Submit to Formspree via fetch; reveal the success panel inside the drawer */
+      const iform = drawer.querySelector('.inquiry-form');
+      const status = iform.querySelector('.form-status');
+      const btn = iform.querySelector('button[type="submit"]');
+      iform.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = '';
+        if (!iform.querySelectorAll('input[name="Goals"]:checked').length) {
+          status.textContent = 'Please choose at least one goal.';
+          const g = iform.querySelector('input[name="Goals"]');
+          if (g) g.focus();
+          return;
+        }
+        btn.disabled = true; btn.textContent = 'Sending…';
+        try {
+          const res = await fetch(iform.action, {
+            method: 'POST', body: new FormData(iform), headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            iform.classList.add('sent');
+            drawer.scrollTop = 0;
+          } else {
+            const data = await res.json().catch(() => ({}));
+            status.textContent = (data.errors && data.errors.map(x => x.message).join(', '))
+              || 'Something went wrong. Please try again, or email priscilla@priscillazaehringer.com.';
+            btn.disabled = false; btn.textContent = 'Request My Clarity Call';
+          }
+        } catch (err) {
+          status.textContent = 'Something went wrong. Please check your connection and try again.';
+          btn.disabled = false; btn.textContent = 'Request My Clarity Call';
+        }
+      });
+    }
   </script>
 
   <script type="application/ld+json">
@@ -709,8 +1161,8 @@
         "description": "Iowa-based marketing partner offering Meta ads management, podcast production, and business operations support for small business owners.",
         "address": { "@type": "PostalAddress", "addressRegion": "IA", "addressCountry": "US" },
         "sameAs": [
-          "https://www.instagram.com/priscillazaehringer/",
-          "https://www.facebook.com/priscillazaehringer",
+          "https://www.instagram.com/cillaz.co/",
+          "https://www.facebook.com/pzaehringer",
           "https://www.pinterest.com/priscillazaehringer/"
         ]
       },

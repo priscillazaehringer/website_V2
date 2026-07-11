@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- noindex while staging. Remove this tag at launch. -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Marketing Field Notes · A podcast by Priscilla Zaehringer</title>
+  <meta name="description" content="Marketing Field Notes: short, honest episodes on what's actually happening in marketing, from someone doing the work. 10–15 minutes. Launching August 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Marketing Field Notes · A podcast by Priscilla Zaehringer">
+  <meta property="og:description" content="Short, honest episodes on what's actually happening in marketing, from someone doing the work. 10–15 minutes. Launching August 2026.">
+  <meta property="og:url" content="https://priscillazaehringer.com/field-notes">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <style>
+    /* ================================================================
+       Marketing Field Notes (Priscilla's own podcast). Launching August 2026.
+       Built on the homepage system (tokens, header/footer, buttons).
+       ================================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body);
+      font-size: var(--body); line-height: var(--lh-body); font-weight: 400; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4, .display { font-family: var(--font-display); font-weight: 400; font-synthesis: none;
+      line-height: var(--lh-tight); margin: 0; }
+    h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); }
+    h3 { font-size: clamp(1.3rem, 2.2vw, 1.6rem); }
+    p { margin: 0 0 var(--s-2); }
+    a { color: var(--link); }
+
+    .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--s-3); }
+    .section { padding-block: var(--section-y); position: relative; z-index: 1; }
+    .col { max-width: 680px; margin-inline: auto; }
+    .alt { background: var(--bg-alt); }
+    .lede { font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--text-muted); }
+    .center { text-align: center; }
+    .eyebrow { font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em;
+      color: var(--c-pink-deep); margin: 0 0 var(--s-2); }
+    .eyebrow .heart { color: var(--c-pink); margin-right: 7px; }
+    .note-script { font-family: var(--font-script); font-weight: 600; color: var(--c-pink-deep); line-height: 1; }
+
+    /* ---- Header: top promo bar + nav, fixed as one stack ---- */
+    .top-stack { position: fixed; inset: 0 0 auto 0; z-index: 50; }
+    .promo-bar { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
+      background: var(--c-coral); color: var(--c-ink); text-decoration: none; text-align: center;
+      padding: 5px 16px; font-size: 0.85rem; line-height: 1.3; }
+    .promo-tag { background: var(--c-pink-deep); color: var(--c-cream); font-size: 0.66rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
+    .promo-bar strong { font-weight: 700; }
+    .promo-cta { font-weight: 700; border: 1.5px solid var(--c-ink); border-radius: 999px; padding: 4px 14px;
+      white-space: nowrap; transition: background 0.15s ease, color 0.15s ease; }
+    .promo-bar:hover .promo-cta { background: var(--c-ink); color: var(--c-cream); }
+    .site-header { background: var(--c-ink); color: var(--c-cream);
+      border-bottom: 1px solid rgba(247,238,231,0.14); transition: box-shadow 0.25s ease; }
+    .site-header.stuck { box-shadow: 0 8px 24px rgba(29,30,38,0.20); }
+    .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding-block: 9px; gap: var(--s-3); }
+    .wordmark { font-family: var(--font-display); font-size: 1.3rem; color: var(--c-cream); text-decoration: none; justify-self: start; }
+    .nav-center { justify-self: center; display: flex; align-items: center; gap: var(--s-4); }
+    .nav-center a { color: var(--c-cream); text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.9; white-space: nowrap; }
+    .nav-center a:hover, .nav-center a[aria-current] { opacity: 1; }
+    .nav-center a[aria-current] { border-bottom: 2px solid var(--c-pink); padding-bottom: 2px; }
+    .nav-cta { justify-self: end; }
+    .nav-pill { display: inline-block; background: var(--c-cream); color: var(--c-ink); font-weight: 600;
+      font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease;
+      border: none; cursor: pointer; font-family: var(--font-body); }
+    .nav-pill:hover { opacity: 0.9; }
+    @media (max-width: 760px) { .nav-center { display: none; } .nav { grid-template-columns: 1fr auto; } .promo-cta { display: none; } }
+
+    /* ---- Nav dropdowns ---- */
+    .nav-item { position: relative; display: inline-flex; align-items: center; }
+    .nav-link { font: inherit; font-size: 0.95rem; font-weight: 500; color: var(--c-cream); opacity: 0.9;
+      background: none; border: 0; padding: 0; margin: 0; cursor: pointer; display: inline-flex; align-items: center;
+      gap: 5px; white-space: nowrap; line-height: 1; }
+    .nav-item:hover .nav-link, .nav-item:focus-within .nav-link, .nav-link:hover { opacity: 1; }
+    .nav-item:has(.submenu a[aria-current]) .nav-link { opacity: 1; }
+    .nav-link .caret { font-size: 0.6em; transition: transform 0.18s ease; }
+    .nav-item:hover .caret, .nav-item:focus-within .caret, .nav-item.open .caret { transform: rotate(180deg); }
+    .submenu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
+      min-width: 190px; background: var(--c-cream); border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 6px; display: flex; flex-direction: column; gap: 2px;
+      opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.16s ease, transform 0.16s ease; z-index: 60; }
+    .submenu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+    .nav-item:hover .submenu, .nav-item:focus-within .submenu, .nav-item.open .submenu {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(4px); }
+    .submenu a { display: block; color: var(--c-ink); opacity: 1; font-size: 0.92rem; font-weight: 500;
+      padding: 9px 12px; border-radius: 3px; white-space: nowrap; }
+    .submenu a:hover { background: var(--c-pink); color: var(--c-ink); }
+    .submenu a[aria-current] { color: var(--c-pink-deep); font-weight: 700; }
+
+    /* ---- Buttons ---- */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-body);
+      font-size: 1rem; font-weight: 600; line-height: 1; padding: 16px 28px; border-radius: var(--radius);
+      border: 1.5px solid var(--action); background: var(--action); color: var(--action-text);
+      text-decoration: none; cursor: pointer; transition: opacity 0.14s ease, transform 0.12s ease; }
+    .btn:hover { opacity: 0.88; } .btn:active { transform: translateY(1px); }
+    .btn-cream { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
+
+    /* ================= HERO (dark, echoes the cover) ================= */
+    .show-hero { background: linear-gradient(158deg, #1D1E26 0%, #34122A 52%, #47102C 100%); color: var(--c-cream); }
+    .show-hero .container { padding-top: 132px; padding-bottom: var(--s-8); }
+    .hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(var(--s-4), 5vw, var(--s-7)); align-items: center; }
+    @media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; gap: var(--s-5); } }
+
+    /* cover art with a pink block behind it (brand motif) */
+    .cover-frame { position: relative; width: 100%; max-width: 380px; margin-inline: auto; aspect-ratio: 1 / 1; }
+    .cover-frame .block { position: absolute; z-index: 0; inset: auto -16px -16px auto; width: 62%; aspect-ratio: 1;
+      background: var(--c-pink); border-radius: var(--radius); }
+    .cover-art { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; border-radius: 10px;
+      box-shadow: var(--shadow); background: /* placeholder until real cover art is added */
+      linear-gradient(158deg, #34122A, #47102C); }
+    .cover-ph { position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 10px; box-shadow: var(--shadow);
+      display: grid; place-content: center; text-align: center; color: var(--c-cream);
+      background: linear-gradient(158deg, #34122A, #47102C); }
+    .cover-ph .k { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-pink); margin-bottom: 6px; }
+    .cover-ph .n { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3rem); line-height: 0.92; }
+
+    .coming-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-ink); background: var(--c-pink);
+      padding: 6px 14px; border-radius: 999px; margin-bottom: var(--s-3); }
+    .show-hero h1 { color: var(--c-cream); max-width: 14ch; }
+    .show-hero .tagline { font-family: var(--font-display); font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+      line-height: 1.3; color: var(--c-cream); opacity: 0.92; margin: var(--s-3) 0 0; max-width: 30ch; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: var(--s-3); font-size: 0.9rem;
+      letter-spacing: 0.02em; color: var(--c-cream); opacity: 0.8; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+    .hero-meta .dot { color: var(--c-pink); }
+
+    /* email capture */
+    .notify-form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: var(--s-4); max-width: 460px; }
+    .notify-form input { flex: 1 1 200px; min-width: 0; padding: 15px 16px; border-radius: var(--radius);
+      border: 1px solid rgba(247,238,231,0.3); background: rgba(247,238,231,0.08); color: var(--c-cream); font: inherit; }
+    .notify-form input::placeholder { color: rgba(247,238,231,0.6); }
+    .notify-form input:focus-visible { outline: 2px solid var(--c-pink); outline-offset: 1px; }
+    .notify-form .btn { flex: 0 0 auto; }
+    .notify-note { font-size: 0.82rem; color: var(--c-cream); opacity: 0.65; margin-top: var(--s-2); }
+
+    /* subscribe / follow row */
+    .sub-label { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+      color: var(--c-cream); opacity: 0.6; margin: var(--s-5) 0 var(--s-2); }
+    .subscribe-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .sub-btn { display: inline-flex; align-items: center; gap: 9px; padding: 10px 16px; border-radius: 999px;
+      border: 1.5px solid rgba(247,238,231,0.35); color: var(--c-cream); text-decoration: none; font-size: 0.9rem;
+      font-weight: 600; transition: background 0.15s ease, border-color 0.15s ease; }
+    .sub-btn:hover { background: rgba(247,238,231,0.1); border-color: var(--c-cream); }
+    .sub-btn.soon { opacity: 0.55; cursor: default; pointer-events: none; }
+    .sub-btn .ic { font-size: 1.05rem; line-height: 1; }
+
+    /* ================= Content sections ================= */
+    .subhead { font-family: var(--font-display); font-size: var(--h3); color: var(--c-pink-deep); margin: var(--s-2) 0 var(--s-3); }
+    .lead-state { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.3;
+      max-width: 24ch; }
+    .lead-state .em { color: var(--c-pink-deep); }
+    .topic-list { list-style: none; margin: var(--s-4) 0 0; padding: 0; display: grid; gap: 0; }
+    .topic { display: flex; gap: 14px; align-items: flex-start; padding-block: var(--s-3); border-bottom: 1px solid var(--line); }
+    .topic .ic { flex: none; width: 1.7em; text-align: center; font-size: 1.2rem; line-height: 1.3; }
+    .topic .t { font-family: var(--font-display); font-size: 1.15rem; line-height: 1.25; }
+    .topic .s { color: var(--text-muted); margin: 4px 0 0; font-size: 0.98rem; }
+
+    /* meet the host */
+    .host-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: var(--s-6); align-items: center; }
+    @media (max-width: 760px) { .host-grid { grid-template-columns: 1fr; gap: var(--s-4); } }
+    .host-photo { aspect-ratio: 4 / 5; border-radius: var(--radius); background-image: url('/assets/img/about.webp');
+      background-size: cover; background-position: 50% 22%; box-shadow: var(--shadow); }
+
+    /* final notify band */
+    .band-ink { background: var(--c-ink); color: var(--c-cream); }
+    .band-ink h2 { color: var(--c-pink); }
+    .band-ink .lede { color: var(--c-cream); opacity: 0.85; }
+    .band-ink .notify-form { margin-inline: auto; }
+
+    /* ---- footer ---- */
+    .site-footer { position: relative; z-index: 1; background: var(--c-cream-soft); color: var(--c-ink); padding-block: var(--s-7) var(--s-4); }
+    .site-footer a { color: var(--c-ink); text-decoration: none; }
+    .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--s-6); align-items: start; }
+    .foot-script { font-family: var(--font-script); font-weight: 700; font-size: clamp(2.8rem, 6.5vw, 4.6rem);
+      line-height: 0.82; color: var(--c-pink-deep); display: inline-block; }
+    .foot-intro { display: flex; gap: var(--s-3); align-items: center; margin-top: var(--s-3); max-width: 540px; }
+    .foot-photo { position: relative; flex: 0 0 auto; width: 130px; height: 130px; }
+    .foot-photo img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover;
+      border-radius: 46% 54% 52% 48% / 54% 46% 54% 46%; }
+    .foot-photo::after { content: ''; position: absolute; z-index: 0; left: -12px; top: 12px; width: 130px; height: 130px;
+      background: var(--c-mint); border-radius: 54% 46% 48% 52% / 46% 54% 46% 54%; }
+    .foot-bio { font-size: 1.02rem; line-height: 1.5; }
+    .foot-social { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: var(--s-4); max-width: 540px; }
+    .social-btn { display: flex; align-items: center; gap: 10px; border: 1.5px solid var(--c-ink); border-radius: var(--radius);
+      padding: 11px 14px; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700;
+      transition: background 0.15s ease, color 0.15s ease; }
+    .social-btn:hover { background: var(--c-ink); color: var(--c-cream); }
+    .social-btn .ic { font-size: 1.05rem; line-height: 1; }
+    .foot-explore { justify-self: end; }
+    .foot-explore h4 { font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--c-pink-deep); display: inline-block; border-bottom: 2px solid var(--c-pink); padding-bottom: 6px; margin-bottom: var(--s-3); }
+    .explore-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-5); font-family: var(--font-display); font-size: 1.2rem; }
+    .explore-cols a:hover { color: var(--c-pink-deep); }
+    .back-to-top { position: absolute; top: var(--s-6); right: var(--s-4); writing-mode: vertical-rl;
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--c-pink-deep);
+      display: inline-flex; align-items: center; gap: 8px; }
+    .foot-bottom { margin-top: var(--s-6); padding-top: var(--s-3); border-top: 1px solid var(--line);
+      font-size: 0.85rem; color: var(--text-muted); display: flex; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .foot-grid { grid-template-columns: 1fr; gap: var(--s-5); }
+      .foot-explore { justify-self: start; }
+      .foot-social { grid-template-columns: 1fr; }
+      .back-to-top { display: none; }
+    }
+
+    /* grain + reveal */
+    #grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+    /* ---- Episode cards (episode list on this page) ---- */
+    .eps { display:grid; gap:var(--s-2); margin-top:var(--s-4); }
+    .ep-card { display:grid; grid-template-columns:auto 1fr auto; gap:var(--s-3); align-items:center;
+      background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:var(--s-3) var(--s-4);
+      text-decoration:none; color:var(--c-ink); transition:transform .12s ease, box-shadow .15s ease; }
+    .ep-card:hover { transform:translateY(-1px); box-shadow:var(--shadow); }
+    .ep-card .n { font-family:var(--font-display); font-size:1.9rem; color:var(--c-pink-deep); line-height:1; }
+    .ep-card h3 { font-size:1.2rem; margin:0 0 3px; }
+    .ep-card p { color:var(--text-muted); margin:0; font-size:0.95rem; }
+    .ep-card .when { font-size:0.76rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); margin-top:6px; display:inline-block; }
+    .ep-card .go { flex:0 0 auto; font-weight:600; color:var(--c-pink-deep); white-space:nowrap; }
+    @media (max-width:620px){ .ep-card{ grid-template-columns:auto 1fr; } .ep-card .go{ grid-column:2; justify-self:start; } }
+
+    /* ---- "The Latest" newest episodes ---- */
+    .latest-head { display:flex; align-items:flex-end; justify-content:space-between; gap:var(--s-3); flex-wrap:wrap; }
+    .latest-head h2 { margin-top:2px; }
+    .btn-outline { display:inline-block; border:1.5px solid var(--c-pink-deep); color:var(--c-pink-deep);
+      border-radius:999px; padding:11px 24px; font-weight:700; font-size:0.74rem; letter-spacing:0.1em;
+      text-transform:uppercase; text-decoration:none; transition:background .15s ease, color .15s ease; }
+    .btn-outline:hover { background:var(--c-pink-deep); color:var(--c-cream); }
+    .latest-feature { display:grid; grid-template-columns:230px 1fr; gap:var(--s-4); align-items:center; margin-top:var(--s-4);
+      background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:var(--s-3); text-decoration:none;
+      transition:box-shadow .18s ease, transform .12s ease; }
+    .latest-feature:hover { box-shadow:var(--shadow); transform:translateY(-2px); }
+    @media (max-width:640px){ .latest-feature { grid-template-columns:1fr; } }
+    .lf-art { position:relative; aspect-ratio:1/1; border-radius:var(--radius); background:var(--c-pink); display:grid; place-items:center; overflow:hidden; }
+    .lf-art .lab { position:absolute; top:12px; left:14px; font-size:0.64rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--c-ink); opacity:0.7; }
+    .lf-art .wavemark { width:58%; color:var(--c-pink-deep); }
+    .lf-kicker { font-size:0.76rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--c-pink-deep); }
+    .lf-body h3 { font-size:clamp(1.4rem,2.4vw,1.9rem); color:var(--c-ink); margin:6px 0; }
+    .lf-body p { color:var(--text-muted); margin:0 0 var(--s-2); max-width:52ch; }
+    .lf-play { display:inline-flex; align-items:center; gap:8px; font-weight:700; color:var(--c-pink-deep); }
+    .lf-play svg { width:20px; height:20px; }
+    .latest-list { margin-top:var(--s-5); border-top:1px solid var(--line); }
+    .latest-row { display:grid; grid-template-columns:auto 1fr auto auto; gap:var(--s-2) var(--s-3); align-items:center;
+      padding:var(--s-3) var(--s-2); border-bottom:1px solid var(--line); text-decoration:none; transition:background .14s ease; }
+    .latest-row:hover { background:#fff; }
+    .lr-num { font-family:var(--font-display); font-size:1.5rem; color:var(--c-pink); line-height:1; min-width:1.6ch; text-align:center; transition:color .12s ease; }
+    .latest-row:hover .lr-num { color:var(--c-pink-deep); }
+    .lr-main h4 { font-family:var(--font-display); font-weight:400; font-size:clamp(1.1rem,1.9vw,1.35rem); color:var(--c-ink); margin:0; }
+    .lr-meta { font-size:0.8rem; color:var(--text-muted); }
+    .latest-badge { display:inline-block; background:var(--c-coral); color:var(--c-ink); font-size:0.64rem; font-weight:700;
+      letter-spacing:0.1em; text-transform:uppercase; padding:7px 12px; white-space:nowrap; }
+    .play-btn { width:44px; height:44px; border-radius:50%; border:1.5px solid var(--c-pink-deep); display:grid; place-items:center;
+      color:var(--c-pink-deep); flex:0 0 auto; transition:background .15s ease, color .15s ease; }
+    .latest-row:hover .play-btn, .latest-feature:hover .lf-play svg { color:var(--c-pink-deep); }
+    .latest-row:hover .play-btn { background:var(--c-pink-deep); color:var(--c-cream); }
+    @media (max-width:560px){ .lr-meta { display:block; } .latest-badge { display:none; } }
+  </style>
+</head>
+<body>
+
+  <div id="grain" aria-hidden="true"></div>
+
+  <div class="top-stack" id="hdr-stack">
+    <a class="promo-bar" href="/ads.html">
+      <span class="promo-tag">New</span>
+      <span class="promo-text"><strong>Meta Ads</strong> — a done-for-you campaign build, $1,297. A few projects each month.</span>
+      <span class="promo-cta">See the service →</span>
+    </a>
+    <header class="site-header" id="hdr">
+      <div class="container nav">
+        <a href="/" class="wordmark">Priscilla Zaehringer</a>
+        <nav class="nav-center">
+          <div class="nav-item has-sub">
+            <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <div class="submenu" role="menu">
+              <a role="menuitem" href="/ads.html">Meta Ads</a>
+              <a role="menuitem" href="/podcast.html">Podcast Production</a>
+            </div>
+          </div>
+          <a href="/field-notes.html" aria-current="page">Listen to the podcast</a>
+          <a href="/about.html">About</a>
+        </nav>
+        <div class="nav-cta">
+          <a href="#notify" class="nav-pill">Get notified</a>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="show-hero" id="top">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="reveal">
+          <div class="cover-frame">
+            <span class="block" aria-hidden="true"></span>
+            <img class="cover-art" src="/assets/img/marketing-field-notes.webp" width="1000" height="1000"
+                 alt="Marketing Field Notes — a podcast by Priscilla Zaehringer">
+          </div>
+        </div>
+        <div class="reveal">
+          <span class="coming-badge">&#9829; Launching August 2026</span>
+          <h1>Marketing Field Notes</h1>
+          <p class="tagline">What's actually happening in marketing — from someone doing the work.</p>
+          <div class="hero-meta">
+            <span><span class="dot">&#9679;</span> Short episodes</span>
+            <span><span class="dot">&#9679;</span> 10–15 minutes</span>
+            <span><span class="dot">&#9679;</span> No bro-marketing</span>
+          </div>
+
+          <form class="notify-form" id="notify" action="https://app.kit.com/forms/KIT_FORM_ID/subscriptions" method="post" target="_blank">
+            <!-- TODO: replace KIT_FORM_ID with the Marketing Field Notes Kit form id -->
+            <input type="email" name="email_address" placeholder="Your email" required aria-label="Email address">
+            <button type="submit" class="btn btn-cream">Get notified</button>
+          </form>
+          <p class="notify-note">Be first to know when episode one drops. No spam, unsubscribe anytime.</p>
+
+          <p class="sub-label">Follow along</p>
+          <div class="subscribe-row">
+            <a class="sub-btn soon" aria-disabled="true"><span class="ic">&#63743;</span> Apple Podcasts <span style="opacity:.7">· soon</span></a>
+            <a class="sub-btn soon" aria-disabled="true"><span class="ic">&#127911;</span> Spotify <span style="opacity:.7">· soon</span></a>
+            <a class="sub-btn soon" aria-disabled="true"><span class="ic">&#9654;</span> YouTube <span style="opacity:.7">· soon</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE LATEST (newest episodes) ===================== -->
+  <section class="section alt" id="episodes">
+    <div class="container">
+      <div class="latest-head reveal">
+        <div>
+          <p class="eyebrow"><span class="heart">&#9829;</span>Newest episodes</p>
+          <h2>The Latest</h2>
+        </div>
+        <a class="btn-outline" href="/episodes.html">View all</a>
+      </div>
+      <!-- EXAMPLE episodes — replace with real ones; each links to its /field-notes/<slug>.html page. -->
+      <a class="latest-feature reveal" href="/field-notes/episode-template.html">
+        <div class="lf-art"><span class="lab">Ep 06 &middot; Latest</span><svg class="wavemark" viewBox="0 0 80 44" fill="currentColor" aria-hidden="true"><rect x="4" y="16" width="5" height="12" rx="2.5"/><rect x="14" y="8" width="5" height="28" rx="2.5"/><rect x="24" y="2" width="5" height="40" rx="2.5"/><rect x="34" y="12" width="5" height="20" rx="2.5"/><rect x="44" y="6" width="5" height="32" rx="2.5"/><rect x="54" y="14" width="5" height="16" rx="2.5"/><rect x="64" y="9" width="5" height="26" rx="2.5"/><rect x="74" y="18" width="4" height="8" rx="2"/></svg></div>
+        <div class="lf-body">
+          <span class="lf-kicker">Latest episode &middot; September 9, 2026</span>
+          <h3>Episode 06: Why six-figure offers stall before scale</h3>
+          <p>EXAMPLE &mdash; a one-line teaser for the newest episode so it stands apart from the list below.</p>
+          <span class="lf-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg> Listen now</span>
+        </div>
+      </a>
+      <div class="latest-list reveal">
+        <a class="latest-row" href="/field-notes/episode-template.html">
+          <span class="lr-num">05</span>
+          <span class="lr-main"><h4>The $50 test that fixed a dead funnel</h4><span class="lr-meta">September 2, 2026 &middot; 14 min</span></span>
+          <span class="badge-slot"></span>
+          <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        </a>
+        <a class="latest-row" href="/field-notes/episode-template.html">
+          <span class="lr-num">04</span>
+          <span class="lr-main"><h4>When to kill an ad, and when to wait</h4><span class="lr-meta">August 26, 2026 &middot; 12 min</span></span>
+          <span class="badge-slot"><span class="latest-badge">Trending</span></span>
+          <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        </a>
+        <a class="latest-row" href="/field-notes/episode-template.html">
+          <span class="lr-num">03</span>
+          <span class="lr-main"><h4>Your email list is your real audience</h4><span class="lr-meta">August 19, 2026 &middot; 15 min</span></span>
+          <span class="badge-slot"></span>
+          <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        </a>
+        <a class="latest-row" href="/field-notes/episode-template.html">
+          <span class="lr-num">02</span>
+          <span class="lr-main"><h4>The launch debrief nobody posts</h4><span class="lr-meta">August 12, 2026 &middot; 13 min</span></span>
+          <span class="badge-slot"></span>
+          <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== WHAT IT IS ===================== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="col reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>What it is</p>
+        <h2>Marketing, minus the theory.</h2>
+        <p class="subhead">A behind-the-scenes look at the work, as it actually happens.</p>
+        <p>Most marketing advice comes from people who stopped doing the work years ago. This is the opposite.
+          I'm in ad accounts, funnels, launches, and podcasts every single week — and Marketing Field Notes is
+          where I share what's working, what's not, and what I'm changing my mind about right now.</p>
+        <p>Quick, honest episodes you can listen to on a coffee break and actually use the same day. No guru
+          energy, no recycled hot takes. Just field notes from someone still in it.</p>
+        <p class="lead-state" style="margin-top: var(--s-4);">If you run your own marketing, this is the
+          show that <span class="em">makes you feel less alone in it</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT TO EXPECT ===================== -->
+  <section class="section alt">
+    <div class="container">
+      <div class="col reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>What we'll get into</p>
+        <h2>The stuff I'm actually thinking about.</h2>
+        <ul class="topic-list">
+          <li class="topic"><span class="ic">&#128227;</span><span><span class="t">What's working in ads this month</span>
+            <p class="s">Real tests, real numbers, and the changes I'd make before you spend another dollar.</p></span></li>
+          <li class="topic"><span class="ic">&#129522;</span><span><span class="t">Funnels &amp; launches, unfiltered</span>
+            <p class="s">What held up under pressure, what quietly broke, and why.</p></span></li>
+          <li class="topic"><span class="ic">&#127908;</span><span><span class="t">Content &amp; podcasting that compounds</span>
+            <p class="s">Turning one idea into months of visibility without burning out.</p></span></li>
+          <li class="topic"><span class="ic">&#9881;&#65039;</span><span><span class="t">Systems behind the scenes</span>
+            <p class="s">The tools, automations, and small decisions that keep it all moving.</p></span></li>
+          <li class="topic"><span class="ic">&#128173;</span><span><span class="t">What I'm changing my mind about</span>
+            <p class="s">The advice I used to give that I don't anymore — and what replaced it.</p></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MEET THE HOST ===================== -->
+  <section class="section">
+    <div class="container">
+      <div class="host-grid">
+        <div class="reveal"><div class="host-photo" role="img" aria-label="Portrait of Priscilla Zaehringer"></div></div>
+        <div class="reveal">
+          <p class="eyebrow"><span class="heart">&#9829;</span>Your host</p>
+          <h2>Hi, I'm Priscilla.</h2>
+          <p style="margin-top: var(--s-3);">I'm a 1:1 marketing partner for online business owners — the person
+            who runs the strategy, the ads, the launches, and the systems behind them. I don't teach from theory;
+            I teach from whatever I shipped last week.</p>
+          <p>Marketing Field Notes is my way of thinking out loud, so you get the real version of this work —
+            not the polished-after-the-fact version.</p>
+          <p style="margin-bottom:0;"><a href="/about.html" class="proj-link" style="font-weight:600; border-bottom:2px solid currentColor; text-decoration:none;">More about me →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL NOTIFY (Ink band) ===================== -->
+  <section class="section band-ink center">
+    <div class="container col reveal">
+      <p class="eyebrow"><span class="heart">&#9829;</span>Launching August 2026</p>
+      <h2>Be there for episode one.</h2>
+      <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 46ch;">Drop your email and I'll let
+        you know the moment the first episode is live. That's it — just a heads up when it drops.</p>
+      <form class="notify-form" action="https://app.kit.com/forms/KIT_FORM_ID/subscriptions" method="post" target="_blank">
+        <!-- TODO: replace KIT_FORM_ID with the Marketing Field Notes Kit form id -->
+        <input type="email" name="email_address" placeholder="Your email" required aria-label="Email address">
+        <button type="submit" class="btn btn-cream">Get notified</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <a href="#top" class="back-to-top" aria-label="Back to top">Back to top <span aria-hidden="true">&uarr;</span></a>
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a href="/" class="foot-script">Priscilla Zaehringer</a>
+          <div class="foot-intro">
+            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" alt="Priscilla Zaehringer"></span>
+            <p class="foot-bio">I'm a 1:1 marketing partner for small business owners who'd rather grow than build a team.
+              Real strategy, run end to end, done with you and not at you.</p>
+          </div>
+          <div class="foot-social">
+            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
+            <a class="social-btn" href="/field-notes.html"><span class="ic">🎙️</span>Listen to the podcast</a>
+            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
+            <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📌</span>Pin along with me</a>
+          </div>
+        </div>
+        <nav class="foot-explore" aria-label="Footer">
+          <h4>Get around</h4>
+          <div class="explore-cols">
+            <a href="/">Home</a>
+            <a href="/about.html">About</a>
+            <a href="/ads.html">Meta Ads</a>
+            <a href="/podcast.html">Podcast Production</a>
+          </div>
+        </nav>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="yr"></span> Priscilla Zaehringer. All rights reserved.</span>
+        <span>Your marketing, finally handled.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const els = document.querySelectorAll('.reveal');
+    if (reduce) { els.forEach(e => e.classList.add('in')); }
+    else {
+      const io = new IntersectionObserver((ents) => {
+        ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(e => io.observe(e));
+    }
+    // Header turns solid after leaving the hero top
+    const hdr = document.getElementById('hdr');
+    const onScroll = () => hdr.classList.toggle('stuck', window.scrollY > 60);
+    onScroll(); addEventListener('scroll', onScroll, { passive: true });
+
+    // Nav dropdowns: click to toggle (hover/focus handled in CSS), Escape + outside-click to close.
+    const subs = document.querySelectorAll('.nav-item.has-sub');
+    subs.forEach(item => {
+      const btn = item.querySelector('.nav-link');
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      item.addEventListener('keyup', (e) => {
+        if (e.key === 'Escape') { item.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+      });
+    });
+    document.addEventListener('click', () => subs.forEach(item => {
+      item.classList.remove('open');
+      item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
+    }));
+    // Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

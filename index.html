@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- noindex while staging. Remove this tag at launch. -->
   <meta name="robots" content="noindex, nofollow">
-  <title>Priscilla Zähringer · Your marketing, finally handled</title>
+  <title>Priscilla Zaehringer · Your marketing, finally handled</title>
   <meta name="description" content="One person who runs your marketing end to end. Strategy, launches, ads, and the systems behind them, for online business owners ready to grow without building a team.">
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <style>
@@ -74,9 +74,75 @@
     .nav-center a:hover { opacity: 1; }
     .nav-cta { justify-self: end; }
     .nav-pill { display: inline-block; background: var(--c-cream); color: var(--c-ink); font-weight: 600;
-      font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease; }
+      font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease;
+      border: none; cursor: pointer; font-family: var(--font-body); }
     .nav-pill:hover { opacity: 0.9; }
     @media (max-width: 760px) { .nav-center { display: none; } .nav { grid-template-columns: 1fr auto; } .promo-cta { display: none; } }
+
+    /* ---- Nav dropdowns ---- */
+    .nav-item { position: relative; display: inline-flex; align-items: center; }
+    .nav-link { font: inherit; font-size: 0.95rem; font-weight: 500; color: var(--c-cream); opacity: 0.9;
+      background: none; border: 0; padding: 0; margin: 0; cursor: pointer; display: inline-flex; align-items: center;
+      gap: 5px; white-space: nowrap; line-height: 1; }
+    .nav-item:hover .nav-link, .nav-item:focus-within .nav-link, .nav-link:hover { opacity: 1; }
+    .nav-item:has(.submenu a[aria-current]) .nav-link { opacity: 1; }
+    .nav-link .caret { font-size: 0.6em; transition: transform 0.18s ease; }
+    .nav-item:hover .caret, .nav-item:focus-within .caret, .nav-item.open .caret { transform: rotate(180deg); }
+    .submenu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
+      min-width: 190px; background: var(--c-cream); border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 6px; display: flex; flex-direction: column; gap: 2px;
+      opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.16s ease, transform 0.16s ease; z-index: 60; }
+    .submenu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+    .nav-item:hover .submenu, .nav-item:focus-within .submenu, .nav-item.open .submenu {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(4px); }
+    .submenu a { display: block; color: var(--c-ink); opacity: 1; font-size: 0.92rem; font-weight: 500;
+      padding: 9px 12px; border-radius: 3px; white-space: nowrap; }
+    .submenu a:hover { background: var(--c-pink); color: var(--c-ink); }
+    .submenu a[aria-current] { color: var(--c-pink-deep); font-weight: 700; }
+
+    /* ---- Inquiry drawer (Formspree) ---- */
+    .drawer-overlay { position: fixed; inset: 0; z-index: 60; background: rgba(29,30,38,0.5);
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+    .drawer { position: fixed; top: 0; right: 0; height: 100%; width: min(460px, 100%); z-index: 61;
+      background: var(--bg); box-shadow: -24px 0 60px rgba(29,30,38,0.20); overflow-y: auto;
+      transform: translateX(100%); transition: transform 0.38s cubic-bezier(.2,.7,.2,1); }
+    .drawer.open { transform: translateX(0); }
+    @media (prefers-reduced-motion: reduce) { .drawer, .drawer-overlay { transition: none; } }
+    .drawer-inner { padding: clamp(var(--s-4), 5vw, var(--s-6)); }
+    .drawer-close { position: absolute; top: 14px; right: 16px; width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--line); background: #fff; color: var(--c-ink); font-size: 1.5rem; line-height: 1;
+      cursor: pointer; display: grid; place-items: center; transition: background 0.15s ease, color 0.15s ease; }
+    .drawer-close:hover { background: var(--c-ink); color: var(--c-cream); }
+    .drawer-head h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); }
+    .drawer-head p { color: var(--text-muted); margin: var(--s-2) 0 0; }
+    .inquiry-form { margin-top: var(--s-4); }
+    .field { display: block; margin-bottom: var(--s-3); }
+    .field > span { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .field .req { color: var(--c-pink-deep); }
+    .field .hint { font-weight: 400; color: var(--text-muted); }
+    .field input, .field select, .field textarea { width: 100%; padding: 12px 14px; border-radius: var(--radius);
+      border: 1px solid var(--line); background: #fff; font: inherit; color: var(--text); }
+    .field textarea { resize: vertical; min-height: 96px; }
+    .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+      outline: 2px solid var(--c-pink-deep); outline-offset: 1px; border-color: var(--c-pink-deep); }
+    .opts { display: grid; gap: 6px; }
+    .opt { display: flex; align-items: flex-start; gap: 10px; padding: 9px 12px; border: 1px solid var(--line);
+      border-radius: var(--radius); background: #fff; cursor: pointer; font-size: 0.95rem; line-height: 1.35; }
+    .opt:hover { border-color: var(--c-pink); }
+    .opt input { width: auto; margin: 2px 0 0; accent-color: var(--c-pink-deep); flex: none; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .form-actions { margin-top: var(--s-4); }
+    .form-actions .btn { width: 100%; justify-content: center; }
+    .form-note { display: block; color: var(--text-muted); font-size: 0.85rem; margin-top: var(--s-2); text-align: center; }
+    .form-status { margin: var(--s-3) 0 0; font-weight: 600; color: var(--c-pink-deep); }
+    .form-success { display: none; }
+    .inquiry-form.sent > *:not(.form-success) { display: none; }
+    .inquiry-form.sent .form-success { display: block; }
+    .form-success .emoji { font-size: 2.4rem; line-height: 1; }
+    .form-success h3 { font-size: 1.5rem; margin: var(--s-2) 0 var(--s-2); }
+    .form-success p { color: var(--text-muted); margin: 0 0 var(--s-2); }
+    .form-success a { color: var(--link); font-weight: 600; }
 
     /* ---- Buttons: one filled style, used singly ---- */
     .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body);
@@ -181,20 +247,20 @@
     .label { font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600;
       color: var(--text-muted); margin: var(--s-5) 0 var(--s-2); }
 
-    /* ================= Mint full-bleed testimonial band ================= */
-    .band-mint { background: var(--c-mint); }
-    .band-mint blockquote { font-family: var(--font-display); font-synthesis: none; font-weight: 400;
-      font-size: clamp(1.7rem, 3.6vw, 2.6rem); line-height: 1.25; color: var(--c-mint-deep);
-      margin: 0 0 var(--s-3); max-width: 24ch; }
-    .band-mint .qmark { display: block; font-family: var(--font-display); font-synthesis: none;
-      font-size: 5rem; line-height: 0.7; color: var(--c-mint-deep); opacity: 0.55; margin-bottom: var(--s-1); }
-    .band-mint .cite-row { display: flex; align-items: center; gap: var(--s-2); margin-top: var(--s-4); }
-    .band-mint .avatar { width: 60px; height: 60px; border-radius: 50%; flex: none;
-      background: var(--c-mint-deep); color: var(--c-cream); display: grid; place-items: center;
-      font-family: var(--font-body); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.02em;
-      background-size: cover; background-position: center; box-shadow: var(--shadow); }
-    .band-mint .cite { color: var(--c-ink); font-weight: 600; margin: 0; }
-    .band-mint .cite span { color: var(--c-mint-deep); font-weight: 400; display: block; font-size: 0.95rem; }
+    /* ================= Testimonial card (on plain background) ================= */
+    .quote-card { max-width: 760px; margin-inline: auto; background: #fff; border: 1px solid var(--line);
+      border-radius: var(--radius); box-shadow: var(--shadow); padding: clamp(var(--s-4), 5vw, var(--s-6)); }
+    .quote-card .qmark { display: block; font-family: var(--font-display); font-synthesis: none;
+      font-size: 4.5rem; line-height: 0.6; color: var(--c-pink); opacity: 0.55; margin-bottom: var(--s-1); }
+    .quote-card blockquote { font-family: var(--font-display); font-synthesis: none; font-weight: 400;
+      font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.3; color: var(--c-ink); margin: 0 0 var(--s-3); }
+    .quote-card .support { color: var(--text-muted); max-width: 60ch; margin: 0; }
+    .quote-card .cite-row { display: flex; align-items: center; gap: var(--s-2);
+      margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--line); }
+    .quote-card .avatar { width: 56px; height: 56px; border-radius: 50%; flex: none;
+      background-size: cover; background-position: center; }
+    .quote-card .cite { color: var(--c-ink); font-weight: 600; margin: 0; }
+    .quote-card .cite span { color: var(--c-pink-deep); font-weight: 400; display: block; font-size: 0.95rem; }
 
     /* ================= About ================= */
     .about-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: var(--s-6); align-items: center; }
@@ -251,13 +317,16 @@
 
     /* ================= Process: horizontal timeline ================= */
     .timeline { position: relative; display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: var(--s-4); margin-top: var(--s-6); }
+      gap: var(--s-6); margin-top: var(--s-7); }
     .timeline::before { content: ""; position: absolute; top: 28px; left: calc(100%/6); right: calc(100%/6);
-      height: 2px; background: var(--line); z-index: 0; }
+      height: 1px; z-index: 0;
+      background: linear-gradient(90deg, transparent, rgba(29,30,38,0.12) 14%, rgba(29,30,38,0.12) 86%, transparent); }
     .tl-step { position: relative; z-index: 1; text-align: center; }
-    .tl-step .marker { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--c-ink);
+    .tl-step .marker { width: 56px; height: 56px; border-radius: 50%; border: 1.5px solid var(--c-ink);
       background: var(--bg-alt); display: grid; place-items: center; margin: 0 auto;
       font-family: var(--font-display); font-synthesis: none; font-size: 1.5rem; color: var(--c-pink-deep); }
+    /* final step reads as the destination: ink fill, cream number */
+    .tl-step:last-child .marker { background: var(--c-ink); color: var(--c-cream); border-color: var(--c-ink); }
     .tl-step h3 { margin: var(--s-3) 0 var(--s-1); }
     .tl-step p { color: var(--text-muted); margin: 0 auto; max-width: 34ch; }
     @media (max-width: 760px) {
@@ -341,15 +410,20 @@
     </a>
     <header class="site-header" id="hdr">
       <div class="container nav">
-        <a href="#top" class="wordmark">Priscilla Zähringer</a>
+        <a href="#top" class="wordmark">Priscilla Zaehringer</a>
         <nav class="nav-center">
-          <a href="#offer">Work with me</a>
-          <a href="/podcast.html">The Signal</a>
-          <a href="/ads.html">The Lead Stream</a>
+          <div class="nav-item has-sub">
+            <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <div class="submenu" role="menu">
+              <a role="menuitem" href="/ads.html">Meta Ads</a>
+              <a role="menuitem" href="/podcast.html">Podcast Production</a>
+            </div>
+          </div>
+          <a href="/field-notes.html">Listen to the podcast</a>
           <a href="/about.html">About</a>
         </nav>
         <div class="nav-cta">
-          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="nav-pill">Book a call</a>
+          <button type="button" class="nav-pill" data-open-inquiry>Get in touch</button>
         </div>
       </div>
     </header>
@@ -362,11 +436,11 @@
       <div class="hero-text">
         <h1>Your marketing, finally
           <span class="sig">handled<svg viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 55 2, 150 2, 217 6"/></svg></span>.</h1>
-        <p class="lede">One person. Strategy, systems, and the actual work.</p>
-        <p class="hero-body">You're past the startup phase and ready to grow. You just don't want to build
-          a team to get there, and you don't have to.</p>
+        <p class="lede">Strategy. Systems. Execution. All under one roof.</p>
+        <p class="hero-body">You've outgrown doing everything yourself, but you're not ready for a full
+          marketing department. I'll bring the strategy, build the systems, and keep everything moving.</p>
         <div class="cta">
-          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn">Book a Clarity Call</a>
+          <button type="button" class="btn" data-open-inquiry>Get in touch</button>
           <a href="#pain" class="textlink">See if this is you ↓</a>
         </div>
       </div>
@@ -406,7 +480,7 @@
           <input type="checkbox">
           <span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 l5 5 l12 -13"/></svg></span>
           <span class="ci-text">
-            <span class="claim">The marketing that would actually grow this is on next month's list.</span>
+            <span class="claim">The important marketing never becomes the urgent marketing.</span>
             <span class="sub">The podcast. The launch. The ad strategy. The funnel that's been "almost
               done" for six weeks. You know what would move the needle, you just can't get to it.</span>
           </span>
@@ -447,23 +521,27 @@
         <p style="margin-top: var(--s-4);">The specific mix depends on your business. What stays consistent
           is that I'm in it with you. If you've been wishing you had a marketing hire who actually gets
           your business, that's what this is.</p>
-        <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn" style="margin-top: var(--s-2);">Book a Clarity Call</a>
+        <button type="button" class="btn" style="margin-top: var(--s-2);" data-open-inquiry>Get in touch</button>
       </div>
     </div>
   </section>
 
-  <!-- ===================== TESTIMONIAL (Mint band) ===================== -->
-  <section class="section band-mint">
-    <div class="container reveal">
-      <p class="eyebrow"><span class="heart">&#9829;</span>What clients say</p>
-      <span class="qmark" aria-hidden="true">&#8220;</span>
-      <blockquote>You can give her a goal, and she figures out the process. She goes above and beyond.</blockquote>
-      <p style="color: var(--c-ink); max-width: 60ch; margin: 0;">She's highly detail-oriented,
-        very process-driven, and more than that, she genuinely cares about the work she does.</p>
-      <div class="cite-row">
-        <span class="avatar" aria-hidden="true" style="background-image:url('/assets/img/kaye.webp')"></span>
-        <p class="cite">Kaye Putnam <span>Brand Strategist</span></p>
+  <!-- ===================== TESTIMONIAL (card) ===================== -->
+  <section class="section" id="testimonial">
+    <div class="container">
+      <div class="col reveal center">
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>What clients say</p>
       </div>
+      <figure class="quote-card reveal">
+        <span class="qmark" aria-hidden="true">&#8220;</span>
+        <blockquote>You can give her a goal, and she figures out the process. She goes above and beyond.</blockquote>
+        <p class="support">She's highly detail-oriented, very process-driven, and more than that, she
+          genuinely cares about the work she does.</p>
+        <figcaption class="cite-row">
+          <span class="avatar" aria-hidden="true" style="background-image:url('/assets/img/kaye.webp')"></span>
+          <p class="cite">Kaye Putnam <span>Brand Strategist</span></p>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -491,10 +569,11 @@
         <div class="pic pic-mint"><span aria-hidden="true">&#127908;&#65039;</span></div>
         <div class="panel">
           <h3>Podcast Production</h3>
-          <p class="retainer">Monthly retainer</p>
-          <p>You want a podcast but don't want to become a producer. I handle the editing, show notes,
-            publishing, and strategy. You show up and hit record. The rest gets done.</p>
-          <a href="#" class="proj-link">See the podcast service →</a>
+          <p class="retainer">Done-for-you launch · optional ongoing support</p>
+          <p>You want a podcast, not a second job producing one. I build the whole thing — strategy,
+            branding, tech, and your first batch of episodes — get it live, then show you how to run it
+            yourself. From there, keep it in-house or stay on with me monthly. Your call.</p>
+          <a href="/podcast.html" class="proj-link">See the podcast service →</a>
         </div>
       </div>
     </div>
@@ -561,10 +640,10 @@
     <div class="container measure reveal">
       <p class="eyebrow"><span class="heart">&#9829;</span>One last thing</p>
       <h2>Ready for a marketing partner?</h2>
-      <p class="lede" style="margin: var(--s-3) 0 var(--s-4);">Book a clarity call. Thirty minutes, no
-        pitch. We'll talk through what's on your plate, what's working, and what one person could actually
-        take off it.</p>
-      <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn btn-cream">Book Your Clarity Call</a>
+      <p class="lede" style="margin: var(--s-3) 0 var(--s-4);">Tell me what's on your plate. Fill out a
+        quick form, pick what you're interested in, and I'll review it personally and get back to you
+        within 24&ndash;48 hours.</p>
+      <button type="button" class="btn btn-cream" data-open-inquiry>Get in touch</button>
     </div>
   </section>
 
@@ -574,16 +653,16 @@
     <div class="container">
       <div class="foot-grid">
         <div class="foot-brand">
-          <a href="#top" class="foot-script">Priscilla Zähringer</a>
+          <a href="#top" class="foot-script">Priscilla Zaehringer</a>
           <div class="foot-intro">
-            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" alt="Priscilla Zähringer"></span>
+            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" alt="Priscilla Zaehringer"></span>
             <p class="foot-bio">I'm a 1:1 marketing partner for small business owners who'd rather grow than build a team.
               Real strategy, run end to end, done with you and not at you.</p>
           </div>
           <div class="foot-social">
-            <a class="social-btn" href="https://www.instagram.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
-            <a class="social-btn" href="/podcast.html"><span class="ic">🎙️</span>Listen to The Signal</a>
-            <a class="social-btn" href="https://www.facebook.com/priscillazaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
+            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
+            <a class="social-btn" href="/field-notes.html"><span class="ic">🎙️</span>Listen to the podcast</a>
+            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
             <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📌</span>Pin along with me</a>
           </div>
         </div>
@@ -592,19 +671,94 @@
           <div class="explore-cols">
             <a href="/">Home</a>
             <a href="/about.html">About</a>
-            <a href="/podcast.html">The Signal</a>
-            <a href="/ads.html">The Lead Stream</a>
-            <a href="#offer">Work with me</a>
-            <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a call</a>
+            <a href="/ads.html">Meta Ads</a>
+            <a href="/podcast.html">Podcast Production</a>
+            <a href="#" data-open-inquiry>Get in touch</a>
           </div>
         </nav>
       </div>
       <div class="foot-bottom">
-        <span>© <span id="yr"></span> Priscilla Zähringer. All rights reserved.</span>
+        <span>© <span id="yr"></span> Priscilla Zaehringer. All rights reserved.</span>
         <span>Your marketing, finally handled.</span>
       </div>
     </div>
   </footer>
+
+  <!-- INQUIRY DRAWER -->
+  <div class="drawer-overlay" id="inquiryOverlay"></div>
+  <aside class="drawer" id="inquiryDrawer" role="dialog" aria-modal="true" aria-labelledby="inquiryTitle" aria-hidden="true" inert>
+    <div class="drawer-inner">
+      <button type="button" class="drawer-close" data-close-inquiry aria-label="Close">&times;</button>
+      <div class="drawer-head">
+        <p class="eyebrow"><span class="heart">&#9829;</span>Start here</p>
+        <h2 id="inquiryTitle">Let's work together.</h2>
+        <p>Pick what you're interested in and share a few details. I review every inquiry personally and
+          reach out within 24&ndash;48 hours.</p>
+      </div>
+      <form class="inquiry-form" action="https://formspree.io/f/xeebrwbl" method="POST">
+        <input type="hidden" name="_subject" value="New website inquiry">
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
+          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What are you interested in? <span class="req">*</span></span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="Interested in" value="1:1 Marketing Partnership (OBM)" required> 1:1 Marketing Partnership <span class="hint">(OBM)</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="The Signal - Podcast Production"> The Signal <span class="hint">&mdash; Podcast Production</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="The Lead Stream - Meta Ads"> The Lead Stream <span class="hint">&mdash; Meta Ads</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="Not sure yet"> Not sure yet &mdash; help me figure it out</label>
+          </div>
+        </fieldset>
+
+        <label class="field"><span>What's your name? <span class="req">*</span></span>
+          <input type="text" name="Name" autocomplete="name" required></label>
+
+        <label class="field"><span>What's the best email to reach you? <span class="req">*</span></span>
+          <input type="email" name="Email" autocomplete="email" required></label>
+
+        <label class="field"><span>Your website <span class="hint">(if you have one)</span></span>
+          <input type="url" name="Website" placeholder="https://" autocomplete="url"></label>
+
+        <label class="field"><span>Tell me about your business. <span class="req">*</span></span>
+          <textarea name="About your business" rows="3" required
+            placeholder="What do you do, and who do you help?"></textarea></label>
+
+        <label class="field"><span>What's your niche or industry?</span>
+          <input type="text" name="Niche"></label>
+
+        <label class="field"><span>If you had a magic wand, what's the one thing you'd want to improve &mdash; or the outcome you're hoping for? <span class="req">*</span></span>
+          <textarea name="Magic wand outcome" rows="3" required></textarea></label>
+
+        <label class="field"><span>Anything else you'd like me to know? <span class="hint">(optional)</span></span>
+          <textarea name="Anything else" rows="3"></textarea></label>
+
+        <label class="field"><span>How did you hear about me?</span>
+          <select name="How did you hear">
+            <option value="" selected disabled>Choose one</option>
+            <option>Instagram</option>
+            <option>A friend or referral</option>
+            <option>Google search</option>
+            <option>A podcast</option>
+            <option>Newsletter</option>
+            <option>Somewhere else</option>
+          </select></label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Send my inquiry</button>
+          <span class="form-note">No pressure, no spam. Just a real reply.</span>
+        </div>
+        <p class="form-status" role="alert" aria-live="assertive"></p>
+
+        <div class="form-success" role="status" aria-live="polite">
+          <span class="emoji" aria-hidden="true">&#127881;</span>
+          <h3>Thanks! Your inquiry is on its way.</h3>
+          <p>I personally review every inquiry and I'll get back to you within 24&ndash;48 hours. If it looks
+            like we're a good fit, I'll reach out with the next steps so we can hop on a call.</p>
+          <p>In the meantime, you can <a href="/podcast.html">listen to the podcast</a> or
+            <a href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener">connect with me on Instagram</a>.</p>
+        </div>
+      </form>
+    </div>
+  </aside>
 
   <script>
     // Scroll reveal
@@ -621,6 +775,92 @@
     const hdr = document.getElementById('hdr');
     const onScroll = () => hdr.classList.toggle('stuck', window.scrollY > 60);
     onScroll(); addEventListener('scroll', onScroll, { passive: true });
+
+    // Nav dropdowns: click to toggle (hover/focus handled in CSS), Escape + outside-click to close.
+    const subs = document.querySelectorAll('.nav-item.has-sub');
+    subs.forEach(item => {
+      const btn = item.querySelector('.nav-link');
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      item.addEventListener('keyup', (e) => {
+        if (e.key === 'Escape') { item.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+      });
+    });
+    document.addEventListener('click', () => subs.forEach(item => {
+      item.classList.remove('open');
+      item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
+    }));
+
+    // Inquiry drawer: open from any [data-open-inquiry], close via overlay / button / Esc
+    const overlay = document.getElementById('inquiryOverlay');
+    const drawer = document.getElementById('inquiryDrawer');
+    if (overlay && drawer) {
+      let lastFocus = null;
+      const focusables = () => drawer.querySelectorAll('a[href], button:not([disabled]), input, select, textarea');
+      const openDrawer = (e) => {
+        if (e && e.cancelable) e.preventDefault();
+        lastFocus = document.activeElement;
+        overlay.classList.add('open');
+        drawer.classList.add('open');
+        drawer.removeAttribute('inert');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        const first = focusables()[0];
+        if (first) setTimeout(() => first.focus(), 60);
+      };
+      const closeDrawer = () => {
+        overlay.classList.remove('open');
+        drawer.classList.remove('open');
+        drawer.setAttribute('inert', '');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      };
+      document.querySelectorAll('[data-open-inquiry]').forEach(b => b.addEventListener('click', openDrawer));
+      document.querySelectorAll('[data-close-inquiry]').forEach(b => b.addEventListener('click', closeDrawer));
+      overlay.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+        if (e.key === 'Tab' && drawer.classList.contains('open')) {
+          const f = Array.from(focusables());
+          if (!f.length) return;
+          const first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+
+      // Submit to Formspree via fetch; reveal the success panel inside the drawer
+      const iform = drawer.querySelector('.inquiry-form');
+      const status = iform.querySelector('.form-status');
+      const btn = iform.querySelector('button[type="submit"]');
+      iform.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = '';
+        btn.disabled = true; btn.textContent = 'Sending…';
+        try {
+          const res = await fetch(iform.action, {
+            method: 'POST', body: new FormData(iform), headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            iform.classList.add('sent');
+            drawer.scrollTop = 0;
+          } else {
+            const data = await res.json().catch(() => ({}));
+            status.textContent = (data.errors && data.errors.map(x => x.message).join(', '))
+              || 'Something went wrong. Please try again, or email priscilla@priscillazaehringer.com.';
+            btn.disabled = false; btn.textContent = 'Send my inquiry';
+          }
+        } catch (err) {
+          status.textContent = 'Something went wrong. Please check your connection and try again.';
+          btn.disabled = false; btn.textContent = 'Send my inquiry';
+        }
+      });
+    }
+
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
   </script>
