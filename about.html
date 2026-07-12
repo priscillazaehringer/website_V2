@@ -107,28 +107,30 @@
     .pill-mint { background: var(--c-mint); border-color: transparent; }
     .pill-coral { background: var(--c-coral); border-color: transparent; }
 
-    /* ================= HERO: cut-out over ombre ================= */
-    .hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden;
+    /* ================= HERO: split — text + framed photo ================= */
+    .hero { position: relative; min-height: 88vh; display: flex; align-items: center; overflow: hidden;
       background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 55%, #FBE2D6 100%); }
     .hero-blob { position: absolute; z-index: 0; right: 9%; bottom: 6%; width: 40vw; height: 64%;
-      max-width: 580px; border-radius: 50%; background: var(--c-coral); filter: blur(72px); opacity: 0.5; }
-    .hero-cutout { position: absolute; z-index: 1; right: 0; bottom: 0; height: 85%; width: auto;
-      object-fit: contain; object-position: bottom right; pointer-events: none;
-      filter: grayscale(0) drop-shadow(0 22px 40px rgba(29,30,38,0.20)); }
+      max-width: 580px; border-radius: 50%; background: var(--c-coral); filter: blur(72px); opacity: 0.42; }
     .hero .container { position: relative; z-index: 2; }
-    .hero-text { max-width: 34rem; padding-block: var(--s-6); padding-top: 150px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.85fr; gap: clamp(var(--s-5), 6vw, var(--s-7));
+      align-items: center; padding-top: 140px; padding-bottom: var(--s-6); }
+    .hero-text { max-width: 34rem; }
     .hero h1 { color: var(--text); max-width: 14ch; }
     .hero .lede { color: var(--text); max-width: 40ch; margin-top: var(--s-3); }
-    .hero .cilla-note { font-family: var(--font-script); color: var(--c-pink-deep); font-size: 1.5rem;
-      transform: rotate(-6deg); display: inline-block; margin-top: var(--s-3); }
-    .hero .cta { margin-top: var(--s-3); display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+    .hero .cta { margin-top: var(--s-4); display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
     .hero .pills { margin-top: var(--s-4); }
+    .hero-photo { justify-self: center; width: 100%; }
+    .hero-photo-frame { position: relative; max-width: 440px; margin-inline: auto; }
+    .hero-photo-frame img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
+      object-position: center 20%; border-radius: 22px; box-shadow: 0 22px 48px rgba(29,30,38,0.20); }
+    .hero-photo-frame .note-script { position: absolute; z-index: 2; font-size: 2rem; transform: rotate(-7deg);
+      top: -16px; left: -12px; }
     @media (max-width: 860px) {
-      .hero { flex-direction: column; align-items: stretch; min-height: auto; }
-      .hero-text { max-width: 100%; padding-top: 150px; padding-bottom: 0; }
-      .hero-cutout { position: relative; right: auto; bottom: auto; height: auto; width: 80%;
-        max-width: 340px; margin: var(--s-4) auto 0; display: block; }
-      .hero-blob { width: 78%; height: 36%; right: 11%; bottom: 0; }
+      .hero { min-height: auto; }
+      .hero-grid { grid-template-columns: 1fr; gap: var(--s-5); padding-top: 128px; }
+      .hero-text { max-width: 100%; }
+      .hero-photo-frame { max-width: 330px; }
     }
 
     /* ================= Ombre / bands ================= */
@@ -166,7 +168,7 @@
     .photo-frame .block { position: absolute; z-index: 0; width: 60%; aspect-ratio: 1; background: var(--c-coral);
       border-radius: var(--radius); right: -22px; bottom: -22px; }
     .about-photo { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: var(--radius);
-      background-image: url('/assets/img/about.webp'); background-size: cover; background-position: 50% 22%; }
+      background-image: url('/assets/img/about-headshot.webp'); background-size: cover; background-position: 50% 18%; }
     .photo-frame .note-script { position: absolute; z-index: 2; font-size: 2.1rem; transform: rotate(-7deg); top: -18px; left: -10px; }
 
     /* ---- Services ---- */
@@ -312,6 +314,84 @@
     @media (max-width: 560px) { .bhv { grid-template-columns: 1fr; gap: var(--s-1); } .bhv .bs { grid-column: 1; } }
     .bhv-sign { font-family: var(--font-script); color: var(--c-pink-deep); font-size: 1.7rem;
       display: block; text-align: right; margin-top: var(--s-4); transform: rotate(-4deg); }
+
+    /* ---- Nav pill works as a <button> too ---- */
+    .nav-pill { border: none; cursor: pointer; font-family: var(--font-body); }
+
+    /* ---- Reimagined "What I do": the marketing-partner operating board ---- */
+    .alt { background: var(--bg-alt); }
+    .subhead { font-family: var(--font-display); font-synthesis: none; font-size: var(--h3);
+      color: var(--c-pink-deep); margin: var(--s-2) 0 var(--s-3); }
+    .offer-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(var(--s-5), 6vw, var(--s-7)); align-items: start; }
+    @media (max-width: 900px) { .offer-grid { grid-template-columns: 1fr; gap: var(--s-5); } }
+    .offer-narr { max-width: 34rem; }
+    .offer-narr .btn { margin-top: var(--s-4); }
+    .board { background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; }
+    @media (min-width: 901px) { .board { position: sticky; top: 96px; } }
+    .board-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2);
+      padding: var(--s-3) var(--s-4); border-bottom: 1px solid var(--line); background: var(--bg-alt); }
+    .board-head .bt { font-family: var(--font-display); font-synthesis: none; font-size: 1.2rem; }
+    .board-head .live { font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
+      color: var(--c-mint-deep); display: inline-flex; align-items: center; gap: 7px; }
+    .board-head .live::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--c-mint-deep); }
+    .workstreams { padding: 8px; }
+    .ws { display: flex; align-items: center; gap: 14px; padding: 13px 12px; border-radius: 12px; transition: background 0.15s ease; }
+    .ws + .ws { border-top: 1px solid var(--line); }
+    .ws:hover { background: var(--bg-alt); }
+    .ws .ic { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 1.2rem; }
+    .ws:nth-child(1) .ic { background: var(--c-pink); }
+    .ws:nth-child(2) .ic { background: var(--c-mint); }
+    .ws:nth-child(3) .ic { background: var(--c-coral); }
+    .ws:nth-child(4) .ic { background: var(--c-pink); }
+    .ws:nth-child(5) .ic { background: var(--c-mint); }
+    .ws .wt { font-size: 1rem; line-height: 1.3; }
+    .board-foot { padding: var(--s-3) var(--s-4); border-top: 1px solid var(--line);
+      font-family: var(--font-display); font-synthesis: none; font-size: 1.1rem; color: var(--c-ink); }
+    .board-foot .em { color: var(--c-pink-deep); }
+
+    /* ---- Inquiry drawer (Formspree) ---- */
+    .drawer-overlay { position: fixed; inset: 0; z-index: 60; background: rgba(29,30,38,0.5);
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+    .drawer { position: fixed; top: 0; right: 0; height: 100%; width: min(460px, 100%); z-index: 61;
+      background: var(--bg); box-shadow: -24px 0 60px rgba(29,30,38,0.20); overflow-y: auto;
+      transform: translateX(100%); transition: transform 0.38s cubic-bezier(.2,.7,.2,1); }
+    .drawer.open { transform: translateX(0); }
+    @media (prefers-reduced-motion: reduce) { .drawer, .drawer-overlay { transition: none; } }
+    .drawer-inner { padding: clamp(var(--s-4), 5vw, var(--s-6)); }
+    .drawer-close { position: absolute; top: 14px; right: 16px; width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--line); background: #fff; color: var(--c-ink); font-size: 1.5rem; line-height: 1;
+      cursor: pointer; display: grid; place-items: center; transition: background 0.15s ease, color 0.15s ease; }
+    .drawer-close:hover { background: var(--c-ink); color: var(--c-cream); }
+    .drawer-head h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); }
+    .drawer-head p { color: var(--text-muted); margin: var(--s-2) 0 0; }
+    .inquiry-form { margin-top: var(--s-4); }
+    .field { display: block; margin-bottom: var(--s-3); }
+    .field > span { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .field .req { color: var(--c-pink-deep); }
+    .field .hint { font-weight: 400; color: var(--text-muted); }
+    .field input, .field select, .field textarea { width: 100%; padding: 12px 14px; border-radius: var(--radius);
+      border: 1px solid var(--line); background: #fff; font: inherit; color: var(--text); }
+    .field textarea { resize: vertical; min-height: 96px; }
+    .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+      outline: 2px solid var(--c-pink-deep); outline-offset: 1px; border-color: var(--c-pink-deep); }
+    .opts { display: grid; gap: 6px; }
+    .opt { display: flex; align-items: flex-start; gap: 10px; padding: 9px 12px; border: 1px solid var(--line);
+      border-radius: var(--radius); background: #fff; cursor: pointer; font-size: 0.95rem; line-height: 1.35; }
+    .opt:hover { border-color: var(--c-pink); }
+    .opt input { width: auto; margin: 2px 0 0; accent-color: var(--c-pink-deep); flex: none; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .form-actions { margin-top: var(--s-4); }
+    .form-actions .btn { width: 100%; justify-content: center; }
+    .form-note { display: block; color: var(--text-muted); font-size: 0.85rem; margin-top: var(--s-2); text-align: center; }
+    .form-status { margin: var(--s-3) 0 0; font-weight: 600; color: var(--c-pink-deep); }
+    .form-success { display: none; }
+    .inquiry-form.sent > *:not(.form-success) { display: none; }
+    .inquiry-form.sent .form-success { display: block; }
+    .form-success .emoji { font-size: 2.4rem; line-height: 1; }
+    .form-success h3 { font-size: 1.5rem; margin: var(--s-2) 0 var(--s-2); }
+    .form-success p { color: var(--text-muted); margin: 0 0 var(--s-2); }
+    .form-success a { color: var(--link); font-weight: 600; }
   </style>
 </head>
 <body>
@@ -339,7 +419,7 @@
           <a href="/about.html">About</a>
         </nav>
         <div class="nav-cta">
-          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="nav-pill">Book a call</a>
+          <button type="button" class="nav-pill" data-open-inquiry>Book a call</button>
         </div>
       </div>
     </header>
@@ -348,7 +428,7 @@
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="top">
     <span class="hero-blob" aria-hidden="true"></span>
-    <div class="container">
+    <div class="container hero-grid">
       <div class="hero-text">
         <h1>The person your business has been
           <span class="sig">missing<svg viewBox="0 0 180 12" preserveAspectRatio="none"><path d="M3 8 C 45 2, 130 2, 177 6"/></svg></span>.</h1>
@@ -360,12 +440,16 @@
           <span class="pill pill-mint">✨ Disney lover</span>
         </div>
         <div class="cta">
-          <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn">Book a Clarity Call</a>
+          <button type="button" class="btn" data-open-inquiry>Book a Clarity Call</button>
           <span class="note-script" style="font-size:1.4rem; transform:rotate(-5deg); display:inline-block;">Cilla, for short</span>
         </div>
       </div>
+      <div class="hero-photo reveal">
+        <div class="hero-photo-frame">
+          <img src="/assets/img/about-hero.webp" width="1000" height="1250" alt="Priscilla walking through a wildflower field in the evening light">
+        </div>
+      </div>
     </div>
-    <img class="hero-cutout" src="/assets/img/hero-cutout.webp" width="1500" height="1401" alt="Priscilla">
   </section>
 
   <!-- ===================== STORY ===================== -->
@@ -389,7 +473,7 @@
   </section>
 
   <!-- ===================== PROOF ===================== -->
-  <!-- TODO: Priscilla — swap these placeholder figures for your real numbers before launch. -->
+  <!-- Numbers confirmed with Priscilla (years is an estimate — adjust anytime). -->
   <section class="section" id="proof">
     <div class="container">
       <div class="col reveal" style="max-width:780px;">
@@ -397,10 +481,10 @@
         <div class="stats">
           <div class="stat"><div class="n">6<span class="u">+</span></div><div class="l">Years doing this work</div></div>
           <div class="stat"><div class="n">40<span class="u">+</span></div><div class="l">Meta campaigns managed</div></div>
-          <div class="stat"><div class="n">150<span class="u">+</span></div><div class="l">Podcast episodes produced</div></div>
+          <div class="stat"><div class="n">300<span class="u">+</span></div><div class="l">Podcast episodes produced</div></div>
           <div class="stat"><div class="n">30<span class="u">+</span></div><div class="l">Funnels &amp; systems built</div></div>
         </div>
-        <p class="stats-cap">Real work, quietly run end to end, for real small businesses.</p>
+        <p class="stats-cap">Real work, run end to end, for real small businesses.</p>
       </div>
     </div>
   </section>
@@ -476,12 +560,12 @@
           <div class="bhv">
             <span class="bn" aria-hidden="true">01</span>
             <p class="bt">I notice the problems before they become emergencies.</p>
-            <p class="bs">By the time something would have caught fire, I've usually already quietly put it out.</p>
+            <p class="bs">By the time something would have caught fire, I've usually already put it out.</p>
           </div>
           <div class="bhv">
             <span class="bn" aria-hidden="true">02</span>
             <p class="bt">I ask the questions no one else thinks to ask.</p>
-            <p class="bs">The quiet ones that end up changing the direction of the whole plan.</p>
+            <p class="bs">The small ones that end up changing the direction of the whole plan.</p>
           </div>
           <div class="bhv">
             <span class="bn" aria-hidden="true">03</span>
@@ -504,29 +588,38 @@
     </div>
   </section>
 
-  <!-- ===================== SERVICES ===================== -->
-  <section class="section">
+  <!-- ===================== WHAT I DO (marketing-partner board) ===================== -->
+  <section class="section alt" id="offer">
     <div class="container">
-      <div class="col reveal">
-        <p class="eyebrow"><span class="heart">&#9829;</span>What I do</p>
-        <h2>Three ways I support small businesses.</h2>
-        <div class="svc-about">
-          <div class="item">
-            <span class="em">🤝</span>
-            <div><h3>1:1 Marketing Partner</h3><p>Ongoing, one-on-one support across your marketing and operations. I hold the systems, the projects, and the moving pieces, so you get back to the work only you can do.</p></div>
-            <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="lk">Book a call</a>
-          </div>
-          <div class="item">
-            <span class="em">🎙️</span>
-            <div><h3>Podcast Production</h3><p>Full-service production. You hit record, I handle everything else.</p></div>
-            <a href="/#projects" class="lk">See the service</a>
-          </div>
-          <div class="item">
-            <span class="em">📣</span>
-            <div><h3>Done-for-You Meta Ads</h3><p>Strategic ad management without the agency markup. Custom strategy, relentless optimization.</p></div>
-            <a href="/#projects" class="lk">See the service</a>
-          </div>
+      <div class="offer-grid">
+        <div class="offer-narr reveal">
+          <p class="eyebrow"><span class="heart">&#9829;</span>What I do</p>
+          <h2>A marketing partner on your team.</h2>
+          <p class="subhead">Not a project. Not a deliverable. A partnership.</p>
+          <p>This is what most clients hire me for. I become part of your team, the person who holds the
+            marketing function of your business. We figure out what needs to happen together, and then I
+            handle it. Strategy, execution, and the systems behind all of it.</p>
+          <p>You buy a monthly block of my hours, and we use them however the business needs that month.
+            Some weeks that's running ad campaigns. Some weeks it's building a launch. Some weeks it's
+            cleaning up your backend so the marketing actually has somewhere to land.</p>
+          <p>The specific mix depends on your business. What stays consistent is that I'm in it with you.
+            If you've been wishing you had a marketing hire who actually gets your business, that's what this is.</p>
+          <button type="button" class="btn" data-open-inquiry>Book a Clarity Call</button>
         </div>
+        <aside class="board reveal" aria-label="What I might be running for you in any given month">
+          <div class="board-head">
+            <span class="bt">In any given month</span>
+            <span class="live">On it</span>
+          </div>
+          <div class="workstreams">
+            <div class="ws"><span class="ic" aria-hidden="true">&#128227;</span><span class="wt">Ads strategy and management</span></div>
+            <div class="ws"><span class="ic" aria-hidden="true">&#129522;</span><span class="wt">Funnels, landing pages, and lead magnets</span></div>
+            <div class="ws"><span class="ic" aria-hidden="true">&#9993;&#65039;</span><span class="wt">Email marketing, sequences, and launches</span></div>
+            <div class="ws"><span class="ic" aria-hidden="true">&#127908;</span><span class="wt">Podcast production and content systems</span></div>
+            <div class="ws"><span class="ic" aria-hidden="true">&#9881;&#65039;</span><span class="wt">Operations: tools, automations, SOPs, and team coordination</span></div>
+          </div>
+          <div class="board-foot">The scope flexes. The <span class="em">partnership stays steady.</span></div>
+        </aside>
       </div>
     </div>
   </section>
@@ -567,11 +660,6 @@
         <div class="flip" data-cilla="2"><div class="flip-inner"><div class="flip-front"><div class="flip-num">03</div><div class="flip-q">Comfort TV?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">📺 Reality TV</div><div class="flip-o" onclick="fp(this,1)">⚔️ Drama or fantasy</div><div class="flip-o" onclick="fp(this,2)">🤷‍♀️ Both, no judgment</div><div class="flip-o" onclick="fp(this,3)">😅 Whatever's on</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🤷‍♀️ TLC and Game of Thrones. Don't make me choose.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
         <div class="flip" data-cilla="0"><div class="flip-inner"><div class="flip-front"><div class="flip-num">04</div><div class="flip-q">Love language?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🤝 Acts of service</div><div class="flip-o" onclick="fp(this,1)">⏰ Quality time</div><div class="flip-o" onclick="fp(this,2)">💬 Words of affirmation</div><div class="flip-o" onclick="fp(this,3)">🎁 Gifts</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🤝 Acts of service. It's literally my whole job.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
         <div class="flip" data-cilla="0"><div class="flip-inner"><div class="flip-front"><div class="flip-num">05</div><div class="flip-q">If you weren't doing this?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">👩‍🏫 Teacher</div><div class="flip-o" onclick="fp(this,1)">✈️ Travel blogger</div><div class="flip-o" onclick="fp(this,2)">👩‍🍳 Chef or baker</div><div class="flip-o" onclick="fp(this,3)">🤔 No idea honestly</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">👩‍🏫 A teacher. 100%.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
-        <div class="flip" data-cilla="3"><div class="flip-inner"><div class="flip-front"><div class="flip-num">06</div><div class="flip-q">Dream vacation?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🏖️ Beach</div><div class="flip-o" onclick="fp(this,1)">🏔️ Mountains</div><div class="flip-o" onclick="fp(this,2)">🇪🇺 Europe</div><div class="flip-o" onclick="fp(this,3)">🌍 Anywhere new</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🌍 Anywhere outside the US. Take me anywhere.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
-        <div class="flip" data-cilla="2"><div class="flip-inner"><div class="flip-front"><div class="flip-num">07</div><div class="flip-q">Most-used emoji?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">😂</div><div class="flip-o" onclick="fp(this,1)">❤️</div><div class="flip-o" onclick="fp(this,2)">💃</div><div class="flip-o" onclick="fp(this,3)">🙃</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">💃 always and forever</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
-        <div class="flip" data-cilla="0"><div class="flip-inner"><div class="flip-front"><div class="flip-num">08</div><div class="flip-q">Never say no to?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🧳 Vacation</div><div class="flip-o" onclick="fp(this,1)">🍫 Chocolate</div><div class="flip-o" onclick="fp(this,2)">☕ Coffee</div><div class="flip-o" onclick="fp(this,3)">🏷️ A good deal</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🧳 A vacation. Or chocolate. Okay, both.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
-        <div class="flip" data-cilla="3"><div class="flip-inner"><div class="flip-front"><div class="flip-num">09</div><div class="flip-q">Biggest lottery splurge?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🏡 Dream house</div><div class="flip-o" onclick="fp(this,1)">✈️ Travel forever</div><div class="flip-o" onclick="fp(this,2)">💝 Give it away</div><div class="flip-o" onclick="fp(this,3)">🤩 All of the above</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🤩 Beach house and a cabin in the woods. All of it.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
-        <div class="flip" data-cilla="1"><div class="flip-inner"><div class="flip-front"><div class="flip-num">10</div><div class="flip-q">People describe you as?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">📋 The planner</div><div class="flip-o" onclick="fp(this,1)">💛 The caretaker</div><div class="flip-o" onclick="fp(this,2)">🌍 The adventurer</div><div class="flip-o" onclick="fp(this,3)">🤞 The loyal one</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">💛 The caretaker. It's in my DNA.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
       </div>
     </div>
   </section>
@@ -584,7 +672,7 @@
       <p class="lede" style="margin: var(--s-3) auto var(--s-4); max-width: 52ch;">I'm not for everyone, and
         I'm okay with that. But if something here resonated, I'd love to hear from you. No pressure. No hard
         sell. Just an honest conversation.</p>
-      <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener" class="btn btn-cream">Book a Clarity Call</a>
+      <button type="button" class="btn btn-cream" data-open-inquiry>Book a Clarity Call</button>
     </div>
   </section>
 
@@ -614,7 +702,7 @@
             <a href="/about.html">About</a>
             <a href="/ads.html">Meta Ads</a>
             <a href="/podcast.html">Podcast Production</a>
-            <a href="https://scheduler.zoom.us/priscilla-zaehringer/clarity-call" target="_blank" rel="noopener">Book a call</a>
+            <a href="#book" data-open-inquiry>Book a call</a>
           </div>
         </nav>
       </div>
@@ -624,6 +712,82 @@
       </div>
     </div>
   </footer>
+
+  <!-- INQUIRY DRAWER -->
+  <div class="drawer-overlay" id="inquiryOverlay"></div>
+  <aside class="drawer" id="inquiryDrawer" role="dialog" aria-modal="true" aria-labelledby="inquiryTitle" aria-hidden="true" inert>
+    <div class="drawer-inner">
+      <button type="button" class="drawer-close" data-close-inquiry aria-label="Close">&times;</button>
+      <div class="drawer-head">
+        <p class="eyebrow"><span class="heart">&#9829;</span>Start here</p>
+        <h2 id="inquiryTitle">Let's work together.</h2>
+        <p>Pick what you're interested in and share a few details. I review every inquiry personally and
+          reach out within 24&ndash;48 hours.</p>
+      </div>
+      <form class="inquiry-form" action="https://formspree.io/f/xeebrwbl" method="POST">
+        <input type="hidden" name="_subject" value="New website inquiry">
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
+          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What are you interested in? <span class="req">*</span></span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="Interested in" value="1:1 Marketing Partnership (OBM)" required> 1:1 Marketing Partnership <span class="hint">(OBM)</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="The Signal - Podcast Production"> The Signal <span class="hint">&mdash; Podcast Production</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="The Lead Stream - Meta Ads"> The Lead Stream <span class="hint">&mdash; Meta Ads</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="Not sure yet"> Not sure yet &mdash; help me figure it out</label>
+          </div>
+        </fieldset>
+
+        <label class="field"><span>What's your name? <span class="req">*</span></span>
+          <input type="text" name="Name" autocomplete="name" required></label>
+
+        <label class="field"><span>What's the best email to reach you? <span class="req">*</span></span>
+          <input type="email" name="Email" autocomplete="email" required></label>
+
+        <label class="field"><span>Your website <span class="hint">(if you have one)</span></span>
+          <input type="url" name="Website" placeholder="https://" autocomplete="url"></label>
+
+        <label class="field"><span>Tell me about your business. <span class="req">*</span></span>
+          <textarea name="About your business" rows="3" required
+            placeholder="What do you do, and who do you help?"></textarea></label>
+
+        <label class="field"><span>What's your niche or industry?</span>
+          <input type="text" name="Niche"></label>
+
+        <label class="field"><span>If you had a magic wand, what's the one thing you'd want to improve &mdash; or the outcome you're hoping for? <span class="req">*</span></span>
+          <textarea name="Magic wand outcome" rows="3" required></textarea></label>
+
+        <label class="field"><span>Anything else you'd like me to know? <span class="hint">(optional)</span></span>
+          <textarea name="Anything else" rows="3"></textarea></label>
+
+        <label class="field"><span>How did you hear about me?</span>
+          <select name="How did you hear">
+            <option value="" selected disabled>Choose one</option>
+            <option>Instagram</option>
+            <option>A friend or referral</option>
+            <option>Google search</option>
+            <option>A podcast</option>
+            <option>Newsletter</option>
+            <option>Somewhere else</option>
+          </select></label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Send my inquiry</button>
+          <span class="form-note">No pressure, no spam. Just a real reply.</span>
+        </div>
+        <p class="form-status" role="alert" aria-live="assertive"></p>
+
+        <div class="form-success" role="status" aria-live="polite">
+          <span class="emoji" aria-hidden="true">&#127881;</span>
+          <h3>Thanks! Your inquiry is on its way.</h3>
+          <p>I personally review every inquiry and I'll get back to you within 24&ndash;48 hours. If it looks
+            like we're a good fit, I'll reach out with the next steps so we can hop on a call.</p>
+          <p>In the meantime, you can <a href="/podcast.html">listen to the podcast</a> or
+            <a href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener">connect with me on Instagram</a>.</p>
+        </div>
+      </form>
+    </div>
+  </aside>
 
   <script>
     // Scroll reveal
@@ -659,6 +823,73 @@
       item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
     }));
     document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Inquiry drawer: open from any [data-open-inquiry], close via overlay / button / Esc
+    const overlay = document.getElementById('inquiryOverlay');
+    const drawer = document.getElementById('inquiryDrawer');
+    if (overlay && drawer) {
+      let lastFocus = null;
+      const focusables = () => drawer.querySelectorAll('a[href], button:not([disabled]), input, select, textarea');
+      const openDrawer = (e) => {
+        if (e && e.cancelable) e.preventDefault();
+        lastFocus = document.activeElement;
+        overlay.classList.add('open');
+        drawer.classList.add('open');
+        drawer.removeAttribute('inert');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        const first = focusables()[0];
+        if (first) setTimeout(() => first.focus(), 60);
+      };
+      const closeDrawer = () => {
+        overlay.classList.remove('open');
+        drawer.classList.remove('open');
+        drawer.setAttribute('inert', '');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      };
+      document.querySelectorAll('[data-open-inquiry]').forEach(b => b.addEventListener('click', openDrawer));
+      document.querySelectorAll('[data-close-inquiry]').forEach(b => b.addEventListener('click', closeDrawer));
+      overlay.addEventListener('click', closeDrawer);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+        if (e.key === 'Tab' && drawer.classList.contains('open')) {
+          const f = Array.from(focusables());
+          if (!f.length) return;
+          const first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+
+      // Submit to Formspree via fetch; reveal the success panel inside the drawer
+      const iform = drawer.querySelector('.inquiry-form');
+      const status = iform.querySelector('.form-status');
+      const sbtn = iform.querySelector('button[type="submit"]');
+      iform.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = '';
+        sbtn.disabled = true; sbtn.textContent = 'Sending…';
+        try {
+          const res = await fetch(iform.action, {
+            method: 'POST', body: new FormData(iform), headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            iform.classList.add('sent');
+            drawer.scrollTop = 0;
+          } else {
+            const data = await res.json().catch(() => ({}));
+            status.textContent = (data.errors && data.errors.map(x => x.message).join(', '))
+              || 'Something went wrong. Please try again, or email priscilla@priscillazaehringer.com.';
+            sbtn.disabled = false; sbtn.textContent = 'Send my inquiry';
+          }
+        } catch (err) {
+          status.textContent = 'Something went wrong. Please check your connection and try again.';
+          sbtn.disabled = false; sbtn.textContent = 'Send my inquiry';
+        }
+      });
+    }
 
     // Quiz flip
     function fp(el, idx) {
