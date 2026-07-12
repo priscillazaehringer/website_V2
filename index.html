@@ -396,6 +396,92 @@
       .foot-social { grid-template-columns: 1fr; }
       .back-to-top { display: none; }
     }
+
+    /* ================================================================
+       PREMIUM REFINEMENT — positioning-forward hierarchy & layout.
+       Design-only: same brand, type, palette, cards. No new copy.
+       ================================================================ */
+
+    /* ---- Hero: give the supporting line real weight ---- */
+    .hero-triad { font-family: var(--font-display); font-synthesis: none; color: var(--text);
+      font-size: clamp(1.7rem, 3.1vw, 2.4rem); line-height: 1.1; margin: var(--s-3) 0 0; max-width: 16ch; }
+    .hero-triad i { color: var(--c-pink-deep); font-style: normal; }
+    .hero-roof { font-size: 0.82rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
+      color: var(--c-pink-deep); margin: var(--s-2) 0 0; }
+    .hero .hero-body { margin-top: var(--s-3); }
+    .hero .hero-body b { color: var(--text); font-weight: 700; }
+
+    /* ---- Offer: the partnership as a live operating board ---- */
+    .offer-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(var(--s-5), 6vw, var(--s-7));
+      align-items: start; }
+    @media (max-width: 900px) { .offer-grid { grid-template-columns: 1fr; gap: var(--s-5); } }
+    .offer-narr { max-width: 34rem; }
+    .offer-narr .btn { margin-top: var(--s-4); }
+    .board { background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; }
+    @media (min-width: 901px) { .board { position: sticky; top: 96px; } }
+    .board-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2);
+      padding: var(--s-3) var(--s-4); border-bottom: 1px solid var(--line); background: var(--bg-alt); }
+    .board-head .bt { font-family: var(--font-display); font-synthesis: none; font-size: 1.2rem; }
+    .board-head .live { font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
+      color: var(--c-mint-deep); display: inline-flex; align-items: center; gap: 7px; }
+    .board-head .live::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--c-mint-deep); }
+    .workstreams { padding: 8px; }
+    .ws { display: flex; align-items: center; gap: 14px; padding: 13px 12px; border-radius: 12px; transition: background 0.15s ease; }
+    .ws + .ws { border-top: 1px solid var(--line); }
+    .ws:hover { background: var(--bg-alt); }
+    .ws .ic { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 1.2rem; }
+    .ws:nth-child(1) .ic { background: var(--c-pink); }
+    .ws:nth-child(2) .ic { background: var(--c-mint); }
+    .ws:nth-child(3) .ic { background: var(--c-coral); }
+    .ws:nth-child(4) .ic { background: var(--c-pink); }
+    .ws:nth-child(5) .ic { background: var(--c-mint); }
+    .ws .wt { font-size: 1rem; line-height: 1.3; }
+    .board-foot { padding: var(--s-3) var(--s-4); border-top: 1px solid var(--line);
+      font-family: var(--font-display); font-synthesis: none; font-size: 1.1rem; color: var(--c-ink); }
+    .board-foot .em { color: var(--c-pink-deep); }
+
+    /* ---- Testimonial: one quote, made a premium editorial feature ---- */
+    .quote-feature { display: grid; grid-template-columns: 1fr 230px; gap: clamp(var(--s-4), 5vw, var(--s-6));
+      align-items: center; max-width: 980px; margin: var(--s-5) auto 0; background: #fff; border: 1px solid var(--line);
+      border-radius: 24px; box-shadow: var(--shadow); padding: clamp(var(--s-5), 5vw, var(--s-7)); position: relative; }
+    @media (max-width: 760px) { .quote-feature { grid-template-columns: 1fr; gap: var(--s-4); } }
+    .quote-feature .qmark { position: absolute; top: clamp(var(--s-1), 3vw, var(--s-3)); left: clamp(var(--s-3), 4vw, var(--s-5));
+      font-family: var(--font-display); font-synthesis: none; font-size: 6rem; line-height: 0.6; color: var(--c-pink);
+      opacity: 0.4; pointer-events: none; }
+    .quote-feature blockquote { font-family: var(--font-display); font-synthesis: none; font-weight: 400;
+      font-size: clamp(1.7rem, 3.3vw, 2.5rem); line-height: 1.24; color: var(--c-ink); margin: 0; position: relative; }
+    .quote-feature .support { color: var(--text-muted); margin: var(--s-3) 0 0; max-width: 52ch; }
+    .quote-feature .cite-card { text-align: center; }
+    @media (max-width: 760px) { .quote-feature .cite-card { text-align: left; display: flex; align-items: center; gap: var(--s-3); } }
+    .quote-feature .avatar { display: block; width: 106px; height: 106px; border-radius: 50%; margin: 0 auto var(--s-2);
+      background-size: cover; background-position: center; box-shadow: 0 10px 26px rgba(29,30,38,0.16); flex: none; }
+    @media (max-width: 760px) { .quote-feature .avatar { width: 72px; height: 72px; margin: 0; } }
+    .quote-feature .cite { font-weight: 700; color: var(--c-ink); margin: 0; }
+    .quote-feature .cite span { display: block; color: var(--c-pink-deep); font-weight: 400; font-size: 0.95rem; }
+
+    /* ---- Projects: quieter, secondary discovery cards ---- */
+    .svc-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); margin-top: var(--s-5); }
+    @media (max-width: 760px) { .svc-cards { grid-template-columns: 1fr; } }
+    .svc-card { background: #fff; border: 1px solid var(--line); border-radius: 16px;
+      padding: clamp(var(--s-4), 3.5vw, var(--s-5)); display: flex; flex-direction: column; }
+    .svc-card .ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+      font-size: 1.3rem; margin-bottom: var(--s-3); }
+    .svc-card .ic.coral { background: var(--c-coral); }
+    .svc-card .ic.mint { background: var(--c-mint); }
+    .svc-card h3 { font-size: clamp(1.25rem, 2vw, 1.55rem); }
+    .svc-card .retainer { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--c-coral-deep); font-weight: 700; margin: 6px 0 var(--s-2); }
+    .svc-card p { color: var(--text-muted); font-size: 0.96rem; margin: 0 0 var(--s-3); }
+    .svc-card .proj-link { margin-top: auto; align-self: flex-start; color: var(--link); font-weight: 600;
+      text-decoration: none; border-bottom: 2px solid currentColor; padding-bottom: 1px; }
+
+    /* ---- About: founder profile ---- */
+    #about h2 { font-size: clamp(2.1rem, 3.8vw, 3rem); max-width: 20ch; }
+    #about h2 .em { color: var(--c-pink-deep); }
+    #about .about-photo { border-radius: 18px; box-shadow: 0 16px 40px rgba(29,30,38,0.12); }
+    #about .photo-frame .block { inset: 26px -26px -26px 26px; width: auto; height: auto; aspect-ratio: auto; border-radius: 18px; }
+    #about .pullquote { font-size: clamp(1.4rem, 2.5vw, 1.95rem); line-height: 1.25; border-left: 4px solid var(--c-pink);
+      padding-left: var(--s-3); margin-top: var(--s-4); }
   </style>
 </head>
 <body>
@@ -436,9 +522,11 @@
       <div class="hero-text">
         <h1>Your marketing, finally
           <span class="sig">handled<svg viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 55 2, 150 2, 217 6"/></svg></span>.</h1>
-        <p class="lede">Strategy. Systems. Execution. All under one roof.</p>
+        <p class="hero-triad">Strategy<i>.</i> Systems<i>.</i> Execution<i>.</i></p>
+        <p class="hero-roof">All under one roof</p>
         <p class="hero-body">You've outgrown doing everything yourself, but you're not ready for a full
-          marketing department. I'll bring the strategy, build the systems, and keep everything moving.</p>
+          marketing department. I'll bring the <b>strategy</b>, build the <b>systems</b>, and keep
+          <b>everything moving</b>.</p>
         <div class="cta">
           <button type="button" class="btn" data-open-inquiry>Get in touch</button>
           <a href="#pain" class="textlink">See if this is you ↓</a>
@@ -497,31 +585,35 @@
   <!-- ===================== OFFER ===================== -->
   <section class="section alt" id="offer">
     <div class="container">
-      <div class="col reveal">
-        <p class="eyebrow"><span class="heart">&#9829;</span>The whole chalupa</p>
-        <h2>A marketing partner on your team.</h2>
-        <p class="subhead">Not a project. Not a deliverable. A partnership.</p>
-        <p>This is what most clients hire me for. I become part of your team, the person who holds the
-          marketing function of your business. We figure out what needs to happen together, and then I
-          handle it. Strategy, execution, and the systems behind all of it.</p>
-        <p>You buy a monthly block of my hours, and we use them however the business needs that month.
-          Some weeks that's running ad campaigns. Some weeks it's building a launch. Some weeks it's
-          cleaning up your backend so the marketing actually has somewhere to land. The scope flexes;
-          the partnership stays steady.</p>
-
-        <p class="label">What I might be running for you in any given month</p>
-        <div class="svc-list">
-          <div class="svc-item"><span class="ic">&#128227;</span><span class="t">Ads strategy and management</span></div>
-          <div class="svc-item"><span class="ic">&#129522;</span><span class="t">Funnels, landing pages, and lead magnets</span></div>
-          <div class="svc-item"><span class="ic">&#9993;&#65039;</span><span class="t">Email marketing, sequences, and launches</span></div>
-          <div class="svc-item"><span class="ic">&#127908;</span><span class="t">Podcast production and content systems</span></div>
-          <div class="svc-item"><span class="ic">&#9881;&#65039;</span><span class="t">Operations: tools, automations, SOPs, and team coordination</span></div>
+      <div class="offer-grid">
+        <div class="offer-narr reveal">
+          <p class="eyebrow"><span class="heart">&#9829;</span>The whole chalupa</p>
+          <h2>A marketing partner on your team.</h2>
+          <p class="subhead">Not a project. Not a deliverable. A partnership.</p>
+          <p>This is what most clients hire me for. I become part of your team, the person who holds the
+            marketing function of your business. We figure out what needs to happen together, and then I
+            handle it. Strategy, execution, and the systems behind all of it.</p>
+          <p>You buy a monthly block of my hours, and we use them however the business needs that month.
+            Some weeks that's running ad campaigns. Some weeks it's building a launch. Some weeks it's
+            cleaning up your backend so the marketing actually has somewhere to land.</p>
+          <p>The specific mix depends on your business. What stays consistent is that I'm in it with you.
+            If you've been wishing you had a marketing hire who actually gets your business, that's what this is.</p>
+          <button type="button" class="btn" data-open-inquiry>Get in touch</button>
         </div>
-
-        <p style="margin-top: var(--s-4);">The specific mix depends on your business. What stays consistent
-          is that I'm in it with you. If you've been wishing you had a marketing hire who actually gets
-          your business, that's what this is.</p>
-        <button type="button" class="btn" style="margin-top: var(--s-2);" data-open-inquiry>Get in touch</button>
+        <aside class="board reveal" aria-label="What I might be running for you in any given month">
+          <div class="board-head">
+            <span class="bt">In any given month</span>
+            <span class="live">On it</span>
+          </div>
+          <div class="workstreams">
+            <div class="ws"><span class="ic" aria-hidden="true">&#128227;</span><span class="wt">Ads strategy and management</span></div>
+            <div class="ws"><span class="ic" aria-hidden="true">&#129522;</span><span class="wt">Funnels, landing pages, and lead magnets</span></div>
+            <div class="ws"><span class="ic" aria-hidden="true">&#9993;&#65039;</span><span class="wt">Email marketing, sequences, and launches</span></div>
+            <div class="ws"><span class="ic" aria-hidden="true">&#127908;</span><span class="wt">Podcast production and content systems</span></div>
+            <div class="ws"><span class="ic" aria-hidden="true">&#9881;&#65039;</span><span class="wt">Operations: tools, automations, SOPs, and team coordination</span></div>
+          </div>
+          <div class="board-foot">The scope flexes. The <span class="em">partnership stays steady.</span></div>
+        </aside>
       </div>
     </div>
   </section>
@@ -532,12 +624,14 @@
       <div class="col reveal center">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>What clients say</p>
       </div>
-      <figure class="quote-card reveal">
+      <figure class="quote-feature reveal">
         <span class="qmark" aria-hidden="true">&#8220;</span>
-        <blockquote>You can give her a goal, and she figures out the process. She goes above and beyond.</blockquote>
-        <p class="support">She's highly detail-oriented, very process-driven, and more than that, she
-          genuinely cares about the work she does.</p>
-        <figcaption class="cite-row">
+        <div class="quote-main">
+          <blockquote>You can give her a goal, and she figures out the process. She goes above and beyond.</blockquote>
+          <p class="support">She's highly detail-oriented, very process-driven, and more than that, she
+            genuinely cares about the work she does.</p>
+        </div>
+        <figcaption class="cite-card">
           <span class="avatar" aria-hidden="true" style="background-image:url('/assets/img/kaye.webp')"></span>
           <p class="cite">Kaye Putnam <span>Brand Strategist</span></p>
         </figcaption>
@@ -554,20 +648,18 @@
         <p class="lede" style="margin-top: var(--s-2);">Sometimes you don't need a full partnership. You
           need one specific thing done really well. For those situations:</p>
       </div>
-      <div class="feature-pair left reveal">
-        <div class="panel">
+      <div class="svc-cards reveal">
+        <div class="svc-card">
+          <span class="ic coral" aria-hidden="true">&#128227;</span>
           <h3>Meta Ads Management</h3>
           <p class="retainer">Project-based or short-term retainer</p>
           <p>You've outgrown organic, or maybe you've tried ads before and they didn't deliver. I build
             real Meta ads strategy around your business, not a recycled template. Honest reporting, no
             agency markup, no smoke.</p>
-          <a href="#" class="proj-link">See the ads service →</a>
+          <a href="/ads.html" class="proj-link">See the ads service →</a>
         </div>
-        <div class="pic pic-coral"><span aria-hidden="true">&#128227;</span></div>
-      </div>
-      <div class="feature-pair right reveal">
-        <div class="pic pic-mint"><span aria-hidden="true">&#127908;&#65039;</span></div>
-        <div class="panel">
+        <div class="svc-card">
+          <span class="ic mint" aria-hidden="true">&#127908;&#65039;</span>
           <h3>Podcast Production</h3>
           <p class="retainer">Done-for-you launch · optional ongoing support</p>
           <p>You want a podcast, not a second job producing one. I build the whole thing — strategy,
@@ -623,13 +715,13 @@
         </div>
         <div class="reveal">
           <p class="eyebrow"><span class="heart">&#9829;</span>Hi! Nice to meet you!</p>
-          <h2>I'm Priscilla, the marketing partner your business has been missing.</h2>
+          <h2>I'm Priscilla, the <span class="em">marketing partner</span> your business has been missing.</h2>
           <p style="margin-top: var(--s-3);">I work with online business owners who are past the startup
             phase and ready to grow, but who don't want to build a team to get there.</p>
           <p>I don't wait for direction. I find the gaps, bring ideas to the table, and execute. Whether
             it's launching your podcast, running your ad campaigns, building the funnel, or holding the
             operational pieces that keep all of it moving, I treat your business like it's my own.</p>
-          <p style="margin-bottom:0;"><a href="#" class="textlink">More about me</a></p>
+          <p style="margin-bottom:0;"><a href="/about.html" class="textlink">More about me</a></p>
         </div>
       </div>
     </div>
