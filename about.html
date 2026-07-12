@@ -107,28 +107,30 @@
     .pill-mint { background: var(--c-mint); border-color: transparent; }
     .pill-coral { background: var(--c-coral); border-color: transparent; }
 
-    /* ================= HERO: cut-out over ombre ================= */
-    .hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden;
+    /* ================= HERO: split — text + framed photo ================= */
+    .hero { position: relative; min-height: 88vh; display: flex; align-items: center; overflow: hidden;
       background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 55%, #FBE2D6 100%); }
     .hero-blob { position: absolute; z-index: 0; right: 9%; bottom: 6%; width: 40vw; height: 64%;
-      max-width: 580px; border-radius: 50%; background: var(--c-coral); filter: blur(72px); opacity: 0.5; }
-    .hero-cutout { position: absolute; z-index: 1; right: 0; bottom: 0; height: 85%; width: auto;
-      object-fit: contain; object-position: bottom right; pointer-events: none;
-      filter: grayscale(0) drop-shadow(0 22px 40px rgba(29,30,38,0.20)); }
+      max-width: 580px; border-radius: 50%; background: var(--c-coral); filter: blur(72px); opacity: 0.42; }
     .hero .container { position: relative; z-index: 2; }
-    .hero-text { max-width: 34rem; padding-block: var(--s-6); padding-top: 150px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.85fr; gap: clamp(var(--s-5), 6vw, var(--s-7));
+      align-items: center; padding-top: 140px; padding-bottom: var(--s-6); }
+    .hero-text { max-width: 34rem; }
     .hero h1 { color: var(--text); max-width: 14ch; }
     .hero .lede { color: var(--text); max-width: 40ch; margin-top: var(--s-3); }
-    .hero .cilla-note { font-family: var(--font-script); color: var(--c-pink-deep); font-size: 1.5rem;
-      transform: rotate(-6deg); display: inline-block; margin-top: var(--s-3); }
-    .hero .cta { margin-top: var(--s-3); display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+    .hero .cta { margin-top: var(--s-4); display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
     .hero .pills { margin-top: var(--s-4); }
+    .hero-photo { justify-self: center; width: 100%; }
+    .hero-photo-frame { position: relative; max-width: 440px; margin-inline: auto; }
+    .hero-photo-frame img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
+      object-position: center 20%; border-radius: 22px; box-shadow: 0 22px 48px rgba(29,30,38,0.20); }
+    .hero-photo-frame .note-script { position: absolute; z-index: 2; font-size: 2rem; transform: rotate(-7deg);
+      top: -16px; left: -12px; }
     @media (max-width: 860px) {
-      .hero { flex-direction: column; align-items: stretch; min-height: auto; }
-      .hero-text { max-width: 100%; padding-top: 150px; padding-bottom: 0; }
-      .hero-cutout { position: relative; right: auto; bottom: auto; height: auto; width: 80%;
-        max-width: 340px; margin: var(--s-4) auto 0; display: block; }
-      .hero-blob { width: 78%; height: 36%; right: 11%; bottom: 0; }
+      .hero { min-height: auto; }
+      .hero-grid { grid-template-columns: 1fr; gap: var(--s-5); padding-top: 128px; }
+      .hero-text { max-width: 100%; }
+      .hero-photo-frame { max-width: 330px; }
     }
 
     /* ================= Ombre / bands ================= */
@@ -166,7 +168,7 @@
     .photo-frame .block { position: absolute; z-index: 0; width: 60%; aspect-ratio: 1; background: var(--c-coral);
       border-radius: var(--radius); right: -22px; bottom: -22px; }
     .about-photo { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: var(--radius);
-      background-image: url('/assets/img/about.webp'); background-size: cover; background-position: 50% 22%; }
+      background-image: url('/assets/img/about-headshot.webp'); background-size: cover; background-position: 50% 18%; }
     .photo-frame .note-script { position: absolute; z-index: 2; font-size: 2.1rem; transform: rotate(-7deg); top: -18px; left: -10px; }
 
     /* ---- Services ---- */
@@ -426,7 +428,7 @@
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="top">
     <span class="hero-blob" aria-hidden="true"></span>
-    <div class="container">
+    <div class="container hero-grid">
       <div class="hero-text">
         <h1>The person your business has been
           <span class="sig">missing<svg viewBox="0 0 180 12" preserveAspectRatio="none"><path d="M3 8 C 45 2, 130 2, 177 6"/></svg></span>.</h1>
@@ -442,8 +444,12 @@
           <span class="note-script" style="font-size:1.4rem; transform:rotate(-5deg); display:inline-block;">Cilla, for short</span>
         </div>
       </div>
+      <div class="hero-photo reveal">
+        <div class="hero-photo-frame">
+          <img src="/assets/img/about-hero.webp" width="1000" height="1250" alt="Priscilla walking through a wildflower field in the evening light">
+        </div>
+      </div>
     </div>
-    <img class="hero-cutout" src="/assets/img/hero-cutout.webp" width="1500" height="1401" alt="Priscilla">
   </section>
 
   <!-- ===================== STORY ===================== -->
