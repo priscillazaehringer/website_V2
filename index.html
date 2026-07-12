@@ -475,6 +475,27 @@
     .svc-card .proj-link { margin-top: auto; align-self: flex-start; color: var(--link); font-weight: 600;
       text-decoration: none; border-bottom: 2px solid currentColor; padding-bottom: 1px; }
 
+    /* ---- Site-wide freebie opt-in band (sits below the fixed header) ---- */
+    .freebie-bar { position: relative; z-index: 3; background: linear-gradient(118deg, var(--c-mint) 0%, #C6E6DF 62%, #F7D9CB 100%);
+      border-bottom: 1px solid rgba(29,30,38,0.10); padding-top: 66px; }
+    .freebie-inner { display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+      gap: clamp(var(--s-4), 4vw, var(--s-6)); padding-block: clamp(var(--s-3), 2.6vw, var(--s-4)); }
+    @media (max-width: 940px) { .freebie-inner { grid-template-columns: auto 1fr; } }
+    @media (max-width: 680px) { .freebie-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: var(--s-3); } }
+    /* mockup PNG already has fanned pages + baked shadows, so no CSS rotate/shadow */
+    .freebie-mockup { width: clamp(200px, 21vw, 300px); height: auto; display: block; }
+    @media (max-width: 680px) { .freebie-mockup { width: clamp(220px, 62vw, 300px); } }
+    .freebie-copy { min-width: 0; }
+    .fb-kicker { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
+      color: var(--c-mint-deep); margin: 0 0 6px; }
+    .freebie-copy h2 { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.5rem, 2.7vw, 2.15rem);
+      line-height: 1.12; color: var(--c-ink); }
+    .freebie-copy h2 .em { color: var(--c-pink-deep); }
+    .freebie-copy p { color: var(--c-ink); opacity: 0.82; margin: 8px 0 0; font-size: 0.98rem; max-width: 46ch; }
+    @media (max-width: 680px) { .freebie-copy p { margin-inline: auto; } }
+    .freebie-cta .btn { white-space: nowrap; box-shadow: 0 10px 24px rgba(29,30,38,0.18); }
+    @media (max-width: 940px) { .freebie-cta { grid-column: 1 / -1; justify-self: center; } }
+
     /* ---- About: founder profile ---- */
     #about h2 { font-size: clamp(2.1rem, 3.8vw, 3rem); max-width: 20ch; }
     #about h2 .em { color: var(--c-pink-deep); }
@@ -489,11 +510,6 @@
   <div id="grain" aria-hidden="true"></div>
 
   <div class="top-stack" id="hdr-stack">
-    <a class="promo-bar" href="/ads.html">
-      <span class="promo-tag">New</span>
-      <span class="promo-text"><strong>The Lead Stream</strong> — done-for-you Meta ads, $1,297. A few projects each month.</span>
-      <span class="promo-cta">See the service →</span>
-    </a>
     <header class="site-header" id="hdr">
       <div class="container nav">
         <a href="#top" class="wordmark">Priscilla Zaehringer</a>
@@ -515,11 +531,28 @@
     </header>
   </div>
 
+  <!-- ===================== FREEBIE OPT-IN BAND (site-wide) ===================== -->
+  <!-- TODO: set the real Kit opt-in URL on the button (currently "#"). -->
+  <section class="freebie-bar" aria-label="Free podcast workbook">
+    <div class="container freebie-inner">
+      <img class="freebie-mockup" src="/assets/img/podcast-workbook.png" width="990" height="664"
+        alt="Free 30-minute workbook for deciding whether a podcast earns a place in your marketing">
+      <div class="freebie-copy">
+        <p class="fb-kicker">Free workbook</p>
+        <h2>Thinking about a podcast? <span class="em">Decide in 30 minutes.</span></h2>
+        <p>A short, no-fluff workbook that helps you figure out whether a podcast actually earns a place in your marketing.</p>
+      </div>
+      <div class="freebie-cta">
+        <a href="#" class="btn" data-kit-optin>Send me the workbook →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== HERO ===================== -->
-  <section class="hero" id="top">
+  <section class="hero" id="top" style="padding-top: var(--s-5);">
     <span class="hero-blob" aria-hidden="true"></span>
     <div class="container">
-      <div class="hero-text">
+      <div class="hero-text" style="padding-top: var(--s-6);">
         <h1>Your marketing, finally
           <span class="sig">handled<svg viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 55 2, 150 2, 217 6"/></svg></span>.</h1>
         <p class="hero-triad">Strategy<i>.</i> Systems<i>.</i> Execution<i>.</i></p>
