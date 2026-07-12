@@ -482,17 +482,9 @@
       gap: clamp(var(--s-4), 4vw, var(--s-6)); padding-block: clamp(var(--s-3), 2.6vw, var(--s-4)); }
     @media (max-width: 940px) { .freebie-inner { grid-template-columns: auto 1fr; } }
     @media (max-width: 680px) { .freebie-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: var(--s-3); } }
-    /* placeholder mockup — swap the .fb-ph block for <img class="freebie-mockup" src="/assets/img/podcast-workbook.png"> */
-    .freebie-mockup { width: clamp(150px, 15vw, 210px); height: auto; display: block;
-      filter: drop-shadow(0 16px 30px rgba(29,30,38,0.24)); transform: rotate(-3deg); }
-    .fb-ph { position: relative; width: clamp(120px, 13vw, 168px); aspect-ratio: 3 / 4; flex: none; }
-    .fb-ph i { position: absolute; inset: 0; border-radius: 8px; border: 1px solid var(--line);
-      box-shadow: 0 12px 26px rgba(29,30,38,0.20); }
-    .fb-ph i:nth-child(1) { background: var(--c-cream-soft); transform: rotate(-10deg) translate(-16px, 6px); }
-    .fb-ph i:nth-child(2) { background: var(--c-cream-soft); transform: rotate(7deg) translate(16px, 3px); }
-    .fb-ph i:nth-child(3) { background: #fff; transform: rotate(-2deg); display: grid; place-items: center; }
-    .fb-ph i:nth-child(3)::after { content: 'your mockup'; font-size: 0.62rem; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--text-muted); }
+    /* mockup PNG already has fanned pages + baked shadows, so no CSS rotate/shadow */
+    .freebie-mockup { width: clamp(200px, 21vw, 300px); height: auto; display: block; }
+    @media (max-width: 680px) { .freebie-mockup { width: clamp(220px, 62vw, 300px); } }
     .freebie-copy { min-width: 0; }
     .fb-kicker { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
       color: var(--c-mint-deep); margin: 0 0 6px; }
@@ -545,10 +537,11 @@
   </div>
 
   <!-- ===================== FREEBIE OPT-IN BAND (site-wide) ===================== -->
-  <!-- TODO: (1) replace .fb-ph placeholder with the real workbook <img>; (2) set the real Kit opt-in URL on the button. -->
+  <!-- TODO: set the real Kit opt-in URL on the button (currently "#"). -->
   <section class="freebie-bar" aria-label="Free podcast workbook">
     <div class="container freebie-inner">
-      <span class="fb-ph" aria-hidden="true"><i></i><i></i><i></i></span>
+      <img class="freebie-mockup" src="/assets/img/podcast-workbook.png" width="990" height="664"
+        alt="Free 30-minute workbook for deciding whether a podcast earns a place in your marketing">
       <div class="freebie-copy">
         <p class="fb-kicker">Free workbook</p>
         <h2>Thinking about a podcast? <span class="em">Decide in 30 minutes.</span></h2>
