@@ -256,6 +256,62 @@
       .foot-social { grid-template-columns: 1fr; }
       .back-to-top { display: none; }
     }
+
+    /* ================================================================
+       ELEVATION — competence + trust, same editorial voice. No new
+       sections beyond the requested proof strip & behaviors manifesto.
+       ================================================================ */
+
+    /* ---- Story: editorial rhythm ---- */
+    #story .lead-in { font-size: clamp(1.2rem, 1.9vw, 1.45rem); color: var(--text); max-width: 42ch; margin-top: var(--s-3); }
+    #story .cred { display: inline-block; font-weight: 700; color: var(--c-mint-deep);
+      border-bottom: 2px solid var(--c-mint); padding-bottom: 1px; }
+    .pullquote.big { font-family: var(--font-display); font-synthesis: none; color: var(--c-ink);
+      font-size: clamp(1.9rem, 4.2vw, 3rem); line-height: 1.18; text-align: center;
+      max-width: 18ch; margin: clamp(var(--s-5), 6vw, var(--s-7)) auto; }
+    .pullquote.big .em { color: var(--c-pink-deep); }
+
+    /* ---- Proof: subtle credibility strip ---- */
+    #proof { text-align: center; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4);
+      max-width: 900px; margin: var(--s-5) auto 0; }
+    @media (max-width: 720px) { .stats { grid-template-columns: 1fr 1fr; gap: var(--s-5) var(--s-3); } }
+    .stat { position: relative; }
+    .stat + .stat::before { content: ''; position: absolute; left: calc(-1 * var(--s-4) / 2); top: 12%; bottom: 12%;
+      width: 1px; background: var(--line); }
+    @media (max-width: 720px) { .stat + .stat::before { display: none; } }
+    .stat .n { font-family: var(--font-display); font-synthesis: none; font-size: clamp(2.6rem, 5.4vw, 3.6rem);
+      line-height: 1; color: var(--c-ink); }
+    .stat .n .u { color: var(--c-pink-deep); }
+    .stat .l { font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted);
+      font-weight: 600; margin-top: var(--s-2); line-height: 1.35; }
+    .stats-cap { text-align: center; color: var(--text-muted); font-style: italic; margin: var(--s-5) auto 0; max-width: 44ch; }
+
+    /* ---- Partner: the emotional centerpiece ---- */
+    #partner h2 { font-size: clamp(2.4rem, 4.8vw, 3.5rem); max-width: 14ch; }
+    #partner .split { align-items: center; gap: clamp(var(--s-5), 6vw, var(--s-7)); }
+    #partner .about-photo { border-radius: 18px; box-shadow: 0 18px 44px rgba(29,30,38,0.16); }
+    #partner .photo-frame .block { inset: 26px -26px -26px 26px; width: auto; height: auto; aspect-ratio: auto; border-radius: 18px; }
+    #partner .quote-soft { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+      line-height: 1.3; border-left-width: 4px; padding-left: var(--s-3); margin-top: var(--s-4); color: var(--c-ink); }
+    #partner .partner-close { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+      line-height: 1.35; color: var(--c-ink); margin-top: var(--s-4); }
+    #partner .partner-close .em { color: var(--c-pink-deep); }
+
+    /* ---- "What it's like to work with me" — behaviors manifesto ---- */
+    #work-with-me .col { max-width: 820px; }
+    .behaviors { margin-top: var(--s-5); }
+    .bhv { display: grid; grid-template-columns: auto 1fr; gap: var(--s-2) var(--s-4);
+      padding: clamp(var(--s-4), 3.5vw, var(--s-5)) 0; border-top: 1px solid var(--line); }
+    .bhv:last-child { border-bottom: 1px solid var(--line); }
+    .bhv .bn { font-family: var(--font-script); font-weight: 700; font-size: 2rem; line-height: 0.9;
+      color: var(--c-pink); }
+    .bhv .bt { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.5rem, 3vw, 2.15rem);
+      line-height: 1.18; color: var(--c-ink); }
+    .bhv .bs { grid-column: 2; color: var(--text-muted); margin: 0; font-size: 1rem; line-height: 1.55; max-width: 52ch; }
+    @media (max-width: 560px) { .bhv { grid-template-columns: 1fr; gap: var(--s-1); } .bhv .bs { grid-column: 1; } }
+    .bhv-sign { font-family: var(--font-script); color: var(--c-pink-deep); font-size: 1.7rem;
+      display: block; text-align: right; margin-top: var(--s-4); transform: rotate(-4deg); }
   </style>
 </head>
 <body>
@@ -318,15 +374,33 @@
       <div class="col reveal">
         <p class="eyebrow"><span class="heart">&#9829;</span>Hi, nice to meet you</p>
         <h2>Here's what you should know about me.</h2>
-        <p style="margin-top: var(--s-3);">I'm Priscilla. Born and raised in Iowa, still here, and not
-          going anywhere. Mom of three. The kind of person who'd rather have an honest conversation than a
-          polished pitch.</p>
-        <p>I earned my MBA in 2020, right in the middle of the pandemic, with three kids at home.</p>
-        <p class="pullquote">Most people would call that chaos. I called it an opening.</p>
+        <p class="lead-in">I'm Priscilla. Born and raised in Iowa, still here, and not going anywhere.
+          Mom of three. The kind of person who'd rather have an honest conversation than a polished pitch.</p>
+        <p>I earned my <span class="cred">MBA in 2020</span>, right in the middle of the pandemic, with three kids at home.</p>
+      </div>
+      <p class="pullquote big reveal">Most people would call that chaos. <span class="em">I called it an opening.</span></p>
+      <div class="col reveal">
         <p>Operations, marketing, content, systems. I tried all of it. And it stopped feeling like
           experimenting and started feeling like the actual thing I was supposed to be doing.</p>
         <p class="quote-soft">Today I run a business offering operations support, podcast production, and
           done-for-you Meta ad management. I treat every client like a partner, not a project.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROOF ===================== -->
+  <!-- TODO: Priscilla — swap these placeholder figures for your real numbers before launch. -->
+  <section class="section" id="proof">
+    <div class="container">
+      <div class="col reveal" style="max-width:780px;">
+        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>A little proof</p>
+        <div class="stats">
+          <div class="stat"><div class="n">6<span class="u">+</span></div><div class="l">Years doing this work</div></div>
+          <div class="stat"><div class="n">40<span class="u">+</span></div><div class="l">Meta campaigns managed</div></div>
+          <div class="stat"><div class="n">150<span class="u">+</span></div><div class="l">Podcast episodes produced</div></div>
+          <div class="stat"><div class="n">30<span class="u">+</span></div><div class="l">Funnels &amp; systems built</div></div>
+        </div>
+        <p class="stats-cap">Real work, quietly run end to end, for real small businesses.</p>
       </div>
     </div>
   </section>
@@ -366,7 +440,7 @@
   </section>
 
   <!-- ===================== PARTNER ===================== -->
-  <section class="section alt-coral">
+  <section class="section alt-coral" id="partner">
     <div class="container">
       <div class="split">
         <div class="reveal">
@@ -385,9 +459,47 @@
             me, in your corner, every day.</p>
           <p class="quote-soft">The businesses that need the most support are usually the ones that get the
             least of it. That's who I'm for.</p>
-          <p style="margin-top: var(--s-3);">My clients become friends. I genuinely root for them, celebrate
-            their wins, and think about their businesses even when I'm not on the clock.</p>
+          <p class="partner-close">My clients become friends. I genuinely root for them, celebrate
+            their wins, and <span class="em">think about their businesses even when I'm not on the clock.</span></p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT IT'S LIKE TO WORK WITH ME ===================== -->
+  <section class="section" id="work-with-me">
+    <div class="container">
+      <div class="col reveal">
+        <p class="eyebrow"><span class="heart">&#9829;</span>The part that's hard to put on a services page</p>
+        <h2>What it's actually like to work with me.</h2>
+        <div class="behaviors">
+          <div class="bhv">
+            <span class="bn" aria-hidden="true">01</span>
+            <p class="bt">I notice the problems before they become emergencies.</p>
+            <p class="bs">By the time something would have caught fire, I've usually already quietly put it out.</p>
+          </div>
+          <div class="bhv">
+            <span class="bn" aria-hidden="true">02</span>
+            <p class="bt">I ask the questions no one else thinks to ask.</p>
+            <p class="bs">The quiet ones that end up changing the direction of the whole plan.</p>
+          </div>
+          <div class="bhv">
+            <span class="bn" aria-hidden="true">03</span>
+            <p class="bt">I care about your business like it's my own.</p>
+            <p class="bs">Your wins feel like my wins. I'm invested in the outcome, not just assigned to the task.</p>
+          </div>
+          <div class="bhv">
+            <span class="bn" aria-hidden="true">04</span>
+            <p class="bt">I don't disappear after kickoff.</p>
+            <p class="bs">I'm still here in month six and month twelve, still moving the important things forward.</p>
+          </div>
+          <div class="bhv">
+            <span class="bn" aria-hidden="true">05</span>
+            <p class="bt">You'll never have to remind me twice.</p>
+            <p class="bs">Holding the details so you don't have to carry them is the entire point of having me.</p>
+          </div>
+        </div>
+        <span class="bhv-sign">That's the whole job. — Cilla</span>
       </div>
     </div>
   </section>
