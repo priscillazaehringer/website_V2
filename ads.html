@@ -164,11 +164,16 @@
 
     /* ---- Hero (type-led on ombre) ---- */
     .hero { background: linear-gradient(168deg, #FFFFFF 0%, #FBEAF1 58%, #FBE2D6 100%); }
-    .hero .container { max-width: 880px; text-align: center; padding-top: 154px; padding-bottom: var(--s-7); }
+    /* Bottom padding kept tight so the next section peeks above the fold. */
+    .hero .container { max-width: 880px; text-align: center; padding-top: 148px; padding-bottom: var(--s-4); }
     .hero .eyebrow { margin-bottom: var(--s-3); }
     .hero h1 { margin-inline: auto; max-width: 16ch; font-size: clamp(2.9rem, 6.2vw, 5.1rem); letter-spacing: 0.008em; }
     .hero .lede { margin: var(--s-4) auto 0; max-width: 42ch; color: var(--text); }
-    .hero .cta { margin-top: var(--s-5); }
+    /* Tiny proof line between the paragraph and the button (honest, no invented ratings). */
+    .hero .hero-proof { margin: var(--s-4) auto 0; font-size: 0.92rem; font-weight: 600; letter-spacing: 0.01em;
+      color: var(--text-muted); display: inline-flex; align-items: center; gap: 9px; }
+    .hero .hero-proof .hp-mark { color: var(--c-pink-deep); font-size: 1.05rem; line-height: 1; }
+    .hero .cta { margin-top: var(--s-4); }
     .hero .cta .btn { padding: 21px 46px; font-size: 1.08rem; border-radius: 999px;
       box-shadow: 0 14px 30px rgba(158,0,83,0.16); }
     .hero .cta .btn:hover { opacity: 1; transform: translateY(-2px); box-shadow: 0 20px 40px rgba(158,0,83,0.24); }
@@ -210,10 +215,24 @@
     .cmp .catch { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: var(--s-3);
       font-size: 0.86rem; font-weight: 600; color: var(--c-ink); }
     .cmp .catch::before { content: '\2715'; color: var(--c-pink-deep); font-weight: 700; font-size: 0.9em; }
-    /* Conclusion callout — cream, soft border, subtle shadow, editorial. */
-    .callout-box { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 20px;
-      box-shadow: 0 20px 54px rgba(29,30,38,0.08); padding: clamp(var(--s-4), 4.5vw, var(--s-6));
-      margin-top: var(--s-4); text-align: center; }
+    /* "Cost to you" meter — same scale on every card, different fill, for a fast at-a-glance read. */
+    .cmp-meter { display: flex; align-items: center; gap: 6px; margin-top: var(--s-2); }
+    .cmp-meter .mlabel { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+      color: var(--text-muted); margin-right: 4px; }
+    .cmp-meter i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+    .cmp-meter i.on { background: var(--c-pink-deep); }
+    /* The DIY path reads as the heaviest — a touch more weight so one option is visibly "worst". */
+    .cmp.heaviest { background: rgba(255,200,229,0.16); border-color: var(--c-pink); }
+    .cmp.heaviest .cmp-meter i.on { background: var(--c-coral-deep); }
+    /* Conclusion callout — the answer, given real drama: richer cream, pink border, soft glow, arrow in. */
+    .callout-box { position: relative; background: linear-gradient(180deg, var(--bg-alt) 0%, #FCE4EF 100%);
+      border: 2px solid var(--c-pink); border-radius: 20px;
+      box-shadow: 0 26px 60px rgba(158,0,83,0.14), 0 0 0 6px rgba(255,200,229,0.22);
+      padding: clamp(var(--s-5), 4.5vw, var(--s-6)); margin-top: var(--s-6); text-align: center; }
+    .callout-arrow { position: absolute; top: calc(-1 * var(--s-4)); left: 50%; transform: translateX(-50%);
+      width: 42px; height: 42px; border-radius: 50%; background: var(--c-pink-deep); color: var(--c-cream);
+      display: grid; place-items: center; font-size: 1.25rem; line-height: 1;
+      box-shadow: 0 10px 22px rgba(158,0,83,0.30); }
     .callout-box .lead-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;
       color: var(--c-pink-deep); margin: 0 0 var(--s-2); }
     .callout-box p { font-family: var(--font-display); font-size: clamp(1.35rem, 2.8vw, 1.9rem); line-height: 1.35;
@@ -474,7 +493,11 @@
     @media (prefers-reduced-motion: reduce) {
       .growth .climb { stroke-dashoffset: 0; } .growth .area { opacity: 0.14; } .growth .dot { opacity: 1; }
     }
-    .growth-cap { max-width: 44ch; margin: var(--s-4) auto 0; color: var(--text-muted); text-align: center; }
+    /* The emotional payoff of the graph — the relief people are actually buying. */
+    .growth-relief { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.5rem, 3vw, 2.2rem);
+      line-height: 1.3; color: var(--c-ink); max-width: 22ch; margin: var(--s-6) auto 0; text-align: center; }
+    .growth-relief .em { color: var(--c-pink-deep); }
+    .growth-cap { max-width: 44ch; margin: var(--s-3) auto 0; color: var(--text-muted); text-align: center; }
   </style>
 </head>
 <body>
@@ -513,8 +536,9 @@
       <p class="lede">A done-for-you lead-gen ad system, built for established online business owners with
         room in the budget to grow. I set it up, run it for a couple of weeks, and hand it off. You keep
         the leads coming in long after we're done.</p>
+      <p class="hero-proof"><span class="hp-mark" aria-hidden="true">&#10022;</span>Trusted by coaches, strategists, dietitians, dentists &amp; more</p>
       <div class="cta"><button type="button" class="btn" data-open-inquiry>Request a Clarity Call</button></div>
-      <p class="micro">Founding rate · $1,297</p>
+      <p class="micro">Founding rate · $1,297 — only a few builds each month</p>
     </div>
   </section>
 
@@ -533,23 +557,27 @@
         <div class="cmp">
           <span class="cmp-label">Hire an agency</span>
           <span class="cmp-cost">$2k&ndash;5k<small>per month</small></span>
+          <span class="cmp-meter" aria-hidden="true"><span class="mlabel">Cost to you</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
           <p>Real strategy, but the day you stop paying, the system stops with you. They built it, they know it.</p>
           <span class="catch">You never get the keys</span>
         </div>
         <div class="cmp">
           <span class="cmp-label">Find someone cheap</span>
           <span class="cmp-cost">Low<small>up front</small></span>
+          <span class="cmp-meter" aria-hidden="true"><span class="mlabel">Cost to you</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>
           <p>Templated work, no real strategy, ghost emails by month two. Even when it works, it's someone else's system.</p>
           <span class="catch">Locked out of your own setup</span>
         </div>
-        <div class="cmp">
+        <div class="cmp heaviest">
           <span class="cmp-label">Do it yourself</span>
           <span class="cmp-cost">Your time<small>every week</small></span>
+          <span class="cmp-meter" aria-hidden="true"><span class="mlabel">Cost to you</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
           <p>The pixel, the audiences, the creative, the reporting, all learned from YouTube tutorials and a prayer.</p>
           <span class="catch">A second full-time job</span>
         </div>
       </div>
       <div class="callout-box reveal">
+        <span class="callout-arrow" aria-hidden="true">&#8595;</span>
         <p class="lead-label">There's a third way</p>
         <p>A strategic system, built around your business, that's <span class="em">yours to keep</span> when we're done.</p>
       </div>
@@ -577,6 +605,7 @@
           <text class="lbl up" x="758" y="44" text-anchor="end">more leads &#8594; more clients</text>
         </svg>
       </div>
+      <p class="growth-relief reveal">You stop wondering <span class="em">where next month's clients are coming from</span>.</p>
       <p class="growth-cap reveal">A steady stream of new leads landing every week&mdash;and more of them turning into clients.</p>
     </div>
   </section>
