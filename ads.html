@@ -162,22 +162,179 @@
       padding: 10px 16px; position: relative; z-index: 60; }
     .announce a { color: var(--c-pink); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; margin-left: 6px; white-space: nowrap; }
 
-    /* ---- Hero (type-led on ombre) ---- */
-    .hero { background: linear-gradient(168deg, #FFFFFF 0%, #FBEAF1 58%, #FBE2D6 100%); }
-    /* Bottom padding kept tight so the next section peeks above the fold. */
-    .hero .container { max-width: 880px; text-align: center; padding-top: 148px; padding-bottom: var(--s-4); }
-    .hero .eyebrow { margin-bottom: var(--s-3); }
-    .hero h1 { margin-inline: auto; max-width: 16ch; font-size: clamp(2.9rem, 6.2vw, 5.1rem); letter-spacing: 0.008em; }
-    .hero .lede { margin: var(--s-4) auto 0; max-width: 42ch; color: var(--text); }
-    /* Tiny proof line between the paragraph and the button (honest, no invented ratings). */
-    .hero .hero-proof { margin: var(--s-4) auto 0; font-size: 0.92rem; font-weight: 600; letter-spacing: 0.01em;
-      color: var(--text-muted); display: inline-flex; align-items: center; gap: 9px; }
-    .hero .hero-proof .hp-mark { color: var(--c-pink-deep); font-size: 1.05rem; line-height: 1; }
-    .hero .cta { margin-top: var(--s-4); }
-    .hero .cta .btn { padding: 21px 46px; font-size: 1.08rem; border-radius: 999px;
-      box-shadow: 0 14px 30px rgba(158,0,83,0.16); }
-    .hero .cta .btn:hover { opacity: 1; transform: translateY(-2px); box-shadow: 0 20px 40px rgba(158,0,83,0.24); }
-    .hero .micro { margin-top: var(--s-3); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    /* ================================================================
+       HERO — editorial split: copy on the left, a live "Lead Stream
+       engine" on the right. Shows the system instead of describing it.
+       ================================================================ */
+    .hero { position: relative; overflow: hidden;
+      background: linear-gradient(168deg, #FFFFFF 0%, #FBEAF1 58%, #FBE2D6 100%); }
+    /* Two soft aurora blooms behind everything for depth (kept very faint). */
+    .hero::before { content: ''; position: absolute; z-index: 0; width: 46vw; height: 46vw; max-width: 620px; max-height: 620px;
+      top: -14%; right: -10%; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, rgba(255,200,229,0.55), rgba(255,200,229,0) 68%); filter: blur(6px); }
+    .hero > .container { position: relative; z-index: 1; max-width: var(--container);
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.06fr);
+      align-items: center; gap: clamp(var(--s-5), 6vw, var(--s-8));
+      padding-top: clamp(126px, 12vw, 154px); padding-bottom: clamp(var(--s-5), 7vw, var(--s-7)); }
+
+    /* ---- Left: copy ---- */
+    .hero-copy { text-align: left; }
+    .hero-copy .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: var(--s-3);
+      background: rgba(255,255,255,0.7); border: 1px solid rgba(158,0,83,0.14); border-radius: 999px;
+      padding: 6px 14px; backdrop-filter: blur(4px); }
+    .hero-copy h1 { max-width: 15ch; font-size: clamp(2.4rem, 4.2vw, 3.5rem); letter-spacing: 0.006em; }
+    .hero-copy .lede { margin: var(--s-3) 0 0; max-width: 46ch; color: var(--text); }
+    .hero-copy .cta { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-5); }
+    .hero-copy .cta .btn { padding: 20px 42px; font-size: 1.08rem; border-radius: 999px; position: relative;
+      box-shadow: 0 16px 34px rgba(158,0,83,0.20); transition: transform 0.14s ease, box-shadow 0.2s ease, opacity 0.14s ease; }
+    .hero-copy .cta .btn::after { content: '→'; font-size: 1.05em; line-height: 1; transition: transform 0.18s ease; }
+    .hero-copy .cta .btn:hover { opacity: 1; transform: translateY(-2px); box-shadow: 0 22px 46px rgba(158,0,83,0.30); }
+    .hero-copy .cta .btn:hover::after { transform: translateX(3px); }
+    .hero-copy .cta .micro { margin: 0; font-size: 0.8rem; letter-spacing: 0.02em; color: var(--text-muted); max-width: 20ch; line-height: 1.4; }
+    .hero-copy .cta .micro strong { color: var(--c-pink-deep); font-weight: 700; }
+    /* Trust row: honest industry chips, no invented ratings. */
+    .hero-trust { margin-top: var(--s-5); padding-top: var(--s-4); border-top: 1px solid var(--line); }
+    .hero-trust .tlabel { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
+      color: var(--c-pink-deep); margin: 0 0 12px; }
+    .hero-trust .tchips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .hero-trust .tchip { font-size: 0.86rem; font-weight: 600; color: var(--c-ink); background: rgba(255,255,255,0.75);
+      border: 1px solid var(--line); padding: 7px 14px; border-radius: 999px; }
+
+    /* ---- Right: the live engine ---- */
+    .hero-visual { position: relative; justify-self: center; width: 100%; max-width: 440px; }
+    .hero-scene { position: relative; }
+    /* Layers translate on pointer-move for a gentle parallax (JS sets --px/--py). */
+    .hero-scene [data-depth] { transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
+      transition: transform 0.45s cubic-bezier(.2,.7,.2,1); will-change: transform; }
+
+    /* Engine card — a soft product surface holding the flow. */
+    .engine { position: relative; z-index: 2; background: #fff; border: 1px solid var(--line);
+      border-radius: 22px; padding: clamp(var(--s-3), 3vw, var(--s-4));
+      box-shadow: 0 40px 90px rgba(29,30,38,0.16), 0 8px 22px rgba(29,30,38,0.06); }
+    .engine-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2);
+      padding: 4px 6px 14px; border-bottom: 1px solid var(--line); margin-bottom: var(--s-3); }
+    .engine-head .title { font-family: var(--font-display); font-size: 1.12rem; color: var(--c-ink); line-height: 1; }
+    .engine-head .live { display: inline-flex; align-items: center; gap: 7px; font-size: 0.66rem; letter-spacing: 0.14em;
+      text-transform: uppercase; font-weight: 700; color: var(--c-mint-deep); }
+    .engine-head .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--c-mint-deep);
+      box-shadow: 0 0 0 0 rgba(25,87,80,0.5); animation: livePulse 2.4s ease-out infinite; }
+    @keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(25,87,80,0.45); } 70%,100% { box-shadow: 0 0 0 7px rgba(25,87,80,0); } }
+
+    /* The flow: five stages down a streaming rail. */
+    .flow { position: relative; display: grid; gap: 12px; padding-left: 2px; }
+    .flow-line { position: absolute; left: 24px; top: 26px; bottom: 26px; width: 2px; border-radius: 2px;
+      background: linear-gradient(180deg, var(--c-coral-deep) 0%, var(--c-pink-deep) 48%, var(--c-mint-deep) 100%);
+      opacity: 0.28; }
+    .flow-pulse { position: absolute; left: -3.5px; top: 0; width: 9px; height: 9px; border-radius: 50%;
+      background: var(--c-pink-deep); box-shadow: 0 0 0 4px rgba(158,0,83,0.14), 0 0 14px rgba(158,0,83,0.55);
+      animation: stream 3.4s cubic-bezier(.55,0,.45,1) infinite; }
+    @keyframes stream { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+    .stage { position: relative; display: grid; grid-template-columns: 48px 1fr; align-items: center; gap: 14px;
+      padding: 8px; border-radius: 14px; background: transparent; transition: background 0.2s ease; }
+    .stage .ico { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+      font-size: 1.35rem; line-height: 1; box-shadow: inset 0 0 0 1px rgba(29,30,38,0.05); }
+    .stage.s1 .ico { background: var(--c-coral); }
+    .stage.s2 .ico { background: var(--c-pink); }
+    .stage.s3 .ico { background: var(--c-mint); }
+    .stage.s4 .ico { background: var(--c-coral); }
+    .stage.s5 .ico { background: var(--c-mint-deep); box-shadow: 0 8px 20px rgba(25,87,80,0.28); }
+    .stage .k { display: block; font-size: 0.98rem; font-weight: 700; color: var(--c-ink); line-height: 1.2; }
+    .stage .d { display: block; font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; line-height: 1.3; }
+    .stage.s5 { background: rgba(177,222,217,0.22); }
+    .stage.s5 .k { color: var(--c-mint-deep); }
+
+    /* ---- Floating stat cards (outer = position + parallax, inner = float) ---- */
+    .stat { position: absolute; z-index: 3; transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
+      transition: transform 0.45s cubic-bezier(.2,.7,.2,1); will-change: transform; }
+    .stat .card { background: #fff; border: 1px solid var(--line); border-radius: 14px;
+      box-shadow: 0 22px 46px rgba(29,30,38,0.16); padding: 13px 16px; }
+    .stat-grow { top: 8%; right: -8%; width: 186px; }
+    .stat-grow .card { animation: floaty 6.5s ease-in-out infinite; }
+    .stat-event { bottom: -5%; left: -13%; width: 214px; }
+    .stat-event .card { animation: floaty 7.5s ease-in-out infinite 0.6s; }
+    .stat-cpl { top: 40%; left: -15%; }
+    .stat-cpl .chip-cpl { animation: floaty 8s ease-in-out infinite 0.3s; }
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+    .stat .row { display: flex; align-items: center; gap: 8px; }
+    .stat .kk { font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--text-muted); }
+    .stat .vv { font-family: var(--font-display); font-size: 1.7rem; line-height: 0.9; color: var(--c-ink); }
+    .stat .up { font-size: 0.72rem; font-weight: 700; color: var(--c-mint-deep); display: inline-flex; align-items: center; gap: 3px; }
+    /* Mini ascending bars for subscriber growth. */
+    .spark { display: flex; align-items: flex-end; gap: 3px; height: 26px; margin-top: 9px; }
+    .spark i { width: 7px; border-radius: 2px; background: var(--c-pink); opacity: 0.5; transform-origin: bottom;
+      transform: scaleY(0.2); transition: transform 0.7s cubic-bezier(.3,.7,.3,1); }
+    .spark i.on { background: var(--c-pink-deep); opacity: 1; }
+    .hero-visual.in .spark i { transform: scaleY(1); }
+    .hero-visual.in .spark i:nth-child(1){ transition-delay: .5s; } .hero-visual.in .spark i:nth-child(2){ transition-delay: .58s; }
+    .hero-visual.in .spark i:nth-child(3){ transition-delay: .66s; } .hero-visual.in .spark i:nth-child(4){ transition-delay: .74s; }
+    .hero-visual.in .spark i:nth-child(5){ transition-delay: .82s; } .hero-visual.in .spark i:nth-child(6){ transition-delay: .9s; }
+    /* Automation-event toast. */
+    .stat-event .row { align-items: flex-start; }
+    .stat-event .dot { flex: none; width: 30px; height: 30px; border-radius: 9px; background: var(--c-mint);
+      display: grid; place-items: center; font-size: 0.9rem; }
+    .stat-event .et { display: block; font-size: 0.85rem; font-weight: 700; color: var(--c-ink); line-height: 1.25; }
+    .stat-event .es { display: block; font-size: 0.74rem; color: var(--text-muted); margin-top: 2px; }
+    /* Cost-per-lead pill. */
+    .stat-cpl .chip-cpl { display: inline-flex; align-items: center; gap: 8px; background: var(--c-ink); color: var(--c-cream);
+      border-radius: 999px; padding: 9px 15px; box-shadow: 0 16px 34px rgba(29,30,38,0.24); white-space: nowrap; }
+    .stat-cpl .chip-cpl b { font-family: var(--font-display); font-weight: 400; font-size: 1.1rem; color: var(--c-pink); }
+    .stat-cpl .chip-cpl span { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
+
+    /* ---- Hero entrance: staggered reveal (copy lines + engine layers) ---- */
+    .hero-copy.reveal { opacity: 1; transform: none; }
+    .hero-copy > * { opacity: 0; transform: translateY(14px);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.7,.2,1); }
+    .hero-copy.in > * { opacity: 1; transform: none; }
+    .hero-copy.in > *:nth-child(1){ transition-delay: .04s; } .hero-copy.in > *:nth-child(2){ transition-delay: .12s; }
+    .hero-copy.in > *:nth-child(3){ transition-delay: .20s; } .hero-copy.in > *:nth-child(4){ transition-delay: .28s; }
+    .hero-copy.in > *:nth-child(5){ transition-delay: .36s; }
+
+    .hero-visual.reveal { opacity: 1; transform: none; }
+    .hero-visual .engine, .hero-visual .stat { opacity: 0; transform: translateY(18px) translate3d(var(--px,0px),var(--py,0px),0); }
+    .hero-visual .stage { opacity: 0; transform: translateY(10px); }
+    .hero-visual .engine { transition: opacity 0.7s ease 0.12s, transform 0.7s cubic-bezier(.2,.7,.2,1) 0.12s; }
+    .hero-visual .stage { transition: opacity 0.55s ease, transform 0.55s cubic-bezier(.2,.7,.2,1); }
+    .hero-visual .stat { transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
+    .hero-visual.in .engine { opacity: 1; transform: translate3d(var(--px,0px), var(--py,0px), 0); }
+    .hero-visual.in .stat { opacity: 1; transform: translate3d(var(--px,0px), var(--py,0px), 0); }
+    .hero-visual.in .stage { opacity: 1; transform: none; }
+    .hero-visual.in .stage.s1 { transition-delay: .30s; } .hero-visual.in .stage.s2 { transition-delay: .42s; }
+    .hero-visual.in .stage.s3 { transition-delay: .54s; } .hero-visual.in .stage.s4 { transition-delay: .66s; }
+    .hero-visual.in .stage.s5 { transition-delay: .78s; }
+    .hero-visual.in .stat-grow { transition-delay: .62s; }
+    .hero-visual.in .stat-event { transition-delay: .78s; }
+    .hero-visual.in .stat-cpl { transition-delay: .9s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-copy > *, .hero-visual .engine, .hero-visual .stat, .hero-visual .stage { opacity: 1 !important; transform: none !important; }
+      .hero-scene [data-depth] { transform: none !important; }
+      .flow-pulse, .engine-head .live i, .stat .card, .stat-cpl .chip-cpl { animation: none !important; }
+      .hero-visual.in .spark i { transition: none; }
+    }
+
+    /* ---- Responsive: stack, keep the engine readable ---- */
+    @media (max-width: 960px) {
+      .hero > .container { grid-template-columns: 1fr; gap: clamp(var(--s-6), 12vw, var(--s-7)); text-align: center;
+        padding-top: clamp(128px, 22vw, 156px); }
+      .hero-copy { text-align: center; }
+      .hero-copy h1 { margin-inline: auto; }
+      .hero-copy .lede { margin-inline: auto; }
+      .hero-copy .cta { flex-direction: column; align-items: center; gap: var(--s-3); }
+      .hero-copy .cta .micro { text-align: center; max-width: none; }
+      .hero-trust .tchips { justify-content: center; }
+      .hero-trust { display: inline-block; }
+      .hero-visual { max-width: 400px; }
+    }
+    @media (max-width: 640px) {
+      /* Full-width engine leaves no side margin, so straddle the corners
+         (clear of the right-hand labels) and drop the cost pill to keep it calm. */
+      .stat-grow { top: -9%; right: -3%; width: 148px; }
+      .stat-event { bottom: -6%; left: -3%; width: 194px; }
+      .stat-cpl { display: none; }
+      .stat .vv { font-size: 1.5rem; }
+    }
 
     /* ---- Ombre/band helpers ---- */
     .alt-pink  { background: linear-gradient(180deg, #FFFFFF 0%, #FCE4EF 100%); }
@@ -530,15 +687,101 @@
   <!-- HERO -->
   <section class="section hero" id="top">
     <div class="container">
-      <p class="eyebrow" style="display:inline-block;"><span class="heart">📣</span>Done-for-you Meta ads</p>
-      <h1>Your email list shouldn't depend on a
-        <span class="hl">perfect Instagram week</span>.</h1>
-      <p class="lede">A done-for-you lead-gen ad system, built for established online business owners with
-        room in the budget to grow. I set it up, run it for a couple of weeks, and hand it off. You keep
-        the leads coming in long after we're done.</p>
-      <p class="hero-proof"><span class="hp-mark" aria-hidden="true">&#10022;</span>Trusted by coaches, strategists, dietitians, dentists &amp; more</p>
-      <div class="cta"><button type="button" class="btn" data-open-inquiry>Request a Clarity Call</button></div>
-      <p class="micro">Founding rate · $1,297 — only a few builds each month</p>
+
+      <!-- Left: copy -->
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="heart">📣</span>Done-for-you Meta ads</p>
+        <h1>Your email list shouldn't depend on a
+          <span class="hl">perfect Instagram week</span>.</h1>
+        <p class="lede">A done-for-you lead-gen system on Meta, built for established business owners with
+          room in the budget to grow. I set it up, run it, and hand you the keys&mdash;so the leads keep
+          landing long after we're done.</p>
+        <div class="cta">
+          <button type="button" class="btn" data-open-inquiry>Request a Clarity Call</button>
+          <p class="micro"><strong>Founding rate · $1,297</strong><br>Only a few builds each month.</p>
+        </div>
+        <div class="hero-trust">
+          <p class="tlabel">Built for online business owners like</p>
+          <div class="tchips">
+            <span class="tchip">Coaches</span>
+            <span class="tchip">Dietitians</span>
+            <span class="tchip">Strategists</span>
+            <span class="tchip">Dentists</span>
+            <span class="tchip">&amp; more</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: the live "Lead Stream" engine -->
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="hero-scene">
+          <!-- The system flow -->
+          <div class="engine" data-depth="0.25">
+            <div class="engine-head">
+              <span class="title">The Lead Stream</span>
+              <span class="live"><i></i> Running</span>
+            </div>
+            <div class="flow">
+              <span class="flow-line"><span class="flow-pulse"></span></span>
+              <div class="stage s1">
+                <span class="ico">📣</span>
+                <span><span class="k">Meta ad</span><span class="d">Stops the right scroll</span></span>
+              </div>
+              <div class="stage s2">
+                <span class="ico">📝</span>
+                <span><span class="k">Instant form</span><span class="d">One tap to sign up</span></span>
+              </div>
+              <div class="stage s3">
+                <span class="ico">✉️</span>
+                <span><span class="k">Email list</span><span class="d">New lead lands in your list</span></span>
+              </div>
+              <div class="stage s4">
+                <span class="ico">💌</span>
+                <span><span class="k">Welcome sequence</span><span class="d">Nurtured on autopilot</span></span>
+              </div>
+              <div class="stage s5">
+                <span class="ico">🌟</span>
+                <span><span class="k">New client</span><span class="d">Warm, and ready to buy</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating: subscriber growth -->
+          <div class="stat stat-grow" data-depth="0.9">
+            <div class="card">
+              <div class="row" style="justify-content: space-between;">
+                <span class="kk">New subscribers</span>
+                <span class="up">▲ this week</span>
+              </div>
+              <div class="row" style="gap: 6px; margin-top: 6px;">
+                <span class="vv">+38</span>
+              </div>
+              <div class="spark">
+                <i></i><i></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating: automation event -->
+          <div class="stat stat-event" data-depth="0.7">
+            <div class="card">
+              <div class="row">
+                <span class="dot">✓</span>
+                <span>
+                  <span class="et">Welcome email 1 · sent</span>
+                  <span class="es">Automation ran &middot; just now</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating: cost per lead -->
+          <div class="stat stat-cpl" data-depth="1.15">
+            <div class="chip-cpl"><b>$3.40</b> <span>Cost / lead</span></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1130,6 +1373,26 @@
     const hdr = document.getElementById('hdr');
     const onScroll = () => hdr.classList.toggle('stuck', window.scrollY > 60);
     onScroll(); addEventListener('scroll', onScroll, { passive: true });
+
+    /* Hero pointer parallax — layers drift by a per-element depth. Fine pointers only. */
+    const scene = document.querySelector('.hero-scene');
+    if (scene && !reduce && matchMedia('(pointer: fine)').matches) {
+      const layers = scene.querySelectorAll('[data-depth]');
+      const MAX = 16; // px of drift at the strongest depth
+      scene.addEventListener('pointermove', (e) => {
+        const r = scene.getBoundingClientRect();
+        const nx = (e.clientX - r.left) / r.width - 0.5;   // -0.5 .. 0.5
+        const ny = (e.clientY - r.top) / r.height - 0.5;
+        layers.forEach(l => {
+          const d = parseFloat(l.dataset.depth) || 0;
+          l.style.setProperty('--px', (-nx * MAX * d).toFixed(1) + 'px');
+          l.style.setProperty('--py', (-ny * MAX * d).toFixed(1) + 'px');
+        });
+      });
+      scene.addEventListener('pointerleave', () => layers.forEach(l => {
+        l.style.setProperty('--px', '0px'); l.style.setProperty('--py', '0px');
+      }));
+    }
 
     // Nav dropdowns: click to toggle (hover/focus handled in CSS), Escape + outside-click to close.
     const subs = document.querySelectorAll('.nav-item.has-sub');
