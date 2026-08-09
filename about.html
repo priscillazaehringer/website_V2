@@ -118,10 +118,11 @@
     .hero .lede { color: var(--text); max-width: 38ch; margin-top: var(--s-3); }
     .hero .cta { margin-top: var(--s-4); display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
     .hero .pills { margin-top: var(--s-4); }
-    /* photo bleeds to the top and right edge of the screen, full height */
-    .hero-photo { position: absolute; z-index: 1; top: 0; right: 0; bottom: 0; width: 46%; min-width: 420px; }
+    /* photo bleeds off the right edge, full height, starting just below the fixed nav
+       so her head keeps headroom instead of tucking behind the bar */
+    .hero-photo { position: absolute; z-index: 1; top: 92px; right: 0; bottom: 0; width: 46%; min-width: 420px; }
     .hero-photo-frame { position: absolute; inset: 0; margin: 0; max-width: none; }
-    .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 36%;
+    .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%;
       border-radius: 0; box-shadow: none; display: block; }
     /* soft feather so the image melts into the cream instead of hard-edging */
     .hero-photo::after { content: ''; position: absolute; z-index: 2; inset: 0 auto 0 0; width: 24%;
@@ -131,14 +132,14 @@
       transform: rotate(-6deg); background: var(--c-cream); padding: 6px 15px; border-radius: 999px;
       box-shadow: 0 8px 18px rgba(29,30,38,0.16); }
     @media (max-width: 960px) {
-      /* stack: copy first, then a contained, grounded portrait */
+      /* stack: copy first, then a full-width photo band that runs edge to edge */
       .hero { min-height: auto; display: block; }
-      .hero .container { padding-top: 128px; padding-bottom: 0; }
-      .hero-photo { position: relative; width: auto; min-width: 0; margin-top: var(--s-5); padding-inline: var(--s-3); }
-      .hero-photo-frame { position: relative; inset: auto; max-width: 360px; margin-inline: auto; }
-      .hero-photo-frame img { aspect-ratio: 4 / 5; height: auto; border-radius: 24px; box-shadow: 0 22px 48px rgba(29,30,38,0.20); }
+      .hero .container { padding-top: 128px; padding-bottom: var(--s-4); }
+      .hero-photo { position: relative; width: auto; min-width: 0; margin-top: 0; }
+      .hero-photo-frame { position: relative; inset: auto; max-width: none; margin: 0; }
+      .hero-photo-frame img { aspect-ratio: 4 / 5; height: auto; border-radius: 0; box-shadow: none; object-position: 50% 8%; }
       .hero-photo::after { display: none; }
-      .hpf-note { left: 8px; bottom: 54px; font-size: 1.45rem; }
+      .hpf-note { left: 16px; bottom: 52px; font-size: 1.5rem; }
     }
 
     /* ================= Ombre / bands ================= */
