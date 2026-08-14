@@ -11,6 +11,10 @@
   <meta property="og:title" content="About Priscilla Zaehringer · Iowa marketing partner">
   <meta property="og:description" content="Meet Priscilla Zaehringer, an Iowa-based marketing partner offering Meta ads management, podcast production, and business operations support for small business owners.">
   <meta property="og:url" content="https://priscillazaehringer.com/about/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <style>
     /* ================================================================
@@ -107,30 +111,39 @@
     .pill-mint { background: var(--c-mint); border-color: transparent; }
     .pill-coral { background: var(--c-coral); border-color: transparent; }
 
-    /* ================= HERO: split — text + framed photo ================= */
-    .hero { position: relative; min-height: 88vh; display: flex; align-items: center; overflow: hidden;
+    /* ================= HERO: editorial full-bleed portrait ================= */
+    .hero { position: relative; min-height: 90vh; display: flex; align-items: center; overflow: hidden;
       background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 55%, #FBE2D6 100%); }
     .hero-blob { position: absolute; z-index: 0; right: 9%; bottom: 6%; width: 40vw; height: 64%;
       max-width: 580px; border-radius: 50%; background: var(--c-coral); filter: blur(72px); opacity: 0.42; }
-    .hero .container { position: relative; z-index: 2; }
-    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.85fr; gap: clamp(var(--s-5), 6vw, var(--s-7));
-      align-items: center; padding-top: 140px; padding-bottom: var(--s-6); }
-    .hero-text { max-width: 34rem; }
+    .hero .container { position: relative; z-index: 2; padding-top: 150px; padding-bottom: var(--s-6); }
+    .hero-text { max-width: 32rem; }
     .hero h1 { color: var(--text); max-width: 14ch; }
-    .hero .lede { color: var(--text); max-width: 40ch; margin-top: var(--s-3); }
+    .hero .lede { color: var(--text); max-width: 38ch; margin-top: var(--s-3); }
     .hero .cta { margin-top: var(--s-4); display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
     .hero .pills { margin-top: var(--s-4); }
-    .hero-photo { justify-self: center; width: 100%; }
-    .hero-photo-frame { position: relative; max-width: 440px; margin-inline: auto; }
-    .hero-photo-frame img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
-      object-position: center 42%; border-radius: 22px; box-shadow: 0 22px 48px rgba(29,30,38,0.20); }
-    .hero-photo-frame .note-script { position: absolute; z-index: 2; font-size: 2rem; transform: rotate(-7deg);
-      top: -16px; left: -12px; }
-    @media (max-width: 860px) {
-      .hero { min-height: auto; }
-      .hero-grid { grid-template-columns: 1fr; gap: var(--s-5); padding-top: 128px; }
-      .hero-text { max-width: 100%; }
-      .hero-photo-frame { max-width: 330px; }
+    /* photo bleeds off the right edge, full height, starting just below the fixed nav
+       so her head keeps headroom instead of tucking behind the bar */
+    .hero-photo { position: absolute; z-index: 1; top: 92px; right: 0; bottom: 0; width: 46%; min-width: 420px; }
+    .hero-photo-frame { position: absolute; inset: 0; margin: 0; max-width: none; }
+    .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%;
+      border-radius: 0; box-shadow: none; display: block; }
+    /* soft feather so the image melts into the cream instead of hard-edging */
+    .hero-photo::after { content: ''; position: absolute; z-index: 2; inset: 0 auto 0 0; width: 24%;
+      background: linear-gradient(90deg, #FBEAF1 0%, rgba(251,234,241,0) 100%); pointer-events: none; }
+    /* handwritten note rides the lower join */
+    .hpf-note { position: absolute; z-index: 3; left: 28px; bottom: 88px; font-size: 1.8rem;
+      transform: rotate(-6deg); background: var(--c-cream); padding: 6px 15px; border-radius: 999px;
+      box-shadow: 0 8px 18px rgba(29,30,38,0.16); }
+    @media (max-width: 960px) {
+      /* stack: copy first, then a full-width photo band that runs edge to edge */
+      .hero { min-height: auto; display: block; }
+      .hero .container { padding-top: 128px; padding-bottom: var(--s-4); }
+      .hero-photo { position: relative; width: auto; min-width: 0; margin-top: 0; }
+      .hero-photo-frame { position: relative; inset: auto; max-width: none; margin: 0; }
+      .hero-photo-frame img { aspect-ratio: 4 / 5; height: auto; border-radius: 0; box-shadow: none; object-position: 50% 8%; }
+      .hero-photo::after { display: none; }
+      .hpf-note { left: 16px; bottom: 52px; font-size: 1.5rem; }
     }
 
     /* ================= Ombre / bands ================= */
@@ -188,7 +201,7 @@
 
     /* ---- Quiz flip cards ---- */
     .quiz-intro { color: var(--text-muted); max-width: 46ch; margin: var(--s-2) auto 0; }
-    .quiz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); max-width: 920px; margin: var(--s-5) auto 0; }
+    .quiz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); max-width: 920px; margin: var(--s-5) auto 0; }
     @media (max-width: 760px) { .quiz-grid { grid-template-columns: 1fr; } }
     .flip { perspective: 1000px; }
     .flip-inner { position: relative; width: 100%; transition: transform 0.6s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
@@ -412,7 +425,7 @@
             <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
             <div class="submenu" role="menu">
               <a role="menuitem" href="/ads.html">Meta Ads</a>
-              <a role="menuitem" href="/podcast.html">Podcast Production</a>
+              <a role="menuitem" href="/podcast.html">Podcast Launch</a>
             </div>
           </div>
           <a href="/field-notes.html">Listen to the podcast</a>
@@ -428,12 +441,13 @@
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="top">
     <span class="hero-blob" aria-hidden="true"></span>
-    <div class="container hero-grid">
+    <div class="container">
       <div class="hero-text">
         <h1>The person your business has been
           <span class="sig">missing<svg viewBox="0 0 180 12" preserveAspectRatio="none"><path d="M3 8 C 45 2, 130 2, 177 6"/></svg></span>.</h1>
-        <p class="lede">Business operations, podcast production, and Meta ad management for small business
-          owners who want a partner who actually cares. Not just the invoice.</p>
+        <p class="lede">I'm the marketing and operations partner for online business owners with a lot of
+          moving pieces and no one holding them together. You bring the vision. I make sure it actually
+          gets built.</p>
         <div class="pills">
           <span class="pill pill-coral">🌻 Iowa girl</span>
           <span class="pill pill-pink">☕ Sugar cookie latte</span>
@@ -444,11 +458,12 @@
           <span class="note-script" style="font-size:1.4rem; transform:rotate(-5deg); display:inline-block;">Cilla, for short</span>
         </div>
       </div>
-      <div class="hero-photo reveal">
-        <div class="hero-photo-frame">
-          <img src="/assets/img/about-hero-alt.webp" width="1000" height="1250" alt="Priscilla walking away through a wildflower field, holding a straw hat in the evening light">
-        </div>
-      </div>
+    </div>
+    <div class="hero-photo reveal">
+      <figure class="hero-photo-frame">
+        <img src="/assets/img/about-hero-alt.webp" width="1000" height="1250" alt="Priscilla walking away through a wildflower field, holding a straw hat in the evening light">
+        <figcaption class="note-script hpf-note">my kind of office</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -593,20 +608,18 @@
     <div class="container">
       <div class="offer-grid">
         <div class="offer-narr reveal">
-          <p class="eyebrow"><span class="heart">&#9829;</span>What I do</p>
-          <h2>A marketing partner on your team.</h2>
-          <p class="subhead">Not a project. Not a deliverable. A partnership.</p>
-          <p>This is what most clients hire me for. I become part of your team, the person who holds the
-            marketing function of your business. We figure out what needs to happen together, and then I
-            handle it. Strategy, execution, and the systems behind all of it.</p>
-          <p>You buy a monthly block of my hours, and we use them however the business needs that month.
-            Some weeks that's running ad campaigns. Some weeks it's building a launch. Some weeks it's
-            cleaning up your backend so the marketing actually has somewhere to land.</p>
-          <p>The specific mix depends on your business. What stays consistent is that I'm in it with you.
-            If you've been wishing you had a marketing hire who actually gets your business, that's what this is.</p>
-          <button type="button" class="btn" data-open-inquiry>Book a Clarity Call</button>
+          <p class="eyebrow"><span class="heart">&#9829;</span>Why I don't fit one job title</p>
+          <h2>Turns out, being good at a lot of things comes in handy.</h2>
+          <p>Marketing doesn't happen in a vacuum. The ad needs somewhere to send people. The funnel needs
+            emails, and the emails need a strategy. The launch needs a timeline. The podcast needs a reason
+            to exist. And all of it has to actually talk to each other.</p>
+          <p>That's why I've never fit neatly into one job title. I understand the marketing, I understand the
+            systems underneath it, and I'm usually the person making sure the whole thing gets done.</p>
+          <p class="partner-close">For a long time I thought the range was something I had to explain away.
+            It turned out to be the <span class="em">whole reason the right people hire me.</span></p>
+          <p>Here's what that range looks like in a given month.</p>
         </div>
-        <aside class="board reveal" aria-label="What I might be running for you in any given month">
+        <aside class="board reveal" aria-label="Examples of the range of work in a given month">
           <div class="board-head">
             <span class="bt">In any given month</span>
             <span class="live">On it</span>
@@ -618,7 +631,7 @@
             <div class="ws"><span class="ic" aria-hidden="true">&#127908;</span><span class="wt">Podcast production and content systems</span></div>
             <div class="ws"><span class="ic" aria-hidden="true">&#9881;&#65039;</span><span class="wt">Operations: tools, automations, SOPs, and team coordination</span></div>
           </div>
-          <div class="board-foot">The scope flexes. The <span class="em">partnership stays steady.</span></div>
+          <div class="board-foot">Different pieces every month. <span class="em">One person who sees how they connect.</span></div>
         </aside>
       </div>
     </div>
@@ -655,12 +668,8 @@
         <p class="quiz-intro">Pick your answer. The card flips to reveal mine.</p>
       </div>
       <div class="quiz-grid reveal">
-        <div class="flip" data-cilla="1"><div class="flip-inner"><div class="flip-front"><div class="flip-num">01</div><div class="flip-q">Ideal Friday night?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🎬 Disney movie marathon</div><div class="flip-o" onclick="fp(this,1)">🎯 Target adventure</div><div class="flip-o" onclick="fp(this,2)">🛋️ Couch and true crime</div><div class="flip-o" onclick="fp(this,3)">📋 Planning ahead</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🎯 A Target run that becomes a 2-hour adventure</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
-        <div class="flip" data-cilla="0"><div class="flip-inner"><div class="flip-front"><div class="flip-num">02</div><div class="flip-q">Coffee order?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🍪 Something sweet</div><div class="flip-o" onclick="fp(this,1)">🍂 Whatever's seasonal</div><div class="flip-o" onclick="fp(this,2)">✨ Surprise me</div><div class="flip-o" onclick="fp(this,3)">💧 Just water</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🍪 Sugar cookie latte, not even a little sorry</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
-        <div class="flip" data-cilla="2"><div class="flip-inner"><div class="flip-front"><div class="flip-num">03</div><div class="flip-q">Comfort TV?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">📺 Reality TV</div><div class="flip-o" onclick="fp(this,1)">⚔️ Drama or fantasy</div><div class="flip-o" onclick="fp(this,2)">🤷‍♀️ Both, no judgment</div><div class="flip-o" onclick="fp(this,3)">😅 Whatever's on</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🤷‍♀️ TLC and Game of Thrones. Don't make me choose.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
-        <div class="flip" data-cilla="0"><div class="flip-inner"><div class="flip-front"><div class="flip-num">04</div><div class="flip-q">Love language?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🤝 Acts of service</div><div class="flip-o" onclick="fp(this,1)">⏰ Quality time</div><div class="flip-o" onclick="fp(this,2)">💬 Words of affirmation</div><div class="flip-o" onclick="fp(this,3)">🎁 Gifts</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🤝 Acts of service. It's literally my whole job.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
-        <div class="flip" data-cilla="0"><div class="flip-inner"><div class="flip-front"><div class="flip-num">05</div><div class="flip-q">If you weren't doing this?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">👩‍🏫 Teacher</div><div class="flip-o" onclick="fp(this,1)">✈️ Travel blogger</div><div class="flip-o" onclick="fp(this,2)">👩‍🍳 Chef or baker</div><div class="flip-o" onclick="fp(this,3)">🤔 No idea honestly</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">👩‍🏫 A teacher. 100%.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
-      </div>
+        <div class="flip" data-cilla="1"><div class="flip-inner"><div class="flip-front"><div class="flip-num">01</div><div class="flip-q">Ideal Friday night?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🎬 Disney movie marathon</div><div class="flip-o" onclick="fp(this,1)">🎯 Target adventure</div><div class="flip-o" onclick="fp(this,2)">🛋️ Couch and true crime</div><div class="flip-o" onclick="fp(this,3)">📋 Planning ahead</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🎯 A Target run that becomes a 2-hour adventure</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>        <div class="flip" data-cilla="2"><div class="flip-inner"><div class="flip-front"><div class="flip-num">02</div><div class="flip-q">Comfort TV?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">📺 Reality TV</div><div class="flip-o" onclick="fp(this,1)">⚔️ Drama or fantasy</div><div class="flip-o" onclick="fp(this,2)">🤷‍♀️ Both, no judgment</div><div class="flip-o" onclick="fp(this,3)">😅 Whatever's on</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🤷‍♀️ TLC and Game of Thrones. Don't make me choose.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>
+        <div class="flip" data-cilla="0"><div class="flip-inner"><div class="flip-front"><div class="flip-num">03</div><div class="flip-q">Love language?</div><div class="flip-opts"><div class="flip-o" onclick="fp(this,0)">🤝 Acts of service</div><div class="flip-o" onclick="fp(this,1)">⏰ Quality time</div><div class="flip-o" onclick="fp(this,2)">💬 Words of affirmation</div><div class="flip-o" onclick="fp(this,3)">🎁 Gifts</div></div></div><div class="flip-back"><div class="flip-lbl">Cilla's answer</div><div class="flip-ans">🤝 Acts of service. It's literally my whole job.</div><div class="flip-you">You said: <span class="flip-yours"></span></div><div class="flip-vibe"></div></div></div></div>      </div>
     </div>
   </section>
 
@@ -701,13 +710,13 @@
             <a href="/">Home</a>
             <a href="/about.html">About</a>
             <a href="/ads.html">Meta Ads</a>
-            <a href="/podcast.html">Podcast Production</a>
+            <a href="/podcast.html">Podcast Launch</a>
             <a href="#book" data-open-inquiry>Book a call</a>
           </div>
         </nav>
       </div>
       <div class="foot-bottom">
-        <span>© <span id="yr"></span> Priscilla Zaehringer. All rights reserved.</span>
+        <span>© <span id="yr"></span> Priscilla Zaehringer. All rights reserved. · <a href="/privacy.html">Privacy</a></span>
         <span>Your marketing, finally handled.</span>
       </div>
     </div>
@@ -732,7 +741,7 @@
           <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What are you interested in? <span class="req">*</span></span>
           <div class="opts">
             <label class="opt"><input type="radio" name="Interested in" value="1:1 Marketing Partnership (OBM)" required> 1:1 Marketing Partnership <span class="hint">(OBM)</span></label>
-            <label class="opt"><input type="radio" name="Interested in" value="The Signal - Podcast Production"> The Signal <span class="hint">&mdash; Podcast Production</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="The Signal - Podcast Launch"> The Signal <span class="hint">&mdash; Podcast Launch</span></label>
             <label class="opt"><input type="radio" name="Interested in" value="The Lead Stream - Meta Ads"> The Lead Stream <span class="hint">&mdash; Meta Ads</span></label>
             <label class="opt"><input type="radio" name="Interested in" value="Not sure yet"> Not sure yet &mdash; help me figure it out</label>
           </div>
