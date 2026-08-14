@@ -388,7 +388,9 @@
       color: var(--c-pink-deep); display: inline-block; border-bottom: 2px solid var(--c-pink); padding-bottom: 6px; margin-bottom: var(--s-3); }
     .explore-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-5);
       font-family: var(--font-display); font-size: 1.2rem; }
-    .explore-cols a:hover { color: var(--c-pink-deep); }
+    .explore-cols button { appearance: none; -webkit-appearance: none; background: none; border: 0;
+      padding: 0; margin: 0; font: inherit; color: var(--c-ink); cursor: pointer; text-align: left; }
+    .explore-cols a:hover, .explore-cols button:hover { color: var(--c-pink-deep); }
     .back-to-top { position: absolute; top: var(--s-6); right: var(--s-4); writing-mode: vertical-rl;
       font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--c-pink-deep);
       display: inline-flex; align-items: center; gap: 8px; }
@@ -803,7 +805,7 @@
             <a href="/about.html">About</a>
             <a href="/ads.html">Meta Ads</a>
             <a href="/podcast.html">Podcast Launch</a>
-            <a href="#" data-open-inquiry>Get in touch</a>
+            <button type="button" data-open-inquiry>Get in touch</button>
           </div>
         </nav>
       </div>
