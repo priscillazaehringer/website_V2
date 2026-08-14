@@ -84,5 +84,5 @@ Write like a human answering a real question; the structure does the technical w
 ## Still to wire up (one-time)
 
 - **Player embed** — provide your podcast host (Spotify/Apple/YouTube) so the real player replaces the placeholder.
-- **Kit form ID** — replace `KIT_FORM_ID` so the "Get notified" signups go live.
+- ~~**Kit form ID** — replace `KIT_FORM_ID` so the "Get notified" signups go live.~~ ✅ Done — wired to Kit form `9800626`.
 - **Real assets** — swap the placeholder episode images, Pinterest pin graphics, and favorite-tool links.
