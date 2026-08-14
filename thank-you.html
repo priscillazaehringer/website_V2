@@ -36,7 +36,16 @@
     /* ---- Thank you page ----
        Reached after any opt-in, so it stays freebie-agnostic: "your download",
        never the name of one specific workbook. Order is deliberate — inbox
-       first, expectations second, services last and visibly quieter. */
+       first, the note second, services last and visibly quieter. */
+
+    /* Mint into cream into coral, the same gradient family as the freebie
+       opt-in band, so the band they clicked and the page they land on read as
+       one flow. Painted on a fixed pseudo-element rather than via
+       background-attachment: fixed, which iOS Safari handles badly. Sits at
+       z-index 0, under .section and #grain (both z-index 1). */
+    body::before { content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: linear-gradient(160deg, var(--c-mint) 0%, #D7EBE6 26%,
+        var(--c-cream) 58%, #FBE3D8 100%); }
     /* Clears the fixed header stack, which gets TALLER as the viewport narrows
        because the promo bar wraps (98px at desktop, 123px at tablet, 139px at
        mobile). Needs .section.ty-wrap: `.section` sets padding-block later in
