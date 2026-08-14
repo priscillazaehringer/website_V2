@@ -4,8 +4,11 @@
   <url><loc>https://priscillazaehringer.com/about</loc></url>
   <url><loc>https://priscillazaehringer.com/ads</loc></url>
   <url><loc>https://priscillazaehringer.com/podcast</loc></url>
+  <!-- Podcast pages stay out of the sitemap until the Marketing Field Notes
+       launch (October 2026), since /field-notes and /episodes are noindex
+       until then. At launch, remove their noindex tags and re-add:
   <url><loc>https://priscillazaehringer.com/field-notes</loc></url>
   <url><loc>https://priscillazaehringer.com/episodes</loc></url>
-  <!-- Add each new episode on publish:
+  Then add each new episode on publish:
   <url><loc>https://priscillazaehringer.com/field-notes/EPISODE_SLUG</loc></url> -->
 </urlset>
