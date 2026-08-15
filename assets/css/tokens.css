@@ -62,3 +62,15 @@
 
   --radius:4px; --shadow:0 18px 50px rgba(29,30,38,0.12);
 }
+
+/* ---- Mobile base behaviour --------------------------------------------
+   Safari on iOS inflates text in landscape unless this is pinned, and the
+   grey flash on tap makes buttons feel broken on touch. Both are set here
+   so every page inherits them. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+a, button, label, summary, [role="button"] {
+  -webkit-tap-highlight-color: rgba(158, 0, 83, 0.12);
+}

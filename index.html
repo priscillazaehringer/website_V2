@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1D1E26">
+  <meta name="color-scheme" content="light">
   <!-- noindex while staging. Remove this tag at launch. -->
   <meta name="robots" content="noindex, nofollow">
   <title>Priscilla Zaehringer · Your marketing, finally handled</title>
@@ -11,6 +13,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!-- the two fonts every page paints with; preloaded so they are not discovered only after tokens.css parses -->
+  <link rel="preload" href="/assets/fonts/hanken-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/golden-batch.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <style>
     /* ================================================================
@@ -59,6 +64,11 @@
     /* ---- Header: overlays the hero, turns solid on scroll ---- */
     /* top promo bar + nav, fixed as one stack */
     .top-stack { position: fixed; inset: 0 0 auto 0; z-index: 50; }
+    /* Content clears the fixed header stack. The promo bar wraps on small screens, so the
+       stack height is not a constant; JS keeps --stack-h in sync with its measured height. */
+    :root { --stack-h: 132px; }
+    html { scroll-padding-top: calc(var(--stack-h) + 12px); }
+    body { padding-top: var(--stack-h); overflow-x: clip; }  /* clip, not hidden: keeps position:sticky working */
     .promo-bar { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
       background: var(--c-coral); color: var(--c-ink); text-decoration: none; text-align: center;
       padding: 5px 16px; font-size: 0.85rem; line-height: 1.3; }
@@ -82,6 +92,54 @@
       border: none; cursor: pointer; font-family: var(--font-body); }
     .nav-pill:hover { opacity: 0.9; }
     @media (max-width: 760px) { .nav-center { display: none; } .nav { grid-template-columns: 1fr auto; } .promo-cta { display: none; } }
+
+    /* ---- Mobile nav: hamburger + drop-down panel (under 760px) ---- */
+    .nav-cta { display: flex; align-items: center; gap: var(--s-1); }
+    .nav-toggle { display: none; width: 44px; height: 44px; padding: 0; border: 0; background: none;
+      color: var(--c-cream); cursor: pointer; place-items: center; border-radius: var(--radius);
+      -webkit-tap-highlight-color: transparent; }
+    .nav-toggle:focus-visible { outline: 2px solid var(--c-pink); outline-offset: 2px; }
+    .nav-toggle .bars { position: relative; display: block; width: 22px; height: 16px; }
+    .nav-toggle .bars i { position: absolute; left: 0; width: 100%; height: 2px; border-radius: 2px;
+      background: currentColor; transition: top 0.2s ease, transform 0.2s ease, opacity 0.14s ease; }
+    .nav-toggle .bars i:nth-child(1) { top: 0; }
+    .nav-toggle .bars i:nth-child(2) { top: 7px; }
+    .nav-toggle .bars i:nth-child(3) { top: 14px; }
+    .nav-toggle[aria-expanded="true"] .bars i:nth-child(1) { top: 7px; transform: rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .bars i:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] .bars i:nth-child(3) { top: 7px; transform: rotate(-45deg); }
+
+    /* absolute so opening the menu never changes the measured header height */
+    .mobile-menu { display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--c-ink); color: var(--c-cream); border-top: 1px solid rgba(247,238,231,0.14);
+      box-shadow: 0 18px 40px rgba(29,30,38,0.28); }
+    .mm-inner { overflow: hidden; visibility: hidden; transition: visibility 0s 0.26s; }
+    .mobile-menu.open .mm-inner { visibility: visible; transition-delay: 0s; }
+    .mm-nav { max-height: min(70vh, 520px); overflow-y: auto; padding: var(--s-2) var(--s-3) var(--s-3); }
+    .mm-label { margin: var(--s-1) 0 0; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--c-pink); }
+    .mm-sub { margin: 0 0 var(--s-1); padding-left: var(--s-2); border-left: 2px solid rgba(255,200,229,0.4); }
+    .mm-link { display: flex; align-items: center; min-height: 48px; padding: 10px 2px;
+      color: var(--c-cream); text-decoration: none; font-size: 1.02rem; font-weight: 500;
+      border-bottom: 1px solid rgba(247,238,231,0.12); }
+    .mm-sub .mm-link:last-child { border-bottom: 0; }
+    .mm-link[aria-current] { color: var(--c-pink); font-weight: 700; }
+    .mm-cta { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px;
+      margin-top: var(--s-3); padding: 10px 18px; border: 0; border-radius: 999px; cursor: pointer;
+      background: var(--c-cream); color: var(--c-ink); font-family: var(--font-body); font-size: 1rem;
+      font-weight: 600; text-decoration: none; }
+    @media (max-width: 760px) {
+      .nav-toggle { display: inline-grid; }
+      .mobile-menu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.26s ease; }
+      .mobile-menu.open { grid-template-rows: 1fr; }
+      .wordmark { font-size: 1.12rem; }
+    }
+    /* below ~430px the wordmark, the pill and the toggle stop fitting on one row */
+    @media (max-width: 430px) { .nav-cta .nav-pill { display: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .mobile-menu { transition: none; } .nav-toggle .bars i { transition: none; }
+      .mm-inner { transition: none; }
+    }
 
     /* ---- Nav dropdowns ---- */
     .nav-item { position: relative; display: inline-flex; align-items: center; }
@@ -401,6 +459,17 @@
       .back-to-top { display: none; }
     }
 
+    /* ---- Phones: comfortable touch targets and readable micro-labels ---- */
+    @media (max-width: 760px) {
+      .explore-cols { gap: 2px var(--s-5); }
+      .explore-cols a { display: flex; align-items: center; min-height: 48px; }
+      .social-btn { min-height: 48px; font-size: 0.78rem; }
+      .foot-script { display: inline-flex; align-items: center; }
+      .nav-pill { display: inline-flex; align-items: center; min-height: 44px; }
+      .textlink, .proj-link { display: inline-flex; align-items: center; min-height: 44px; }
+      .promo-tag { font-size: 0.75rem; }
+    }
+
     /* ================================================================
        PREMIUM REFINEMENT — positioning-forward hierarchy & layout.
        Design-only: same brand, type, palette, cards. No new copy.
@@ -422,7 +491,7 @@
     .offer-narr { max-width: 34rem; }
     .offer-narr .btn { margin-top: var(--s-4); }
     .board { background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; }
-    @media (min-width: 901px) { .board { position: sticky; top: 96px; } }
+    @media (min-width: 901px) { .board { position: sticky; top: calc(var(--stack-h) + 8px); } }
     .board-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2);
       padding: var(--s-3) var(--s-4); border-bottom: 1px solid var(--line); background: var(--bg-alt); }
     .board-head .bt { font-family: var(--font-display); font-synthesis: none; font-size: 1.2rem; }
@@ -481,7 +550,7 @@
 
     /* ---- Site-wide freebie opt-in band (sits below the fixed header) ---- */
     .freebie-bar { position: relative; z-index: 3; background: linear-gradient(118deg, var(--c-mint) 0%, #C6E6DF 62%, #F7D9CB 100%);
-      border-bottom: 1px solid rgba(29,30,38,0.10); padding-top: 66px; }
+      border-bottom: 1px solid rgba(29,30,38,0.10); padding-top: 11px; }
     .freebie-inner { display: grid; grid-template-columns: auto 1fr auto; align-items: center;
       gap: clamp(var(--s-4), 4vw, var(--s-6)); padding-block: clamp(var(--s-3), 2.6vw, var(--s-4)); }
     @media (max-width: 940px) { .freebie-inner { grid-template-columns: auto 1fr; } }
@@ -505,8 +574,18 @@
     #about h2 .em { color: var(--c-pink-deep); }
     #about .about-photo { border-radius: 18px; box-shadow: 0 16px 40px rgba(29,30,38,0.12); }
     #about .photo-frame .block { inset: 26px -26px -26px 26px; width: auto; height: auto; aspect-ratio: auto; border-radius: 18px; }
+    /* the gutter is only 24px on phones, so pull the block in to keep the page from scrolling sideways */
+    @media (max-width: 900px) { #about .photo-frame .block { inset: 20px -18px -20px 20px; } }
     #about .pullquote { font-size: clamp(1.4rem, 2.5vw, 1.95rem); line-height: 1.25; border-left: 4px solid var(--c-pink);
       padding-left: var(--s-3); margin-top: var(--s-4); }
+
+    /* ---- Phones: keep the smallest labels and links usable (end of sheet so nothing overrides) ---- */
+    @media (max-width: 760px) {
+      .wordmark { display: inline-flex; align-items: center; min-height: 44px; }
+      .foot-script { min-height: 44px; }
+      .board-head .live { font-size: 0.76rem; }
+      .row .retainer, .feature-pair .panel .retainer, .svc-card .retainer { font-size: 0.8rem; }
+    }
   </style>
 </head>
 <body>
@@ -530,16 +609,34 @@
         </nav>
         <div class="nav-cta">
           <button type="button" class="nav-pill" data-open-inquiry>Get in touch</button>
+          <button type="button" class="nav-toggle" id="navToggle" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+            <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
         </div>
       </div>
     </header>
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mm-inner">
+          <nav class="mm-nav" aria-label="Mobile">
+            <p class="mm-label">Work with me</p>
+            <div class="mm-sub">
+              <a class="mm-link" href="/ads.html">Meta Ads</a>
+              <a class="mm-link" href="/podcast.html">Podcast Launch</a>
+            </div>
+            <a class="mm-link" href="/field-notes.html">Listen to the podcast</a>
+            <a class="mm-link" href="/about.html">About</a>
+            <a class="mm-link" href="/">Home</a>
+            <button type="button" class="mm-cta" data-open-inquiry>Get in touch</button>
+          </nav>
+        </div>
+      </div>
   </div>
 
   <!-- ===================== FREEBIE OPT-IN BAND (site-wide) ===================== -->
   <!-- Workbook opt-in: the button opens the Kit form in a click-only modal (see #workbook-modal before </body>). -->
   <section class="freebie-bar" aria-label="Free podcast workbook">
     <div class="container freebie-inner">
-      <img class="freebie-mockup" src="/assets/img/start-a-podcast-workbook.png" width="990" height="664"
+      <img class="freebie-mockup" src="/assets/img/start-a-podcast-workbook.webp" width="990" height="664" fetchpriority="high" decoding="async"
         alt="Start a Podcast — free workbook for deciding whether a podcast earns a place in your marketing">
       <div class="freebie-copy">
         <p class="fb-kicker">Free workbook</p>
@@ -570,7 +667,10 @@
         </div>
       </div>
     </div>
-    <img class="hero-cutout" src="/assets/img/hero-cutout.webp" width="1500" height="1401"
+    <img class="hero-cutout" src="/assets/img/hero-cutout.webp"
+         srcset="/assets/img/hero-cutout-760.webp 760w, /assets/img/hero-cutout.webp 1500w"
+         sizes="(max-width: 860px) 360px, 40vw"
+         width="1500" height="1401" loading="lazy" decoding="async"
          alt="Priscilla working at her desk">
   </section>
 
@@ -785,7 +885,7 @@
         <div class="foot-brand">
           <a href="#top" class="foot-script">Priscilla Zaehringer</a>
           <div class="foot-intro">
-            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" alt="Priscilla Zaehringer"></span>
+            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" loading="lazy" decoding="async" alt="Priscilla Zaehringer"></span>
             <p class="foot-bio">I'm a 1:1 marketing partner for small business owners who'd rather grow than build a team.
               Real strategy, run end to end, done with you and not at you.</p>
           </div>
@@ -924,6 +1024,40 @@
       item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
     }));
 
+    // Mobile menu: hamburger toggles the drop-down panel; Esc / outside click / link tap close it.
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (navToggle && mobileMenu) {
+      const setMenu = (open) => {
+        mobileMenu.classList.toggle('open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      };
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setMenu(!mobileMenu.classList.contains('open'));
+      });
+      mobileMenu.addEventListener('click', (e) => { if (e.target.closest('a, button')) setMenu(false); });
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !navToggle.contains(e.target)) setMenu(false);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) { setMenu(false); navToggle.focus(); }
+      });
+      matchMedia('(min-width: 761px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
+    }
+
+    // Keep --stack-h equal to the real header height so nothing hides underneath it.
+    const stackEl = document.getElementById('hdr-stack');
+    if (stackEl) {
+      const setStackH = () => document.documentElement.style
+        .setProperty('--stack-h', Math.round(stackEl.getBoundingClientRect().height) + 'px');
+      setStackH();
+      addEventListener('resize', setStackH, { passive: true });
+      addEventListener('load', setStackH);
+      if (window.ResizeObserver) new ResizeObserver(setStackH).observe(stackEl);
+    }
+
     // Inquiry drawer: open from any [data-open-inquiry], close via overlay / button / Esc
     const overlay = document.getElementById('inquiryOverlay');
     const drawer = document.getElementById('inquiryDrawer');
@@ -1012,6 +1146,13 @@
     .wb-modal__close{position:absolute;top:6px;right:12px;z-index:2;border:0;background:transparent;font-size:30px;line-height:1;cursor:pointer;color:#2f2f2f;padding:4px 10px;}
     .wb-modal__close:hover{opacity:.7;}
     body.wb-modal-open{overflow:hidden;}
+    /* Kit ships the embed with 15px inputs, and anything under 16px makes iOS Safari
+       zoom the whole page the moment the field is focused. Same specificity as Kit own
+       rule, later in the document, so this wins without !important. */
+    @media (max-width: 760px) {
+      .formkit-form[data-uid] .formkit-input,
+      .formkit-form[data-uid] select { font-size: 16px; }
+    }
   </style>
   <script>
     (function () {

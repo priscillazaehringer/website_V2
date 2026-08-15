@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F7CBBB">
+  <meta name="color-scheme" content="light">
   <!-- noindex while staging. Remove this tag at launch. -->
   <meta name="robots" content="noindex, nofollow">
   <title>About Priscilla Zaehringer · Iowa marketing partner</title>
@@ -15,6 +17,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!-- the two fonts every page paints with; preloaded so they are not discovered only after tokens.css parses -->
+  <link rel="preload" href="/assets/fonts/hanken-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/golden-batch.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <style>
     /* ================================================================
@@ -50,6 +55,11 @@
     /* ---- Header ---- */
     /* top promo bar + nav, fixed as one stack */
     .top-stack { position: fixed; inset: 0 0 auto 0; z-index: 50; }
+    /* Content clears the fixed header stack. The promo bar wraps on small screens, so the
+       stack height is not a constant; JS keeps --stack-h in sync with its measured height. */
+    :root { --stack-h: 132px; }
+    html { scroll-padding-top: calc(var(--stack-h) + 12px); }
+    body { padding-top: var(--stack-h); overflow-x: clip; }  /* clip, not hidden: keeps position:sticky working */
     .promo-bar { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
       background: var(--c-coral); color: var(--c-ink); text-decoration: none; text-align: center;
       padding: 5px 16px; font-size: 0.85rem; line-height: 1.3; }
@@ -72,6 +82,54 @@
       font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease; }
     .nav-pill:hover { opacity: 0.9; }
     @media (max-width: 760px) { .nav-center { display: none; } .nav { grid-template-columns: 1fr auto; } .promo-cta { display: none; } }
+
+    /* ---- Mobile nav: hamburger + drop-down panel (under 760px) ---- */
+    .nav-cta { display: flex; align-items: center; gap: var(--s-1); }
+    .nav-toggle { display: none; width: 44px; height: 44px; padding: 0; border: 0; background: none;
+      color: var(--c-cream); cursor: pointer; place-items: center; border-radius: var(--radius);
+      -webkit-tap-highlight-color: transparent; }
+    .nav-toggle:focus-visible { outline: 2px solid var(--c-pink); outline-offset: 2px; }
+    .nav-toggle .bars { position: relative; display: block; width: 22px; height: 16px; }
+    .nav-toggle .bars i { position: absolute; left: 0; width: 100%; height: 2px; border-radius: 2px;
+      background: currentColor; transition: top 0.2s ease, transform 0.2s ease, opacity 0.14s ease; }
+    .nav-toggle .bars i:nth-child(1) { top: 0; }
+    .nav-toggle .bars i:nth-child(2) { top: 7px; }
+    .nav-toggle .bars i:nth-child(3) { top: 14px; }
+    .nav-toggle[aria-expanded="true"] .bars i:nth-child(1) { top: 7px; transform: rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .bars i:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] .bars i:nth-child(3) { top: 7px; transform: rotate(-45deg); }
+
+    /* absolute so opening the menu never changes the measured header height */
+    .mobile-menu { display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--c-ink); color: var(--c-cream); border-top: 1px solid rgba(247,238,231,0.14);
+      box-shadow: 0 18px 40px rgba(29,30,38,0.28); }
+    .mm-inner { overflow: hidden; visibility: hidden; transition: visibility 0s 0.26s; }
+    .mobile-menu.open .mm-inner { visibility: visible; transition-delay: 0s; }
+    .mm-nav { max-height: min(70vh, 520px); overflow-y: auto; padding: var(--s-2) var(--s-3) var(--s-3); }
+    .mm-label { margin: var(--s-1) 0 0; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--c-pink); }
+    .mm-sub { margin: 0 0 var(--s-1); padding-left: var(--s-2); border-left: 2px solid rgba(255,200,229,0.4); }
+    .mm-link { display: flex; align-items: center; min-height: 48px; padding: 10px 2px;
+      color: var(--c-cream); text-decoration: none; font-size: 1.02rem; font-weight: 500;
+      border-bottom: 1px solid rgba(247,238,231,0.12); }
+    .mm-sub .mm-link:last-child { border-bottom: 0; }
+    .mm-link[aria-current] { color: var(--c-pink); font-weight: 700; }
+    .mm-cta { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px;
+      margin-top: var(--s-3); padding: 10px 18px; border: 0; border-radius: 999px; cursor: pointer;
+      background: var(--c-cream); color: var(--c-ink); font-family: var(--font-body); font-size: 1rem;
+      font-weight: 600; text-decoration: none; }
+    @media (max-width: 760px) {
+      .nav-toggle { display: inline-grid; }
+      .mobile-menu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.26s ease; }
+      .mobile-menu.open { grid-template-rows: 1fr; }
+      .wordmark { font-size: 1.12rem; }
+    }
+    /* below ~430px the wordmark, the pill and the toggle stop fitting on one row */
+    @media (max-width: 430px) { .nav-cta .nav-pill { display: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .mobile-menu { transition: none; } .nav-toggle .bars i { transition: none; }
+      .mm-inner { transition: none; }
+    }
 
     /* ---- Nav dropdowns ---- */
     .nav-item { position: relative; display: inline-flex; align-items: center; }
@@ -112,11 +170,11 @@
     .pill-coral { background: var(--c-coral); border-color: transparent; }
 
     /* ================= HERO: editorial full-bleed portrait ================= */
-    .hero { position: relative; min-height: 90vh; display: flex; align-items: center; overflow: hidden;
+    .hero { position: relative; min-height: calc(90vh - var(--stack-h)); display: flex; align-items: center; overflow: hidden;
       background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 55%, #FBE2D6 100%); }
     .hero-blob { position: absolute; z-index: 0; right: 9%; bottom: 6%; width: 40vw; height: 64%;
       max-width: 580px; border-radius: 50%; background: var(--c-coral); filter: blur(72px); opacity: 0.42; }
-    .hero .container { position: relative; z-index: 2; padding-top: 150px; padding-bottom: var(--s-6); }
+    .hero .container { position: relative; z-index: 2; padding-top: 57px; padding-bottom: var(--s-6); }
     .hero-text { max-width: 32rem; }
     .hero h1 { color: var(--text); max-width: 14ch; }
     .hero .lede { color: var(--text); max-width: 38ch; margin-top: var(--s-3); }
@@ -124,7 +182,7 @@
     .hero .pills { margin-top: var(--s-4); }
     /* photo bleeds off the right edge, full height, starting just below the fixed nav
        so her head keeps headroom instead of tucking behind the bar */
-    .hero-photo { position: absolute; z-index: 1; top: 92px; right: 0; bottom: 0; width: 46%; min-width: 420px; }
+    .hero-photo { position: absolute; z-index: 1; top: 0; right: 0; bottom: 0; width: 46%; min-width: 420px; }
     .hero-photo-frame { position: absolute; inset: 0; margin: 0; max-width: none; }
     .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%;
       border-radius: 0; box-shadow: none; display: block; }
@@ -138,7 +196,7 @@
     @media (max-width: 960px) {
       /* stack: copy first, then a full-width photo band that runs edge to edge */
       .hero { min-height: auto; display: block; }
-      .hero .container { padding-top: 128px; padding-bottom: var(--s-4); }
+      .hero .container { padding-top: 35px; padding-bottom: var(--s-4); }
       .hero-photo { position: relative; width: auto; min-width: 0; margin-top: 0; }
       .hero-photo-frame { position: relative; inset: auto; max-width: none; margin: 0; }
       .hero-photo-frame img { aspect-ratio: 4 / 5; height: auto; border-radius: 0; box-shadow: none; object-position: 50% 8%; }
@@ -272,6 +330,17 @@
       .back-to-top { display: none; }
     }
 
+    /* ---- Phones: comfortable touch targets and readable micro-labels ---- */
+    @media (max-width: 760px) {
+      .explore-cols { gap: 2px var(--s-5); }
+      .explore-cols a { display: flex; align-items: center; min-height: 48px; }
+      .social-btn { min-height: 48px; font-size: 0.78rem; }
+      .foot-script { display: inline-flex; align-items: center; }
+      .nav-pill { display: inline-flex; align-items: center; min-height: 44px; }
+      .textlink, .proj-link { display: inline-flex; align-items: center; min-height: 44px; }
+      .promo-tag { font-size: 0.75rem; }
+    }
+
     /* ================================================================
        ELEVATION — competence + trust, same editorial voice. No new
        sections beyond the requested proof strip & behaviors manifesto.
@@ -307,6 +376,8 @@
     #partner .split { align-items: center; gap: clamp(var(--s-5), 6vw, var(--s-7)); }
     #partner .about-photo { border-radius: 18px; box-shadow: 0 18px 44px rgba(29,30,38,0.16); }
     #partner .photo-frame .block { inset: 26px -26px -26px 26px; width: auto; height: auto; aspect-ratio: auto; border-radius: 18px; }
+    /* the gutter is only 24px on phones, so pull the block in to keep the page from scrolling sideways */
+    @media (max-width: 900px) { #partner .photo-frame .block { inset: 20px -18px -20px 20px; } }
     #partner .quote-soft { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.4rem, 2.6vw, 1.85rem);
       line-height: 1.3; border-left-width: 4px; padding-left: var(--s-3); margin-top: var(--s-4); color: var(--c-ink); }
     #partner .partner-close { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.3rem, 2.2vw, 1.6rem);
@@ -340,7 +411,7 @@
     .offer-narr { max-width: 34rem; }
     .offer-narr .btn { margin-top: var(--s-4); }
     .board { background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; }
-    @media (min-width: 901px) { .board { position: sticky; top: 96px; } }
+    @media (min-width: 901px) { .board { position: sticky; top: calc(var(--stack-h) + 8px); } }
     .board-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2);
       padding: var(--s-3) var(--s-4); border-bottom: 1px solid var(--line); background: var(--bg-alt); }
     .board-head .bt { font-family: var(--font-display); font-synthesis: none; font-size: 1.2rem; }
@@ -405,6 +476,13 @@
     .form-success h3 { font-size: 1.5rem; margin: var(--s-2) 0 var(--s-2); }
     .form-success p { color: var(--text-muted); margin: 0 0 var(--s-2); }
     .form-success a { color: var(--link); font-weight: 600; }
+
+    /* ---- Phones: keep the smallest labels and links usable (end of sheet so nothing overrides) ---- */
+    @media (max-width: 760px) {
+      .wordmark { display: inline-flex; align-items: center; min-height: 44px; }
+      .foot-script { min-height: 44px; }
+      .board-head .live { font-size: 0.76rem; }
+    }
   </style>
 </head>
 <body>
@@ -433,9 +511,27 @@
         </nav>
         <div class="nav-cta">
           <button type="button" class="nav-pill" data-open-inquiry>Book a call</button>
+          <button type="button" class="nav-toggle" id="navToggle" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+            <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
         </div>
       </div>
     </header>
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mm-inner">
+          <nav class="mm-nav" aria-label="Mobile">
+            <p class="mm-label">Work with me</p>
+            <div class="mm-sub">
+              <a class="mm-link" href="/ads.html">Meta Ads</a>
+              <a class="mm-link" href="/podcast.html">Podcast Launch</a>
+            </div>
+            <a class="mm-link" href="/field-notes.html">Listen to the podcast</a>
+            <a class="mm-link" href="/about.html">About</a>
+            <a class="mm-link" href="/">Home</a>
+            <button type="button" class="mm-cta" data-open-inquiry>Book a call</button>
+          </nav>
+        </div>
+      </div>
   </div>
 
   <!-- ===================== HERO ===================== -->
@@ -461,7 +557,10 @@
     </div>
     <div class="hero-photo reveal">
       <figure class="hero-photo-frame">
-        <img src="/assets/img/about-hero-alt.webp" width="1000" height="1250" alt="Priscilla walking away through a wildflower field, holding a straw hat in the evening light">
+        <img src="/assets/img/about-hero-alt.webp"
+          srcset="/assets/img/about-hero-alt-560.webp 560w, /assets/img/about-hero-alt-760.webp 760w, /assets/img/about-hero-alt.webp 1000w"
+          sizes="(max-width: 960px) 100vw, 46vw"
+          fetchpriority="high" decoding="async" width="1000" height="1250" alt="Priscilla walking away through a wildflower field, holding a straw hat in the evening light">
         <figcaption class="note-script hpf-note">my kind of office</figcaption>
       </figure>
     </div>
@@ -693,7 +792,7 @@
         <div class="foot-brand">
           <a href="#top" class="foot-script">Priscilla Zaehringer</a>
           <div class="foot-intro">
-            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" alt="Priscilla Zaehringer"></span>
+            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" loading="lazy" decoding="async" alt="Priscilla Zaehringer"></span>
             <p class="foot-bio">I'm a 1:1 marketing partner for small business owners who'd rather grow than build a team.
               Real strategy, run end to end, done with you and not at you.</p>
           </div>
@@ -831,6 +930,40 @@
       item.classList.remove('open');
       item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
     }));
+
+    // Mobile menu: hamburger toggles the drop-down panel; Esc / outside click / link tap close it.
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (navToggle && mobileMenu) {
+      const setMenu = (open) => {
+        mobileMenu.classList.toggle('open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      };
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setMenu(!mobileMenu.classList.contains('open'));
+      });
+      mobileMenu.addEventListener('click', (e) => { if (e.target.closest('a, button')) setMenu(false); });
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !navToggle.contains(e.target)) setMenu(false);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) { setMenu(false); navToggle.focus(); }
+      });
+      matchMedia('(min-width: 761px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
+    }
+
+    // Keep --stack-h equal to the real header height so nothing hides underneath it.
+    const stackEl = document.getElementById('hdr-stack');
+    if (stackEl) {
+      const setStackH = () => document.documentElement.style
+        .setProperty('--stack-h', Math.round(stackEl.getBoundingClientRect().height) + 'px');
+      setStackH();
+      addEventListener('resize', setStackH, { passive: true });
+      addEventListener('load', setStackH);
+      if (window.ResizeObserver) new ResizeObserver(setStackH).observe(stackEl);
+    }
     document.getElementById('yr').textContent = new Date().getFullYear();
 
     // Inquiry drawer: open from any [data-open-inquiry], close via overlay / button / Esc
