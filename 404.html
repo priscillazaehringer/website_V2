@@ -59,18 +59,40 @@
     .nf-code { font-family: var(--font-script); font-weight: 700; color: var(--c-pink-deep);
       font-size: clamp(4.5rem, 13vw, 8rem); line-height: 0.9; margin: 0 0 var(--s-2); }
     .nf h1 { font-size: clamp(2rem, 4.4vw, 3rem); margin-bottom: var(--s-3); }
-    .nf .lede { margin: 0 auto var(--s-6); max-width: 42ch; }
+    /* The lede runs to two paragraphs, so only the last one carries the gap
+       down to the cards. Otherwise they drift 64px apart. */
+    .nf .lede { margin: 0 auto var(--s-2); max-width: 42ch; }
+    .nf .lede:last-of-type { margin-bottom: var(--s-6); }
+    .nf .lede em { font-style: italic; }
 
     .nf-links { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); text-align: left; }
     @media (max-width: 620px) { .nf-links { grid-template-columns: 1fr; } }
-    .nf-link { display: block; background: #fff; border: 1px solid var(--line); border-radius: 14px;
-      padding: var(--s-3) var(--s-4); text-decoration: none; color: var(--c-ink);
+    /* Numbered so six links read as a considered set rather than a sitemap
+       dump. The number is decorative, hence aria-hidden in the markup. */
+    .nf-link { position: relative; display: block; background: #fff; border: 1px solid var(--line);
+      border-radius: 14px; padding: var(--s-3) var(--s-4); padding-right: var(--s-6);
+      text-decoration: none; color: var(--c-ink);
       transition: transform 0.15s ease, box-shadow 0.15s ease; }
     .nf-link:hover, .nf-link:focus-visible { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .nf-link .n { position: absolute; top: var(--s-3); right: var(--s-3); font-family: var(--font-body);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--c-pink-deep);
+      opacity: 0.55; }
     .nf-link .t { font-family: var(--font-display); font-size: 1.2rem; display: block; margin-bottom: 2px; }
     .nf-link .d { color: var(--text-muted); font-size: 0.92rem; }
-    .nf-foot { margin-top: var(--s-5); color: var(--text-muted); font-size: 0.95rem; }
-    .nf-foot a { color: var(--c-pink-deep); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* Same introduction the thank-you page closes with. Someone who lands on a
+       dead link may never have seen any other page on the site. */
+    .nf-note { margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--line);
+      display: grid; grid-template-columns: 88px 1fr; gap: var(--s-4);
+      align-items: start; text-align: left; }
+    @media (max-width: 560px) { .nf-note { grid-template-columns: 1fr; gap: var(--s-3); } }
+    .nf-note .photo { width: 88px; height: 88px; border-radius: 50%; overflow: hidden;
+      background: var(--c-mint); border: 3px solid #fff; box-shadow: 0 6px 18px rgba(29,30,38,0.10); }
+    .nf-note .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nf-note h2 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); margin-bottom: var(--s-2); }
+    .nf-note p { margin: 0 0 var(--s-3); line-height: 1.75; }
+    .nf-sign { font-family: var(--font-script); font-weight: 600; color: var(--c-pink-deep);
+      font-size: 1.6rem; line-height: 1; margin: 0; }
 
     .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--s-3); }
     .section { padding-block: var(--section-y); position: relative; z-index: 1; }
@@ -344,40 +366,56 @@
       <div class="nf reveal">
 
         <p class="nf-code">404</p>
-        <h1>This page doesn't exist.</h1>
-        <p class="lede">Either something moved or a link went stale &mdash; probably my doing.
-          Here's where everything actually lives.</p>
+        <h1>This one's on me.</h1>
+        <p class="lede">Somewhere between you clicking and this page loading, something
+          went missing. Probably a link I broke and forgot to fix.</p>
+        <p class="lede">Here's everything that <em>does</em> exist.</p>
 
         <div class="nf-links">
           <a class="nf-link" href="/">
+            <span class="n" aria-hidden="true">01</span>
             <span class="t">Home</span>
-            <span class="d">Start here if you're not sure what you're after.</span>
+            <span class="d">The short version of what I do and who it's for.</span>
           </a>
           <a class="nf-link" href="/about.html">
+            <span class="n" aria-hidden="true">02</span>
             <span class="t">About</span>
-            <span class="d">Who I am and how I work.</span>
+            <span class="d">How I actually work, and whether that suits you.</span>
           </a>
           <a class="nf-link" href="/ads.html">
+            <span class="n" aria-hidden="true">03</span>
             <span class="t">Meta Ads</span>
-            <span class="d">A done-for-you campaign build.</span>
+            <span class="d">Your freebie, put in front of people who've never heard of you.</span>
           </a>
           <a class="nf-link" href="/podcast.html">
+            <span class="n" aria-hidden="true">04</span>
             <span class="t">Podcast Launch</span>
-            <span class="d">Strategy, systems, and execution.</span>
+            <span class="d">The angle, the setup, and the system that keeps it publishing.</span>
           </a>
           <a class="nf-link" href="/field-notes.html">
+            <span class="n" aria-hidden="true">05</span>
             <span class="t">Marketing Field Notes</span>
-            <span class="d">My podcast, landing October 2026.</span>
+            <span class="d">My podcast. Landing October 2026, and worth the wait.</span>
           </a>
-          <a class="nf-link" href="/privacy.html">
-            <span class="t">Privacy</span>
-            <span class="d">The fine print, in plain words.</span>
+          <a class="nf-link" href="mailto:priscilla@priscillazaehringer.com">
+            <span class="n" aria-hidden="true">06</span>
+            <span class="t">Just ask me</span>
+            <span class="d">Email me what you were looking for and I'll find it.</span>
           </a>
         </div>
 
-        <p class="nf-foot">Still can't find it? Email me at
-          <a href="mailto:priscilla@priscillazaehringer.com">priscilla@priscillazaehringer.com</a>
-          and I'll point you the right way.</p>
+        <div class="nf-note">
+          <div class="photo"><img src="/assets/img/about.webp" width="510" height="637"
+            alt="Priscilla Zaehringer" loading="lazy"></div>
+          <div>
+            <p class="eyebrow"><span class="heart">&#9829;</span>While you're here</p>
+            <h2>Hi &mdash; I'm Priscilla.</h2>
+            <p>I work with small business owners one to one, running the marketing side so it
+              stops being the thing you never quite get to. Strategy, systems, execution, all
+              under one roof.</p>
+            <p class="nf-sign">Priscilla</p>
+          </div>
+        </div>
 
       </div>
     </div>
