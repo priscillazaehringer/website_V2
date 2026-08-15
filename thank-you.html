@@ -85,26 +85,19 @@
     .ty-sign { font-family: var(--font-script); font-weight: 600; color: var(--c-pink-deep);
       font-size: 1.6rem; line-height: 1; margin: 0; }
 
-    /* Services — deliberately last and quieter than everything above it */
-    .ty-more { margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--line); }
-    .ty-more .eyebrow { text-align: center; }
-    .ty-more h2 { font-size: clamp(1.3rem, 2.3vw, 1.7rem); text-align: center; margin-bottom: var(--s-2); }
-    .ty-more .sub { text-align: center; color: var(--text-muted); max-width: 46ch;
-      margin: 0 auto var(--s-5); font-size: 0.98rem; }
-    .svc-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }
-    @media (max-width: 760px) { .svc-cards { grid-template-columns: 1fr; } }
-    .svc-card { background: #fff; border: 1px solid var(--line); border-radius: 16px;
-      padding: clamp(var(--s-4), 3.5vw, var(--s-5)); display: flex; flex-direction: column; }
-    .svc-card .ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
-      font-size: 1.3rem; margin-bottom: var(--s-3); }
-    .svc-card .ic.coral { background: var(--c-coral); }
-    .svc-card .ic.mint { background: var(--c-mint); }
-    .svc-card h3 { font-size: clamp(1.25rem, 2vw, 1.55rem); }
-    .svc-card .retainer { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--c-coral-deep); font-weight: 700; margin: 6px 0 var(--s-2); }
-    .svc-card p { color: var(--text-muted); font-size: 0.96rem; margin: 0 0 var(--s-3); }
-    .svc-card .proj-link { margin-top: auto; align-self: flex-start; color: var(--link); font-weight: 600;
-      text-decoration: none; border-bottom: 2px solid currentColor; padding-bottom: 1px; }
+    /* Where to go next. Four compact links rather than two service cards:
+       more to look at, and much less like being sold to thirty seconds after
+       handing over an email address. */
+    .ty-more { margin-top: var(--s-6); padding-top: var(--s-5); border-top: 1px solid var(--line); }
+    .ty-more h2 { font-size: clamp(1.2rem, 2vw, 1.45rem); text-align: center; margin-bottom: var(--s-4); }
+    .ty-links { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); }
+    @media (max-width: 620px) { .ty-links { grid-template-columns: 1fr; } }
+    .ty-link { display: block; background: #fff; border: 1px solid var(--line); border-radius: 14px;
+      padding: var(--s-3); text-decoration: none; color: var(--c-ink);
+      transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .ty-link:hover, .ty-link:focus-visible { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .ty-link .t { font-family: var(--font-display); font-size: 1.1rem; display: block; }
+    .ty-link .d { color: var(--text-muted); font-size: 0.9rem; }
 
     .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--s-3); }
     .section { padding-block: var(--section-y); position: relative; z-index: 1; }
@@ -380,15 +373,16 @@
         <div class="ty-head">
           <p class="eyebrow"><span class="heart">&#9829;</span>That's the hard part done</p>
           <h1>It's on its way.</h1>
-          <p class="lede">Check your inbox in a minute or two &mdash; details below.</p>
         </div>
 
+        <!-- The headline already says it is coming, so this card covers only the
+             exception and the whitelist. Saying "check your inbox" here as well
+             was the page stating one idea four times before anything new. -->
         <div class="ty-inbox">
           <div class="ic" aria-hidden="true">&#128231;</div>
-          <h2>Go and check your email</h2>
-          <p>It usually lands within a minute or two. If it hasn't shown up after five,
-            have a look in your promotions tab or your spam folder, because that's almost
-            always where it is.</p>
+          <h2>If it doesn't turn up</h2>
+          <p>Give it five minutes, then check your promotions tab and your spam folder.
+            That's almost always where it is.</p>
           <p class="ty-tip"><strong>One small thing worth doing:</strong> add
             <a href="mailto:priscilla@priscillazaehringer.com">priscilla@priscillazaehringer.com</a>
             to your contacts. It takes a few seconds and it means everything I send you after
@@ -399,38 +393,37 @@
           <div class="photo"><img src="/assets/img/about.webp" width="510" height="637"
             alt="Priscilla Zaehringer" loading="lazy"></div>
           <div>
-            <p class="eyebrow"><span class="heart">&#9829;</span>Since you're here anyway</p>
             <h2>Hi &mdash; I'm Priscilla.</h2>
             <p>I work with small business owners one to one, running the marketing side so it
               stops being the thing you never quite get to.</p>
             <p>Most people find me because they're doing too much themselves. If that sounds
-              familiar, the download you just grabbed is a good place to start.</p>
+              familiar, you're in the right place.</p>
             <p class="ty-sign">Priscilla</p>
           </div>
         </div>
 
+        <!-- One link group, not two. Four destinations rather than two service
+             pitches: more to look at, and it reads less like being sold to
+             thirty seconds after handing over an email address. -->
         <div class="ty-more">
-          <p class="eyebrow"><span class="heart">&#9829;</span>No rush on this</p>
-          <h2>And if you'd rather not do it alone</h2>
-          <p class="sub">Here's what working together actually looks like, for whenever
-            you're ready to look.</p>
-          <div class="svc-cards">
-            <article class="svc-card">
-              <div class="ic coral" aria-hidden="true">&#128200;</div>
-              <h3>Meta Ads</h3>
-              <p class="retainer">Done-for-you campaign build</p>
-              <p>A campaign built end to end, so your freebie reaches people who've never
-                heard of you. A few projects each month.</p>
-              <a class="proj-link" href="/ads.html">See the service &rarr;</a>
-            </article>
-            <article class="svc-card">
-              <div class="ic mint" aria-hidden="true">&#127908;</div>
-              <h3>Podcast Launch</h3>
-              <p class="retainer">Strategy, systems, execution</p>
-              <p>Everything from the angle to the workflow that keeps it publishing, run with
-                you rather than at you.</p>
-              <a class="proj-link" href="/podcast.html">See the service &rarr;</a>
-            </article>
+          <h2>While you're here</h2>
+          <div class="ty-links">
+            <a class="ty-link" href="/about.html">
+              <span class="t">About</span>
+              <span class="d">How I actually work.</span>
+            </a>
+            <a class="ty-link" href="/podcast.html">
+              <span class="t">The Signal</span>
+              <span class="d">Done-for-you podcast launch.</span>
+            </a>
+            <a class="ty-link" href="/ads.html">
+              <span class="t">Meta Ads</span>
+              <span class="d">Campaigns, built end to end.</span>
+            </a>
+            <a class="ty-link" href="/field-notes.html">
+              <span class="t">Marketing Field Notes</span>
+              <span class="d">My podcast. October 2026.</span>
+            </a>
           </div>
         </div>
 
