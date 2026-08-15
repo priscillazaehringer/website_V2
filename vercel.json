@@ -2,9 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
-    { "source": "/freebie", "destination": "/downloads/start-a-podcast-workbook.pdf" }
-  ],
   "headers": [
     {
       "source": "/assets/fonts/(.*)",
@@ -13,19 +10,11 @@
       ]
     },
     {
-      "source": "/freebie",
-      "headers": [
-        { "key": "Content-Disposition", "value": "attachment; filename=\"start-a-podcast-workbook.pdf\"" },
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
-        { "key": "X-Robots-Tag", "value": "noindex" }
-      ]
-    },
-    {
       "source": "/downloads/(.*)",
       "headers": [
-        { "key": "Content-Disposition", "value": "attachment" },
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
-        { "key": "X-Robots-Tag", "value": "noindex" }
+        { "key": "Content-Disposition", "value": "attachment; filename=\"start-a-podcast-workbook.pdf\"" },
+        { "key": "Cache-Control", "value": "private, max-age=0, must-revalidate" },
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
       ]
     }
   ]
