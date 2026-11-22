@@ -6,7 +6,7 @@
    ================================================================== */
 
 :root {
-  --c-espresso: #2D1B27;    /* deep aubergine, alternates with ink so sections read as separate */
+  --c-espresso: #3A2232;    /* plum-brown, clearly lighter than ink so alternating sections read as separate */
   --c-plum: #9E0053;        /* = --c-pink-deep, used as a background here */
   --on-dark: #F7EEE7;
   --on-dark-muted: rgba(247,238,231,0.80);
@@ -174,3 +174,12 @@
 .hello-bar:hover span { text-decoration-thickness: 2px; }
 
 #workbook { scroll-margin-top: calc(var(--stack-h, 80px) + 100px); }
+
+/* Section heading spans the same width as the cards/grid under it */
+.wide-head { max-width: none; }
+.wide-head p { max-width: 62ch; }
+/* card links stay on one line, underline only under the words */
+.proj-link { white-space: nowrap; }
+/* One left edge for every section: text columns sit at the container edge
+   instead of floating in the middle (centered CTA bands are untouched). */
+.col:not(.center) { margin-inline: 0 !important; }
