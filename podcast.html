@@ -554,6 +554,17 @@
       .wordmark { display: inline-flex; align-items: center; min-height: 44px; }
       .foot-script { min-height: 44px; }
     }
+    /* ---- Hero: text + framed mic video (replaces the ring diagram) ---- */
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--s-6); align-items: center; }
+    .hero-media { margin: 0; position: relative; isolation: isolate; aspect-ratio: 4 / 5; width: 100%; max-width: 420px; justify-self: end;
+      border-radius: 6px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
+    .hero-media .bg-video { object-position: 50% 50%; }
+    .hero-media.has-video::before { background: linear-gradient(180deg, rgba(29,30,38,0) 55%, rgba(29,30,38,0.45)) !important; }
+    .hero-media .video-toggle { right: 12px; bottom: 12px; }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; gap: var(--s-4); }
+      .hero-media { justify-self: start; max-width: 340px; aspect-ratio: 16 / 10; margin-bottom: var(--s-5); }
+    }
   </style>
   <link rel="stylesheet" href="/assets/css/finish.css">
 </head>
@@ -613,22 +624,7 @@
 
   <!-- HERO -->
   <section class="section hero" id="top">
-    <svg class="hero-rings" aria-hidden="true" viewBox="0 0 720 720">
-      <circle class="hr-ring o" cx="360" cy="360" r="348"/>
-      <circle class="hr-ring" cx="360" cy="360" r="282"/>
-      <circle class="hr-ring" cx="360" cy="360" r="214"/>
-      <circle class="hr-ring" cx="360" cy="360" r="146"/>
-      <circle class="hr-ring" cx="360" cy="360" r="78"/>
-      <circle class="hr-dot" cx="360" cy="360" r="6"/>
-      <g text-anchor="middle">
-        <text class="hr-label" x="360" y="36">Clients</text>
-        <text class="hr-label" x="360" y="102">Trust</text>
-        <text class="hr-label" x="360" y="170">Visibility</text>
-        <text class="hr-label" x="360" y="238">Content</text>
-        <text class="hr-label" x="360" y="306">Conversation</text>
-      </g>
-    </svg>
-    <div class="container">
+    <div class="container hero-grid">
       <div class="hero-content">
         <p class="hero-kicker">The Signal &middot; Done-for-you podcast launch</p>
         <h1><span class="h1-a">Launch a podcast for your business.</span>
@@ -648,6 +644,16 @@
           <span><b>$1,297</b></span>
         </div>
       </div>
+      <figure class="hero-media has-video">
+        <!-- Clip: Mixkit (free license, mixkit.co/license). -->
+        <video class="bg-video" autoplay muted loop playsinline preload="metadata"
+               poster="/assets/video/mic-poster.webp" aria-hidden="true">
+          <source src="/assets/video/mic.mp4" type="video/mp4">
+        </video>
+        <button type="button" class="video-toggle" aria-pressed="false">
+          <span class="vt-icon" aria-hidden="true">&#10074;&#10074;</span><span class="vt-label">Pause video</span>
+        </button>
+      </figure>
     </div>
   </section>
 
@@ -946,15 +952,7 @@
   </section>
 
   <!-- FINAL CTA -->
-  <section class="section band-ink overlap has-video has-video-plum" id="book">
-    <!-- Background clip: Mixkit (free license, mixkit.co/license). -->
-    <video class="bg-video" autoplay muted loop playsinline preload="metadata"
-           poster="/assets/video/mic-poster.webp" aria-hidden="true">
-      <source src="/assets/video/mic.mp4" type="video/mp4">
-    </video>
-    <button type="button" class="video-toggle" aria-pressed="false">
-      <span class="vt-icon" aria-hidden="true">&#10074;&#10074;</span><span class="vt-label">Pause video</span>
-    </button>
+  <section class="section band-ink overlap" id="book">
     <div class="container col reveal center">
       <img class="cta-logo" src="/assets/img/the-signal-light-1162.webp"
         srcset="/assets/img/the-signal-light-560.webp 560w, /assets/img/the-signal-light-1162.webp 1162w"
