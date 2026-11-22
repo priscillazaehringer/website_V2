@@ -183,3 +183,9 @@
 /* One left edge for every section: text columns sit at the container edge
    instead of floating in the middle (centered CTA bands are untouched). */
 .col:not(.center) { margin-inline: 0 !important; }
+/* Short section intros (above cards, steps, FAQs) and closing CTAs are centered */
+.center-head, .col.center-head { text-align: center; margin-inline: auto !important; max-width: 760px; }
+.center-head p, .center-head .lede { margin-inline: auto !important; }
+.center-head .btn { margin-inline: auto; }
+/* content under a centered intro sits centered under it */
+.center-head + .col { margin-inline: auto !important; }
