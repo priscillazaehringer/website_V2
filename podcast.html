@@ -341,6 +341,9 @@
       color: var(--c-pink-deep); min-width: 2.2ch; }
     .build-step h3 { font-size: 1.3rem; margin-bottom: var(--s-1); }
     .build-step p { margin: 0; color: var(--text-muted); }
+    .build-step p.when { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+      color: #FFC8E5; margin-bottom: 4px; }
+    .leave-title { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
     /* grouped deliverables (what you leave with) */
     .leave-groups { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4) var(--s-5); margin: var(--s-4) 0; }
     @media (max-width: 600px) { .leave-groups { grid-template-columns: 1fr; } }
@@ -635,7 +638,7 @@
           long after we're done.</p>
         <div class="hero-cta-row">
           <button type="button" class="btn btn-lg" data-open-inquiry>Get in touch</button>
-          <a class="textlink" href="#pricing">See what's included &#8595;</a>
+          <a class="textlink" href="#included">See what's included &#8595;</a>
         </div>
         <div class="hero-proof">
           <span><b>6&ndash;8 week</b> launch</span>
@@ -648,66 +651,30 @@
     </div>
   </section>
 
-  <!-- INTRO -->
-  <section class="section alt overlap">
+  <!-- SHOWS I'VE PRODUCED (proof first) -->
+  <!-- TODO: add where the rankings come from (e.g. Listen Notes, and which show), and a line under
+       each cover on what Priscilla did for that show (launch, editing, guest booking, years). -->
+  <section class="section alt" id="shows">
     <div class="container">
-      <div class="col reveal">
-        <h2 style="max-width: 20ch;">Most people get stuck before the first episode.</h2>
-        <p class="lede" style="margin-top: var(--s-3);">Between microphones, hosting, branding, Apple
-          Podcasts, Spotify, YouTube, editing, and launch planning, there are dozens of decisions to make
-          before you ever hit record.</p>
-        <p>That's the part I take care of. I set up the whole thing so you can focus on the part only you
-          can do, which is having conversations worth listening to. Done well, your podcast becomes the place
-          future clients get to know you before they ever book a call.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- MEET PRISCILLA + PROOF (who I am / what I've done / the proof) -->
-  <section class="section alt-coral" id="about">
-    <div class="container">
-      <!-- who I am -->
-      <div class="split">
-        <div class="reveal">
-          <div class="photo-frame">
-            <span class="block" aria-hidden="true"></span>
-            <div class="about-photo" role="img" aria-label="Priscilla"></div>
-            <span class="note-script" aria-hidden="true">that's me!</span>
-          </div>
-        </div>
-        <div class="reveal">
-          <h2>Hi, I'm Priscilla.</h2>
-          <p style="margin-top: var(--s-3);">I'm an operations person first, so when I produce a podcast I'm
-            also thinking about how you'll keep it going after launch.</p>
-          <p>I stepped into podcast production while working as an Online Business Manager. At first I was
-            editing episodes. Before long I was shaping launch strategy, building workflows, coordinating
-            guests, and making sure every episode supported the business behind it.</p>
-          <p>What I learned is that most business owners don't need someone to "edit a podcast." They need
-            someone to set up a process they can keep using. That's what The Signal is.</p>
-        </div>
-      </div>
-
-      <!-- the proof -->
-      <div class="col reveal center" style="margin-top: var(--s-7);">
-        <h3>Shows I've produced</h3>
-        <!-- TODO: under each cover, add a line on what Priscilla did for that show
-             (launch, editing, guest booking, years produced, etc.). -->
+      <div class="col reveal center">
+        <h2>Shows I've produced</h2>
+        <p class="lede" style="margin: var(--s-2) auto 0;">Business, marketing, and healthcare podcasts, from launch
+          strategy to week-to-week production.</p>
       </div>
       <div class="gallery reveal">
         <figure>
-          <div class="cover-frame"><img class="cover" src="/assets/img/show-brand-gravity.webp" width="447" height="447" loading="lazy" alt="The Brand Gravity Show with Kaye Putnam"></div>
-          <figcaption><span class="name">The Brand Gravity Show</span><span class="cat">Business Podcast</span></figcaption>
+          <div class="cover-frame"><img class="cover" src="/assets/img/show-brand-gravity.webp" width="447" height="447" loading="lazy" alt="The Brand Gravity Show with Kaye Putnam, podcast cover"></div>
+          <figcaption><span class="name">The Brand Gravity Show</span><span class="cat">Business podcast</span></figcaption>
         </figure>
         <figure>
-          <div class="cover-frame"><img class="cover" src="/assets/img/show-growth.webp" width="600" height="600" loading="lazy" alt="The Growth Show with Whitney Bateson"></div>
-          <figcaption><span class="name">The Growth Show</span><span class="cat">Marketing Podcast</span></figcaption>
+          <div class="cover-frame"><img class="cover" src="/assets/img/show-growth.webp" width="600" height="600" loading="lazy" alt="The Growth Show with Whitney Bateson, podcast cover"></div>
+          <figcaption><span class="name">The Growth Show</span><span class="cat">Marketing podcast</span></figcaption>
         </figure>
         <figure>
-          <div class="cover-frame"><img class="cover" src="/assets/img/show-jaw-talk.webp" width="600" height="600" loading="lazy" alt="Jaw Talk with Dr. Tiffany Lamberton"></div>
-          <figcaption><span class="name">Jaw Talk</span><span class="cat">Healthcare Podcast</span></figcaption>
+          <div class="cover-frame"><img class="cover" src="/assets/img/show-jaw-talk.webp" width="600" height="600" loading="lazy" alt="Jaw Talk with Dr. Tiffany Lamberton, podcast cover"></div>
+          <figcaption><span class="name">Jaw Talk</span><span class="cat">Healthcare podcast</span></figcaption>
         </figure>
       </div>
-      <!-- TODO: add where these rankings come from (e.g. Listen Notes, and which show) so they're credible. -->
       <div class="chips reveal" style="justify-content: center; margin-top: var(--s-4);">
         <span class="chip"><b>Top 10%</b> client podcast ranking</span>
         <span class="chip"><b>Top 2.5%</b> highest client ranking</span>
@@ -715,8 +682,8 @@
     </div>
   </section>
 
-  <!-- INTRODUCING THE SIGNAL -->
-  <section class="section">
+  <!-- THE SIGNAL -->
+  <section class="section" id="signal">
     <div class="container">
       <div class="col reveal">
         <img class="section-mark" src="/assets/img/the-signal-light-1162.webp"
@@ -724,65 +691,68 @@
         sizes="(max-width: 760px) 250px, 380px"
         width="1162" height="536" loading="lazy" decoding="async" alt="The Signal, launch your podcast">
         <h2>A done-for-you podcast launch built around your business.</h2>
-        <p style="margin-top: var(--s-3);">Over six to eight weeks, we plan your show, brand it, set up all
-          the tech, and launch it. By launch day it's live on every major platform, and you have simple
-          workflows for keeping it going without it turning into a second full-time job.</p>
+        <p class="lede" style="margin-top: var(--s-3);">Most people get stuck before the first episode. Between
+          microphones, hosting, branding, Apple Podcasts, Spotify, YouTube, editing, and launch planning,
+          there are dozens of decisions to make before you ever hit record.</p>
+        <p>That's the part I take care of. Over six to eight weeks, we plan your show, brand it, set up the
+          tech, and launch it, so you can focus on the part only you can do: having conversations worth
+          listening to. Done well, your podcast becomes the place future clients get to know you before they
+          ever book a call.</p>
         <p class="quote-soft">Think of it like building a house. I'm the contractor. When we're finished, you
           get the keys.</p>
       </div>
     </div>
   </section>
 
-  <!-- WHAT WE BUILD -->
-  <section class="section alt">
+  <!-- WHAT'S INCLUDED (phases + what you keep) -->
+  <!-- TODO: week ranges are estimates inside the 6-8 week launch; adjust to match how Priscilla runs it. -->
+  <section class="section alt" id="included">
     <div class="container">
-      <div class="col reveal center">
+      <div class="col reveal">
         <h2>What's included in your podcast launch</h2>
-        <p style="margin-top: var(--s-3); color: var(--text-muted);">We start with what the show is for.
-          Microphones come later.</p>
+        <p style="margin-top: var(--s-3);">Four phases over six to eight weeks. We start with what the show is
+          for. Microphones come later.</p>
       </div>
       <div class="col">
         <div class="build-list reveal">
           <div class="build-step">
             <span class="build-num">01</span>
             <div>
-              <h3>Positioning</h3>
-              <p>We define what your show is about and how it supports your business.</p>
+              <p class="when">Weeks 1&ndash;2</p>
+              <h3>Podcast strategy</h3>
+              <p>We figure out who the show is for, what it covers, the format, and how it connects to what you sell.</p>
             </div>
           </div>
           <div class="build-step">
             <span class="build-num">02</span>
             <div>
-              <h3>Brand Identity</h3>
-              <p>We create a podcast people immediately recognize and remember.</p>
+              <p class="when">Weeks 2&ndash;4</p>
+              <h3>Cover art and branding</h3>
+              <p>Podcast cover art and a look and feel that matches your brand, so people recognize your show in any podcast app.</p>
             </div>
           </div>
           <div class="build-step">
             <span class="build-num">03</span>
             <div>
-              <h3>The System</h3>
-              <p>I handle the technical setup so everything works together before launch.</p>
+              <p class="when">Weeks 3&ndash;6</p>
+              <h3>Hosting and tech setup</h3>
+              <p>Podcast hosting, your feed, and listings on Apple Podcasts, Spotify, and the other major platforms, plus recording and editing workflows that fit how you work.</p>
             </div>
           </div>
           <div class="build-step">
             <span class="build-num">04</span>
             <div>
+              <p class="when">Weeks 6&ndash;8</p>
               <h3>Launch</h3>
-              <p>We release your show with intention, not just a single episode and hope.</p>
+              <p>A launch plan, announcement emails, and launch assets, so your show goes out with a plan instead of a single episode and hope.</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- WHAT YOU LEAVE WITH -->
-  <section class="section alt-mint">
-    <div class="container">
-      <div class="col reveal">
-        <h2>What you leave with <span class="sticker">all yours!</span></h2>
-        <p style="margin-top: var(--s-3);">Launching the show is only half the project. I also hand over the
-          workflows, templates, and documentation you (or your VA) need to keep publishing.</p>
+      <div class="col reveal" style="margin-top: var(--s-6);">
+        <h3 class="leave-title">Plus everything you need to keep publishing <span class="sticker">all yours!</span></h3>
+        <p style="margin-top: var(--s-2);">Launching the show is only half the project. I also hand over the
+          workflows, templates, and documentation you (or your VA) need to keep going.</p>
         <div class="leave-groups">
           <div class="leave-group">
             <span class="gl">Publishing</span>
@@ -821,8 +791,34 @@
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section class="section" id="pricing">
+  <!-- MEET PRISCILLA -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <div class="photo-frame">
+            <span class="block" aria-hidden="true"></span>
+            <div class="about-photo" role="img" aria-label="Priscilla"></div>
+            <span class="note-script" aria-hidden="true">that's me!</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <h2>Hi, I'm Priscilla.</h2>
+          <p style="margin-top: var(--s-3);">I'm an operations person first, so when I produce a podcast I'm
+            also thinking about how you'll keep it going after launch.</p>
+          <p>I stepped into podcast production while working as an Online Business Manager. At first I was
+            editing episodes. Before long I was shaping launch strategy, building workflows, coordinating
+            guests, and making sure every episode supported the business behind it.</p>
+          <p>What I learned is that most business owners don't need someone to "edit a podcast." They need
+            someone to set up a process they can keep using. That's what The Signal is.</p>
+          <p style="margin-bottom:0;"><a href="/about.html" class="textlink">More about me</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING (+ ongoing production) -->
+  <section class="section alt" id="pricing">
     <div class="container">
       <div class="col reveal center" style="margin-bottom: var(--s-4);">
         <h2>What it costs</h2>
@@ -832,23 +828,28 @@
           <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
           <p class="eyebrow"><span class="heart">&#9829;</span>Founding Investment</p>
           <div class="invite-price"><span class="now"><span class="cur">$</span>1,297</span></div>
-          <p class="invite-sub">One price for the whole launch.</p>
+          <p class="invite-sub">One price for the whole podcast launch.</p>
           <ul class="invite-grid">
-            <li>Strategy</li>
-            <li>Brand Identity</li>
-            <li>Launch</li>
-            <li>Systems</li>
-            <li>Training</li>
+            <li>Podcast strategy</li>
+            <li>Cover art and branding</li>
+            <li>Hosting and directory setup</li>
+            <li>Launch plan and assets</li>
+            <li>Workflows and training</li>
           </ul>
           <p class="invite-note">You own everything from day one.</p>
           <div class="cta"><button type="button" class="btn" data-open-inquiry>Get in touch</button></div>
+        </div>
+        <div class="upsell reveal" style="margin-top: var(--s-5);">
+          <h3>Want me to keep producing it?</h3>
+          <p>Many clients do. After launch, you can roll into ongoing production and just show up to record
+            while I handle the rest. Either way, the systems are yours.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FIT CHECK -->
-  <section class="section alt" id="fit">
+  <section class="section" id="fit">
     <div class="container">
       <div class="col reveal center">
         <h2>Is this a fit?</h2>
@@ -875,25 +876,32 @@
             </ul>
           </div>
         </div>
+        <p class="reveal center" style="margin-top: var(--s-5);">Not sure a podcast belongs in your marketing yet?
+          <a href="#" data-kit-optin>Start with the free workbook</a>. It takes about 30 minutes.</p>
       </div>
     </div>
   </section>
 
-  <!-- KEEP PRODUCING (UPSELL) -->
-  <section class="section">
+  <!-- WHAT HAPPENS NEXT -->
+  <section class="section alt" id="next">
     <div class="container">
-      <div class="col">
-        <div class="upsell reveal">
-          <h3>Want me to keep producing it?</h3>
-          <p>Many clients do. After launch, you can roll into ongoing production and just show up to record
-            while I handle the rest. Either way, the systems are yours.</p>
-        </div>
+      <div class="col reveal center">
+        <h2>What happens next</h2>
+        <p class="lede" style="margin: var(--s-3) auto 0;">Tell me about your business and the show you have
+          in mind. I'll get back to you within two business days, and if we're a fit, we'll hop on a call and
+          map out your launch.</p>
+      </div>
+      <div class="process reveal">
+        <div class="pstep"><div class="ring">01</div><h3>Submit an inquiry</h3><p>You tell me about your business.</p></div>
+        <div class="pstep"><div class="ring">02</div><h3>We get on a call</h3><p>We figure out if it's the right fit.</p></div>
+        <div class="pstep"><div class="ring">03</div><h3>Your custom plan</h3><p>I map a plan and timeline for your launch.</p></div>
+        <div class="pstep dest"><div class="ring">04</div><h3>We build your show</h3><p>You walk away ready to run it.</p></div>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="section alt" id="faq">
+  <section class="section" id="faq">
     <div class="container">
       <div class="col reveal center">
         <h2>Questions people usually ask</h2>
@@ -933,24 +941,6 @@
               support.</p>
           </details>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT HAPPENS NEXT -->
-  <section class="section">
-    <div class="container">
-      <div class="col reveal center">
-        <h2>What happens next</h2>
-        <p class="lede" style="margin: var(--s-3) auto 0;">Tell me about your business and the show you have
-          in mind. I'll get back to you within two business days, and if we're a fit, we'll hop on a call and
-          map out your launch.</p>
-      </div>
-      <div class="process reveal">
-        <div class="pstep"><div class="ring">01</div><h3>Submit an inquiry</h3><p>You tell me about your business.</p></div>
-        <div class="pstep"><div class="ring">02</div><h3>We get on a call</h3><p>We figure out if it's the right fit.</p></div>
-        <div class="pstep"><div class="ring">03</div><h3>Your custom plan</h3><p>I map a plan and timeline for your launch.</p></div>
-        <div class="pstep dest"><div class="ring">04</div><h3>We build your show</h3><p>You walk away ready to run it.</p></div>
       </div>
     </div>
   </section>
