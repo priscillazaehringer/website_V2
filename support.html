@@ -599,6 +599,16 @@
     .svc-card .proj-link { margin-top: auto; align-self: flex-start; color: var(--link); font-weight: 600;
       text-decoration: none; border-bottom: 2px solid currentColor; padding-bottom: 1px; }
     .svc-card .fit-line { color: var(--text); font-size: 0.95rem; }
+    .cases { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); margin-top: var(--s-5); }
+    @media (max-width: 860px) { .cases { grid-template-columns: 1fr; } }
+    .case { background: #FBF6F1; border-radius: 10px; padding: clamp(var(--s-4), 3.5vw, var(--s-5)); }
+    .case-tag { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+      color: #9E0053 !important; margin: 0 0 var(--s-1); }
+    .case h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); margin-bottom: var(--s-2); }
+    .case > p { color: var(--text-muted); font-size: 0.97rem; }
+    .case .checks li { font-size: 0.93rem; padding-top: 5px; padding-bottom: 5px; }
+    .case-tools { margin: var(--s-2) 0 0; padding-top: var(--s-2); border-top: 1px solid var(--line);
+      font-size: 0.82rem; font-weight: 600; color: var(--text-muted) !important; }
     .hero-grid { grid-template-columns: 1.35fr 0.65fr !important; }
     .hero h1 { max-width: 22ch !important; font-size: clamp(2.1rem, 3.6vw, 3.25rem) !important; }
     .hero-photo { margin: 0; justify-self: end; width: 100%; max-width: 400px; }
@@ -786,45 +796,68 @@
     </div>
   </section>
 
-  <!-- RECENT WORK -->
-  <!-- TODO: add screenshots and client names (with permission), plus any numbers that can be shared. -->
+  <!-- RECENT WORK: real builds for a marketing agency client (client kept anonymous at Priscilla's request).
+       TODO: add screenshots (never of tools_britney_lentz/clients.json) and results once they can be shared. -->
   <section class="section" id="work">
     <div class="container">
       <div class="col reveal">
         <h2>Things I've built lately</h2>
-        <p style="margin-top: var(--s-3);">A few examples of what this looks like week to week.</p>
+        <p style="margin-top: var(--s-3);">Recent work for a marketing agency that builds done-for-you funnels
+          for health and wellness practitioners. Here's the kind of thing I take off a client's plate.</p>
       </div>
-      <div class="col">
-        <div class="build-list reveal">
-          <div class="build-step">
-            <span class="build-num">01</span>
-            <div>
-              <h3>A done-for-you funnel offer, start to finish</h3>
-              <p>The sales page, the lead magnet, and the email sequence behind it, built and connected.</p>
-            </div>
-          </div>
-          <div class="build-step">
-            <span class="build-num">02</span>
-            <div>
-              <h3>A list-building webinar</h3>
-              <p>Registration and thank-you pages plus the emails that get people to show up.</p>
-            </div>
-          </div>
-          <div class="build-step">
-            <span class="build-num">03</span>
-            <div>
-              <h3>A weekly podcast episode kit</h3>
-              <p>Titles, show notes, the episode email, social copy, and graphics from every episode.</p>
-            </div>
-          </div>
-          <div class="build-step">
-            <span class="build-num">04</span>
-            <div>
-              <h3>Lead magnets and welcome sequences</h3>
-              <p>A freebie worth signing up for, and the five emails that turn new subscribers into buyers.</p>
-            </div>
-          </div>
-        </div>
+      <div class="cases reveal">
+        <article class="case">
+          <p class="case-tag">Client experience &middot; Operations</p>
+          <h3>A personal roadmap page for every funnel client</h3>
+          <p>Each funnel build has a dozen moving dates, and every client needed to know what was due from them
+            and when. So I built one template that gives each client their own private page.</p>
+          <ul class="checks cols-1">
+            <li>Builds the whole timeline, calendar reminders, and ad-support week from nine dates</li>
+            <li>Shows team time off and holidays, so nobody waits on a missing reply</li>
+            <li>Client checklists and forms save straight to Notion, synced across devices</li>
+            <li>Finished steps fold away, and at the end it turns into a "your funnel is live" page</li>
+          </ul>
+          <p class="case-tools">Notion &middot; Vercel &middot; Google Calendar</p>
+        </article>
+        <article class="case">
+          <p class="case-tag">Lead magnet &middot; Product</p>
+          <h3>A podcast framework turned into an interactive tool</h3>
+          <p>The agency teaches a two-step method for writing sales emails. I turned it into a tool people
+            actually use, which doubles as a lead magnet.</p>
+          <ul class="checks cols-1">
+            <li>Brainstorm nine email ideas, each matched to one of nine researched email structures</li>
+            <li>AI gives direction notes but never writes the copy for you</li>
+            <li>Saves work automatically and exports to PDF</li>
+            <li>Two versions: an email-gated public one synced to Kit, and one for course students</li>
+          </ul>
+          <p class="case-tools">Supabase &middot; Claude API &middot; Kit</p>
+        </article>
+        <article class="case">
+          <p class="case-tag">Launch &middot; Sales page</p>
+          <h3>A sales page that runs its own deadlines</h3>
+          <p>A Black Friday offer and a weekly webinar series both needed sales pages with real deadlines,
+            without anyone editing pages at midnight.</p>
+          <ul class="checks cols-1">
+            <li>A revenue calculator and cost cards that show what doing it yourself really costs</li>
+            <li>Countdown, discount, and bonuses switch to full price on their own at the deadline</li>
+            <li>Next week's page is one new line in a schedule file</li>
+            <li>At cart close, visitors are sent to the next free training automatically</li>
+          </ul>
+          <p class="case-tools">ThriveCart &middot; Kit &middot; GitHub Actions</p>
+        </article>
+        <article class="case">
+          <p class="case-tag">Podcast &middot; Events</p>
+          <h3>A podcast mini-series page that updates itself</h3>
+          <p>A four-episode series ending in a live website audit, plus registration pages for a list-building
+            webinar.</p>
+          <ul class="checks cols-1">
+            <li>Episodes appear at release time and the freebie unlocks on schedule</li>
+            <li>The sign-up form, copy, and replay change on their own before, during, and after the live session</li>
+            <li>A preview mode to check how the page will look at any moment</li>
+            <li>Webinar sign-ups tagged by session in Kit, with add-to-calendar links</li>
+          </ul>
+          <p class="case-tools">Astro &middot; Acast &middot; Airtable &middot; Kit</p>
+        </article>
       </div>
     </div>
   </section>

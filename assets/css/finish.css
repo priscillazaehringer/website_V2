@@ -50,7 +50,7 @@
 
 /* ---- Light cards stay light: point the tokens back at ink ------------ */
 .board, .svc-card, .quote-feature, .cite-card, .quote-card, .feature-pair .panel,
-.cmp, .dash, .metric, .pricing, .panel, .listcard, .invite,
+.cmp, .dash, .metric, .pricing, .panel, .listcard, .invite, .case,
 .chip, .tcard, .mock, .stat, .flip-front, .flip-back {
   --text: #1D1E26; --text-muted: #6A5E53; --link: #9E0053;
   --action: #1D1E26; --action-text: #F7EEE7; --line: rgba(29,30,38,0.12); --bg-alt: #FBF6F1;
@@ -97,7 +97,8 @@
 .big-state .em, .statement .em { color: #FFC8E5 !important; }
 .section .faq summary::after { color: #FFC8E5 !important; }
 /* ...except inside light cards, where the original ink/plum/teal read well */
-.invite .checks li::before, .pricing .checks li::before, .panel .checks li::before { color: #195750 !important; }
+.invite .checks li::before, .pricing .checks li::before, .panel .checks li::before, .case .checks li::before { color: #195750 !important; }
+.case .checks li, .case h3 { color: #1D1E26 !important; }
 .invite .checks li, .pricing .checks li { color: #1D1E26; }
 .invite .wave i, .pricing .wave i { background: #9E0053 !important; }
 .invite .eyebrow .heart, .pricing .eyebrow .heart { color: #9E0053 !important; }
