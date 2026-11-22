@@ -602,6 +602,10 @@
     }
   </style>
   <link rel="stylesheet" href="/assets/css/finish.css">
+  <style>
+    /* homepage only: the workbook strip follows the plum testimonial, so keep it dark */
+    .freebie-bar { background: #1D1E26 !important; border-top: 1px solid rgba(255,200,229,0.35); border-bottom: 1px solid rgba(255,200,229,0.35); }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -640,22 +644,6 @@
 
   <main id="main" tabindex="-1">
 
-  <!-- ===================== FREEBIE OPT-IN BAND (site-wide) ===================== -->
-  <!-- TODO: set the real Kit opt-in URL on the button (currently "#"). -->
-  <section class="freebie-bar" aria-label="Free podcast workbook">
-    <div class="container freebie-inner">
-      <img class="freebie-mockup" src="/assets/img/start-a-podcast-workbook.webp" width="990" height="664" fetchpriority="high" decoding="async"
-        alt="Start a Podcast — free workbook for deciding whether a podcast earns a place in your marketing">
-      <div class="freebie-copy">
-        <p class="fb-kicker">Free workbook</p>
-        <h2>Thinking about a podcast? <span class="em">Decide in 30 minutes.</span></h2>
-        <p>A short workbook to help you decide whether a podcast belongs in your marketing, before you buy a microphone.</p>
-      </div>
-      <div class="freebie-cta">
-        <a href="#" class="btn" data-kit-optin>Send me the workbook →</a>
-      </div>
-    </div>
-  </section>
 
   <!-- ===================== HERO ===================== -->
   <section class="hero has-video" id="top" style="padding-top: var(--s-5);">
@@ -707,7 +695,6 @@
       </div>
       <div class="svc-cards three reveal">
         <div class="svc-card">
-          <span class="ic coral" aria-hidden="true">&#129309;</span>
           <h3>Fractional CMO</h3>
           <p class="retainer">Ongoing &middot; a few clients at a time</p>
           <p>You get a marketing lead on your team. We plan each month together, and your funnels, email,
@@ -715,7 +702,6 @@
           <a href="/support.html" class="proj-link">How ongoing support works &#8594;</a>
         </div>
         <div class="svc-card">
-          <span class="ic mint" aria-hidden="true">&#127908;&#65039;</span>
           <h3>The Signal: podcast launch</h3>
           <p class="retainer">6 to 8 weeks &middot; $1,297</p>
           <p>Your show gets planned, branded, set up, and launched. You walk away with everything you need to
@@ -723,7 +709,6 @@
           <a href="/podcast.html" class="proj-link">See what's included &#8594;</a>
         </div>
         <div class="svc-card">
-          <span class="ic coral" aria-hidden="true">&#128736;&#65039;</span>
           <h3>Start with one project</h3>
           <p class="retainer">Quoted up front</p>
           <p>A funnel, a sales page, or an email sequence that keeps getting pushed to next week. You get a
@@ -751,6 +736,23 @@
           <p class="cite">Kaye Putnam <span>Brand Strategist</span></p>
         </figcaption>
       </figure>
+    </div>
+  </section>
+
+  <!-- ===================== FREEBIE OPT-IN BAND (site-wide) ===================== -->
+  <!-- TODO: set the real Kit opt-in URL on the button (currently "#"). -->
+  <section class="freebie-bar" aria-label="Free podcast workbook">
+    <div class="container freebie-inner">
+      <img class="freebie-mockup" src="/assets/img/start-a-podcast-workbook.webp" width="990" height="664" loading="lazy" decoding="async"
+        alt="Start a Podcast — free workbook for deciding whether a podcast earns a place in your marketing">
+      <div class="freebie-copy">
+        <p class="fb-kicker">Free workbook</p>
+        <h2>Thinking about a podcast? <span class="em">Decide in 30 minutes.</span></h2>
+        <p>A short workbook to help you decide whether a podcast belongs in your marketing, before you buy a microphone.</p>
+      </div>
+      <div class="freebie-cta">
+        <a href="#" class="btn" data-kit-optin>Send me the workbook →</a>
+      </div>
     </div>
   </section>
 
@@ -800,7 +802,6 @@
         <div class="foot-brand">
           <a href="#top" class="foot-script">Priscilla Zaehringer</a>
           <div class="foot-intro">
-            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" loading="lazy" decoding="async" alt="Priscilla Zaehringer"></span>
             <p class="foot-bio">I'm Priscilla, a fractional CMO and podcast producer in Iowa. I help online business
               owners plan their marketing and get it built.</p>
           </div>

@@ -6,7 +6,7 @@
    ================================================================== */
 
 :root {
-  --c-espresso: #2A2421;    /* warm dark, alternates with ink */
+  --c-espresso: #2D1B27;    /* deep aubergine, alternates with ink so sections read as separate */
   --c-plum: #9E0053;        /* = --c-pink-deep, used as a background here */
   --on-dark: #F7EEE7;
   --on-dark-muted: rgba(247,238,231,0.80);
