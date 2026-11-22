@@ -9,7 +9,7 @@
   --c-espresso: #2A2421;    /* warm dark, alternates with ink */
   --c-plum: #9E0053;        /* = --c-pink-deep, used as a background here */
   --on-dark: #F7EEE7;
-  --on-dark-muted: rgba(247,238,231,0.76);
+  --on-dark-muted: rgba(247,238,231,0.80);
   --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -80,6 +80,28 @@
 .promo-bar { background: #9E0053 !important; color: #F7EEE7 !important; }
 .promo-bar * { color: #F7EEE7 !important; }
 .promo-bar .promo-tag, .promo-bar .promo-cta { background: rgba(247,238,231,0.14) !important; border-color: rgba(247,238,231,0.4) !important; }
+
+
+/* ==== One color system for dark sections ================================
+   Headings: cream. Body: soft cream. Small text: a little softer.
+   Accent: pink only (#FFC8E5). Plum is a background color, never text on
+   dark. Teal and coral stay inside light cards and logos. */
+.hero, .section { color: rgba(247,238,231,0.90); }
+.section .lede, .hero .lede, .hero-lede, .band-ink .lede { color: rgba(247,238,231,0.90) !important; opacity: 1 !important; }
+.section p { color: inherit; }
+.gallery .cat, .stats-cap, .dash-note, .micro { color: var(--on-dark-muted) !important; }
+/* every small label, checkmark, cross, and number on dark: pink */
+.leave-group .gl, .s-eyebrow, .lead-label, .niches-label { color: #FFC8E5 !important; }
+.section .checks li::before, .section .checks.x li::before { color: #FFC8E5 !important; }
+.section .checks li { color: rgba(247,238,231,0.90); }
+.big-state .em, .statement .em { color: #FFC8E5 !important; }
+.section .faq summary::after { color: #FFC8E5 !important; }
+/* ...except inside light cards, where the original ink/plum/teal read well */
+.invite .checks li::before, .pricing .checks li::before, .panel .checks li::before { color: #195750 !important; }
+.invite .checks li, .pricing .checks li { color: #1D1E26; }
+.invite .wave i, .pricing .wave i { background: #9E0053 !important; }
+.invite .eyebrow .heart, .pricing .eyebrow .heart { color: #9E0053 !important; }
+.chip b { color: #9E0053; }
 
 /* ---- Grain ------------------------------------------------------------ */
 #grain { opacity: 0.07 !important; mix-blend-mode: normal !important; }
