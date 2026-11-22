@@ -634,14 +634,20 @@
     .hat-kicker { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
       color: #FFC8E5 !important; margin: 0 0 var(--s-1); }
     .hat-group-head h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.15; }
-    .hat-list { display: grid; gap: var(--s-5); }
-    .hat + .hat { padding-top: var(--s-5); border-top: 1px solid rgba(247,238,231,0.1); }
+    .hat-list { display: grid; gap: var(--s-4); }
+    .hat + .hat { padding-top: var(--s-4); border-top: 1px solid rgba(247,238,231,0.1); }
     .hat-role { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
       color: #FFC8E5 !important; margin: 0 0 6px; }
     .hat h4 { font-family: var(--font-display); font-synthesis: none; font-weight: 400;
       font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.2; color: var(--text); margin: 0 0 var(--s-2); }
     .hat p:not(.hat-role) { max-width: 60ch; }
     .hat a { color: #FFC8E5; font-weight: 600; }
+    .hat-group.compact { grid-template-columns: 1fr; gap: var(--s-4); }
+    .hat-group.compact .hat-group-head { position: static; }
+    .hat-group.compact .hat-list { grid-template-columns: repeat(3, 1fr); gap: var(--s-5); }
+    .hat-group.compact .hat + .hat { padding-top: 0; border-top: 0; }
+    .hat-group.compact .hat h4 { font-size: 1.25rem; }
+    @media (max-width: 980px) { .hat-group.compact .hat-list { grid-template-columns: 1fr; gap: var(--s-4); } }
     @media (max-width: 860px) {
       .hat-group { grid-template-columns: 1fr; gap: var(--s-3); }
       .hat-group-head { position: static; }
@@ -775,7 +781,7 @@
         </div>
       </div>
 
-      <div class="hat-group reveal">
+      <div class="hat-group compact reveal">
         <div class="hat-group-head">
           <p class="hat-kicker">What holds it together</p>
           <h3>The skills behind the scenes</h3>
@@ -784,24 +790,20 @@
           <div class="hat">
             <p class="hat-role">Project manager</p>
             <h4>Making sure things actually get done</h4>
-            <p>Timelines, deadlines, handoffs, and following up with the person who still hasn't sent what we
-              need. I keep track of all of it.</p>
-            <p>For a funnel agency, I built individual client roadmaps so everyone could see what was happening,
-              what was coming next, and what we were waiting on.</p>
+            <p>Timelines, handoffs, and following up with the person who still hasn't sent what we need. For a
+              funnel agency, I built client roadmaps so everyone could see what was coming next.</p>
           </div>
           <div class="hat">
             <p class="hat-role">Website &amp; funnel developer</p>
-            <h4>Building the pages and systems behind your marketing</h4>
-            <p>Sales pages, landing pages, websites, client portals, and the automations connecting everything.</p>
-            <p>I've built 30+ funnels and systems, including launch pages with automatic deadlines. And yes, I code
-              them myself.</p>
+            <h4>Building the pages behind your marketing</h4>
+            <p>Sales pages, landing pages, websites, and client portals: 30+ funnels and systems, including launch
+              pages with automatic deadlines. And yes, I code them myself.</p>
           </div>
           <div class="hat">
             <p class="hat-role">Copyeditor</p>
             <h4>Making your copy sound like you</h4>
-            <p>I work on sales pages, emails, podcast show notes, and social content, tightening the writing,
-              catching mistakes, and making sure it still sounds like the person whose name is on it.</p>
-            <p>Because sometimes the message is already there. It just needs another set of eyes.</p>
+            <p>Sales pages, emails, show notes, and social posts, tightened up so they still sound like you.
+              Sometimes the message is already there. It just needs another set of eyes.</p>
           </div>
         </div>
       </div>
