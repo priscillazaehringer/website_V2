@@ -627,6 +627,25 @@
       object-position: center 30%; border-radius: 6px; box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
     @media (max-width: 860px) { .hero-photo { justify-self: start; max-width: 320px; margin-bottom: var(--s-5); } }
     .leave-groups { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    /* ---- "I wear a lot of hats": editorial two-column list, no cards ---- */
+    .hat-group { display: grid; grid-template-columns: 0.8fr 2fr; gap: var(--s-5); margin-top: var(--s-6);
+      padding-top: var(--s-5); border-top: 1px solid rgba(247,238,231,0.18); }
+    .hat-group-head { position: sticky; top: calc(var(--stack-h, 70px) + 24px); align-self: start; }
+    .hat-kicker { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
+      color: #FFC8E5 !important; margin: 0 0 var(--s-1); }
+    .hat-group-head h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.15; }
+    .hat-list { display: grid; gap: var(--s-5); }
+    .hat + .hat { padding-top: var(--s-5); border-top: 1px solid rgba(247,238,231,0.1); }
+    .hat-role { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
+      color: #FFC8E5 !important; margin: 0 0 6px; }
+    .hat h4 { font-family: var(--font-display); font-synthesis: none; font-weight: 400;
+      font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.2; color: var(--text); margin: 0 0 var(--s-2); }
+    .hat p:not(.hat-role) { max-width: 60ch; }
+    .hat a { color: #FFC8E5; font-weight: 600; }
+    @media (max-width: 860px) {
+      .hat-group { grid-template-columns: 1fr; gap: var(--s-3); }
+      .hat-group-head { position: static; }
+    }
   </style>
   <link rel="stylesheet" href="/assets/css/finish.css">
 </head>
@@ -712,60 +731,79 @@
     </div>
   </section>
 
-  <!-- THE ROLES I FILL (proof) -->
-  <!-- Proof sources: 40+ campaigns / 300+ episodes / 30+ builds are the confirmed numbers from the About page;
-       the $5/day result is the client campaign shown on ads.html; rankings TODO: add source. -->
+  <!-- I WEAR A LOT OF HATS (proof) -->
+  <!-- Sources: 40+ campaigns / 300+ episodes / 30+ builds = About-page numbers; $5/day, ~7/day, ~$0.70
+       = the client campaign on ads.html. TODO: say where the podcast rankings come from (e.g. Listen Notes,
+       global ranking) and add a real copyediting example. -->
   <section class="section" id="roles">
     <div class="container">
-      <div class="col reveal">
-        <h2>The roles I fill</h2>
-        <p style="margin-top: var(--s-3);">Most businesses would hire a different person for each of these.
-          Depending on the month, I'm one of them, or all six.</p>
+      <div class="reveal" style="max-width: 680px;">
+        <h2>I wear a lot of hats</h2>
+        <p class="lede" style="margin-top: var(--s-2);">Here's what that looks like.</p>
       </div>
-      <div class="cases roles reveal">
-        <article class="case">
-          <p class="case-tag">Marketing strategist</p>
-          <h3>Deciding what to focus on</h3>
-          <p class="case-so">So you're working on the right things, not just the loudest ones.</p>
-          <p>I look at your offers, audience, and calendar, and help you decide what to launch, what to fix, and
-            what to drop. For one agency client, that meant planning a holiday offer, a weekly webinar series,
-            and a podcast series around one launch calendar.</p>
-        </article>
-        <article class="case">
-          <p class="case-tag">Project manager</p>
-          <h3>Keeping every moving part on track</h3>
-          <p class="case-so">So deadlines get hit and nothing waits on a missing reply.</p>
-          <p>Timelines, handoffs, and who owes what. For a funnel agency, I built a roadmap page for every client,
-            so each one always knew their next step and when it was due.</p>
-        </article>
-        <article class="case">
-          <p class="case-tag">Ads manager</p>
-          <h3>Running Meta ads that build your list</h3>
-          <p class="case-so">So new leads come in every day, not just on a good social media week.</p>
-          <p>40+ Meta campaigns managed. One client's $5-a-day campaign brought in about seven new subscribers a
-            day, at around 70 cents each.</p>
-        </article>
-        <article class="case">
-          <p class="case-tag">Podcast producer</p>
-          <h3>Getting your show out every week</h3>
-          <p class="case-so">So your podcast keeps publishing, even when you're busy.</p>
-          <p>300+ episodes produced for business, marketing, and healthcare shows, including client podcasts
-            ranked in the top 10% and top 2.5%. <a href="/podcast.html">See The Signal</a>.</p>
-        </article>
-        <article class="case">
-          <p class="case-tag">Website &amp; funnel developer</p>
-          <h3>Building pages that work</h3>
-          <p class="case-so">So your pages look good, work right, and don't need babysitting.</p>
-          <p>30+ funnels and systems built: sales pages, landing pages, websites, and client portals, coded by
-            me. Recent builds include sales pages that close their own launch deadlines.</p>
-        </article>
-        <article class="case">
-          <p class="case-tag">Copyeditor</p>
-          <h3>Polishing what goes out</h3>
-          <p class="case-so">So everything sounds like you, and nothing goes out with a typo.</p>
-          <p>Sales pages, emails, show notes, and social posts. I tighten the copy, check it against your voice,
-            and catch mistakes before your audience does.</p>
-        </article>
+
+      <div class="hat-group reveal">
+        <div class="hat-group-head">
+          <p class="hat-kicker">Most of my work</p>
+          <h3>Where I spend most of my time</h3>
+        </div>
+        <div class="hat-list">
+          <div class="hat">
+            <p class="hat-role">Business &amp; marketing strategist</p>
+            <h4>Figuring out what makes sense to focus on</h4>
+            <p>I look at the whole business, not just the marketing: your offers, your audience, and what's
+              coming up on your calendar. Then we figure out what to launch, what needs attention, and what can
+              wait.</p>
+            <p>For one agency client, that meant planning a holiday promotion, weekly webinars, and a podcast
+              series around the same launch calendar. Lots of moving pieces, but everything had a purpose.</p>
+          </div>
+          <div class="hat">
+            <p class="hat-role">Meta ads manager</p>
+            <h4>Getting your offers in front of the right people</h4>
+            <p>I've managed 40+ Meta ad campaigns, from lead generation to launches.</p>
+            <p>One client's campaign, running on just $5 a day, averaged around seven new subscribers a day at
+              about $0.70 per lead. Small budgets can still do a lot when the pieces are working together.</p>
+          </div>
+          <div class="hat">
+            <p class="hat-role">Podcast producer</p>
+            <h4>Taking podcast production off your plate</h4>
+            <p>I've produced 300+ episodes for business, marketing, and healthcare podcasts, including client
+              shows ranked in the top 10% and top 2.5%.</p>
+            <p>From editing and show notes to publishing and promotion, I handle the details that go into getting
+              an episode out the door. <a href="/podcast.html">See The Signal</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hat-group reveal">
+        <div class="hat-group-head">
+          <p class="hat-kicker">What holds it together</p>
+          <h3>The skills behind the scenes</h3>
+        </div>
+        <div class="hat-list">
+          <div class="hat">
+            <p class="hat-role">Project manager</p>
+            <h4>Making sure things actually get done</h4>
+            <p>Timelines, deadlines, handoffs, and following up with the person who still hasn't sent what we
+              need. I keep track of all of it.</p>
+            <p>For a funnel agency, I built individual client roadmaps so everyone could see what was happening,
+              what was coming next, and what we were waiting on.</p>
+          </div>
+          <div class="hat">
+            <p class="hat-role">Website &amp; funnel developer</p>
+            <h4>Building the pages and systems behind your marketing</h4>
+            <p>Sales pages, landing pages, websites, client portals, and the automations connecting everything.</p>
+            <p>I've built 30+ funnels and systems, including launch pages with automatic deadlines. And yes, I code
+              them myself.</p>
+          </div>
+          <div class="hat">
+            <p class="hat-role">Copyeditor</p>
+            <h4>Making your copy sound like you</h4>
+            <p>I work on sales pages, emails, podcast show notes, and social content, tightening the writing,
+              catching mistakes, and making sure it still sounds like the person whose name is on it.</p>
+            <p>Because sometimes the message is already there. It just needs another set of eyes.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
