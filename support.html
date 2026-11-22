@@ -605,7 +605,9 @@
     .case-tag { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
       color: #9E0053 !important; margin: 0 0 var(--s-1); }
     .case h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); margin-bottom: var(--s-2); }
-    .case > p { color: var(--text-muted); font-size: 0.97rem; }
+    .case > p { color: var(--text-muted); font-size: 0.97rem; margin-bottom: 0; }
+    .case > p.case-so { font-family: var(--font-display); font-synthesis: none; color: #9E0053 !important;
+      font-size: 1.12rem; line-height: 1.35; margin-bottom: var(--s-2); }
     .case .checks li { font-size: 0.93rem; padding-top: 5px; padding-bottom: 5px; }
     .case-tools { margin: var(--s-2) 0 0; padding-top: var(--s-2); border-top: 1px solid var(--line);
       font-size: 0.82rem; font-weight: 600; color: var(--text-muted) !important; }
@@ -807,56 +809,32 @@
       </div>
       <div class="cases reveal">
         <article class="case">
-          <p class="case-tag">Client experience &middot; Operations</p>
-          <h3>A personal roadmap page for every funnel client</h3>
-          <p>Each funnel build has a dozen moving dates, and every client needed to know what was due from them
-            and when. So I built one template that gives each client their own private page.</p>
-          <ul class="checks cols-1">
-            <li>Builds the whole timeline, calendar reminders, and ad-support week from nine dates</li>
-            <li>Shows team time off and holidays, so nobody waits on a missing reply</li>
-            <li>Client checklists and forms save straight to Notion, synced across devices</li>
-            <li>Finished steps fold away, and at the end it turns into a "your funnel is live" page</li>
-          </ul>
-          <p class="case-tools">Notion &middot; Vercel &middot; Google Calendar</p>
+          <p class="case-tag">Client experience</p>
+          <h3>A personal roadmap page for every client</h3>
+          <p class="case-so">So clients always knew what was next, without emailing the team to ask.</p>
+          <p>Each client got one page with their dates, reminders, and to-dos. It updates as they check things
+            off, and ends with a "your funnel is live" page when they launch.</p>
         </article>
         <article class="case">
-          <p class="case-tag">Lead magnet &middot; Product</p>
-          <h3>A podcast framework turned into an interactive tool</h3>
-          <p>The agency teaches a two-step method for writing sales emails. I turned it into a tool people
-            actually use, which doubles as a lead magnet.</p>
-          <ul class="checks cols-1">
-            <li>Brainstorm nine email ideas, each matched to one of nine researched email structures</li>
-            <li>AI gives direction notes but never writes the copy for you</li>
-            <li>Saves work automatically and exports to PDF</li>
-            <li>Two versions: an email-gated public one synced to Kit, and one for course students</li>
-          </ul>
-          <p class="case-tools">Supabase &middot; Claude API &middot; Kit</p>
+          <p class="case-tag">Lead magnet</p>
+          <h3>An interactive email-idea tool</h3>
+          <p class="case-so">So one podcast lesson keeps bringing in new subscribers.</p>
+          <p>I turned a method the agency teaches on its podcast into a simple tool: answer a few questions and
+            leave with nine email ideas and a plan for each. It's a free download and a course bonus.</p>
         </article>
         <article class="case">
-          <p class="case-tag">Launch &middot; Sales page</p>
-          <h3>A sales page that runs its own deadlines</h3>
-          <p>A Black Friday offer and a weekly webinar series both needed sales pages with real deadlines,
-            without anyone editing pages at midnight.</p>
-          <ul class="checks cols-1">
-            <li>A revenue calculator and cost cards that show what doing it yourself really costs</li>
-            <li>Countdown, discount, and bonuses switch to full price on their own at the deadline</li>
-            <li>Next week's page is one new line in a schedule file</li>
-            <li>At cart close, visitors are sent to the next free training automatically</li>
-          </ul>
-          <p class="case-tools">ThriveCart &middot; Kit &middot; GitHub Actions</p>
+          <p class="case-tag">Launch</p>
+          <h3>A sales page that handles its own deadlines</h3>
+          <p class="case-so">So launches close on time without anyone working at midnight.</p>
+          <p>The sale price, countdown, and bonuses switch off by themselves when the offer closes, and
+            late visitors are pointed to the next free training. Setting up next week's page takes minutes.</p>
         </article>
         <article class="case">
-          <p class="case-tag">Podcast &middot; Events</p>
-          <h3>A podcast mini-series page that updates itself</h3>
-          <p>A four-episode series ending in a live website audit, plus registration pages for a list-building
-            webinar.</p>
-          <ul class="checks cols-1">
-            <li>Episodes appear at release time and the freebie unlocks on schedule</li>
-            <li>The sign-up form, copy, and replay change on their own before, during, and after the live session</li>
-            <li>A preview mode to check how the page will look at any moment</li>
-            <li>Webinar sign-ups tagged by session in Kit, with add-to-calendar links</li>
-          </ul>
-          <p class="case-tools">Astro &middot; Acast &middot; Airtable &middot; Kit</p>
+          <p class="case-tag">Podcast</p>
+          <h3>A podcast series page that updates itself</h3>
+          <p class="case-so">So launch week didn't need babysitting.</p>
+          <p>New episodes, the free download, the live-session sign-up, and the replay each appeared right on
+            schedule, while the team focused on recording.</p>
         </article>
       </div>
     </div>
