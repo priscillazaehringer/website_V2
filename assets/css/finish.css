@@ -1,81 +1,104 @@
 /* ==================================================================
    FINISH LAYER: loaded after each page's own <style>, so it wins.
-   1. Square section edges (no rounded "overlap" tabs)
-   2. Warmer, earthier neutrals in place of the pink/mint/peach ombres
-   3. Real paper texture: stronger grain everywhere, linen on alt bands
-   4. Optional background video for a section (.has-video)
+   Direction "A: Dark & plum": dark ink and espresso sections, plum as
+   the pop color, square edges, real grain. Light cards stay light.
    Remove the <link> to this file on a page to get the old look back.
    ================================================================== */
 
 :root {
-  --c-sand: #EAE0D4;        /* warm alt band, replaces the pastel ombres */
-  --c-oat: #F3ECE3;         /* a hair darker than cream, for quiet bands */
-  --c-espresso: #2A2421;    /* second dark, warmer than ink */
-  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.12 0 0 0 0 0.09 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --fibers: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.35' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.27 0 0 0 0 0.2 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --c-espresso: #2A2421;    /* warm dark, alternates with ink */
+  --c-plum: #9E0053;        /* = --c-pink-deep, used as a background here */
+  --on-dark: #F7EEE7;
+  --on-dark-muted: rgba(247,238,231,0.76);
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ---- 1. Square edges ------------------------------------------------ */
+/* ---- Square edges ---------------------------------------------------- */
 .overlap, .band-ink, .band-mint, #pain {
-  margin-top: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
+  margin-top: 0 !important; border-radius: 0 !important; box-shadow: none !important;
 }
 
-/* ---- 2. Warmer neutrals --------------------------------------------- */
-body { background: var(--c-cream); }
-
-/* heroes: flat cream instead of the pink-to-peach wash; drop the mint glow */
-.hero { background: var(--c-cream) !important; }
+/* ---- Dark sections ----------------------------------------------------
+   Re-pointing the role tokens inside a section flips every rule that uses
+   them (headings, body, muted text, links, buttons) without touching the
+   page CSS. */
+.hero, .section, .freebie-bar {
+  --text: var(--on-dark); --text-muted: var(--on-dark-muted); --link: #FFC8E5;
+  --action: var(--on-dark); --action-text: #1D1E26; --line: rgba(247,238,231,0.16);
+  --bg-alt: rgba(247,238,231,0.06);
+  background: #1D1E26 !important; color: var(--text);
+  position: relative; isolation: isolate;
+}
+.alt, .alt-pink, .alt-coral, .alt-mint, #offer, #projects, #process, #story, #partner {
+  background: var(--c-espresso) !important;
+}
+#book, .final-cta, #testimonial, .freebie-bar { background: var(--c-plum) !important; }
 .hero-blob { display: none !important; }
 
-/* every pastel band becomes sand or oat */
-.alt, .alt-pink, .alt-coral, .alt-mint,
-#offer, #projects, #process, #about { background: var(--c-oat) !important; }
-.alt-pink, .alt-coral, #about { background: var(--c-sand) !important; }
+/* headings and small text that hard-code ink or plum */
+.section h1, .section h2, .section h3, .section h4, .hero h1, .hero h2 { color: var(--text); }
+.eyebrow, .eyebrow .heart, .fb-kicker, .hero-kicker, .em, .sticker, .cred, .note-script,
+.hl, .scarcity, .micro, .lead-in, .quote-soft, .big-state .em { color: #FFC8E5 !important; }
+.hl { background-image: none !important; }
+.section a:not(.btn):not(.proj-link) { color: var(--link); }
+.btn-cream { background: var(--on-dark) !important; color: #1D1E26 !important; border-color: var(--on-dark) !important; }
+.freebie-bar h2, .freebie-bar p { color: var(--on-dark) !important; }
+.freebie-bar .btn { background: var(--on-dark); color: #1D1E26; border-color: var(--on-dark); }
+.photo-frame .block { background: var(--c-plum) !important; opacity: 0.85; }
+.pill { background: rgba(247,238,231,0.1) !important; color: var(--on-dark) !important; border-color: rgba(247,238,231,0.2) !important; }
+.sig svg path { stroke: #FFC8E5; }
 
-/* the top freebie strip: dark and textured instead of mint */
-.freebie-bar { background: var(--c-espresso) !important; color: var(--c-cream); }
-.freebie-bar h2, .freebie-bar p { color: var(--c-cream) !important; }
-.freebie-bar .fb-kicker { color: var(--c-coral) !important; }
-.freebie-bar .em { color: var(--c-pink) !important; }
-.freebie-bar .btn { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
+/* ---- Light cards stay light: point the tokens back at ink ------------ */
+.board, .svc-card, .quote-feature, .cite-card, .quote-card, .feature-pair .panel,
+.cmp, .dash, .metric, .pricing, .panel, .listcard, .invite,
+.chip, .tcard, .mock, .stat, .flip-front, .flip-back {
+  --text: #1D1E26; --text-muted: #6A5E53; --link: #9E0053;
+  --action: #1D1E26; --action-text: #F7EEE7; --line: rgba(29,30,38,0.12); --bg-alt: #FBF6F1;
+  color: var(--text);
+}
+:is(.board, .svc-card, .quote-feature, .pricing, .panel, .listcard, .invite, .cmp, .dash)
+  :is(h2, h3, h4, .em, .eyebrow, .eyebrow .heart) { color: inherit; }
+:is(.pricing, .invite, .panel, .listcard, .cmp, .dash) .eyebrow { color: #9E0053 !important; }
+.svc-card a.proj-link, .board a { color: #9E0053; }
+.stat { background: transparent; --text: var(--on-dark); --text-muted: var(--on-dark-muted); color: var(--text); }
 
-/* photo frames: the colored block behind photos goes neutral */
-.photo-frame .block { background: var(--c-sand) !important; }
+/* bits that hard-code ink or plum text on what is now a dark background */
+.hero-proof, .hero-proof b, .faq summary, .faq-item summary, .faq .ans, .faq details p { color: var(--text) !important; }
+.faq .ans, .faq details p { color: var(--text-muted) !important; }
+.faq summary .ico, .build-num, .num, .tl-step .marker, .pstep .ring, .bn { color: #FFC8E5 !important; }
+.upsell { background: rgba(247,238,231,0.06) !important; border: 1px solid rgba(247,238,231,0.18) !important; color: var(--text); }
+.upsell h3 { color: var(--text); }
 
-/* ---- 3. Texture ------------------------------------------------------ */
-/* global grain: visible, not just a whisper */
-#grain { opacity: 0.11 !important; background-image: var(--noise) !important; mix-blend-mode: multiply; }
+.stat .n, .stat .u { color: var(--on-dark) !important; } .stat .u { color: #FFC8E5 !important; }
+.stat .l { color: var(--on-dark-muted) !important; }
+.upsell p { color: var(--text-muted) !important; }
+.pstep .ring { background: transparent !important; border-color: rgba(247,238,231,0.5) !important; color: #FFC8E5 !important; }
+.pstep.dest .ring { background: #9E0053 !important; border-color: #9E0053 !important; color: #F7EEE7 !important; }
+.pstep h4, .pstep p { color: var(--text) !important; } .pstep p { color: var(--text-muted) !important; }
+.panel, .listcard.panel { background: #FBF6F1 !important; }
+.fitcard h3, .fitcard li, .fitcol h3, .fitcol li { color: var(--text) !important; }
+.promo-bar { background: #9E0053 !important; color: #F7EEE7 !important; }
+.promo-bar * { color: #F7EEE7 !important; }
+.promo-bar .promo-tag, .promo-bar .promo-cta { background: rgba(247,238,231,0.14) !important; border-color: rgba(247,238,231,0.4) !important; }
 
-/* linen fibers on the warm bands */
-.alt, .alt-pink, .alt-coral, .alt-mint, #offer, #projects, #about { position: relative; isolation: isolate; }
-.alt::before, .alt-pink::before, .alt-coral::before, .alt-mint::before,
-#offer::before, #projects::before, #about::before {
+/* ---- Grain ------------------------------------------------------------ */
+#grain { opacity: 0.07 !important; mix-blend-mode: normal !important; }
+.hero::after, .section::after, .freebie-bar::after {
   content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background-image: var(--fibers); opacity: 0.22; mix-blend-mode: multiply;
+  background-image: var(--noise); opacity: 0.13; mix-blend-mode: soft-light;
 }
 
-/* dark bands get their own grain so they don't read as flat digital black */
-.band-ink, .freebie-bar { position: relative; isolation: isolate; }
-.band-ink::after, .freebie-bar::after {
-  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background-image: var(--noise); opacity: 0.35; mix-blend-mode: screen;
-}
-
-/* ---- 4. Background video (optional) ----------------------------------
+/* ---- Background video (optional) --------------------------------------
    Markup, inside any <section class="... has-video">:
      <video class="bg-video" autoplay muted loop playsinline preload="none"
             poster="/assets/video/clip-poster.webp" aria-hidden="true">
        <source src="/assets/video/clip.mp4" type="video/mp4">
      </video>
    Keep clips short (6–12s), silent, under ~3 MB, 1280px wide. */
-.has-video { position: relative; isolation: isolate; overflow: hidden; }
-.has-video .bg-video {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;
-}
-.has-video::before {   /* warm dark scrim so text stays readable */
-  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(180deg, rgba(42,36,33,0.72), rgba(42,36,33,0.82));
+.has-video { overflow: hidden; }
+.has-video .bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -3; }
+.has-video::before {
+  content: ''; position: absolute; inset: 0; z-index: -2; pointer-events: none;
+  background: linear-gradient(180deg, rgba(29,30,38,0.70), rgba(29,30,38,0.85));
 }
 @media (prefers-reduced-motion: reduce) { .has-video .bg-video { display: none; } }
