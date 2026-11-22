@@ -88,3 +88,7 @@ main:focus { outline: none; }
 /* One focus ring that shows on both light and dark sections:
    a cream inner ring plus a plum outer ring. */
 :focus-visible { outline: 3px solid #9E0053; outline-offset: 2px; box-shadow: 0 0 0 2px #F7EEE7; }
+
+/* current page in the top menu */
+.nav-center a[aria-current="page"] { opacity: 1; text-decoration: underline; text-decoration-color: #FFC8E5;
+  text-decoration-thickness: 2px; text-underline-offset: 6px; }
