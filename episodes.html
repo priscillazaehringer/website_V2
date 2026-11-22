@@ -250,7 +250,7 @@
     .social-btn:hover { background: var(--c-ink); color: var(--c-cream); }
     .social-btn .ic { font-size: 1.05rem; line-height: 1; }
     .foot-explore { justify-self: end; }
-    .foot-explore h4 { font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
+    .foot-explore .foot-h { line-height: 1.3; font-weight: 700; font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--c-pink-deep); display: inline-block; border-bottom: 2px solid var(--c-pink); padding-bottom: 6px; margin-bottom: var(--s-3); }
     .explore-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-5); font-family: var(--font-display); font-size: 1.2rem; }
     .explore-cols a:hover { color: var(--c-pink-deep); }
@@ -331,7 +331,7 @@
     .arch-card { text-decoration:none; color:var(--c-ink); }
         .arch-thumb { aspect-ratio:3/2; border-radius:var(--radius); display:grid; place-items:center; position:relative; overflow:hidden; }
     .arch-thumb .num { font-family:var(--font-display); font-size:2.8rem; color:var(--c-ink); line-height:1; }
-    .arch-thumb .lab { position:absolute; top:10px; left:12px; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--c-ink); opacity:0.62; }
+    .arch-thumb .lab { position:absolute; top:10px; left:12px; font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--c-ink); opacity:0.85; }
     .arch-thumb.t-pink { background:var(--c-pink); } .arch-thumb.t-mint { background:var(--c-mint); } .arch-thumb.t-coral { background:var(--c-coral); }
     img.arch-thumb { width:100%; height:100%; object-fit:cover; }
     .arch-card .date { display:block; margin:var(--s-2) 0 4px; color:var(--c-pink-deep); font-size:0.76rem;
@@ -348,27 +348,29 @@
       .arch-card .date { font-size: 0.84rem; }
       .btn-outline { display: inline-flex; align-items: center; min-height: 44px; }
     }
+      #ep-search:focus-visible { outline: 3px solid #9E0053 !important; outline-offset: 2px; }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <div id="grain" aria-hidden="true"></div>
 
   <div class="top-stack" id="hdr-stack">
-    <a class="promo-bar" href="/podcast.html">
+    <aside aria-label="Announcement"><a class="promo-bar" href="/podcast.html">
       <span class="promo-tag">New</span>
       <span class="promo-text"><strong>The Signal:</strong> done-for-you podcast launch, $1,297.</span>
       <span class="promo-cta">See the service →</span>
-    </a>
+    </a></aside>
     <header class="site-header" id="hdr">
       <div class="container nav">
         <a href="/" class="wordmark">Priscilla Zaehringer</a>
         <nav class="nav-center">
           <div class="nav-item has-sub">
-            <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
-            <div class="submenu" role="menu">
-              <a role="menuitem" href="/podcast.html">Podcast launch</a>
-              <a role="menuitem" href="/#offer">Marketing support</a>
+            <button type="button" class="nav-link" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <div class="submenu">
+              <a href="/podcast.html">Podcast launch</a>
+              <a href="/#offer">Marketing support</a>
             </div>
           </div>
           <a href="/field-notes.html" aria-current="page">Podcast · coming 2027</a>
@@ -404,6 +406,8 @@
        EPISODE ARCHIVE. Add one .arch-card per episode (newest first),
        and mirror the newest ~5 in the "The Latest" list on field-notes.html.
        ================================================================ -->
+  <main id="main" tabindex="-1">
+
   <section class="section" id="top">
     <div class="container">
       <div class="arch-head reveal">
@@ -425,6 +429,7 @@
         <a class="arch-card" href="/field-notes/episode-template.html" data-title="Episode 06: Why six-figure offers stall before scale">
           <div class="arch-thumb t-pink"><span class="lab">Marketing Field Notes</span><span class="num">06</span></div>
           <span class="date">September 9, 2026</span>
+          <h2 class="sr-only">All episodes</h2>
           <h3>Episode 06: Why six-figure offers stall before scale</h3>
         </a>
         <a class="arch-card" href="/field-notes/episode-template.html" data-title="Episode 05: The $50 test that fixed a dead funnel">
@@ -457,6 +462,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer">
     <a href="#top" class="back-to-top" aria-label="Back to top">Back to top <span aria-hidden="true">&uarr;</span></a>
@@ -470,14 +477,14 @@
               build the funnels and systems behind small business marketing.</p>
           </div>
           <div class="foot-social">
-            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
-            <a class="social-btn" href="/field-notes.html"><span class="ic">🎙️</span>My podcast, coming in 2027</a>
-            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
-            <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📌</span>Pin along with me</a>
+            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">📷</span>Come say hi on Instagram<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="social-btn" href="/field-notes.html"><span class="ic" aria-hidden="true">🎙️</span>My podcast, coming in 2027</a>
+            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">👋</span>Let's be friends on Facebook<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">📌</span>Pin along with me<span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
         <nav class="foot-explore" aria-label="Footer">
-          <h4>Get around</h4>
+          <h2 class="foot-h">Get around</h2>
           <div class="explore-cols">
             <a href="/">Home</a>
             <a href="/about.html">About</a>

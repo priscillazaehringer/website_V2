@@ -515,7 +515,7 @@
     .social-btn:hover { background: var(--c-ink); color: var(--c-cream); }
     .social-btn .ic { font-size: 1.05rem; line-height: 1; }
     .foot-explore { justify-self: end; }
-    .foot-explore h4 { font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
+    .foot-explore .foot-h { line-height: 1.3; font-weight: 700; font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--c-pink-deep); display: inline-block; border-bottom: 2px solid var(--c-pink); padding-bottom: 6px; margin-bottom: var(--s-3); }
     .explore-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-5);
       font-family: var(--font-display); font-size: 1.2rem; }
@@ -580,20 +580,21 @@
   <link rel="stylesheet" href="/assets/css/finish.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <div id="grain" aria-hidden="true"></div>
 
   <div class="top-stack" id="hdr-stack">
-    <a class="promo-bar" href="/podcast.html"><span class="promo-tag">New</span><span class="promo-text"><strong>The Signal:</strong> done-for-you podcast launch, $1,297.</span><span class="promo-cta">See the service →</span></a>
+    <aside aria-label="Announcement"><a class="promo-bar" href="/podcast.html"><span class="promo-tag">New</span><span class="promo-text"><strong>The Signal:</strong> done-for-you podcast launch, $1,297.</span><span class="promo-cta">See the service →</span></a></aside>
     <header class="site-header" id="hdr">
       <div class="container nav">
         <a href="/" class="wordmark">Priscilla Zaehringer</a>
         <nav class="nav-center">
           <div class="nav-item has-sub">
-            <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
-            <div class="submenu" role="menu">
-              <a role="menuitem" href="/podcast.html">Podcast launch</a>
-              <a role="menuitem" href="/#offer">Marketing support</a>
+            <button type="button" class="nav-link" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <div class="submenu">
+              <a href="/podcast.html">Podcast launch</a>
+              <a href="/#offer">Marketing support</a>
             </div>
           </div>
           <a href="/field-notes.html">Podcast · coming 2027</a>
@@ -623,6 +624,8 @@
         </div>
       </div>
   </div>
+
+  <main id="main" tabindex="-1">
 
   <!-- HERO -->
   <section class="section hero" id="top">
@@ -806,7 +809,7 @@
             <div class="phead">
               <span class="num">01</span>
               <span class="when">Weeks 1 &amp; 2</span>
-              <h3><span class="emoji">🧱</span> The foundation</h3>
+              <h3><span class="emoji" aria-hidden="true">🧱</span> The foundation</h3>
             </div>
             <ul>
               <li>Full audit of your offer, audience, and current setup</li>
@@ -819,7 +822,7 @@
             <div class="phead">
               <span class="num">02</span>
               <span class="when">Weeks 3 to 5</span>
-              <h3><span class="emoji">🎯</span> The build</h3>
+              <h3><span class="emoji" aria-hidden="true">🎯</span> The build</h3>
             </div>
             <ul>
               <li>Ad creative direction and design</li>
@@ -834,7 +837,7 @@
             <div class="phead">
               <span class="num">03</span>
               <span class="when">Weeks 6 &amp; 7</span>
-              <h3><span class="emoji">🚀</span> Launch and optimize</h3>
+              <h3><span class="emoji" aria-hidden="true">🚀</span> Launch and optimize</h3>
             </div>
             <ul>
               <li>We go live and the leads start coming in</li>
@@ -847,7 +850,7 @@
             <div class="phead">
               <span class="num">04</span>
               <span class="when">Week 8</span>
-              <h3><span class="emoji">🤝</span> The handoff</h3>
+              <h3><span class="emoji" aria-hidden="true">🤝</span> The handoff</h3>
             </div>
             <ul>
               <li>Complete SOP library for running your system long-term</li>
@@ -1029,6 +1032,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer class="site-footer">
     <a href="#top" class="back-to-top" aria-label="Back to top">Back to top <span aria-hidden="true">&uarr;</span></a>
@@ -1042,14 +1047,14 @@
               build the funnels and systems behind small business marketing.</p>
           </div>
           <div class="foot-social">
-            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
-            <a class="social-btn" href="/field-notes.html"><span class="ic">🎙️</span>My podcast, coming in 2027</a>
-            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
-            <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📌</span>Pin along with me</a>
+            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">📷</span>Come say hi on Instagram<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="social-btn" href="/field-notes.html"><span class="ic" aria-hidden="true">🎙️</span>My podcast, coming in 2027</a>
+            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">👋</span>Let's be friends on Facebook<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">📌</span>Pin along with me<span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
         <nav class="foot-explore" aria-label="Footer">
-          <h4>Get around</h4>
+          <h2 class="foot-h">Get around</h2>
           <div class="explore-cols">
             <a href="/">Home</a>
             <a href="/about.html">About</a>
@@ -1094,7 +1099,7 @@
           <textarea name="What you want from ads" rows="3" required></textarea></label>
 
         <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
-          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">Where are you at? <span class="req">*</span></span>
+          <legend style="display:block; padding:0; font-size:0.92rem; font-weight:600; margin-bottom:8px;">Where are you at? <span class="req">*</span></legend>
           <div class="opts">
             <label class="opt"><input type="radio" name="Where you're at" value="My offer is validated and selling" required> My offer is validated and selling.</label>
             <label class="opt"><input type="radio" name="Where you're at" value="I'm getting sales but it's inconsistent"> I'm getting sales, but it's inconsistent.</label>
@@ -1104,7 +1109,7 @@
         </fieldset>
 
         <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
-          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What do you want ads to do? <span class="req">*</span> <span class="hint">(choose any)</span></span>
+          <legend style="display:block; padding:0; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What do you want ads to do? <span class="req">*</span> <span class="hint">(choose any)</span></legend>
           <div class="opts">
             <label class="opt"><input type="checkbox" name="Goals" value="Grow my email list"> Grow my email list</label>
             <label class="opt"><input type="checkbox" name="Goals" value="Get consistent leads"> Get consistent leads</label>
@@ -1151,7 +1156,7 @@
           <p>I personally review every inquiry and typically respond within two business days. If it looks like
             we're a good fit, I'll reach out to set up a call.</p>
           <p>In the meantime, you can <a href="/podcast.html">explore The Signal</a> or
-            <a href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener">connect with me on Instagram</a>.</p>
+            <a href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener">connect with me on Instagram<span class="sr-only"> (opens in a new tab)</span></a>.</p>
         </div>
       </form>
     </div>

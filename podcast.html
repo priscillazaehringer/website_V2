@@ -454,7 +454,7 @@
     .pstep .ring { width: 66px; height: 66px; margin: 0 auto; border-radius: 50%; display: grid; place-items: center;
       background: var(--bg); border: 1px solid var(--line); font-family: var(--font-display); font-size: 1.45rem;
       color: var(--c-ink); box-shadow: 0 0 0 6px rgba(158,0,83,0.04), 0 0 0 13px rgba(158,0,83,0.022); }
-    .pstep h4 { margin: var(--s-3) 0 var(--s-1); font-size: 1.15rem; }
+    .pstep h3 { margin: var(--s-3) 0 var(--s-1); font-size: 1.15rem; }
     .pstep p { color: var(--text-muted); margin: 0 auto; max-width: 22ch; font-size: 0.95rem; line-height: 1.55; }
     /* final step: the destination — same size, ink fill, a soft pulse */
     .pstep.dest .ring { background: var(--c-ink); color: var(--c-cream); border-color: var(--c-ink);
@@ -492,7 +492,7 @@
     .social-btn:hover { background: var(--c-ink); color: var(--c-cream); }
     .social-btn .ic { font-size: 1.05rem; line-height: 1; }
     .foot-explore { justify-self: end; }
-    .foot-explore h4 { font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
+    .foot-explore .foot-h { line-height: 1.3; font-weight: 700; font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--c-pink-deep); display: inline-block; border-bottom: 2px solid var(--c-pink); padding-bottom: 6px; margin-bottom: var(--s-3); }
     .explore-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-5);
       font-family: var(--font-display); font-size: 1.2rem; }
@@ -553,6 +553,7 @@
   <link rel="stylesheet" href="/assets/css/finish.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <div id="grain" aria-hidden="true"></div>
 
@@ -562,10 +563,10 @@
         <a href="/" class="wordmark">Priscilla Zaehringer</a>
         <nav class="nav-center">
           <div class="nav-item has-sub">
-            <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
-            <div class="submenu" role="menu">
-              <a role="menuitem" href="/podcast.html">Podcast launch</a>
-              <a role="menuitem" href="/#offer">Marketing support</a>
+            <button type="button" class="nav-link" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <div class="submenu">
+              <a href="/podcast.html">Podcast launch</a>
+              <a href="/#offer">Marketing support</a>
             </div>
           </div>
           <a href="/field-notes.html">Podcast · coming 2027</a>
@@ -595,6 +596,8 @@
         </div>
       </div>
   </div>
+
+  <main id="main" tabindex="-1">
 
   <!-- ===================== FREEBIE OPT-IN BAND ===================== -->
   <!-- TODO: set the real Kit opt-in URL on the button (currently "#"). -->
@@ -945,10 +948,10 @@
           map out your launch.</p>
       </div>
       <div class="process reveal">
-        <div class="pstep"><div class="ring">01</div><h4>Submit an inquiry</h4><p>You tell me about your business.</p></div>
-        <div class="pstep"><div class="ring">02</div><h4>We get on a call</h4><p>We figure out if it's the right fit.</p></div>
-        <div class="pstep"><div class="ring">03</div><h4>Your custom plan</h4><p>I map a plan and timeline for your launch.</p></div>
-        <div class="pstep dest"><div class="ring">04</div><h4>We build your show</h4><p>You walk away ready to run it.</p></div>
+        <div class="pstep"><div class="ring">01</div><h3>Submit an inquiry</h3><p>You tell me about your business.</p></div>
+        <div class="pstep"><div class="ring">02</div><h3>We get on a call</h3><p>We figure out if it's the right fit.</p></div>
+        <div class="pstep"><div class="ring">03</div><h3>Your custom plan</h3><p>I map a plan and timeline for your launch.</p></div>
+        <div class="pstep dest"><div class="ring">04</div><h3>We build your show</h3><p>You walk away ready to run it.</p></div>
       </div>
     </div>
   </section>
@@ -960,6 +963,9 @@
            poster="/assets/video/mic-poster.webp" aria-hidden="true">
       <source src="/assets/video/mic.mp4" type="video/mp4">
     </video>
+    <button type="button" class="video-toggle" aria-pressed="false">
+      <span class="vt-icon" aria-hidden="true">&#10074;&#10074;</span><span class="vt-label">Pause video</span>
+    </button>
     <div class="container col reveal center">
       <img class="cta-logo" src="/assets/img/the-signal-light-1162.webp"
         srcset="/assets/img/the-signal-light-560.webp 560w, /assets/img/the-signal-light-1162.webp 1162w"
@@ -972,6 +978,8 @@
       <div class="cta" style="justify-content: center;"><button type="button" class="btn btn-cream btn-lg" data-open-inquiry>Get in touch</button></div>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="site-footer">
@@ -986,14 +994,14 @@
               build the funnels and systems behind small business marketing.</p>
           </div>
           <div class="foot-social">
-            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
-            <a class="social-btn" href="/field-notes.html"><span class="ic">🎙️</span>My podcast, coming in 2027</a>
-            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
-            <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📌</span>Pin along with me</a>
+            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">📷</span>Come say hi on Instagram<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="social-btn" href="/field-notes.html"><span class="ic" aria-hidden="true">🎙️</span>My podcast, coming in 2027</a>
+            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">👋</span>Let's be friends on Facebook<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">📌</span>Pin along with me<span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
         <nav class="foot-explore" aria-label="Footer">
-          <h4>Get around</h4>
+          <h2 class="foot-h">Get around</h2>
           <div class="explore-cols">
             <a href="/">Home</a>
             <a href="/about.html">About</a>
@@ -1037,7 +1045,7 @@
           <textarea name="Why a podcast now" rows="3" required></textarea></label>
 
         <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
-          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">Which best describes where you're at? <span class="req">*</span></span>
+          <legend style="display:block; padding:0; font-size:0.92rem; font-weight:600; margin-bottom:8px;">Which best describes where you're at? <span class="req">*</span></legend>
           <div class="opts">
             <label class="opt"><input type="radio" name="Where you're at" value="I have an idea but haven't started" required> I have an idea but haven't started.</label>
             <label class="opt"><input type="radio" name="Where you're at" value="I've chosen a topic or name"> I've chosen a topic/name.</label>
@@ -1047,7 +1055,7 @@
         </fieldset>
 
         <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
-          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What's your biggest goal for your podcast? <span class="req">*</span> <span class="hint">(choose any)</span></span>
+          <legend style="display:block; padding:0; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What's your biggest goal for your podcast? <span class="req">*</span> <span class="hint">(choose any)</span></legend>
           <div class="opts">
             <label class="opt"><input type="checkbox" name="Biggest goal" value="Build authority"> Build authority</label>
             <label class="opt"><input type="checkbox" name="Biggest goal" value="Generate more leads"> Generate more leads</label>
@@ -1085,7 +1093,7 @@
           <p>I personally review every inquiry and typically respond within two business days. If it looks like
             we're a good fit, I'll reach out with the next steps.</p>
           <p>In the meantime, come say hi on
-            <a href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener">Instagram</a>.</p>
+            <a href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (opens in a new tab)</span></a>.</p>
         </div>
       </form>
     </div>
@@ -1261,6 +1269,20 @@
       }
     ]
   }
+  </script>
+<script>
+    // Background video: pause/play control (WCAG 2.2.2) and respect reduced motion.
+    document.querySelectorAll('.has-video').forEach(sec => {
+      const v = sec.querySelector('.bg-video'), b = sec.querySelector('.video-toggle');
+      if (!v || !b) return;
+      const set = (paused) => {
+        b.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        b.querySelector('.vt-label').textContent = paused ? 'Play video' : 'Pause video';
+        b.querySelector('.vt-icon').innerHTML = paused ? '&#9654;' : '&#10074;&#10074;';
+      };
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.pause(); v.removeAttribute('autoplay'); b.hidden = true; return; }
+      b.addEventListener('click', () => { if (v.paused) { v.play(); set(false); } else { v.pause(); set(true); } });
+    });
   </script>
 </body>
 </html>
