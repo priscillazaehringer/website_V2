@@ -134,33 +134,37 @@
 .video-toggle:hover { background: rgba(29,30,38,0.9); }
 .vt-icon { font-size: 0.7rem; letter-spacing: -1px; }
 
-/* ---- Workbook strip: a big, tilted mockup that breaks out of the band ----
-   Desktop: the mockup is lifted out of the grid and anchored so it pokes up
-   past the strip's top edge into the section above (by less than that
-   section's padding, so it never covers text). Phone: it sits above the text
-   and overlaps the section above. */
-.freebie-bar { overflow: visible !important; z-index: 5 !important; padding-block: 36px !important; }
-.freebie-inner { position: relative; grid-template-columns: clamp(300px, 34vw, 440px) 1fr auto !important;
-  gap: clamp(24px, 4vw, 56px) !important; }
+/* ---- Workbook strip: a big, tilted mockup that overhangs BOTH edges ----
+   The strip is kept compact (button under the text) and the mockup is lifted
+   out of the grid, centered vertically and made taller than the strip, so it
+   pokes past the top and bottom edges by the same amount (less than the
+   neighbouring sections' padding, so it never covers their text). On phones
+   the layout stacks, so the mockup overhangs the top edge only. */
+.freebie-bar { overflow: visible !important; z-index: 5 !important; padding-block: 20px !important; }
+.freebie-inner { position: relative; grid-template-columns: clamp(360px, 46vw, 580px) 1fr !important;
+  gap: clamp(24px, 4vw, 48px) !important; align-items: center; }
 .freebie-copy { grid-column: 2; }
-.freebie-cta { grid-column: 3; }
-.freebie-mockup { position: absolute; z-index: 2; left: -12px; top: -96px;
-  width: clamp(330px, 37vw, 500px) !important; height: auto; transform: rotate(-5deg);
+.freebie-cta { grid-column: 2; justify-self: start !important; margin-top: 4px; }
+.freebie-mockup { position: absolute; z-index: 2; left: -60px; top: 50%;
+  width: clamp(440px, 54vw, 680px) !important; height: auto;
+  transform: translateY(-50%) rotate(-5deg);
   filter: drop-shadow(0 30px 40px rgba(0,0,0,0.45)); }
 @media (prefers-reduced-motion: no-preference) {
   .freebie-mockup { transition: transform 0.4s ease; }
-  .freebie-bar:hover .freebie-mockup { transform: rotate(-3deg) translateY(-6px); }
+  .freebie-bar:hover .freebie-mockup { transform: translateY(calc(-50% - 6px)) rotate(-3deg); }
 }
 @media (max-width: 940px) {
-  .freebie-inner { grid-template-columns: clamp(240px, 36vw, 320px) 1fr !important; }
-  .freebie-cta { grid-column: 2; justify-self: start !important; }
-  .freebie-mockup { width: clamp(260px, 40vw, 360px) !important; top: -80px; }
+  .freebie-inner { grid-template-columns: 50vw 1fr !important; }
+  .freebie-mockup { width: 54vw !important; left: -24px; }
+  .freebie-copy p { display: none; }
 }
 @media (max-width: 680px) {
   .freebie-inner { grid-template-columns: 1fr !important; }
   .freebie-copy, .freebie-cta { grid-column: 1; justify-self: center !important; }
+  .freebie-copy p { display: block; }
   .freebie-mockup { position: relative; left: auto; top: auto; width: min(84vw, 340px) !important;
     margin: -96px auto 0; transform: rotate(-4deg); }
+  .freebie-bar:hover .freebie-mockup { transform: rotate(-4deg); }
 }
 
 /* ---- Hello bar: one sentence, one link, no image or button ---- */
