@@ -607,7 +607,9 @@
     .case h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); margin-bottom: var(--s-2); }
     .case > p { color: var(--text-muted); font-size: 0.97rem; margin-bottom: 0; }
     .cases.roles { grid-template-columns: repeat(3, 1fr); }
-    @media (max-width: 980px) { .cases.roles { grid-template-columns: 1fr; max-width: 620px; } }
+    @media (max-width: 980px) { .cases.roles { grid-template-columns: 1fr 1fr; max-width: none; } }
+    @media (max-width: 680px) { .cases.roles { grid-template-columns: 1fr; } }
+    .roles .case h3 { font-size: 1.3rem; margin: 2px 0 var(--s-2); }
     .case > p.case-stat { font-family: var(--font-display); font-synthesis: none; font-size: clamp(2.4rem, 4vw, 3.2rem);
       line-height: 1; color: #1D1E26 !important; margin: var(--s-2) 0 var(--s-3); }
     .case-stat span { display: block; font-family: var(--font-body); font-size: 0.85rem; font-weight: 600;
@@ -718,30 +720,51 @@
       <div class="col reveal">
         <h2>The roles I fill</h2>
         <p style="margin-top: var(--s-3);">Most businesses would hire a different person for each of these.
-          Depending on the month, I'm one of them, or all three.</p>
+          Depending on the month, I'm one of them, or all six.</p>
       </div>
       <div class="cases roles reveal">
         <article class="case">
+          <p class="case-tag">Marketing strategist</p>
+          <h3>Deciding what to focus on</h3>
+          <p class="case-so">So you're working on the right things, not just the loudest ones.</p>
+          <p>I look at your offers, audience, and calendar, and help you decide what to launch, what to fix, and
+            what to drop. For one agency client, that meant planning a holiday offer, a weekly webinar series,
+            and a podcast series around one launch calendar.</p>
+        </article>
+        <article class="case">
+          <p class="case-tag">Project manager</p>
+          <h3>Keeping every moving part on track</h3>
+          <p class="case-so">So deadlines get hit and nothing waits on a missing reply.</p>
+          <p>Timelines, handoffs, and who owes what. For a funnel agency, I built a roadmap page for every client,
+            so each one always knew their next step and when it was due.</p>
+        </article>
+        <article class="case">
           <p class="case-tag">Ads manager</p>
-          <p class="case-stat">40+ <span>Meta campaigns managed</span></p>
+          <h3>Running Meta ads that build your list</h3>
           <p class="case-so">So new leads come in every day, not just on a good social media week.</p>
-          <p>One client's $5-a-day campaign brought in about seven new subscribers a day, at around 70 cents
-            each. I handle the strategy, audiences, ads, and the lead forms that feed your email list.</p>
+          <p>40+ Meta campaigns managed. One client's $5-a-day campaign brought in about seven new subscribers a
+            day, at around 70 cents each.</p>
         </article>
         <article class="case">
           <p class="case-tag">Podcast producer</p>
-          <p class="case-stat">300+ <span>episodes produced</span></p>
-          <p class="case-so">So your show goes out every week, even when you're busy.</p>
-          <p>Business, marketing, and healthcare shows, including client podcasts ranked in the top 10% and
-            top 2.5%. Launch, editing, show notes, and turning each episode into emails and social posts.
-            <a href="/podcast.html">See The Signal</a>.</p>
+          <h3>Getting your show out every week</h3>
+          <p class="case-so">So your podcast keeps publishing, even when you're busy.</p>
+          <p>300+ episodes produced for business, marketing, and healthcare shows, including client podcasts
+            ranked in the top 10% and top 2.5%. <a href="/podcast.html">See The Signal</a>.</p>
         </article>
         <article class="case">
           <p class="case-tag">Website &amp; funnel developer</p>
-          <p class="case-stat">30+ <span>funnels &amp; systems built</span></p>
+          <h3>Building pages that work</h3>
           <p class="case-so">So your pages look good, work right, and don't need babysitting.</p>
-          <p>Sales pages, landing pages, websites, and client portals, coded by me. Recent builds include sales
-            pages that close their own launch deadlines and a roadmap page for every client of a funnel agency.</p>
+          <p>30+ funnels and systems built: sales pages, landing pages, websites, and client portals, coded by
+            me. Recent builds include sales pages that close their own launch deadlines.</p>
+        </article>
+        <article class="case">
+          <p class="case-tag">Copyeditor</p>
+          <h3>Polishing what goes out</h3>
+          <p class="case-so">So everything sounds like you, and nothing goes out with a typo.</p>
+          <p>Sales pages, emails, show notes, and social posts. I tighten the copy, check it against your voice,
+            and catch mistakes before your audience does.</p>
         </article>
       </div>
     </div>
