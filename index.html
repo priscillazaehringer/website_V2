@@ -8,7 +8,7 @@
   <!-- noindex while staging. Remove this tag at launch. -->
   <meta name="robots" content="noindex, nofollow">
   <title>Priscilla Zaehringer · Your marketing, finally handled</title>
-  <meta name="description" content="One person who runs your marketing end to end. Strategy, launches, ads, and the systems behind them, for online business owners ready to grow without building a team.">
+  <meta name="description" content="Fractional CMO and podcast launches for online business owners. Your funnels, email, launches, and podcast, planned and built by one person in Iowa.">
   <!-- the two fonts every page paints with; preloaded so they are not discovered only after tokens.css parses -->
   <link rel="preload" href="/assets/fonts/hanken-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/golden-batch.woff2" as="font" type="font/woff2" crossorigin>
@@ -438,7 +438,7 @@
     .social-btn:hover { background: var(--c-ink); color: var(--c-cream); }
     .social-btn .ic { font-size: 1.05rem; line-height: 1; }
     .foot-explore { justify-self: end; }
-    .foot-explore h4 { font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
+    .foot-explore .foot-h { line-height: 1.3; font-weight: 700; font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--c-pink-deep); display: inline-block; border-bottom: 2px solid var(--c-pink); padding-bottom: 6px; margin-bottom: var(--s-3); }
     .explore-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-5);
       font-family: var(--font-display); font-size: 1.2rem; }
@@ -531,6 +531,8 @@
     /* ---- Projects: quieter, secondary discovery cards ---- */
     .svc-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); margin-top: var(--s-5); }
     @media (max-width: 760px) { .svc-cards { grid-template-columns: 1fr; } }
+    .svc-cards.three { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 980px) { .svc-cards.three { grid-template-columns: 1fr; max-width: 560px; } }
     .svc-card { background: #fff; border: 1px solid var(--line); border-radius: 16px;
       padding: clamp(var(--s-4), 3.5vw, var(--s-5)); display: flex; flex-direction: column; }
     .svc-card .ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
@@ -581,25 +583,43 @@
       .foot-script { min-height: 44px; }
       .board-head .live { font-size: 0.76rem; }
     }
+    /* ---- Hero v2: two-sentence headline + framed photo (no cutout) ---- */
+    .hero > .container { display: block; }
+    .hero .hero-text { max-width: none; padding-block: var(--s-6); }
+    .hero h1 { max-width: none; font-size: clamp(2.5rem, 4.6vw, 4.1rem); line-height: 1.08; }
+    .hero h1 .h1-a, .hero h1 .h1-b { display: block; }
+    .hero h1 .h1-b { color: var(--c-pink); margin-top: 0.12em; }
+    .hero .hero-body { max-width: 46ch; color: rgba(247,238,231,0.88); }
+    .hero.has-video::before { background: linear-gradient(90deg, rgba(29,30,38,0.92) 0%, rgba(29,30,38,0.78) 45%, rgba(29,30,38,0.45) 100%); }
+    @media (max-width: 860px) { .hero.has-video::before { background: rgba(29,30,38,0.8); } }
+    .hero-photo { margin: 0; justify-self: end; width: 100%; max-width: 400px; }
+    .hero-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;
+      object-position: center 30%; border-radius: 6px; box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
+    @media (max-width: 860px) {
+      .hero > .container { grid-template-columns: 1fr; gap: var(--s-4); }
+      .hero .hero-text { padding-top: var(--s-5); padding-bottom: 0; }
+      .hero-photo { justify-self: start; max-width: 340px; padding-bottom: var(--s-5); }
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/css/finish.css">
+  <style>
+    /* homepage only: the workbook strip follows the plum testimonial, so keep it dark */
+    .freebie-bar { background: #1D1E26 !important; border-top: 1px solid rgba(255,200,229,0.35); border-bottom: 1px solid rgba(255,200,229,0.35); }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <div id="grain" aria-hidden="true"></div>
 
   <div class="top-stack" id="hdr-stack">
+    <aside aria-label="Announcement"><a class="hello-bar" href="#workbook">Thinking about a podcast? <span>Get the free 30-minute workbook</span> and decide before you buy a mic.</a></aside>
     <header class="site-header" id="hdr">
       <div class="container nav">
         <a href="#top" class="wordmark">Priscilla Zaehringer</a>
-        <nav class="nav-center">
-          <div class="nav-item has-sub">
-            <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Work with me <span class="caret" aria-hidden="true">&#9662;</span></button>
-            <div class="submenu" role="menu">
-              <a role="menuitem" href="/ads.html">Meta Ads</a>
-              <a role="menuitem" href="/podcast.html">Podcast Production</a>
-            </div>
-          </div>
-          <a href="/field-notes.html">Listen to the podcast</a>
+        <nav class="nav-center" aria-label="Main">
+          <a href="/podcast.html">Podcast Launch</a>
+          <a href="/support.html">Marketing Support</a>
           <a href="/about.html">About</a>
         </nav>
         <div class="nav-cta">
@@ -613,149 +633,98 @@
       <div class="mobile-menu" id="mobileMenu">
         <div class="mm-inner">
           <nav class="mm-nav" aria-label="Mobile">
-            <p class="mm-label">Work with me</p>
-            <div class="mm-sub">
-              <a class="mm-link" href="/ads.html">Meta Ads</a>
-              <a class="mm-link" href="/podcast.html">Podcast Production</a>
-            </div>
-            <a class="mm-link" href="/field-notes.html">Listen to the podcast</a>
-            <a class="mm-link" href="/about.html">About</a>
             <a class="mm-link" href="/">Home</a>
+            <a class="mm-link" href="/podcast.html">Podcast Launch</a>
+            <a class="mm-link" href="/support.html">Marketing Support</a>
+            <a class="mm-link" href="/about.html">About</a>
             <button type="button" class="mm-cta" data-open-inquiry>Get in touch</button>
           </nav>
         </div>
       </div>
   </div>
 
-  <!-- ===================== FREEBIE OPT-IN BAND (site-wide) ===================== -->
-  <!-- TODO: set the real Kit opt-in URL on the button (currently "#"). -->
-  <section class="freebie-bar" aria-label="Free podcast workbook">
-    <div class="container freebie-inner">
-      <img class="freebie-mockup" src="/assets/img/start-a-podcast-workbook.webp" width="990" height="664" fetchpriority="high" decoding="async"
-        alt="Start a Podcast — free workbook for deciding whether a podcast earns a place in your marketing">
-      <div class="freebie-copy">
-        <p class="fb-kicker">Free workbook</p>
-        <h2>Thinking about a podcast? <span class="em">Decide in 30 minutes.</span></h2>
-        <p>A short, no-fluff workbook that helps you figure out whether a podcast actually earns a place in your marketing.</p>
-      </div>
-      <div class="freebie-cta">
-        <a href="#" class="btn" data-kit-optin>Send me the workbook →</a>
-      </div>
-    </div>
-  </section>
+  <main id="main" tabindex="-1">
+
 
   <!-- ===================== HERO ===================== -->
-  <section class="hero" id="top" style="padding-top: var(--s-5);">
-    <span class="hero-blob" aria-hidden="true"></span>
+  <section class="hero has-video" id="top" style="padding-top: var(--s-5);">
+    <!-- Background clip: Mixkit (free license, mixkit.co/license). -->
+    <video class="bg-video" autoplay muted loop playsinline preload="metadata"
+           poster="/assets/video/notebook-poster.webp" aria-hidden="true">
+      <source src="/assets/video/notebook.mp4" type="video/mp4">
+    </video>
+    <button type="button" class="video-toggle" aria-pressed="false">
+      <span class="vt-icon" aria-hidden="true">&#10074;&#10074;</span><span class="vt-label">Pause video</span>
+    </button>
     <div class="container">
-      <div class="hero-text" style="padding-top: var(--s-6);">
-        <h1>Your marketing, finally
-          <span class="sig">handled<svg viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 55 2, 150 2, 217 6"/></svg></span>.</h1>
-        <p class="hero-triad">Strategy<i>.</i> Systems<i>.</i> Execution<i>.</i></p>
-        <p class="hero-roof">All under one roof</p>
-        <p class="hero-body">You've outgrown doing everything yourself, but you're not ready for a full
-          marketing department. I'll bring the <b>strategy</b>, build the <b>systems</b>, and keep
-          <b>everything moving</b>.</p>
+      <div class="hero-text">
+        <h1><span class="h1-a">You run your business.</span>
+          <span class="h1-b">I'll handle the marketing.</span></h1>
+        <p class="hero-body">Your podcast launch, email funnels, sales pages, and the systems behind them,
+          handled by one person instead of five.</p>
         <div class="cta">
           <button type="button" class="btn" data-open-inquiry>Get in touch</button>
-          <a href="#pain" class="textlink">See if this is you ↓</a>
+          <a href="#who" class="textlink">Who I work with ↓</a>
         </div>
       </div>
     </div>
-    <img class="hero-cutout" src="/assets/img/hero-cutout.webp"
-         srcset="/assets/img/hero-cutout-760.webp 760w, /assets/img/hero-cutout.webp 1500w"
-         sizes="(max-width: 860px) 360px, 40vw"
-         width="1500" height="1401" loading="lazy" decoding="async"
-         alt="Priscilla working at her desk">
   </section>
 
-  <!-- ===================== PAIN ===================== -->
-  <section class="section" id="pain">
+  <!-- ===================== WHO I WORK WITH ===================== -->
+  <section class="section" id="who">
     <div class="container">
      <div class="col reveal">
-      <p class="eyebrow"><span class="heart">&#9829;</span>Three signs we should talk</p>
-      <h2 style="max-width: 18ch;">Sound familiar?</h2>
-      <p style="color: var(--text-muted); margin-top: var(--s-2);">Go ahead, check the ones that hit.</p>
-
-      <div class="checklist">
-        <label class="check-item">
-          <input type="checkbox">
-          <span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 l5 5 l12 -13"/></svg></span>
-          <span class="ci-text">
-            <span class="claim">You're managing instead of building.</span>
-            <span class="sub">You hired a VA, a copywriter, an ads manager. Now your week is briefing,
-              following up, and connecting dots between people who don't talk to each other.</span>
-          </span>
-        </label>
-        <label class="check-item">
-          <input type="checkbox">
-          <span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 l5 5 l12 -13"/></svg></span>
-          <span class="ci-text">
-            <span class="claim">Your high-value hours go to low-value work.</span>
-            <span class="sub">Twenty hours a week on backend marketing tasks at $150 an hour or more.
-              It's exhausting, and quietly, it's costing you everything.</span>
-          </span>
-        </label>
-        <label class="check-item">
-          <input type="checkbox">
-          <span class="box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13 l5 5 l12 -13"/></svg></span>
-          <span class="ci-text">
-            <span class="claim">The important marketing never becomes the urgent marketing.</span>
-            <span class="sub">The podcast. The launch. The ad strategy. The funnel that's been "almost
-              done" for six weeks. You know what would move the needle, you just can't get to it.</span>
-          </span>
-        </label>
-      </div>
-
-      <p class="statement" style="margin-top: var(--s-5);">Checked a few? You don't need five hires. You
-        need <span class="em">one person who can hold the whole thing</span>, so you get back to what only
-        you can do.</p>
+      <h2 style="max-width: 20ch;">Is this you?</h2>
+      <p class="lede" style="margin-top: var(--s-3);">You've probably been in business a while. You've got an
+        offer that sells and people who love working with you. What you don't have is time to plan the
+        marketing, build it, and chase down all the pieces to get it live.</p>
+      <p>Maybe you've already hired people to help, but somehow you're still the one keeping track of
+        everything. The ads person needs something from the web designer, your email sequence isn't finished,
+        and that podcast idea is still sitting in a Google Doc.</p>
+      <p>That's the kind of stuff I take off your plate.</p>
      </div>
     </div>
   </section>
 
-  <!-- ===================== OFFER ===================== -->
+  <!-- ===================== WAYS TO WORK WITH ME ===================== -->
+  <!-- Overview only: the details live on /support.html and /podcast.html. -->
   <section class="section alt" id="offer">
     <div class="container">
-      <div class="offer-grid">
-        <div class="offer-narr reveal">
-          <p class="eyebrow"><span class="heart">&#9829;</span>The whole chalupa</p>
-          <h2>A marketing partner on your team.</h2>
-          <p class="subhead">Not a project. Not a deliverable. A partnership.</p>
-          <p>This is what most clients hire me for. I become part of your team, the person who holds the
-            marketing function of your business. We figure out what needs to happen together, and then I
-            handle it. Strategy, execution, and the systems behind all of it.</p>
-          <p>You buy a monthly block of my hours, and we use them however the business needs that month.
-            Some weeks that's running ad campaigns. Some weeks it's building a launch. Some weeks it's
-            cleaning up your backend so the marketing actually has somewhere to land.</p>
-          <p>The specific mix depends on your business. What stays consistent is that I'm in it with you.
-            If you've been wishing you had a marketing hire who actually gets your business, that's what this is.</p>
-          <button type="button" class="btn" data-open-inquiry>Get in touch</button>
+      <div class="reveal wide-head center-head">
+        <h2>Ways to work with me</h2>
+        <p style="margin-top: var(--s-3);">Ongoing help, a podcast launch, or one project to start.</p>
+      </div>
+      <div class="svc-cards three reveal">
+        <div class="svc-card">
+          <h3>Fractional CMO</h3>
+          <p class="retainer">Ongoing &middot; a few clients at a time</p>
+          <p>You get a marketing lead on your team. We plan each month together, and your funnels, email,
+            launches, and tech actually get built.</p>
+          <a href="/support.html" class="proj-link">How it works &#8594;</a>
         </div>
-        <aside class="board reveal" aria-label="What I might be running for you in any given month">
-          <div class="board-head">
-            <span class="bt">In any given month</span>
-            <span class="live">On it</span>
-          </div>
-          <div class="workstreams">
-            <div class="ws"><span class="ic" aria-hidden="true">&#128227;</span><span class="wt">Ads strategy and management</span></div>
-            <div class="ws"><span class="ic" aria-hidden="true">&#129522;</span><span class="wt">Funnels, landing pages, and lead magnets</span></div>
-            <div class="ws"><span class="ic" aria-hidden="true">&#9993;&#65039;</span><span class="wt">Email marketing, sequences, and launches</span></div>
-            <div class="ws"><span class="ic" aria-hidden="true">&#127908;</span><span class="wt">Podcast production and content systems</span></div>
-            <div class="ws"><span class="ic" aria-hidden="true">&#9881;&#65039;</span><span class="wt">Operations: tools, automations, SOPs, and team coordination</span></div>
-          </div>
-          <div class="board-foot">The scope flexes. The <span class="em">partnership stays steady.</span></div>
-        </aside>
+        <div class="svc-card">
+          <h3>The Signal: podcast launch</h3>
+          <p class="retainer">6 to 8 weeks &middot; $1,297</p>
+          <p>Your show gets planned, branded, set up, and launched. You walk away with everything you need to
+            keep it going.</p>
+          <a href="/podcast.html" class="proj-link">See what's included &#8594;</a>
+        </div>
+        <div class="svc-card">
+          <h3>Start with one project</h3>
+          <p class="retainer">Quoted up front</p>
+          <p>A funnel, a sales page, or an email sequence that keeps getting pushed to next week. You get a
+            price up front, and it gets done.</p>
+          <a href="/support.html#ways" class="proj-link">More about projects &#8594;</a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===================== TESTIMONIAL (card) ===================== -->
+  <!-- TODO: add two or three more real testimonials here, ideally ones that speak to
+       different sides of the work (ads results, podcast production, day-to-day ops). -->
   <section class="section" id="testimonial">
     <div class="container">
-      <div class="col reveal center">
-        <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>What clients say</p>
-      </div>
       <figure class="quote-feature reveal">
         <span class="qmark" aria-hidden="true">&#8220;</span>
         <div class="quote-main">
@@ -771,71 +740,25 @@
     </div>
   </section>
 
-  <!-- ===================== PROJECT OPTIONS ===================== -->
-  <section class="section" id="projects">
-    <div class="container">
-      <div class="reveal col">
-        <p class="eyebrow"><span class="heart">&#9829;</span>Just want a piece of the pie?</p>
-        <h2>Just need one thing handled?</h2>
-        <p class="lede" style="margin-top: var(--s-2);">Sometimes you don't need a full partnership. You
-          need one specific thing done really well. For those situations:</p>
+  <!-- ===================== FREEBIE OPT-IN BAND (site-wide) ===================== -->
+  <!-- TODO: set the real Kit opt-in URL on the button (currently "#"). -->
+  <section class="freebie-bar" id="workbook" aria-label="Free podcast workbook">
+    <div class="container freebie-inner">
+      <img class="freebie-mockup" src="/assets/img/start-a-podcast-workbook.webp" width="990" height="664" loading="lazy" decoding="async"
+        alt="Start a Podcast — free workbook for deciding whether a podcast earns a place in your marketing">
+      <div class="freebie-copy">
+        <p class="fb-kicker">Free workbook</p>
+        <h2>Thinking about a podcast? <span class="em">Decide in 30 minutes.</span></h2>
+        <p>A short workbook to help you decide whether a podcast belongs in your marketing, before you buy a microphone.</p>
       </div>
-      <div class="svc-cards reveal">
-        <div class="svc-card">
-          <span class="ic coral" aria-hidden="true">&#128227;</span>
-          <h3>Meta Ads Management</h3>
-          <p class="retainer">Project-based or short-term retainer</p>
-          <p>You've outgrown organic, or you've run ads before and quietly lost money doing it. Ads aren't
-            a build-once-and-walk-away project. Creative fatigues, costs drift, and what worked in spring
-            stops working by summer. So I build the account properly, run it until the numbers are real and
-            repeatable, then hand you something that's already working. No smoke.</p>
-          <a href="/ads.html" class="proj-link">See the ads service →</a>
-        </div>
-        <div class="svc-card">
-          <span class="ic mint" aria-hidden="true">&#127908;&#65039;</span>
-          <h3>Podcast Production</h3>
-          <p class="retainer">Done-for-you launch · optional ongoing support</p>
-          <p>You want a podcast, not a second job producing one. I build the whole thing — strategy,
-            branding, tech, and your first batch of episodes — get it live, then show you how to run it
-            yourself. From there, keep it in-house or stay on with me monthly. Your call.</p>
-          <a href="/podcast.html" class="proj-link">See the podcast service →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PROCESS ===================== -->
-  <section class="section alt" id="process">
-    <div class="container">
-      <div class="col reveal">
-        <p class="eyebrow"><span class="heart">&#9829;</span>How we jam</p>
-        <h2>Three steps between you and finally having your marketing handled.</h2>
-      </div>
-      <div class="timeline reveal">
-        <div class="tl-step">
-          <div class="marker">01</div>
-          <h3>Start with a conversation.</h3>
-          <p>You know exactly what you need, or you just know something isn't working. Either way, we walk
-            through your business and find the real gaps. You'll leave with a clearer picture.</p>
-        </div>
-        <div class="tl-step">
-          <div class="marker">02</div>
-          <h3>Get a plan, not a pitch.</h3>
-          <p>If it's a fit, you'll get a proposal with real scope, a real timeline, and a real price.
-            If it's not, I'll tell you who to call instead.</p>
-        </div>
-        <div class="tl-step">
-          <div class="marker">03</div>
-          <h3>One person runs it.</h3>
-          <p>Most marketers hand you a plan and leave. I run it with you: ads, funnels, launches, email,
-            podcast. Marketing handled like it's someone's whole job.</p>
-        </div>
+      <div class="freebie-cta">
+        <a href="#" class="btn" data-kit-optin>Send me the workbook →</a>
       </div>
     </div>
   </section>
 
   <!-- ===================== ABOUT ===================== -->
-  <section class="section" id="about">
+  <section class="section alt" id="about">
     <div class="container">
       <div class="about-grid">
         <div class="reveal">
@@ -844,16 +767,15 @@
             <div class="about-photo" role="img" aria-label="Portrait of Priscilla"></div>
             <span class="note-script" aria-hidden="true">hi, that's me!</span>
           </div>
-          <p class="pullquote">Most marketers hand you a plan. I run it with you.</p>
         </div>
         <div class="reveal">
-          <p class="eyebrow"><span class="heart">&#9829;</span>Hi! Nice to meet you!</p>
-          <h2>I'm Priscilla, the <span class="em">marketing partner</span> your business has been missing.</h2>
-          <p style="margin-top: var(--s-3);">I work with online business owners who are past the startup
-            phase and ready to grow, but who don't want to build a team to get there.</p>
-          <p>I don't wait for direction. I find the gaps, bring ideas to the table, and execute. Whether
-            it's launching your podcast, running your ad campaigns, building the funnel, or holding the
-            operational pieces that keep all of it moving, I treat your business like it's my own.</p>
+          <h2>Hi, I'm Priscilla.</h2>
+          <p style="margin-top: var(--s-3);">I was born and raised in Iowa, and I'm still here. I'm a mom of
+            three, and I earned my MBA in 2020, in the middle of the pandemic, with all three kids at home. Since then I've worked as an
+            online business manager, produced more than 300 podcast episodes, and run more than 40 Meta ad
+            campaigns for small businesses.</p>
+          <p>If you want someone who'll notice the broken link before your launch email goes out, we'll get
+            along just fine.</p>
           <p style="margin-bottom:0;"><a href="/about.html" class="textlink">More about me</a></p>
         </div>
       </div>
@@ -862,15 +784,17 @@
 
   <!-- ===================== FINAL CTA (Ink band) ===================== -->
   <section class="section band-ink" id="book">
-    <div class="container measure reveal">
-      <p class="eyebrow"><span class="heart">&#9829;</span>One last thing</p>
-      <h2>Ready for a marketing partner?</h2>
-      <p class="lede" style="margin: var(--s-3) 0 var(--s-4);">Tell me what's on your plate. Fill out a
-        quick form, pick what you're interested in, and I'll review it personally and get back to you
-        within 24&ndash;48 hours.</p>
+    <div class="container"><div class="measure reveal center-head">
+      <h2>Tell me what you're working on.</h2>
+      <p class="lede" style="margin: var(--s-3) 0 var(--s-4);">Fill out a short form about your business and
+        what you need help with. I read every one myself and get back to you within two business days. If it
+        looks like a fit, we'll set up a call to talk it through.</p>
       <button type="button" class="btn btn-cream" data-open-inquiry>Get in touch</button>
     </div>
+    </div>
   </section>
+
+  </main>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer">
@@ -880,24 +804,24 @@
         <div class="foot-brand">
           <a href="#top" class="foot-script">Priscilla Zaehringer</a>
           <div class="foot-intro">
-            <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" loading="lazy" decoding="async" alt="Priscilla Zaehringer"></span>
-            <p class="foot-bio">I'm a 1:1 marketing partner for small business owners who'd rather grow than build a team.
-              Real strategy, run end to end, done with you and not at you.</p>
+            <p class="foot-bio">I'm Priscilla, a fractional CMO and podcast producer in Iowa. I help online business
+              owners plan their marketing and get it built.</p>
           </div>
           <div class="foot-social">
-            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic">📷</span>Come say hi on Instagram</a>
-            <a class="social-btn" href="/field-notes.html"><span class="ic">🎙️</span>Listen to the podcast</a>
-            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic">👋</span>Let's be friends on Facebook</a>
-            <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic">📌</span>Pin along with me</a>
+            <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">📷</span>Come say hi on Instagram<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="social-btn" href="/field-notes.html"><span class="ic" aria-hidden="true">🎙️</span>My podcast, coming in 2027</a>
+            <a class="social-btn" href="https://www.facebook.com/pzaehringer" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">👋</span>Let's be friends on Facebook<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="social-btn" href="https://www.pinterest.com/priscillazaehringer/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">📌</span>Pin along with me<span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
         <nav class="foot-explore" aria-label="Footer">
-          <h4>Get around</h4>
+          <h2 class="foot-h">Get around</h2>
           <div class="explore-cols">
             <a href="/">Home</a>
             <a href="/about.html">About</a>
-            <a href="/ads.html">Meta Ads</a>
-            <a href="/podcast.html">Podcast Production</a>
+            <a href="/podcast.html">Podcast launch</a>
+            <a href="/support.html">Marketing support</a>
+            <a href="/field-notes.html">My podcast (2027)</a>
             <a href="#" data-open-inquiry>Get in touch</a>
           </div>
         </nav>
@@ -916,21 +840,20 @@
       <button type="button" class="drawer-close" data-close-inquiry aria-label="Close">&times;</button>
       <div class="drawer-head">
         <p class="eyebrow"><span class="heart">&#9829;</span>Start here</p>
-        <h2 id="inquiryTitle">Let's work together.</h2>
-        <p>Pick what you're interested in and share a few details. I review every inquiry personally and
-          reach out within 24&ndash;48 hours.</p>
+        <h2 id="inquiryTitle">Tell me what you're working on.</h2>
+        <p>Pick what you're interested in and share a few details.</p>
       </div>
       <form class="inquiry-form" action="https://formspree.io/f/xeebrwbl" method="POST">
         <input type="hidden" name="_subject" value="New website inquiry">
         <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <fieldset class="field" style="border:0; padding:0; margin:0 0 var(--s-3);">
-          <span style="display:block; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What are you interested in? <span class="req">*</span></span>
+          <legend style="display:block; padding:0; font-size:0.92rem; font-weight:600; margin-bottom:8px;">What are you interested in? <span class="req">*</span></legend>
           <div class="opts">
-            <label class="opt"><input type="radio" name="Interested in" value="1:1 Marketing Partnership (OBM)" required> 1:1 Marketing Partnership <span class="hint">(OBM)</span></label>
-            <label class="opt"><input type="radio" name="Interested in" value="The Signal - Podcast Production"> The Signal <span class="hint">&mdash; Podcast Production</span></label>
-            <label class="opt"><input type="radio" name="Interested in" value="The Lead Stream - Meta Ads"> The Lead Stream <span class="hint">&mdash; Meta Ads</span></label>
-            <label class="opt"><input type="radio" name="Interested in" value="Not sure yet"> Not sure yet &mdash; help me figure it out</label>
+            <label class="opt"><input type="radio" name="Interested in" value="Fractional CMO (ongoing)" required> Fractional CMO <span class="hint">(ongoing support)</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="The Signal - Podcast launch"> The Signal <span class="hint">(podcast launch)</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="One project"> One project <span class="hint">(a funnel, sales page, email sequence…)</span></label>
+            <label class="opt"><input type="radio" name="Interested in" value="Not sure yet"> Not sure yet, help me figure it out</label>
           </div>
         </fieldset>
 
@@ -969,17 +892,17 @@
 
         <div class="form-actions">
           <button type="submit" class="btn">Send my inquiry</button>
-          <span class="form-note">No pressure, no spam. Just a real reply.</span>
+          <span class="form-note">You'll hear back within two business days.</span>
         </div>
         <p class="form-status" role="alert" aria-live="assertive"></p>
 
         <div class="form-success" role="status" aria-live="polite">
           <span class="emoji" aria-hidden="true">&#127881;</span>
-          <h3>Thanks! Your inquiry is on its way.</h3>
-          <p>I personally review every inquiry and I'll get back to you within 24&ndash;48 hours. If it looks
-            like we're a good fit, I'll reach out with the next steps so we can hop on a call.</p>
-          <p>In the meantime, you can <a href="/podcast.html">listen to the podcast</a> or
-            <a href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener">connect with me on Instagram</a>.</p>
+          <h3>Got it, thank you!</h3>
+          <p>I'll read this and get back to you within two business days. If it looks like a fit, I'll send over
+            a few times for a call.</p>
+          <p>In the meantime, come say hi on
+            <a href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (opens in a new tab)</span></a>.</p>
         </div>
       </form>
     </div>
@@ -1122,6 +1045,20 @@
 
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+<script>
+    // Background video: pause/play control (WCAG 2.2.2) and respect reduced motion.
+    document.querySelectorAll('.has-video').forEach(sec => {
+      const v = sec.querySelector('.bg-video'), b = sec.querySelector('.video-toggle');
+      if (!v || !b) return;
+      const set = (paused) => {
+        b.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        b.querySelector('.vt-label').textContent = paused ? 'Play video' : 'Pause video';
+        b.querySelector('.vt-icon').innerHTML = paused ? '&#9654;' : '&#10074;&#10074;';
+      };
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.pause(); v.removeAttribute('autoplay'); b.hidden = true; return; }
+      b.addEventListener('click', () => { if (v.paused) { v.play(); set(false); } else { v.pause(); set(true); } });
+    });
   </script>
 </body>
 </html>

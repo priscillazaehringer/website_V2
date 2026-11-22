@@ -1,0 +1,191 @@
+/* ==================================================================
+   FINISH LAYER: loaded after each page's own <style>, so it wins.
+   Direction "A: Dark & plum": dark ink and espresso sections, plum as
+   the pop color, square edges, real grain. Light cards stay light.
+   Remove the <link> to this file on a page to get the old look back.
+   ================================================================== */
+
+:root {
+  --c-espresso: #3A2232;    /* plum-brown, clearly lighter than ink so alternating sections read as separate */
+  --c-plum: #9E0053;        /* = --c-pink-deep, used as a background here */
+  --on-dark: #F7EEE7;
+  --on-dark-muted: rgba(247,238,231,0.80);
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Square edges ---------------------------------------------------- */
+.overlap, .band-ink, .band-mint, #pain {
+  margin-top: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+}
+
+/* ---- Dark sections ----------------------------------------------------
+   Re-pointing the role tokens inside a section flips every rule that uses
+   them (headings, body, muted text, links, buttons) without touching the
+   page CSS. */
+.hero, .section, .freebie-bar {
+  --text: var(--on-dark); --text-muted: var(--on-dark-muted); --link: #FFC8E5;
+  --action: var(--on-dark); --action-text: #1D1E26; --line: rgba(247,238,231,0.16);
+  --bg-alt: rgba(247,238,231,0.06);
+  background: #1D1E26 !important; color: var(--text);
+  position: relative; isolation: isolate;
+}
+.alt, .alt-pink, .alt-coral, .alt-mint, #offer, #projects, #process, #story, #partner {
+  background: var(--c-espresso) !important;
+}
+#book, .final-cta, #testimonial, .freebie-bar { background: var(--c-plum) !important; }
+.hero-blob { display: none !important; }
+
+/* headings and small text that hard-code ink or plum */
+.section h1, .section h2, .section h3, .section h4, .hero h1, .hero h2 { color: var(--text); }
+.eyebrow, .eyebrow .heart, .fb-kicker, .hero-kicker, .em, .sticker, .cred, .note-script,
+.hl, .scarcity, .micro, .lead-in, .quote-soft, .big-state .em { color: #FFC8E5 !important; }
+.hl { background-image: none !important; }
+.section a:not(.btn):not(.proj-link) { color: var(--link); }
+.btn-cream { background: var(--on-dark) !important; color: #1D1E26 !important; border-color: var(--on-dark) !important; }
+.freebie-bar h2, .freebie-bar p { color: var(--on-dark) !important; }
+.freebie-bar .btn { background: var(--on-dark); color: #1D1E26; border-color: var(--on-dark); }
+.photo-frame .block { background: var(--c-plum) !important; opacity: 0.85; }
+.pill { background: rgba(247,238,231,0.1) !important; color: var(--on-dark) !important; border-color: rgba(247,238,231,0.2) !important; }
+.sig svg path { stroke: #FFC8E5; }
+
+/* ---- Light cards stay light: point the tokens back at ink ------------ */
+.board, .svc-card, .quote-feature, .cite-card, .quote-card, .feature-pair .panel,
+.cmp, .dash, .metric, .pricing, .panel, .listcard, .invite, .case,
+.chip, .tcard, .mock, .stat, .flip-front, .flip-back {
+  --text: #1D1E26; --text-muted: #6A5E53; --link: #9E0053;
+  --action: #1D1E26; --action-text: #F7EEE7; --line: rgba(29,30,38,0.12); --bg-alt: #FBF6F1;
+  color: var(--text);
+}
+:is(.board, .svc-card, .quote-feature, .pricing, .panel, .listcard, .invite, .cmp, .dash)
+  :is(h2, h3, h4, .em, .eyebrow, .eyebrow .heart) { color: inherit; }
+:is(.pricing, .invite, .panel, .listcard, .cmp, .dash) .eyebrow { color: #9E0053 !important; }
+.svc-card a.proj-link, .board a { color: #9E0053; }
+.stat { background: transparent; --text: var(--on-dark); --text-muted: var(--on-dark-muted); color: var(--text); }
+
+/* bits that hard-code ink or plum text on what is now a dark background */
+.hero-proof, .hero-proof b, .faq summary, .faq-item summary, .faq .ans, .faq details p { color: var(--text) !important; }
+.faq .ans, .faq details p { color: var(--text-muted) !important; }
+.faq summary .ico, .build-num, .num, .tl-step .marker, .pstep .ring, .bn { color: #FFC8E5 !important; }
+.upsell { background: rgba(247,238,231,0.06) !important; border: 1px solid rgba(247,238,231,0.18) !important; color: var(--text); }
+.upsell h3 { color: var(--text); }
+
+.stat .n, .stat .u { color: var(--on-dark) !important; } .stat .u { color: #FFC8E5 !important; }
+.stat .l { color: var(--on-dark-muted) !important; }
+.upsell p { color: var(--text-muted) !important; }
+.pstep .ring { background: transparent !important; border-color: rgba(247,238,231,0.5) !important; color: #FFC8E5 !important; }
+.pstep.dest .ring { background: #9E0053 !important; border-color: #9E0053 !important; color: #F7EEE7 !important; }
+.pstep h3, .pstep p { color: var(--text) !important; } .pstep p { color: var(--text-muted) !important; }
+.panel, .listcard.panel { background: #FBF6F1 !important; }
+.fitcard h3, .fitcard li, .fitcol h3, .fitcol li { color: var(--text) !important; }
+.promo-bar { background: #9E0053 !important; color: #F7EEE7 !important; }
+.promo-bar * { color: #F7EEE7 !important; }
+.promo-bar .promo-tag, .promo-bar .promo-cta { background: rgba(247,238,231,0.14) !important; border-color: rgba(247,238,231,0.4) !important; }
+
+
+/* ==== One color system for dark sections ================================
+   Headings: cream. Body: soft cream. Small text: a little softer.
+   Accent: pink only (#FFC8E5). Plum is a background color, never text on
+   dark. Teal and coral stay inside light cards and logos. */
+.hero, .section { color: rgba(247,238,231,0.90); }
+.section .lede, .hero .lede, .hero-lede, .band-ink .lede { color: rgba(247,238,231,0.90) !important; opacity: 1 !important; }
+.section p { color: inherit; }
+.gallery .cat, .stats-cap, .dash-note, .micro { color: var(--on-dark-muted) !important; }
+/* every small label, checkmark, cross, and number on dark: pink */
+.leave-group .gl, .s-eyebrow, .lead-label, .niches-label { color: #FFC8E5 !important; }
+.section .checks li::before, .section .checks.x li::before { color: #FFC8E5 !important; }
+.section .checks li { color: rgba(247,238,231,0.90); }
+.big-state .em, .statement .em { color: #FFC8E5 !important; }
+.section .faq summary::after { color: #FFC8E5 !important; }
+/* ...except inside light cards, where the original ink/plum/teal read well */
+.invite .checks li::before, .pricing .checks li::before, .panel .checks li::before, .case .checks li::before { color: #195750 !important; }
+.case .checks li, .case h3 { color: #1D1E26 !important; }
+.invite .checks li, .pricing .checks li { color: #1D1E26; }
+.invite .wave i, .pricing .wave i { background: #9E0053 !important; }
+.invite .eyebrow .heart, .pricing .eyebrow .heart { color: #9E0053 !important; }
+.chip b { color: #9E0053; }
+
+/* ---- Grain ------------------------------------------------------------ */
+#grain { opacity: 0.07 !important; mix-blend-mode: normal !important; }
+.hero::after, .section::after, .freebie-bar::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: var(--noise); opacity: 0.13; mix-blend-mode: soft-light;
+}
+
+/* ---- Background video (optional) --------------------------------------
+   Markup, inside any <section class="... has-video">:
+     <video class="bg-video" autoplay muted loop playsinline preload="none"
+            poster="/assets/video/clip-poster.webp" aria-hidden="true">
+       <source src="/assets/video/clip.mp4" type="video/mp4">
+     </video>
+   Keep clips short (6–12s), silent, under ~3 MB, 1280px wide. */
+.has-video { overflow: hidden; }
+.has-video .bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -3; }
+.has-video::before {
+  content: ''; position: absolute; inset: 0; z-index: -2; pointer-events: none;
+  background: linear-gradient(180deg, rgba(29,30,38,0.70), rgba(29,30,38,0.85));
+}
+.has-video-plum::before { background: linear-gradient(180deg, rgba(158,0,83,0.82), rgba(110,0,58,0.9)) !important; }
+@media (prefers-reduced-motion: reduce) { .has-video .bg-video { display: none; } }
+
+/* pause/play control for background video */
+.video-toggle { position: absolute; z-index: 3; right: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px;
+  min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(247,238,231,0.5);
+  background: rgba(29,30,38,0.7); color: #F7EEE7; font: 600 0.85rem/1 var(--font-body); cursor: pointer; }
+.video-toggle:hover { background: rgba(29,30,38,0.9); }
+.vt-icon { font-size: 0.7rem; letter-spacing: -1px; }
+
+/* ---- Workbook strip: a big, tilted mockup that overhangs BOTH edges ----
+   The strip is kept compact (button under the text) and the mockup is lifted
+   out of the grid, centered vertically and made taller than the strip, so it
+   pokes past the top and bottom edges by the same amount (less than the
+   neighbouring sections' padding, so it never covers their text). On phones
+   the layout stacks, so the mockup overhangs the top edge only. */
+.freebie-bar { overflow: visible !important; z-index: 5 !important; padding-block: 20px !important; }
+.freebie-inner { position: relative; grid-template-columns: clamp(360px, 46vw, 580px) 1fr !important;
+  gap: clamp(24px, 4vw, 48px) !important; align-items: center; }
+.freebie-copy { grid-column: 2; }
+.freebie-cta { grid-column: 2; justify-self: start !important; margin-top: 4px; }
+.freebie-mockup { position: absolute; z-index: 2; left: -60px; top: 50%;
+  width: clamp(440px, 54vw, 680px) !important; height: auto;
+  transform: translateY(-50%) rotate(-5deg);
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.45)); }
+@media (prefers-reduced-motion: no-preference) {
+  .freebie-mockup { transition: transform 0.4s ease; }
+  .freebie-bar:hover .freebie-mockup { transform: translateY(calc(-50% - 6px)) rotate(-3deg); }
+}
+@media (max-width: 940px) {
+  .freebie-inner { grid-template-columns: 50vw 1fr !important; }
+  .freebie-mockup { width: 54vw !important; left: -24px; }
+  .freebie-copy p { display: none; }
+}
+@media (max-width: 680px) {
+  .freebie-inner { grid-template-columns: 1fr !important; }
+  .freebie-copy, .freebie-cta { grid-column: 1; justify-self: center !important; }
+  .freebie-copy p { display: block; }
+  .freebie-mockup { position: relative; left: auto; top: auto; width: min(84vw, 340px) !important;
+    margin: -96px auto 0; transform: rotate(-4deg); }
+  .freebie-bar:hover .freebie-mockup { transform: rotate(-4deg); }
+}
+
+/* ---- Hello bar: one sentence, one link, no image or button ---- */
+.hello-bar { display: block; background: #9E0053; color: #F7EEE7; text-align: center; text-decoration: none;
+  font-size: 0.86rem; line-height: 1.35; padding: 7px 16px; }
+.hello-bar span { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; font-weight: 600; }
+.hello-bar:hover span { text-decoration-thickness: 2px; }
+
+#workbook { scroll-margin-top: calc(var(--stack-h, 80px) + 100px); }
+
+/* Section heading spans the same width as the cards/grid under it */
+.wide-head { max-width: none; }
+.wide-head p { max-width: 62ch; }
+/* card links stay on one line, underline only under the words */
+.proj-link { white-space: nowrap; }
+/* One left edge for every section: text columns sit at the container edge
+   instead of floating in the middle (centered CTA bands are untouched). */
+.col:not(.center) { margin-inline: 0 !important; }
+/* Short section intros (above cards, steps, FAQs) and closing CTAs are centered */
+.center-head, .col.center-head { text-align: center; margin-inline: auto !important; max-width: 760px; }
+.center-head p, .center-head .lede { margin-inline: auto !important; }
+.center-head .btn { margin-inline: auto; }
+/* content under a centered intro sits centered under it */
+.center-head + .col { margin-inline: auto !important; }
