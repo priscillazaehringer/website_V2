@@ -8,10 +8,10 @@
   <!-- noindex while staging. Remove this tag at launch. -->
   <meta name="robots" content="noindex, nofollow">
   <title>Show Notes · Marketing Field Notes · Priscilla Zaehringer</title>
-  <meta name="description" content="Every episode of Marketing Field Notes — short, honest notes on what's actually happening in marketing. Launching August 2026.">
+  <meta name="description" content="Every episode of Marketing Field Notes: short notes on what's actually happening in marketing. Launching 2027.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Show Notes · Marketing Field Notes">
-  <meta property="og:description" content="Every episode of Marketing Field Notes, with notes and links. Launching August 2026.">
+  <meta property="og:description" content="Every episode of Marketing Field Notes, with notes and links. Launching 2027.">
   <meta property="og:url" content="https://priscillazaehringer.com/episodes">
   <!-- the two fonts every page paints with; preloaded so they are not discovered only after tokens.css parses -->
   <link rel="preload" href="/assets/fonts/hanken-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <style>
     /* ================================================================
-       Marketing Field Notes (Priscilla's own podcast). Launching August 2026.
+       Marketing Field Notes (Priscilla's own podcast). Launching 2027.
        Built on the homepage system (tokens, header/footer, buttons).
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; }
@@ -403,10 +403,11 @@
       <div class="arch-head reveal">
         <p class="eyebrow" style="display:inline-block;"><span class="heart">&#9829;</span>The Marketing Field Notes show</p>
         <h1>Show Notes</h1>
-        <p class="lede" style="margin:var(--s-3) auto 0; max-width:52ch;">Every episode, with notes and links. Launching August 2026.</p>
+        <p class="lede" style="margin:var(--s-3) auto 0; max-width:52ch;">Every episode will live here, with notes and links. The show launches in 2027. <a href="/field-notes.html#notify">Get notified</a> when episode one is out.</p>
       </div>
 
-      <div class="arch-tools reveal">
+      <!-- Hidden until launch: search + sample episodes. Remove `hidden` when real episodes exist. -->
+      <div class="arch-tools reveal" hidden>
         <label class="search">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
           <input id="ep-search" type="search" placeholder="Search episodes" aria-label="Search episodes">
@@ -415,7 +416,7 @@
       </div>
 
       <!-- EXAMPLE episodes — replace with real ones. Each links to /field-notes/<slug>.html -->
-      <div class="arch-grid reveal" id="ep-grid">
+      <div class="arch-grid reveal" id="ep-grid" hidden>
         <a class="arch-card" href="/field-notes/episode-template.html" data-title="Episode 06: Why six-figure offers stall before scale">
           <div class="arch-thumb t-pink"><span class="lab">Marketing Field Notes</span><span class="num">06</span></div>
           <span class="date">September 9, 2026</span>
@@ -463,8 +464,8 @@
           <a href="/" class="foot-script">Priscilla Zaehringer</a>
           <div class="foot-intro">
             <span class="foot-photo"><img src="/assets/img/about.webp" width="510" height="637" loading="lazy" decoding="async" alt="Priscilla Zaehringer"></span>
-            <p class="foot-bio">I'm Priscilla, a marketing and operations person in Iowa. I produce podcasts and
-              build the funnels and systems behind small business marketing.</p>
+            <p class="foot-bio">I'm Priscilla, a fractional CMO and podcast producer in Iowa. I help online business
+              owners plan their marketing and get it built.</p>
           </div>
           <div class="foot-social">
             <a class="social-btn" href="https://www.instagram.com/cillaz.co/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">📷</span>Come say hi on Instagram<span class="sr-only"> (opens in a new tab)</span></a>
