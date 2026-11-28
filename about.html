@@ -71,6 +71,7 @@
     @media (max-width: 860px) { .beliefs { grid-template-columns: 1fr; gap: 40px; } }
 
     /* off the clock: a board of pinned Polaroids */
+    .offclock { background: var(--forest) url('/assets/img/cork-forest.webp') 0 0 / 520px auto; box-shadow: inset 0 0 0 10px #3A2A1C, inset 0 0 0 12px rgba(0,0,0,0.25); }
     .offclock-head { max-width: 760px; }
     .offclock-head h2 { margin-bottom: 24px; }
     .board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); list-style: none;
@@ -216,15 +217,15 @@
   </section>
 
   <!-- ===================== OFF THE CLOCK ===================== -->
-  <section class="sec offclock dk bg-forest" id="offclock" aria-labelledby="off-h">
+  <section class="sec offclock dk" id="offclock" aria-labelledby="off-h">
     <div class="wrap">
       <div class="offclock-head reveal">
         <h2 id="off-h">When I'm not working</h2>
-        <p class="lede">I'm usually off on some kind of adventure. That might be a weekend trip, a
-          Vikings or Hawkeyes game, or cheering on my oldest, who travels the country as a chalk artist.</p>
-        <p class="lede">I'm a Disney millennial through and through, and a quick Target run with a sugar cookie latte has a way
-          of turning into two hours. I'll happily watch TLC and Game of Thrones in the same night. And if I weren't doing this,
-          I'd be a teacher.</p>
+        <p class="lede">I'm usually off on some kind of adventure. That might be a weekend trip, a Vikings or Hawkeyes game,
+          or cheering on my oldest, who's a traveling chalk artist.</p>
+        <p class="lede">I love wandering vintage stores, and my day doesn't really start until I've made my homemade latte.
+          My TV taste runs from TLC to nerdier favorites like Game of Thrones, sometimes in the same night. And if I weren't
+          doing this, I'd be a teacher. It was my first major.</p>
       </div>
       <ul class="board reveal">
         <li><figure class="polaroid"><span class="pin" aria-hidden="true"></span>
