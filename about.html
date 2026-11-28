@@ -60,8 +60,14 @@
     @media (max-width: 860px) { .beliefs { grid-template-columns: 1fr; gap: 40px; } }
 
     /* off the clock: a board of pinned Polaroids */
-    .offclock-head { max-width: 760px; }
-    .offclock-head h2 { margin-bottom: 24px; }
+    .offclock-head h2 { margin-bottom: 32px; }
+    .off-cols { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(32px, 6vw, 88px); }
+    .off-cols p:not(.lede) { color: var(--muted); }
+    .few { font-size: 1.3rem; font-weight: 600; font-variation-settings: 'SOFT' 100; margin-bottom: 14px; color: var(--hi); }
+    .few-list { list-style: none; margin: 0; padding: 0; }
+    .few-list li { position: relative; padding: 10px 0 10px 24px; border-bottom: 1px solid rgba(243,235,221,0.12); color: var(--muted); }
+    .few-list li::before { content: ""; position: absolute; left: 2px; top: 1.15em; width: 8px; height: 8px; border-radius: 50%; background: var(--hi); }
+    @media (max-width: 860px) { .off-cols { grid-template-columns: 1fr; } }
     .board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); list-style: none;
       margin: clamp(56px, 7vw, 88px) 0 0; padding: 0; }
     .board .polaroid { rotate: -3deg; }
@@ -216,11 +222,30 @@
     <div class="wrap">
       <div class="offclock-head reveal">
         <h2 id="off-h">When I'm not working</h2>
-        <p class="lede">I'm usually off on some kind of adventure. That might be a weekend trip, a Vikings or Hawkeyes game,
-          or cheering on my oldest, who's a traveling chalk artist.</p>
-        <p class="lede">I love wandering vintage stores, and my day doesn't really start until I've made my homemade latte.
-          My TV taste runs from TLC to nerdier favorites like Game of Thrones, sometimes in the same night. And if I weren't
-          doing this, I'd be a teacher. It was my first major.</p>
+        <div class="off-cols">
+          <div>
+            <p class="lede">I love squeezing as many adventures as I can into my calendar. Football games (go Vikings and
+              Hawkeyes!), shelling on the beach, hiking in the mountains, and our annual trip to Disney World. 🏰</p>
+            <p>I'm a mom of three, all in very different stages of life, so I'm in a constant state of feeling overwhelmed while
+              reminding myself to slow down and live in the moment.</p>
+            <p>My husband and I have known each other since middle school (middle school sweethearts?!), and we're a proud
+              veteran family. Fun fact: my husband and our youngest share a birthday! We also have a dog named Moose, a cat named
+              Kitty, and a bearded dragon named Draco.</p>
+          </div>
+          <div>
+            <h3 class="few">A few other things about me:</h3>
+            <ul class="few-list">
+              <li>I firmly believe a clean house is a happy home (and mind). If you can relate, we can probably be best friends.</li>
+              <li>I love wandering through vintage stores and finding a good deal. I refuse to pay full price for anything unless
+                it's a life-or-death emergency. 😂</li>
+              <li>I make myself a latte every morning. I genuinely can't function without it. ☕</li>
+              <li>TV time has become few and far between, but when I do have time, I'm either catching up on TLC reality shows or
+                watching something like Game of Thrones.</li>
+              <li>If I weren't doing what I do now, I'd probably be an elementary school teacher. It was actually my first major in
+                college!</li>
+            </ul>
+          </div>
+        </div>
       </div>
       <ul class="board reveal">
         <li><figure class="polaroid"><span class="pin" aria-hidden="true"></span>
