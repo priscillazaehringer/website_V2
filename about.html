@@ -19,16 +19,17 @@
   <style>
     /* ================= About (on the shared Signal system) ================= */
     /* hero: thrift-store painting */
-    .hero { position: relative; min-height: min(calc(100svh - var(--stack-h)), 860px); display: flex; align-items: flex-end;
-      padding-block: clamp(80px, 10vw, 160px) clamp(56px, 7vw, 96px); color: var(--paper); overflow: hidden;
-      background: #3A3326 url("/assets/img/about-painting-1800.webp") center 40% / cover no-repeat; }
+    .hero { position: relative; min-height: min(calc(100svh - var(--stack-h)), 820px); display: flex; align-items: flex-start;
+      padding-block: clamp(64px, 8vw, 120px) clamp(240px, 26vw, 380px); color: var(--paper); overflow: hidden;
+      background: #56677E url("/assets/img/about-sedona-2400.webp") 40% 100% / max(100%, 2100px) auto no-repeat; }
     .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(90deg, rgba(31,28,25,0.86) 0%, rgba(31,28,25,0.6) 42%, rgba(31,28,25,0.1) 75%),
-                  linear-gradient(0deg, rgba(31,28,25,0.6) 0%, rgba(31,28,25,0) 45%); }
+      background: linear-gradient(180deg, rgba(31,28,25,0.62) 0%, rgba(31,28,25,0.35) 45%, rgba(31,28,25,0) 70%); }
     .hero .wrap { position: relative; }
+    @media (max-width: 760px) { .hero { background-image: url("/assets/img/about-sedona-1200.webp"); background-position: 30% 100%;
+      background-size: 1250px auto; padding-bottom: 290px; } }
     .hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(3rem, 1.2rem + 6vw, 6.8rem); line-height: 0.98; letter-spacing: -0.03em;
       font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144; }
-    .hero .lede { max-width: 40ch; margin: 24px 0 18px; color: rgba(243,235,221,0.94); }
+    .hero .lede { max-width: 40ch; margin: 24px 0 32px; color: rgba(243,235,221,0.94); }
     .facts { margin: 0 0 30px; font-size: 0.98rem; color: #E0C08A; }
     .facts span + span::before { content: "·"; margin: 0 0.6em; color: rgba(243,235,221,0.6); }
     .hero-cta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 24px; }
@@ -133,10 +134,8 @@
       <h1 id="hero-h">Hi, I'm Priscilla.</h1>
       <p class="lede">I'm a marketing and operations person from Iowa, which is a long way of saying I help small business
         owners plan their marketing and then actually get it built.</p>
-      <p class="facts"><span>Iowa girl</span><span>Sugar cookie latte</span><span>Disney lover</span></p>
       <div class="hero-cta">
         <button type="button" class="btn btn-gold" data-open-inquiry>Get in touch <span class="arr" aria-hidden="true">&#8599;</span></button>
-        <span class="hand" aria-hidden="true">Cilla, for short</span>
       </div>
     </div>
   </section>
@@ -186,7 +185,6 @@
       <figure class="portrait reveal">
         <img src="/assets/img/about-headshot-600.webp" srcset="/assets/img/about-headshot-600.webp 600w, /assets/img/about-headshot.webp 800w"
              sizes="(max-width: 860px) 340px, 40vw" width="600" height="900" loading="lazy" decoding="async" alt="Priscilla smiling, in a cream sweater">
-        <figcaption class="hand" aria-hidden="true">that's me!</figcaption>
       </figure>
       <div class="reveal">
         <h2 id="work-h">What working with me is like</h2>
@@ -222,11 +220,11 @@
     <div class="wrap">
       <div class="offclock-head reveal">
         <h2 id="off-h">When I'm not working</h2>
-        <p class="lede">You'll probably find me on a Target run that somehow turned into a two-hour adventure, sugar cookie
-          latte in hand. I'm a Disney Parks fanatic. I'll happily watch TLC and Game of Thrones in the same night. And if I
-          weren't doing this, I'd be a teacher. No question.</p>
-        <p class="lede">Weekends usually mean an adventure somewhere, a Vikings or Hawkeyes game, or cheering on my oldest,
-          who's a traveling chalk artist.</p>
+        <p class="lede">I'm usually off on some kind of adventure. That might be a weekend trip, a
+          Vikings or Hawkeyes game, or cheering on my oldest, who travels the country as a chalk artist.</p>
+        <p class="lede">I'm a Disney millennial through and through, and a quick Target run with a sugar cookie latte has a way
+          of turning into two hours. I'll happily watch TLC and Game of Thrones in the same night. And if I weren't doing this,
+          I'd be a teacher.</p>
       </div>
       <ul class="board reveal">
         <li><figure class="polaroid"><span class="pin" aria-hidden="true"></span>
