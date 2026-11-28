@@ -86,6 +86,16 @@
     .about h2 { margin-bottom: 26px; }
     .about-grid p:not(.tag):not(.lede) { color: var(--muted); }
     @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } .portrait { max-width: 340px; } .portrait figcaption { right: -6px; bottom: 6%; } }
+
+    /* closing: '90s cabin knotty pine paneling */
+    .wood-close { position: relative; padding-block: clamp(96px, 12vw, 168px);
+      background-color: #A86C3A;
+      background-image:
+        linear-gradient(180deg, rgba(41,38,34,0.85) 0%, rgba(41,38,34,0) 18%, rgba(31,28,25,0) 85%, rgba(31,28,25,0.6) 100%),
+        url("/assets/img/knotty-pine.webp");
+      background-size: 100% 100%, 1680px auto; background-position: 0 0, center; }
+    .wood-close .paper-card { box-shadow: 12px 12px 0 #2A1A10, 0 40px 70px -30px rgba(0,0,0,0.7); border-color: #2A1A10; }
+    @media (max-width: 600px) { .wood-close .paper-card { box-shadow: 8px 8px 0 #2A1A10; } }
   </style>
 </head>
 <body>
@@ -258,7 +268,7 @@
   </section>
 
   <!-- ===================== FINAL CTA ===================== -->
-  <section class="checker-close" id="book" aria-labelledby="book-h">
+  <section class="wood-close" id="book" aria-labelledby="book-h">
     <div class="wrap">
       <div class="paper-card reveal">
         <h2 id="book-h">Tell me what you're <em>working on.</em></h2>
