@@ -245,7 +245,8 @@
     .tracklist .time { flex: none; font: 600 0.95rem/1.2 var(--sans); letter-spacing: 0.02em; color: #E0C08A; }
     .tracklist p { margin: 10px 0 0 calc(2.6ch * 1.6 + 14px); max-width: 48ch; color: #EAE2D4; font-size: 1.06rem; line-height: 1.6; }
     .side-a-disc { grid-column: 8 / span 5; position: relative; z-index: 1; }
-    .side-a-disc .disc { width: 150%; max-width: none; margin-top: clamp(40px, 6vw, 96px); }
+    .side-a-disc { align-self: center; justify-self: end; width: 100%; max-width: 380px; }
+    .side-a-disc .disc { width: 100%; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .side-b { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(16px, 2vw, 28px);
       margin-top: clamp(72px, 9vw, 128px); }
