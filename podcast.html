@@ -523,6 +523,43 @@
     @media (max-width: 560px) { .b-groups { grid-template-columns: 1fr; gap: 28px; } }
     .producer .prod-text p:not(.tag):not(.lede) { color: var(--muted); }
     .ad .small { max-width: 34ch; }
+
+    /* ---- Pricing, take two: a bolder print ad ---- */
+    .ad { max-width: 1120px; transform: rotate(-0.6deg); }
+    .ad-body { padding: 0; gap: 0; align-items: stretch; grid-template-columns: minmax(0, 4.6fr) minmax(0, 6.4fr); }
+    .ad-price { background: var(--mulberry); color: var(--paper); padding: clamp(36px, 5vw, 64px); display: flex; flex-direction: column; justify-content: center; }
+    .ad-price .price { color: var(--paper); font-size: clamp(4.6rem, 2.6rem + 7vw, 8.8rem); }
+    .ad-price .price sup { color: var(--gold); }
+    .ad-price .sub { color: var(--paper); font-size: 1.2rem; margin-bottom: 28px; }
+    .ad .ad-price .btn { align-self: flex-start; background: var(--gold); color: #292622; border-color: var(--gold); }
+    .ad .ad-price .btn:hover { background: var(--paper); border-color: var(--paper); color: #292622; }
+    @media (max-width: 480px) { .ad .ad-price .btn { align-self: stretch; padding: 0 16px; font-size: 0.95rem; white-space: nowrap; } }
+    .ad-list { padding: clamp(36px, 5vw, 64px); }
+    .ad-list h3 { font-size: clamp(1.4rem, 1.2rem + 0.6vw, 1.8rem); margin-bottom: 18px; }
+    .ad-list ul { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+    .ad-list li { white-space: nowrap; }
+    @media (max-width: 1100px) { .ad-list li { white-space: normal; } }
+    .ad-list li { font-family: var(--serif); font-weight: 500; font-size: clamp(1.1rem, 1rem + 0.35vw, 1.3rem); font-variation-settings: 'SOFT' 100;
+      padding: 12px 0 12px 36px; border-bottom: 1px solid var(--rule); }
+    .ad-list li::before { top: 13px; background: var(--mulberry); }
+    .ad-list .small { margin: 22px 0 0; max-width: 40ch; }
+    .ad-foot { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 10px clamp(24px, 4vw, 56px); align-items: center;
+      padding: clamp(24px, 3vw, 34px) clamp(28px, 5vw, 64px); background: #292622; color: var(--paper); }
+    .ad-foot h3 { font-weight: 600; font-variation-settings: 'SOFT' 100; font-size: clamp(1.3rem, 1.1rem + 0.6vw, 1.7rem); color: var(--paper); }
+    .ad-foot h3 em { color: #E0C08A; }
+    .ad-foot p { margin: 0; color: #D8CFC2; }
+    .ad-stamp { position: absolute; z-index: 3; right: -34px; top: -42px; width: 132px; height: 132px; margin: 0; border-radius: 50%;
+      background: var(--gold); color: #292622; display: grid; place-content: center; text-align: center; transform: rotate(12deg);
+      box-shadow: 0 0 0 5px var(--gold), 0 0 0 7px #292622; }
+    .ad-stamp span { font: 600 0.82rem/1.1 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; }
+    .ad-stamp b { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 2rem; line-height: 1; font-variation-settings: 'SOFT' 100, 'WONK' 1; }
+    @media (max-width: 860px) {
+      .ad { transform: none; }
+      .ad-body, .ad-foot { grid-template-columns: 1fr; }
+      .ad-stamp { right: -6px; top: -54px; width: 104px; height: 104px; }
+      .ad-stamp b { font-size: 1.6rem; } .ad-stamp span { font-size: 0.72rem; }
+    }
+    @media (max-width: 480px) { .ad-list ul { grid-template-columns: 1fr; } }
     /* ---- gentle reveal ---- */
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
     .reveal.in { opacity: 1; transform: none; }
@@ -711,13 +748,13 @@
   <section class="sec pricing dk" id="pricing" aria-labelledby="price-h">
     <div class="wrap">
       <div class="ad reveal">
-        <div class="ad-strip"><span id="price-h">The Signal</span><span>Podcast launch</span></div>
+        <p class="ad-stamp" aria-hidden="true"><span>6&ndash;8 week</span><b>launch</b></p>
+        <div class="ad-strip"><span id="price-h">The Signal</span></div>
         <div class="ad-body">
-          <div>
+          <div class="ad-price">
             <p class="price"><sup>$</sup>1,297</p>
             <p class="sub">A complete, done-for-you podcast launch.</p>
-            <button type="button" class="btn" data-open-inquiry>Let's talk about your podcast <span class="arr" aria-hidden="true">&#8599;</span></button>
-            <p class="small">Your podcast and its accounts belong to you, and there's no ongoing commitment required.</p>
+            <button type="button" class="btn btn-gold" data-open-inquiry>Let's talk about your podcast <span class="arr" aria-hidden="true">&#8599;</span></button>
           </div>
           <div class="ad-list">
             <h3>What's included</h3>
@@ -729,13 +766,14 @@
               <li>Production workflows</li>
               <li>Training</li>
             </ul>
+            <p class="small">Your podcast and its accounts belong to you, and there's no ongoing commitment required.</p>
           </div>
         </div>
-      </div>
-      <div class="encore reveal">
-        <h3>Need help after <em>launch?</em></h3>
-        <p>I also offer ongoing podcast production. You can continue working with me after your launch if you'd prefer to
-          spend your time recording rather than managing production, publishing, and promotion.</p>
+        <div class="ad-foot">
+          <h3>Need help after <em>launch?</em></h3>
+          <p>I also offer ongoing podcast production. You can continue working with me after your launch if you'd prefer to
+            spend your time recording rather than managing production, publishing, and promotion.</p>
+        </div>
       </div>
     </div>
   </section>
