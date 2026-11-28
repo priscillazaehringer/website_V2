@@ -69,12 +69,18 @@
     .beliefs p { margin: 0; color: var(--muted); }
     @media (max-width: 860px) { .beliefs { grid-template-columns: 1fr; gap: 40px; } }
 
-    /* off the clock */
-    .offclock-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(40px, 7vw, 104px); align-items: center; }
-    .offclock .lede { max-width: 52ch; }
-    .offclock .polaroid { max-width: 280px; justify-self: center; rotate: 4deg; }
-    .offclock .polaroid img { aspect-ratio: 1 / 1.05; object-fit: cover; object-position: 50% 30%; }
-    @media (max-width: 860px) { .offclock-grid { grid-template-columns: 1fr; } .offclock .polaroid { max-width: 230px; justify-self: start; margin-left: 8px; } }
+    /* off the clock: a board of pinned Polaroids */
+    .offclock-head { max-width: 760px; }
+    .offclock-head h2 { margin-bottom: 24px; }
+    .board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); list-style: none;
+      margin: clamp(56px, 7vw, 88px) 0 0; padding: 0; }
+    .board .polaroid { rotate: -3deg; }
+    .board li:nth-child(2) .polaroid { rotate: 2.5deg; translate: 0 18px; }
+    .board li:nth-child(3) .polaroid { rotate: -1.5deg; }
+    .board li:nth-child(4) .polaroid { rotate: 3.5deg; translate: 0 12px; }
+    .board .polaroid img { aspect-ratio: 1; object-fit: cover; }
+    .board .polaroid figcaption { font-size: 1.25rem; }
+    @media (max-width: 860px) { .board { grid-template-columns: 1fr 1fr; row-gap: 44px; } }
 
     /* closing: cashmere */
     .cash-close { padding-block: clamp(96px, 12vw, 168px); background: #742D47 url("/assets/img/cashmere-mulberry.webp") 0 0 / 900px auto; }
@@ -212,20 +218,30 @@
   </section>
 
   <!-- ===================== OFF THE CLOCK ===================== -->
-  <section class="sec offclock dk bg-forest" aria-labelledby="off-h">
-    <div class="wrap offclock-grid">
-      <div class="reveal">
+  <section class="sec offclock dk bg-forest" id="offclock" aria-labelledby="off-h">
+    <div class="wrap">
+      <div class="offclock-head reveal">
         <h2 id="off-h">When I'm not working</h2>
-        <p class="lede" style="margin-top: 24px;">You'll probably find me on a Target run that somehow turned into a two-hour
-          adventure, sugar cookie latte in hand. I'm a Disney Parks fanatic. I'll happily watch TLC and Game of Thrones in the
-          same night. And if I weren't doing this, I'd be a teacher. No question.</p>
+        <p class="lede">You'll probably find me on a Target run that somehow turned into a two-hour adventure, sugar cookie
+          latte in hand. I'm a Disney Parks fanatic. I'll happily watch TLC and Game of Thrones in the same night. And if I
+          weren't doing this, I'd be a teacher. No question.</p>
+        <p class="lede">Weekends usually mean an adventure somewhere, a Vikings or Hawkeyes game, or cheering on my oldest,
+          who's a traveling chalk artist.</p>
       </div>
-      <figure class="polaroid reveal">
-        <span class="pin" aria-hidden="true"></span>
-        <img src="/assets/img/about-hero-700.webp" width="700" height="1444" loading="lazy" decoding="async"
-             alt="Priscilla twirling in a floral dress in a sunlit meadow">
-        <figcaption>off the clock</figcaption>
-      </figure>
+      <ul class="board reveal">
+        <li><figure class="polaroid"><span class="pin" aria-hidden="true"></span>
+          <img src="/assets/img/life-adventure.webp" width="600" height="600" loading="lazy" decoding="async" alt="Wooden stairs climbing out of a cave toward sunlit autumn trees">
+          <figcaption>always up for an adventure</figcaption></figure></li>
+        <li><figure class="polaroid"><span class="pin" aria-hidden="true"></span>
+          <img src="/assets/img/life-football.webp" width="600" height="600" loading="lazy" decoding="async" alt="Priscilla's hand with a Vikings club wristband above the stadium field">
+          <figcaption>Skol! (and go Hawks)</figcaption></figure></li>
+        <li><figure class="polaroid"><span class="pin" aria-hidden="true"></span>
+          <img src="/assets/img/life-chalk.webp" width="600" height="600" loading="lazy" decoding="async" alt="A chalk drawing of the Madonna in a blue veil, made by Priscilla's oldest child">
+          <figcaption>my oldest's chalk art</figcaption></figure></li>
+        <li><figure class="polaroid"><span class="pin" aria-hidden="true"></span>
+          <img src="/assets/img/life-disney.webp" width="600" height="600" loading="lazy" decoding="async" alt="Cinderella Castle at Walt Disney World under a blue sky">
+          <figcaption>yes, a Disney millennial</figcaption></figure></li>
+      </ul>
     </div>
   </section>
 
