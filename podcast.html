@@ -613,16 +613,71 @@
       background: linear-gradient(180deg, rgba(37,75,61,0.55) 0%, rgba(37,75,61,0) 22%, rgba(41,38,34,0) 78%, rgba(41,38,34,0.6) 100%); }
     @media (max-width: 600px) { .photo-break { height: 300px; } .photo-break img { object-position: 42% 52%; } }
 
-    /* ---- behind-the-scenes snapshot under the headshot ---- */
-    .portrait { grid-row: 1; align-self: end; }
-    .prod-text { grid-row: 1 / span 2; align-self: center; }
-    .snapshot { grid-column: 1 / span 5; grid-row: 2; margin: 28px 0 0; }
-    .snapshot { max-width: 72%; }
-    .snapshot img { width: 100%; height: auto; border-radius: 4px; }
-    .snapshot figcaption { margin-top: 10px; font-size: 0.9rem; color: var(--muted); }
+
+    /* ================= Studio mockup ================= */
+    .studio { grid-column: 1 / -1; position: relative; margin: clamp(72px, 9vw, 120px) auto 0; width: 100%; max-width: 980px;
+      padding: 0 clamp(0px, 9vw, 120px) 40px clamp(0px, 15vw, 210px); }
+    .laptop { position: relative; z-index: 2; }
+    .screen { background: #0E0D0C; border-radius: 16px 16px 6px 6px; padding: 14px; box-shadow: 0 0 0 2px #3A3631, 0 40px 70px -30px rgba(0,0,0,0.8); }
+    .base { height: 16px; margin: 0 -6%; background: linear-gradient(#4A453E, #2E2A25); border-radius: 0 0 14px 14px; position: relative; }
+    .base::after { content: ""; position: absolute; left: 42%; right: 42%; top: 0; height: 6px; background: #24211D; border-radius: 0 0 6px 6px; }
+    .app { background: #1B1A1F; border-radius: 6px; overflow: hidden; font-family: var(--sans); color: #E9E6EE; }
+    .app-bar { display: flex; align-items: center; gap: 14px; padding: 9px 14px; background: #24232A; font-size: 0.72rem; }
+    .dots { display: flex; gap: 6px; } .dots i { width: 9px; height: 9px; border-radius: 50%; background: #4A4851; }
+    .app-title { color: #B7B3C0; }
+    .rec { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 4px; background: rgba(229,72,77,0.18);
+      color: #FF8A8E; font-weight: 700; letter-spacing: 0.04em; }
+    .rec b { width: 7px; height: 7px; border-radius: 50%; background: #FF5A5F; }
+    @media (prefers-reduced-motion: no-preference) { .rec b { animation: blink 1.6s ease-in-out infinite; } }
+    @keyframes blink { 50% { opacity: 0.25; } }
+    .stage { display: grid; grid-template-columns: 3fr 1fr; gap: 10px; padding: 12px; }
+    .tile { position: relative; border-radius: 6px; overflow: hidden; background: #2A2930; }
+    .tile.main { aspect-ratio: 16 / 10.5; }
+    .tile.main img { width: 100%; height: 100%; object-fit: cover; object-position: 20% 40%; }
+    .tile .name { position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; border-radius: 4px; background: rgba(0,0,0,0.55); font-size: 0.68rem; }
+    .side { display: grid; grid-template-rows: auto 1fr; gap: 10px; }
+    .tile.guest { aspect-ratio: 4 / 3.4; display: grid; place-items: center; background: #33313A; }
+    .avatar { width: 42%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; background: var(--mulberry); color: var(--paper);
+      font-family: var(--serif); font-size: clamp(1rem, 2vw, 1.5rem); }
+    .meter { display: flex; align-items: flex-end; gap: 4px; padding: 10px; border-radius: 6px; background: #24232A; font-size: 0.62rem; color: #8F8B99; }
+    .meter span { margin-right: auto; align-self: flex-start; }
+    .meter i { width: 5px; border-radius: 2px; background: #7FD3A3; }
+    .meter i:nth-child(2){height:30%}.meter i:nth-child(3){height:55%}.meter i:nth-child(4){height:80%}.meter i:nth-child(5){height:62%}
+    .meter i:nth-child(6){height:90%}.meter i:nth-child(7){height:45%;background:#E0C08A}.meter i:nth-child(8){height:25%}.meter i:nth-child(9){height:15%}
+    .controls { display: flex; justify-content: center; align-items: center; gap: 10px; padding: 4px 0 12px; }
+    .controls i { width: 26px; height: 26px; border-radius: 50%; background: #34333B; }
+    .controls .stop { padding: 5px 12px; border-radius: 6px; background: #E5484D; color: #fff; font-size: 0.68rem; font-weight: 700; }
+    .controls i:last-child { background: #7A2B2E; }
+
+    .phone { position: absolute; z-index: 3; right: 0; bottom: 0; width: clamp(130px, 19%, 190px); aspect-ratio: 9 / 18.5; padding: 7px;
+      background: #121110; border-radius: 26px; box-shadow: 0 0 0 2px #3A3631, 0 30px 50px -18px rgba(0,0,0,0.8); transform: rotate(5deg); }
+    .ph-screen { height: 100%; overflow: hidden; border-radius: 20px; background: var(--paper); color: #292622; padding: 16% 10% 0; display: flex; flex-direction: column; }
+    .ph-top { margin: 0 0 9%; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mulberry); }
+    .ph-cover { aspect-ratio: 1; border-radius: 6px; background: var(--forest); color: var(--paper); display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 10%; font-family: var(--serif); line-height: 0.9; }
+    .ph-cover span { font-style: italic; color: #E0C08A; font-size: clamp(0.8rem, 1.3vw, 1rem); }
+    .ph-cover b { font-weight: 600; font-size: clamp(1.3rem, 2.3vw, 1.9rem); }
+    .ph-ep { margin: 9% 0 0; font-size: 0.6rem; color: #5E564C; }
+    .ph-title { margin: 2px 0 8%; font-family: var(--serif); font-weight: 600; font-size: clamp(0.7rem, 1.1vw, 0.85rem); line-height: 1.2; }
+    .ph-bar { height: 3px; border-radius: 2px; background: rgba(41,38,34,0.15); } .ph-bar i { display: block; width: 35%; height: 100%; background: var(--mulberry); border-radius: 2px; }
+    .ph-play { margin: 10% auto 0; width: 34%; aspect-ratio: 1; border-radius: 50%; background: #292622; display: grid; place-items: center; }
+    .ph-play span { width: 0; height: 0; border-left: 10px solid var(--paper); border-top: 6px solid transparent; border-bottom: 6px solid transparent; margin-left: 3px; }
+
+    .notepad { position: absolute; z-index: 1; left: -2%; bottom: -14px; width: clamp(150px, 24%, 230px); aspect-ratio: 3 / 4; padding: 18px 16px 0 26px;
+      background: #F3EBDD repeating-linear-gradient(transparent 0 25px, rgba(116,45,71,0.18) 25px 26px); background-position: 0 44px;
+      border-left: 3px solid rgba(116,45,71,0.35); transform: rotate(-8deg); box-shadow: 0 24px 40px -20px rgba(0,0,0,0.7);
+      font-family: 'Caveat', cursive; color: #292622; }
+    .np-title { margin: 0 0 6px; font-size: 1.25rem; font-weight: 700; color: var(--mulberry); line-height: 1.1; }
+    .notepad ol { margin: 0; padding-left: 18px; font-size: 1.2rem; line-height: 26px; }
     @media (max-width: 860px) {
-      .portrait, .snapshot, .prod-text { grid-row: auto; }
-      .snapshot { grid-column: 1 / span 10; max-width: 380px; margin-top: 20px; }
+      .studio { padding: 0 0 60px; margin-top: 64px; }
+      .notepad { display: none; }
+      .phone { width: 31%; right: -2%; bottom: 8px; border-radius: 20px; padding: 5px; }
+      .ph-screen { border-radius: 16px; padding: 14% 9% 0; }
+      .ph-top, .ph-ep, .ph-title { display: none; }
+      .ph-cover { margin-top: 6%; } .ph-bar { margin-top: 14%; }
+      .stage { grid-template-columns: 1fr; } .side { display: none; }
+      .app-title { display: none; }
     }
     /* ---- gentle reveal ---- */
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
@@ -806,11 +861,6 @@
              sizes="(max-width: 860px) 380px, 40vw" width="600" height="900" loading="lazy" decoding="async"
              alt="Priscilla smiling, in a cream sweater">
       </figure>
-      <figure class="snapshot reveal">
-        <img src="/assets/img/recording-session-700.webp" width="700" height="653" loading="lazy" decoding="async"
-             alt="Priscilla in headphones during a remote podcast recording session, with the recording timer running">
-        <figcaption>Behind the scenes on a remote recording</figcaption>
-      </figure>
       <div class="prod-text reveal">
         <p class="tag">Produced by</p>
         <h2 id="about-h">Hi, I'm <em>Priscilla.</em></h2>
@@ -830,6 +880,42 @@
         </dl>
         <a href="/about.html" class="link">More about me</a>
       </div>
+      <figure class="studio reveal" role="img" aria-label="A laptop showing Priscilla in headphones during a remote podcast recording, next to a phone playing a newly published episode and a notepad with an episode outline">
+        <div class="notepad" aria-hidden="true">
+          <p class="np-title">Ep. 01 &middot; run of show</p>
+          <ol><li>Cold open</li><li>Guest story</li><li>3 takeaways</li><li>Call to action</li></ol>
+        </div>
+        <div class="laptop" aria-hidden="true">
+          <div class="screen">
+            <div class="app">
+              <div class="app-bar">
+                <span class="dots"><i></i><i></i><i></i></span>
+                <span class="app-title">Episode 01 &middot; Interview</span>
+                <span class="rec"><b></b>REC 00:42:18</span>
+              </div>
+              <div class="stage">
+                <div class="tile main"><img src="/assets/img/recording-video-900.webp" width="900" height="593" loading="lazy" decoding="async" alt=""><span class="name">Priscilla &middot; Producer</span></div>
+                <div class="side">
+                  <div class="tile guest"><span class="avatar">G</span><span class="name">Guest</span></div>
+                  <div class="meter"><span>Audio</span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+              </div>
+              <div class="controls"><i></i><i></i><i></i><span class="stop">Stop</span><i></i></div>
+            </div>
+          </div>
+          <div class="base"></div>
+        </div>
+        <div class="phone" aria-hidden="true">
+          <div class="ph-screen">
+            <p class="ph-top">New episode</p>
+            <div class="ph-cover"><span>Your</span><b>Show</b></div>
+            <p class="ph-ep">Episode 01</p>
+            <p class="ph-title">The story behind the business</p>
+            <div class="ph-bar"><i></i></div>
+            <div class="ph-play"><span></span></div>
+          </div>
+        </div>
+      </figure>
     </div>
   </section>
 
