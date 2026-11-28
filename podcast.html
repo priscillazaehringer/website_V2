@@ -613,11 +613,17 @@
       background: linear-gradient(180deg, rgba(37,75,61,0.55) 0%, rgba(37,75,61,0) 22%, rgba(41,38,34,0) 78%, rgba(41,38,34,0.6) 100%); }
     @media (max-width: 600px) { .photo-break { height: 300px; } .photo-break img { object-position: 42% 52%; } }
 
-    /* ---- behind-the-scenes snapshot over the headshot ---- */
-    .portrait .snapshot { position: absolute; z-index: 2; width: 58%; right: -14%; bottom: -8%; aspect-ratio: auto;
-      border-radius: 0; border: 8px solid var(--paper); border-bottom-width: 8px; transform: rotate(4deg);
-      box-shadow: 0 24px 40px -18px rgba(0,0,0,0.65); object-fit: cover; }
-    @media (max-width: 860px) { .portrait .snapshot { width: 56%; right: -8%; bottom: -10%; } .portrait { margin-bottom: 40px; } }
+    /* ---- behind-the-scenes snapshot under the headshot ---- */
+    .portrait { grid-row: 1; align-self: end; }
+    .prod-text { grid-row: 1 / span 2; align-self: center; }
+    .snapshot { grid-column: 1 / span 5; grid-row: 2; margin: 28px 0 0; }
+    .snapshot { max-width: 72%; }
+    .snapshot img { width: 100%; height: auto; border-radius: 4px; }
+    .snapshot figcaption { margin-top: 10px; font-size: 0.9rem; color: var(--muted); }
+    @media (max-width: 860px) {
+      .portrait, .snapshot, .prod-text { grid-row: auto; }
+      .snapshot { grid-column: 1 / span 10; max-width: 380px; margin-top: 20px; }
+    }
     /* ---- gentle reveal ---- */
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
     .reveal.in { opacity: 1; transform: none; }
@@ -799,8 +805,11 @@
         <img src="/assets/img/about-headshot-600.webp" srcset="/assets/img/about-headshot-600.webp 600w, /assets/img/about-headshot.webp 800w"
              sizes="(max-width: 860px) 380px, 40vw" width="600" height="900" loading="lazy" decoding="async"
              alt="Priscilla smiling, in a cream sweater">
-        <img class="snapshot" src="/assets/img/recording-session-700.webp" width="700" height="653" loading="lazy" decoding="async"
+      </figure>
+      <figure class="snapshot reveal">
+        <img src="/assets/img/recording-session-700.webp" width="700" height="653" loading="lazy" decoding="async"
              alt="Priscilla in headphones during a remote podcast recording session, with the recording timer running">
+        <figcaption>Behind the scenes on a remote recording</figcaption>
       </figure>
       <div class="prod-text reveal">
         <p class="tag">Produced by</p>
