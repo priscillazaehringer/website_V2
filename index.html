@@ -14,25 +14,25 @@
   <link rel="stylesheet" href="/assets/css/signal.css">
   <style>
     /* ================= Homepage (on the shared Signal system) ================= */
-    /* hero */
-    .hero { position: relative; background: var(--forest); color: var(--paper); min-height: min(calc(100svh - var(--stack-h)), 880px);
-      display: flex; align-items: center; padding-block: clamp(56px, 7vw, 104px); }
-    .hero.has-video::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-      background: linear-gradient(90deg, rgba(37,75,61,0.97) 0%, rgba(37,75,61,0.9) 40%, rgba(37,75,61,0.5) 72%, rgba(37,75,61,0.2) 100%); }
-    .hero .bg-video { object-position: 75% 40%; }
-    .hero .wrap { position: relative; z-index: 2; }
+    /* hero: type-led headline with oval cameo windows inside the sentence */
+    .hero { position: relative; background: var(--forest); color: var(--paper); padding-block: clamp(64px, 9vw, 140px) clamp(72px, 9vw, 128px); overflow: hidden; }
     .hero .tag { color: #E0C08A; }
-    .hero .hero-h1 { max-width: 12ch; }
-    .hero .hero-h1 .h1-a, .hero .hero-h1 em { display: block; }
-    .hero .lede { max-width: 42ch; margin: 28px 0 32px; color: rgba(243,235,221,0.92); }
-    .hero-cta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 28px; }
+    .cameo-h1 { margin: 0; font-family: var(--serif); font-weight: 600; font-size: clamp(2.9rem, 1rem + 7.4vw, 8.4rem); line-height: 1.04;
+      letter-spacing: -0.03em; font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144; max-width: 15ch; }
+    .cameo { position: relative; display: inline-block; vertical-align: -0.08em; height: 0.8em; overflow: hidden; border-radius: 50%;
+      box-shadow: 0 0 0 0.05em #E0C08A; margin: 0 0.06em; }
+    .cameo-video { width: 1.75em; }
+    .cameo-video .bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 45%; }
+    .cameo-face { width: 0.66em; background: var(--mulberry); }
+    .cameo-face img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+    .hero-foot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px clamp(32px, 6vw, 96px); align-items: end;
+      margin-top: clamp(40px, 5vw, 72px); padding-top: clamp(28px, 3vw, 40px); }
+    .hero .lede { max-width: 44ch; margin: 0; color: rgba(243,235,221,0.92); }
+    .hero-cta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 26px; }
     .hero-cta .link { color: var(--paper); }
-    @media (max-width: 900px) {
-      .hero { min-height: 0; flex-direction: column; align-items: stretch; padding-bottom: 0; }
-      .hero.has-video::before { background: linear-gradient(180deg, var(--forest) 0%, var(--forest) calc(100% - 62vw - 60px), rgba(37,75,61,0) calc(100% - 62vw + 40px)); }
-      .hero .bg-video { position: relative; order: 2; height: 62vw; max-height: 420px; margin-top: 40px; }
-      .hero .hero-h1 { font-size: clamp(2.7rem, 11vw, 4rem); }
-    }
+    .hero .video-toggle { position: static; min-height: 40px; padding: 0 12px; font-size: 0.78rem; background: transparent; border-color: rgba(243,235,221,0.35); }
+    @media (max-width: 900px) { .hero-foot { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) { .cameo-video .bg-video { display: block; } }
 
     /* who */
     .who h2 { max-width: 18ch; }
@@ -143,23 +143,29 @@
   <main id="main" tabindex="-1">
 
   <!-- ===================== HERO ===================== -->
-  <section class="hero on-dark has-video" id="top">
-    <!-- Background clip: Mixkit "Woman working on a laptop" (free license, mixkit.co/license). -->
-    <video class="bg-video" autoplay muted loop playsinline preload="metadata"
-           poster="/assets/video/workspace-poster.webp" aria-hidden="true">
-      <source src="/assets/video/workspace.mp4" type="video/mp4">
-    </video>
-    <button type="button" class="video-toggle" aria-pressed="false">
-      <span class="vt-icon" aria-hidden="true">&#10074;&#10074;</span><span class="vt-label">Pause video</span>
-    </button>
+  <section class="hero" id="top" aria-labelledby="hero-h">
     <div class="wrap">
       <p class="tag">Strategy &middot; Systems &middot; Execution</p>
-      <h1 class="hero-h1"><span class="h1-a">You run your business.</span> <em>I'll handle the marketing.</em></h1>
-      <p class="lede">From your podcast launch and email funnels to your sales pages and marketing systems, I'll bring all
-        the pieces together so you can focus on what you do best.</p>
-      <div class="hero-cta">
-        <button type="button" class="btn btn-gold" data-open-inquiry>Get in touch <span class="arr" aria-hidden="true">&#8599;</span></button>
-        <a href="#who" class="link">Who I work with</a>
+      <h1 class="cameo-h1" id="hero-h">You run your
+        <span class="cameo cameo-video has-video" aria-hidden="true">
+          <!-- Clip: Mixkit "Woman working on a laptop" (free license, mixkit.co/license). -->
+          <video class="bg-video" autoplay muted loop playsinline preload="metadata" poster="/assets/video/workspace-poster.webp">
+            <source src="/assets/video/workspace.mp4" type="video/mp4">
+          </video>
+        </span>
+        business. I'll handle <span class="nw">the
+        <span class="cameo cameo-face" aria-hidden="true"><img src="/assets/img/about-headshot-600.webp" width="600" height="900" alt="" fetchpriority="high"></span>
+        marketing.</span></h1>
+      <div class="hero-foot">
+        <p class="lede">From your podcast launch and email funnels to your sales pages and marketing systems, I'll bring all
+          the pieces together so you can focus on what you do best.</p>
+        <div class="hero-cta">
+          <button type="button" class="btn btn-gold" data-open-inquiry>Get in touch <span class="arr" aria-hidden="true">&#8599;</span></button>
+          <a href="#who" class="link">Who I work with</a>
+          <button type="button" class="video-toggle" aria-pressed="false">
+            <span class="vt-icon" aria-hidden="true">&#10074;&#10074;</span><span class="vt-label">Pause video</span>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -167,7 +173,7 @@
   <!-- ===================== WHO I WORK WITH ===================== -->
   <section class="sec who dk bg-ink" id="who" aria-labelledby="who-h">
     <div class="wrap">
-      <h2 id="who-h" class="reveal">Your business is growing. But you're still managing every <em>moving piece.</em></h2>
+      <h2 id="who-h" class="reveal">Your business is growing. But you're still managing every moving piece.</h2>
       <div class="who-cols reveal">
         <p class="lede">You have an offer that sells, clients who love working with you, and plenty of ideas for what's next.
           What you don't have is the time to turn those ideas into marketing that's actually out in the world.</p>
@@ -188,13 +194,12 @@
   <section class="sec dk bg-forest" id="offer" aria-labelledby="offer-h">
     <div class="wrap">
       <div class="offer-head reveal">
-        <h2 id="offer-h">Ways to work <em>with me</em></h2>
+        <h2 id="offer-h">Ways to work with me</h2>
         <p>Ongoing help, a podcast launch, or one project to start.</p>
       </div>
       <ul class="offers reveal">
         <li>
           <figure class="offer-img"><img src="/assets/img/offer-cmo.webp" width="800" height="600" loading="lazy" decoding="async" alt="A woman at a wooden desk writing a plan in a notebook"></figure>
-          <p class="num">01</p>
           <h3>Fractional CMO</h3>
           <p class="meta">Ongoing partnership &middot; Limited availability</p>
           <p>A dedicated marketing partner who understands your business, helps you decide what to prioritize, and brings
@@ -203,7 +208,6 @@
         </li>
         <li class="featured">
           <figure class="offer-img"><img src="/assets/img/offer-signal.webp" width="800" height="600" loading="lazy" decoding="async" alt="A glowing red RECORDING sign in a recording studio"></figure>
-          <p class="num">02</p>
           <h3>The Signal: Podcast Launch</h3>
           <p class="meta">6 to 8 weeks &middot; $1,297</p>
           <p>Go from an idea for a podcast to a branded, published show. I'll guide you through the decisions, handle the
@@ -212,7 +216,6 @@
         </li>
         <li>
           <figure class="offer-img"><img src="/assets/img/offer-project.webp" width="800" height="600" loading="lazy" decoding="async" alt="A hand writing in a spiral planner with highlighted notes"></figure>
-          <p class="num">03</p>
           <h3>Start with one project</h3>
           <p class="meta">Defined scope &middot; Upfront pricing</p>
           <p>Have a funnel, sales page, or email sequence you've been meaning to get off the ground? I'll take it from idea to
@@ -246,7 +249,7 @@
     <div class="wrap bonus-grid">
       <div>
         <p class="tag">Free workbook</p>
-        <h2 id="wb-h">Thinking about a podcast? <em>Decide in 30 minutes.</em></h2>
+        <h2 id="wb-h">Thinking about a podcast? Decide in 30 minutes.</h2>
         <p>A short workbook to help you decide whether a podcast belongs in your marketing, before you buy a microphone.</p>
       </div>
       <a href="#" class="btn" data-kit-optin>Send me the workbook <span class="arr" aria-hidden="true">&#8599;</span></a>
@@ -263,7 +266,7 @@
         <figcaption class="hand" aria-hidden="true">hi, that's me!</figcaption>
       </figure>
       <div class="reveal">
-        <h2 id="about-h">Hi, I'm <em>Priscilla.</em></h2>
+        <h2 id="about-h">Hi, I'm Priscilla.</h2>
         <p class="lede">I'm an Iowa native with an MBA, a background in sociology, and a genuine curiosity about what makes
           people and businesses tick.</p>
         <p>Since 2020, I've worked behind the scenes of small businesses, produced more than 300 podcast episodes, managed
@@ -280,7 +283,7 @@
   <section class="wood-close" id="book" aria-labelledby="book-h">
     <div class="wrap">
       <div class="paper-card reveal">
-        <h2 id="book-h">Tell me what you're <em>working on.</em></h2>
+        <h2 id="book-h">Tell me what you're working on.</h2>
         <p>I'd love to hear a little about your business, where you're headed, and what you could use some help with. You
           don't need to have it all figured out before reaching out.</p>
         <p>I'll personally get back to you within two business days, and we can find a time to chat about what working
@@ -544,7 +547,7 @@
   </script>
 <script>
     // Background video: pause/play control (WCAG 2.2.2) and respect reduced motion.
-    document.querySelectorAll('.has-video').forEach(sec => {
+    document.querySelectorAll('.hero, .has-video:not(.cameo)').forEach(sec => {
       const v = sec.querySelector('.bg-video'), b = sec.querySelector('.video-toggle');
       if (!v || !b) return;
       const set = (paused) => {
