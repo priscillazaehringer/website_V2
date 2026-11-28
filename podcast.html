@@ -138,13 +138,13 @@
     @media (prefers-reduced-motion: reduce) { .mobile-menu, .mm-inner, .nav-toggle .bars i { transition: none; } }
 
     /* ================= HERO: forest block, photo to the edge, record sliding out ================= */
-    .hero { background: var(--forest); color: var(--paper); display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    .hero { background: var(--forest); color: var(--paper); display: grid; grid-template-columns: minmax(0, 1fr) clamp(380px, 40vw, 760px);
       min-height: min(calc(100svh - var(--stack-h)), 860px); overflow: hidden; }
     .hero-text { align-self: center; position: relative; z-index: 3;
       padding: clamp(56px, 7vw, 112px) clamp(28px, 5vw, 72px) clamp(56px, 7vw, 112px) max(var(--gutter), calc((100vw - var(--wrap)) / 2 + var(--gutter))); }
     .hero .tag { color: var(--gold); }
-    .hero h1 { font-size: clamp(3rem, 1.2rem + 5.6vw, 7rem); font-weight: 600; line-height: 0.98; letter-spacing: -0.02em;
-      font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144; max-width: 10ch; }
+    .hero h1 { font-size: clamp(3rem, 1.2rem + 5.6vw, 6.3rem); font-weight: 600; line-height: 0.98; letter-spacing: -0.02em;
+      font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144; max-width: 11ch; }
     .hero h1 em { color: var(--gold); font-weight: 500; }
     .hero .lede { font-size: clamp(1.12rem, 1rem + 0.45vw, 1.35rem); line-height: 1.55; max-width: 34ch; margin: 2rem 0 2.2rem; color: rgba(243,235,221,0.9); }
     .hero-cta { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 28px; }
@@ -158,6 +158,7 @@
       .hero-photo .disc { animation: slide-out 1.4s cubic-bezier(.2,.7,.2,1) 0.25s both; }
       @keyframes slide-out { from { transform: translate(-6%, -50%) rotate(60deg); } to { transform: translate(-42%, -50%); } }
     }
+    @media (max-width: 1150px) { .hero-photo .disc { top: 92%; } }
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: 0; }
       .hero-text { padding: 56px var(--gutter) 64px; }
