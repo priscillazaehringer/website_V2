@@ -18,32 +18,21 @@
   <link rel="stylesheet" href="/assets/css/signal.css">
   <style>
     /* ================= About (on the shared Signal system) ================= */
-    /* hero: thrift-store painting */
-    .hero { position: relative; min-height: min(calc(100svh - var(--stack-h)), 820px); display: flex; align-items: flex-start;
-      padding-block: clamp(64px, 8vw, 120px) clamp(240px, 26vw, 380px); color: var(--paper); overflow: hidden;
-      background: #56677E url("/assets/img/about-sedona-2400.webp") 40% 100% / max(100%, 2100px) auto no-repeat; }
-    .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(180deg, rgba(31,28,25,0.62) 0%, rgba(31,28,25,0.35) 45%, rgba(31,28,25,0) 70%); }
-    .hero .wrap { position: relative; }
-    @media (max-width: 760px) { .hero { background-image: url("/assets/img/about-sedona-1200.webp"); background-position: 30% 100%;
-      background-size: 1250px auto; padding-bottom: 290px; } }
+    /* hero: solid forest, text + photo */
+    .hero { padding-block: clamp(64px, 8vw, 120px); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(40px, 7vw, 112px); align-items: center; }
     .hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(3rem, 1.2rem + 6vw, 6.8rem); line-height: 0.98; letter-spacing: -0.03em;
       font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144; }
-    .hero .lede { max-width: 40ch; margin: 24px 0 32px; color: rgba(243,235,221,0.94); }
-    .facts { margin: 0 0 30px; font-size: 0.98rem; color: #E0C08A; }
-    .facts span + span::before { content: "·"; margin: 0 0.6em; color: rgba(243,235,221,0.6); }
-    .hero-cta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 24px; }
-    .hero .hand { color: var(--paper); font-size: clamp(1.5rem, 1.3rem + 0.6vw, 1.9rem); rotate: -5deg; }
-    .credit { position: absolute; right: var(--gutter); bottom: 18px; margin: 0; font-size: 0.75rem; color: rgba(243,235,221,0.6); }
+    .hero .lede { max-width: 40ch; margin: 24px 0 32px; }
+    .hero-photo { margin: 0; }
+    .hero-photo img { width: 100%; aspect-ratio: 4 / 5.2; object-fit: cover; object-position: 50% 30%; border-radius: 999px 999px 0 0; }
+    @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .hero-photo { max-width: 340px; } }
 
     /* story */
-    .story-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(40px, 7vw, 104px); align-items: center; }
+    .story-wrap { max-width: 760px; }
     .story h2 { margin-bottom: 26px; }
-    .story-grid p:not(.lede) { color: var(--muted); }
+    .story-wrap p:not(.lede) { color: var(--muted); }
     .story .cred { color: var(--hi); font-weight: 600; }
-    .arch { margin: 0; }
-    .arch img { width: 100%; aspect-ratio: 4 / 5.4; object-fit: cover; object-position: 50% 30%; border-radius: 999px 999px 0 0; }
-    @media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; } .arch { max-width: 360px; } }
 
     /* proof */
     .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; list-style: none; margin: 0; padding: 0; }
@@ -71,7 +60,6 @@
     @media (max-width: 860px) { .beliefs { grid-template-columns: 1fr; gap: 40px; } }
 
     /* off the clock: a board of pinned Polaroids */
-    .offclock { background: var(--forest) url('/assets/img/cork-forest.webp') 0 0 / 520px auto; box-shadow: inset 0 0 0 10px #3A2A1C, inset 0 0 0 12px rgba(0,0,0,0.25); }
     .offclock-head { max-width: 760px; }
     .offclock-head h2 { margin-bottom: 24px; }
     .board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); list-style: none;
@@ -84,11 +72,18 @@
     .board .polaroid figcaption { font-size: 1.25rem; }
     @media (max-width: 860px) { .board { grid-template-columns: 1fr 1fr; row-gap: 44px; } }
 
-    /* closing: cashmere */
-    .cash-close { padding-block: clamp(96px, 12vw, 168px); background: #742D47 url("/assets/img/cashmere-mulberry.webp") 0 0 / 900px auto; }
-    .cash-close .paper-card { box-shadow: 12px 12px 0 #3E1626, 0 40px 70px -30px rgba(0,0,0,0.6); border-color: #3E1626; }
-    .cash-close .paper-card h2 { max-width: 16ch; }
-    @media (max-width: 600px) { .cash-close .paper-card { box-shadow: 8px 8px 0 #3E1626; } }
+    /* closing: solid mulberry, pheasant feathers tucked behind the card */
+    .feather-close { background: var(--mulberry); padding-block: clamp(96px, 12vw, 168px); overflow: hidden; }
+    .feather-close .paper-card { position: relative; box-shadow: 12px 12px 0 #3E1626; border-color: #3E1626; }
+    .feather-close .paper-card h2 { max-width: 16ch; }
+    .feathers { position: absolute; right: -170px; bottom: -40px; width: 300px; height: 600px; z-index: -2; pointer-events: none; }
+    .feathers img { position: absolute; bottom: 0; height: 100%; width: auto; transform-origin: 50% 100%; }
+    .feathers img:first-child { left: 20px; rotate: 22deg; }
+    .feathers img:last-child { left: 60px; height: 80%; rotate: 44deg; }
+    .feather-close .paper-card { isolation: isolate; }
+    .feather-close .paper-card::before { content: ""; position: absolute; inset: 0; background: var(--paper); z-index: -1; }
+    @media (max-width: 760px) { .feathers { right: -60px; bottom: -30px; width: 170px; height: 340px; } .feathers img:first-child { left: 10px; } .feathers img:last-child { left: 34px; } }
+    @media (max-width: 600px) { .feather-close .paper-card { box-shadow: 8px 8px 0 #3E1626; } }
   </style>
 </head>
 <body>
@@ -130,20 +125,26 @@
   <main id="main" tabindex="-1">
 
   <!-- ===================== HERO ===================== -->
-  <section class="hero" id="top" aria-labelledby="hero-h">
-    <div class="wrap">
-      <h1 id="hero-h">Hi, I'm Priscilla.</h1>
-      <p class="lede">I'm a marketing and operations person from Iowa, which is a long way of saying I help small business
-        owners plan their marketing and then actually get it built.</p>
-      <div class="hero-cta">
+  <section class="hero dk bg-forest" id="top" aria-labelledby="hero-h">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <h1 id="hero-h">Hi, I'm Priscilla.</h1>
+        <p class="lede">I'm a marketing and operations person from Iowa, which is a long way of saying I help small business
+          owners plan their marketing and then actually get it built.</p>
         <button type="button" class="btn btn-gold" data-open-inquiry>Get in touch <span class="arr" aria-hidden="true">&#8599;</span></button>
       </div>
+      <figure class="hero-photo">
+        <img src="/assets/img/about-hero-alt-760.webp"
+             srcset="/assets/img/about-hero-alt-560.webp 560w, /assets/img/about-hero-alt-760.webp 760w, /assets/img/about-hero-alt.webp 1000w"
+             sizes="(max-width: 860px) 80vw, 36vw" width="760" height="1016" fetchpriority="high" decoding="async"
+             alt="Priscilla walking away through a wildflower field, holding a straw hat in the evening light">
+      </figure>
     </div>
   </section>
 
   <!-- ===================== STORY ===================== -->
   <section class="sec story dk bg-ink" id="story" aria-labelledby="story-h">
-    <div class="wrap story-grid">
+    <div class="wrap story-wrap">
       <div class="reveal">
         <h2 id="story-h">How I got here</h2>
         <p class="lede">I was born and raised in Iowa, and I'm still here. I'm a mom of three, and I'd much rather have an
@@ -158,12 +159,6 @@
           <a href="/podcast.html">podcast launches</a>, and one-off projects when someone needs one thing done. You can
           <a href="/support.html">see how that works here</a>.</p>
       </div>
-      <figure class="arch reveal">
-        <img src="/assets/img/about-hero-alt-760.webp"
-             srcset="/assets/img/about-hero-alt-560.webp 560w, /assets/img/about-hero-alt-760.webp 760w, /assets/img/about-hero-alt.webp 1000w"
-             sizes="(max-width: 860px) 360px, 34vw" width="760" height="1016" loading="lazy" decoding="async"
-             alt="Priscilla walking away through a wildflower field, holding a straw hat in the evening light">
-      </figure>
     </div>
   </section>
 
@@ -217,7 +212,7 @@
   </section>
 
   <!-- ===================== OFF THE CLOCK ===================== -->
-  <section class="sec offclock dk" id="offclock" aria-labelledby="off-h">
+  <section class="sec offclock dk bg-ink" id="offclock" aria-labelledby="off-h">
     <div class="wrap">
       <div class="offclock-head reveal">
         <h2 id="off-h">When I'm not working</h2>
@@ -245,9 +240,10 @@
   </section>
 
   <!-- ===================== CTA ===================== -->
-  <section class="cash-close" id="book" aria-labelledby="book-h">
+  <section class="feather-close" id="book" aria-labelledby="book-h">
     <div class="wrap">
       <div class="paper-card reveal">
+        <span class="feathers" aria-hidden="true"><img src="/assets/img/pheasant-feather.svg" alt=""><img src="/assets/img/pheasant-feather.svg" alt=""></span>
         <h2 id="book-h">If you've read this far, we should probably talk.</h2>
         <p>Tell me what you're working on. I'd love to hear about it. Fill out a short form, and I'll get back to you within
           two business days. If it looks like a fit, we'll set up a call.</p>
