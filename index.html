@@ -91,6 +91,17 @@
     .wood-close { position: relative; padding-block: clamp(96px, 12vw, 168px); background: #742D47 url("/assets/img/cashmere-mulberry.webp") 0 0 / 900px auto; }
     .wood-close .paper-card { box-shadow: 12px 12px 0 #3E1626, 0 40px 70px -30px rgba(0,0,0,0.6); border-color: #3E1626; }
     @media (max-width: 600px) { .wood-close .paper-card { box-shadow: 8px 8px 0 #3E1626; } }
+
+    .offers li { border-top: 0; padding-top: 0; }
+    .offer-img { margin: 0 0 22px; position: relative; overflow: hidden; }
+    .offer-img img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.6s cubic-bezier(.2,.7,.2,1); }
+    .offers li:hover .offer-img img { transform: scale(1.04); }
+    .offer-img::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--hi); }
+    .offers li.featured .offer-img::after { background: var(--paper); }
+    .offers li:nth-child(1) .offer-img { border-radius: 999px 999px 0 0; }
+    .offers li:nth-child(3) .offer-img { border-radius: 0 0 999px 999px; }
+    .offers li:nth-child(3) .offer-img::after { top: 0; bottom: auto; }
+    @media (prefers-reduced-motion: reduce) { .offer-img img { transition: none; } }
   </style>
 </head>
 <body>
@@ -182,6 +193,7 @@
       </div>
       <ul class="offers reveal">
         <li>
+          <figure class="offer-img"><img src="/assets/img/offer-cmo.webp" width="800" height="600" loading="lazy" decoding="async" alt="A woman at a wooden desk writing a plan in a notebook"></figure>
           <p class="num">01</p>
           <h3>Fractional CMO</h3>
           <p class="meta">Ongoing partnership &middot; Limited availability</p>
@@ -190,6 +202,7 @@
           <a href="/support.html" class="link">Explore ongoing support &#8594;</a>
         </li>
         <li class="featured">
+          <figure class="offer-img"><img src="/assets/img/offer-signal.webp" width="800" height="600" loading="lazy" decoding="async" alt="A glowing red RECORDING sign in a recording studio"></figure>
           <p class="num">02</p>
           <h3>The Signal: Podcast Launch</h3>
           <p class="meta">6 to 8 weeks &middot; $1,297</p>
@@ -198,6 +211,7 @@
           <a href="/podcast.html" class="link">See what's included &#8594;</a>
         </li>
         <li>
+          <figure class="offer-img"><img src="/assets/img/offer-project.webp" width="800" height="600" loading="lazy" decoding="async" alt="A hand writing in a spiral planner with highlighted notes"></figure>
           <p class="num">03</p>
           <h3>Start with one project</h3>
           <p class="meta">Defined scope &middot; Upfront pricing</p>
