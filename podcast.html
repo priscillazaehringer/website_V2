@@ -150,7 +150,7 @@
     .hero { position: relative; background: var(--forest); color: var(--paper); overflow: hidden;
       padding: clamp(40px, 5vw, 72px) 0 clamp(80px, 9vw, 128px); }
     .hero-grid { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(16px, 2vw, 28px); }
-    .hero-title { grid-column: 1 / span 9; grid-row: 1; position: relative; z-index: 3; margin: 0; }
+    .hero-title { grid-column: 1 / span 8; grid-row: 1; position: relative; z-index: 3; margin: 0; }
     .hero-title .t-the { display: block; font-style: italic; font-weight: 400; font-size: clamp(1.8rem, 1rem + 2.6vw, 3.4rem);
       color: var(--gold); line-height: 1; margin: 0 0 -0.2em 0.12em; }
     .hero-title .t-signal { display: block; font-weight: 600; font-size: clamp(5.2rem, 1rem + 15vw, 15.5rem); line-height: 0.82;
@@ -165,22 +165,30 @@
     .hero-cta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 26px; }
     .hero-meta { margin: 0; font-family: var(--serif); font-size: 1.25rem; font-variation-settings: 'SOFT' 100; }
     .hero-meta span + span::before { content: "·"; margin: 0 0.5em; color: var(--gold); }
-    .hero-art { grid-column: 9 / span 4; grid-row: 1 / span 2; position: relative; margin: clamp(24px, 3vw, 48px) 0 0; z-index: 2; }
-    .hero-art img { position: relative; z-index: 2; width: 100%; aspect-ratio: 4 / 5.6; object-fit: cover; object-position: 50% 30%;
-      border-radius: 999px 999px 0 0; }
-    .hero-art .disc { position: absolute; z-index: 1; width: 100%; left: -92%; top: 10%; }
-    .hero-art .note { left: -46%; bottom: 7%; color: var(--gold); }
-    @media (prefers-reduced-motion: no-preference) {
-      .hero-art .disc { animation: slide-out 1.4s cubic-bezier(.2,.7,.2,1) 0.3s both; }
-      @keyframes slide-out { from { transform: translateX(40%) rotate(70deg); } to { transform: none; } }
-    }
+    /* background video, tinted forest so the title stays readable */
+    .hero.has-video { min-height: min(calc(100svh - var(--stack-h)), 900px); display: flex; align-items: center; }
+    .hero .hero-grid { width: 100%; }
+    .bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 30%; z-index: 0; }
+    .hero.has-video::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(90deg, rgba(37,75,61,0.97) 0%, rgba(37,75,61,0.9) 38%, rgba(37,75,61,0.55) 68%, rgba(37,75,61,0.25) 100%); }
+    .hero.has-video::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: rgba(116,45,71,0.10); mix-blend-mode: multiply; }
+    .hero .hero-grid { z-index: 2; }
+    .video-toggle { position: absolute; z-index: 3; right: var(--gutter); bottom: 24px; display: inline-flex; align-items: center; gap: 8px;
+      min-height: 44px; padding: 0 16px; border-radius: 2px; border: 1px solid rgba(243,235,221,0.5); background: rgba(37,75,61,0.7);
+      color: var(--paper); font: 600 0.85rem/1 var(--sans); cursor: pointer; }
+    .video-toggle:hover { background: var(--forest); }
+    .vt-icon { font-size: 0.7rem; letter-spacing: -1px; }
+    @media (prefers-reduced-motion: reduce) { .bg-video { display: none; } .hero.has-video { background: var(--forest) url('/assets/video/signal-podcast-poster.webp') 72% 30% / cover; } }
     @media (max-width: 900px) {
       .hero-title, .hero-copy { grid-column: 1 / -1; }
-      .hero-art { grid-column: 3 / -1; grid-row: 3; margin-top: 48px; max-width: 360px; justify-self: end; width: 100%; }
-      .hero-art .disc { left: -44%; top: 18%; width: 90%; }
-      .hero-art .note { left: -6%; bottom: -54px; }
       .hero .hero-title .t-signal { font-size: 25vw; }
-      .hero { padding-bottom: 120px; }
+      .hero.has-video { min-height: 0; padding-bottom: 0; flex-direction: column; align-items: stretch; }
+      .bg-video { position: relative; inset: auto; order: 2; height: 62vw; max-height: 420px; object-position: 70% 25%; }
+      .hero.has-video::before { background: linear-gradient(180deg, var(--forest) 0%, var(--forest) calc(100% - 62vw - 60px), rgba(37,75,61,0) calc(100% - 62vw + 40px)); }
+      .hero.has-video::after { display: none; }
+      .hero .hero-grid { padding-bottom: 32px; }
+      .video-toggle { bottom: 16px; right: 16px; }
     }
 
     /* ================= IN ROTATION: the portfolio, leaning in the crate ================= */
@@ -499,7 +507,15 @@
   <main id="main" tabindex="-1">
 
   <!-- ===================== HERO ===================== -->
-  <section class="hero on-dark" id="top">
+  <section class="hero on-dark has-video" id="top">
+    <!-- Background clip: Mixkit "Woman recording a podcast" (free license, mixkit.co/license). -->
+    <video class="bg-video" autoplay muted loop playsinline preload="metadata"
+           poster="/assets/video/signal-podcast-poster.webp" aria-hidden="true">
+      <source src="/assets/video/signal-podcast.mp4" type="video/mp4">
+    </video>
+    <button type="button" class="video-toggle" aria-pressed="false">
+      <span class="vt-icon" aria-hidden="true">&#10074;&#10074;</span><span class="vt-label">Pause video</span>
+    </button>
     <div class="wrap hero-grid">
       <h1 class="hero-title">
         <span class="t-the">The</span>
@@ -515,14 +531,6 @@
           <p class="hero-meta"><span>$1,297</span><span>6&ndash;8 weeks</span></p>
         </div>
       </div>
-      <figure class="hero-art">
-        <svg class="disc" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle cx="200" cy="200" r="199" fill="#292622"/><circle cx="200" cy="200" r="76" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="79" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="82" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="85" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="88" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="91" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="94" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="97" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="100" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="103" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="106" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="109" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="112" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="115" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="118" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="121" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="124" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="127" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="130" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="133" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="136" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="139" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="142" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="145" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="148" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="151" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="154" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="157" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="160" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="163" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="166" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="169" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="172" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="175" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="178" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="181" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="184" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="187" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="190" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="193" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="104" fill="none" stroke="#151311" stroke-width="3.2"/><circle cx="200" cy="200" r="132" fill="none" stroke="#151311" stroke-width="3.2"/><circle cx="200" cy="200" r="161" fill="none" stroke="#151311" stroke-width="3.2"/><circle cx="200" cy="200" r="193" fill="none" stroke="#F3EBDD" stroke-opacity="0.12" stroke-width="1"/><path d="M200 200 L318 39 A199 199 0 0 1 378 118 Z" fill="#F3EBDD" fill-opacity="0.06"/><path d="M200 200 L82 361 A199 199 0 0 1 22 282 Z" fill="#F3EBDD" fill-opacity="0.05"/><circle cx="200" cy="200" r="68" fill="#742D47"/><circle cx="200" cy="200" r="61" fill="none" stroke="#C69B55" stroke-width="0.9"/><path id="lr-hero" d="M200 200 m-50 0 a50 50 0 1 1 100 0 a50 50 0 1 1 -100 0" fill="none"/><text font-family="DM Sans, sans-serif" font-size="7.6" font-weight="600" letter-spacing="2.4" fill="#C69B55"><textPath href="#lr-hero">PRISCILLA ZAEHRINGER PRESENTS · SIDE A ·</textPath></text><text x="200" y="192" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="17" font-style="italic" fill="#F3EBDD">The Signal</text><text x="200" y="224" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="7.5" font-weight="600" letter-spacing="2.2" fill="#C69B55">VOL. 01</text><circle cx="200" cy="200" r="4.5" fill="#F3EBDD"/></svg>
-        <img src="/assets/img/about-hero-alt-760.webp"
-             srcset="/assets/img/about-hero-alt-560.webp 560w, /assets/img/about-hero-alt-760.webp 760w, /assets/img/about-hero-alt.webp 1000w"
-             sizes="(max-width: 900px) 360px, 30vw" width="760" height="1016" fetchpriority="high" decoding="async"
-             alt="Priscilla walking through a field of wildflowers at golden hour, a straw hat in her hand">
-        <p class="note hand" aria-hidden="true">hi, I'm Priscilla! <svg viewBox="0 0 54 40"><path d="M4 34 C 18 31, 34 22, 46 8 M 36 7 L 47 7 L 46 18"/></svg></p>
-      </figure>
     </div>
   </section>
 
@@ -1122,6 +1130,20 @@
     }
   ]
 }
+  </script>
+  <script>
+    // Background video: pause/play (WCAG 2.2.2) and respect reduced motion.
+    document.querySelectorAll('.has-video').forEach(sec => {
+      const v = sec.querySelector('.bg-video'), b = sec.querySelector('.video-toggle');
+      if (!v || !b) return;
+      const set = (paused) => {
+        b.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        b.querySelector('.vt-label').textContent = paused ? 'Play video' : 'Pause video';
+        b.querySelector('.vt-icon').innerHTML = paused ? '&#9654;' : '&#10074;&#10074;';
+      };
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.pause(); v.removeAttribute('autoplay'); b.hidden = true; return; }
+      b.addEventListener('click', () => { if (v.paused) { v.play(); set(false); } else { v.pause(); set(true); } });
+    });
   </script>
 </body>
 </html>
