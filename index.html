@@ -21,8 +21,6 @@
       letter-spacing: -0.03em; font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144; max-width: 15ch; }
     .cameo { position: relative; display: inline-block; vertical-align: -0.08em; height: 0.8em; overflow: hidden; border-radius: 50%;
       box-shadow: 0 0 0 0.05em #E0C08A; margin: 0 0.06em; }
-    .cameo-video { width: 1.75em; }
-    .cameo-video .bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 45%; }
     .cameo-face { width: 0.66em; background: var(--mulberry); }
     .cameo-face img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
     .hero-foot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px clamp(32px, 6vw, 96px); align-items: end;
@@ -32,7 +30,11 @@
     .hero-cta .link { color: var(--paper); }
     .hero .video-toggle { position: static; min-height: 40px; padding: 0 12px; font-size: 0.78rem; background: transparent; border-color: rgba(243,235,221,0.35); }
     @media (max-width: 900px) { .hero-foot { grid-template-columns: 1fr; } }
-    @media (prefers-reduced-motion: reduce) { .cameo-video .bg-video { display: block; } }
+    .hero .bg-video { object-position: 72% 40%; }
+    .hero.has-video::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(90deg, rgba(37,75,61,0.96) 0%, rgba(37,75,61,0.86) 45%, rgba(37,75,61,0.45) 78%, rgba(37,75,61,0.25) 100%); }
+    .hero .wrap { position: relative; z-index: 2; }
+    @media (max-width: 900px) { .hero.has-video::before { background: rgba(37,75,61,0.86); } }
 
     /* who */
     .who h2 { max-width: 18ch; }
@@ -143,16 +145,14 @@
   <main id="main" tabindex="-1">
 
   <!-- ===================== HERO ===================== -->
-  <section class="hero" id="top" aria-labelledby="hero-h">
+  <section class="hero has-video" id="top" aria-labelledby="hero-h">
+    <!-- Background clip: Mixkit "Woman working on a laptop" (free license, mixkit.co/license). -->
+    <video class="bg-video" autoplay muted loop playsinline preload="metadata" poster="/assets/video/workspace-poster.webp" aria-hidden="true">
+      <source src="/assets/video/workspace.mp4" type="video/mp4">
+    </video>
     <div class="wrap">
       <p class="tag">Strategy &middot; Systems &middot; Execution</p>
       <h1 class="cameo-h1" id="hero-h">You run your
-        <span class="cameo cameo-video has-video" aria-hidden="true">
-          <!-- Clip: Mixkit "Woman working on a laptop" (free license, mixkit.co/license). -->
-          <video class="bg-video" autoplay muted loop playsinline preload="metadata" poster="/assets/video/workspace-poster.webp">
-            <source src="/assets/video/workspace.mp4" type="video/mp4">
-          </video>
-        </span>
         business. I'll handle <span class="nw">the
         <span class="cameo cameo-face" aria-hidden="true"><img src="/assets/img/about-headshot-600.webp" width="600" height="900" alt="" fetchpriority="high"></span>
         marketing.</span></h1>
@@ -547,7 +547,7 @@
   </script>
 <script>
     // Background video: pause/play control (WCAG 2.2.2) and respect reduced motion.
-    document.querySelectorAll('.hero, .has-video:not(.cameo)').forEach(sec => {
+    document.querySelectorAll('.has-video').forEach(sec => {
       const v = sec.querySelector('.bg-video'), b = sec.querySelector('.video-toggle');
       if (!v || !b) return;
       const set = (paused) => {
