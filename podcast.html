@@ -581,6 +581,15 @@
     .closing-card .btn { background: #292622; color: var(--paper); border-color: #292622; }
     .closing-card .btn:hover { background: var(--mulberry); border-color: var(--mulberry); }
     @media (max-width: 600px) { .closing-card { box-shadow: 8px 8px 0 #292622; } }
+
+    /* ---- Side A / Side B context ---- */
+    .sides-intro { max-width: 46ch; margin: 0 0 clamp(40px, 5vw, 64px); padding-left: 16px; border-left: 3px solid #E0C08A;
+      font-family: var(--serif); font-style: italic; font-size: clamp(1.15rem, 1rem + 0.5vw, 1.4rem); line-height: 1.4; color: #F3EBDD;
+      font-variation-settings: 'SOFT' 100; }
+    .side-label { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 18px; }
+    .side-label .tag { margin: 0; }
+    .side-what { font-size: 1rem; color: #EAE2D4; }
+    .side-what::before { content: "\2014"; margin-right: 10px; color: #E0C08A; }
     /* ---- gentle reveal ---- */
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
     .reveal.in { opacity: 1; transform: none; }
@@ -702,7 +711,8 @@
     <div class="wrap">
       <div class="side-a">
         <div class="side-a-main reveal">
-          <p class="tag">Side A &middot; The build</p>
+          <p class="sides-intro">The Signal has two parts: the launch we build together, and the production process you keep afterward.</p>
+          <p class="side-label"><span class="tag">Side A &middot; The build</span><span class="side-what">Your 6&ndash;8 week launch</span></p>
           <h2 id="sidea-h">Here's what we'll work on <em>together.</em></h2>
           <ol class="tracklist">
             <li><div class="row"><span class="no" aria-hidden="true">01</span><h3>Podcast strategy</h3><span class="dots" aria-hidden="true"></span><span class="time">Weeks 1&ndash;2</span></div>
@@ -719,7 +729,7 @@
       </div>
       <div class="side-b reveal" id="handoff">
         <div>
-          <p class="tag">Side B &middot; The handoff</p>
+          <p class="side-label"><span class="tag">Side B &middot; The handoff</span><span class="side-what">What you keep after launch</span></p>
           <h2>You won't be left figuring out how to produce your <em>next episode.</em></h2>
           <p>Whether you plan to manage your podcast yourself, hand it over to a team member, or continue working with me,
             you'll have a documented process in place.</p>
