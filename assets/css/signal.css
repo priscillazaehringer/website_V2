@@ -198,6 +198,8 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 500; color: var(--mulberr
 /* ---- Dark sections: re-point the text tokens ---- */
 .dk { --ink: #F3EBDD; --muted: #D8CFC2; --rule: rgba(243,235,221,0.2); --hi: #E0C08A; color: var(--ink); }
 .dk .tag, .dk .link, .dk h1 em, .dk h2 em, .dk h3 em, .dk .note { color: var(--hi); }
+.dk p a:not(.btn) { color: var(--hi); text-underline-offset: 3px; }
+.dk p a:not(.btn):hover { color: var(--paper); }
 .bg-forest { background: var(--forest); } .bg-mulberry { background: var(--mulberry); }
 .bg-ink { background: #292622; } .bg-paper { background: var(--paper); } .bg-night { background: #1F1C19; }
 .lede { font-size: clamp(1.1rem, 1rem + 0.4vw, 1.28rem); line-height: 1.55; }

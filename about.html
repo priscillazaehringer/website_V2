@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#F7CBBB">
+  <meta name="theme-color" content="#254B3D">
   <meta name="color-scheme" content="light">
   <!-- noindex while staging. Remove this tag at launch. -->
   <meta name="robots" content="noindex, nofollow">
@@ -13,464 +13,75 @@
   <meta property="og:title" content="About Priscilla Zaehringer · Fractional CMO in Iowa">
   <meta property="og:description" content="Meet Priscilla, a fractional CMO and podcast producer in Iowa who helps online business owners plan their marketing and get it built.">
   <meta property="og:url" content="https://priscillazaehringer.com/about/">
-  <!-- the two fonts every page paints with; preloaded so they are not discovered only after tokens.css parses -->
-  <link rel="preload" href="/assets/fonts/hanken-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/golden-batch.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="preload" href="/assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/signal.css">
   <style>
-    /* ================================================================
-       About page. Built on the homepage system (tokens, cut-outs, ombre,
-       the .col column, eyebrows, color blocks). noindex while staging.
-       ================================================================ */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body);
-      font-size: var(--body); line-height: var(--lh-body); font-weight: 400; -webkit-font-smoothing: antialiased; }
-    h1, h2, h3, .display { font-family: var(--font-display); font-weight: 400; font-synthesis: none;
-      line-height: var(--lh-tight); margin: 0; }
-    h1 { font-size: clamp(2.7rem, 6.4vw, 4.8rem); }
-    h2 { font-size: clamp(2rem, 4.4vw, 3.1rem); }
-    h3 { font-size: clamp(1.4rem, 2.4vw, 1.75rem); }
-    p { margin: 0 0 var(--s-2); }
-    a { color: var(--link); }
+    /* ================= About (on the shared Signal system) ================= */
+    /* hero: thrift-store painting */
+    .hero { position: relative; min-height: min(calc(100svh - var(--stack-h)), 860px); display: flex; align-items: flex-end;
+      padding-block: clamp(80px, 10vw, 160px) clamp(56px, 7vw, 96px); color: var(--paper); overflow: hidden;
+      background: #3A3326 url("/assets/img/about-painting-1800.webp") center 40% / cover no-repeat; }
+    .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(90deg, rgba(31,28,25,0.86) 0%, rgba(31,28,25,0.6) 42%, rgba(31,28,25,0.1) 75%),
+                  linear-gradient(0deg, rgba(31,28,25,0.6) 0%, rgba(31,28,25,0) 45%); }
+    .hero .wrap { position: relative; }
+    .hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(3rem, 1.2rem + 6vw, 6.8rem); line-height: 0.98; letter-spacing: -0.03em;
+      font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144; }
+    .hero .lede { max-width: 40ch; margin: 24px 0 18px; color: rgba(243,235,221,0.94); }
+    .facts { margin: 0 0 30px; font-size: 0.98rem; color: #E0C08A; }
+    .facts span + span::before { content: "·"; margin: 0 0.6em; color: rgba(243,235,221,0.6); }
+    .hero-cta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 24px; }
+    .hero .hand { color: var(--paper); font-size: clamp(1.5rem, 1.3rem + 0.6vw, 1.9rem); rotate: -5deg; }
+    .credit { position: absolute; right: var(--gutter); bottom: 18px; margin: 0; font-size: 0.75rem; color: rgba(243,235,221,0.6); }
 
-    .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--s-3); }
-    .section { padding-block: var(--section-y); position: relative; z-index: 1; }
-    .col { max-width: 680px; margin-inline: auto; }
-    .lede { font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--text-muted); }
+    /* story */
+    .story-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(40px, 7vw, 104px); align-items: center; }
+    .story h2 { margin-bottom: 26px; }
+    .story-grid p:not(.lede) { color: var(--muted); }
+    .story .cred { color: var(--hi); font-weight: 600; }
+    .arch { margin: 0; }
+    .arch img { width: 100%; aspect-ratio: 4 / 5.4; object-fit: cover; object-position: 50% 30%; border-radius: 999px 999px 0 0; }
+    @media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; } .arch { max-width: 360px; } }
 
-    .eyebrow { font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em;
-      color: var(--c-pink-deep); margin: 0 0 var(--s-2); }
-    .eyebrow .heart { color: var(--c-pink); margin-right: 7px; }
+    /* proof */
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; list-style: none; margin: 0; padding: 0; }
+    .stats b { display: block; font-family: var(--serif); font-weight: 600; font-size: clamp(3rem, 2rem + 3.4vw, 5.4rem); line-height: 0.95;
+      letter-spacing: -0.03em; font-variation-settings: 'SOFT' 100, 'WONK' 1; color: var(--hi); }
+    .stats span { display: block; margin-top: 10px; color: var(--ink); }
+    @media (max-width: 760px) { .stats { grid-template-columns: 1fr 1fr; row-gap: 40px; } }
 
-    .sig { position: relative; display: inline-block; }
-    .sig svg { position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0.32em; overflow: visible; }
-    .sig svg path { stroke: var(--c-pink); stroke-width: 5; fill: none; stroke-linecap: round; }
-    .note-script { font-family: var(--font-script); font-weight: 600; color: var(--c-pink-deep); line-height: 1; }
+    /* working with me */
+    .work-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(48px, 8vw, 120px); align-items: center; }
+    .portrait { margin: 0; position: relative; }
+    .portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; border-radius: 0 0 999px 999px; }
+    .portrait figcaption { position: absolute; right: -14px; top: -30px; color: var(--hi); font-size: clamp(1.7rem, 1.4rem + 0.8vw, 2.2rem); rotate: 5deg; }
+    .work h2 { margin-bottom: 26px; }
+    .work-grid p { color: var(--muted); }
+    .work-grid p.lede { color: var(--ink); }
+    @media (max-width: 860px) { .work-grid { grid-template-columns: 1fr; } .portrait { max-width: 340px; } }
 
-    /* ---- Header ---- */
-    /* top promo bar + nav, fixed as one stack */
-    .top-stack { position: fixed; inset: 0 0 auto 0; z-index: 50; }
-    /* Content clears the fixed header stack. The promo bar wraps on small screens, so the
-       stack height is not a constant; JS keeps --stack-h in sync with its measured height. */
-    :root { --stack-h: 132px; }
-    html { scroll-padding-top: calc(var(--stack-h) + 12px); }
-    body { padding-top: var(--stack-h); overflow-x: clip; }  /* clip, not hidden: keeps position:sticky working */
-    .promo-bar { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
-      background: var(--c-coral); color: var(--c-ink); text-decoration: none; text-align: center;
-      padding: 5px 16px; font-size: 0.85rem; line-height: 1.3; }
-    .promo-tag { background: var(--c-pink-deep); color: var(--c-cream); font-size: 0.66rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
-    .promo-bar strong { font-weight: 700; }
-    .promo-cta { font-weight: 700; border: 1.5px solid var(--c-ink); border-radius: 999px; padding: 4px 14px;
-      white-space: nowrap; transition: background 0.15s ease, color 0.15s ease; }
-    .promo-bar:hover .promo-cta { background: var(--c-ink); color: var(--c-cream); }
-    .site-header { background: var(--c-ink); color: var(--c-cream);
-      border-bottom: 1px solid rgba(247,238,231,0.14); transition: box-shadow 0.25s ease; }
-    .site-header.stuck { box-shadow: 0 8px 24px rgba(29,30,38,0.20); }
-    .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding-block: 9px; gap: var(--s-3); }
-    .wordmark { font-family: var(--font-display); font-size: 1.3rem; color: var(--c-cream); text-decoration: none; justify-self: start; }
-    .nav-center { justify-self: center; display: flex; align-items: center; gap: var(--s-4); }
-    .nav-center a { color: var(--c-cream); text-decoration: none; font-size: 0.95rem; font-weight: 500; opacity: 0.9; white-space: nowrap; }
-    .nav-center a:hover { opacity: 1; }
-    .nav-cta { justify-self: end; }
-    .nav-pill { display: inline-block; background: var(--c-cream); color: var(--c-ink); font-weight: 600;
-      font-size: 0.9rem; padding: 9px 18px; border-radius: 999px; text-decoration: none; transition: opacity 0.14s ease; }
-    .nav-pill:hover { opacity: 0.9; }
-    @media (max-width: 760px) { .nav-center { display: none; } .nav { grid-template-columns: 1fr auto; } .promo-cta { display: none; } }
+    /* beliefs */
+    .beliefs-head h2 { max-width: 14ch; }
+    .beliefs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); list-style: none; margin: clamp(48px, 6vw, 72px) 0 0; padding: 0; }
+    .beliefs li { padding-top: 24px; border-top: 3px solid var(--hi); }
+    .beliefs h3 { font-weight: 600; font-variation-settings: 'SOFT' 100, 'WONK' 1; font-size: clamp(1.4rem, 1.15rem + 0.8vw, 1.8rem); margin-bottom: 14px; }
+    .beliefs p { margin: 0; color: var(--muted); }
+    @media (max-width: 860px) { .beliefs { grid-template-columns: 1fr; gap: 40px; } }
 
-    /* ---- Mobile nav: hamburger + drop-down panel (under 760px) ---- */
-    .nav-cta { display: flex; align-items: center; gap: var(--s-1); }
-    .nav-toggle { display: none; width: 44px; height: 44px; padding: 0; border: 0; background: none;
-      color: var(--c-cream); cursor: pointer; place-items: center; border-radius: var(--radius);
-      -webkit-tap-highlight-color: transparent; }
-    .nav-toggle:focus-visible { outline: 2px solid var(--c-pink); outline-offset: 2px; }
-    .nav-toggle .bars { position: relative; display: block; width: 22px; height: 16px; }
-    .nav-toggle .bars i { position: absolute; left: 0; width: 100%; height: 2px; border-radius: 2px;
-      background: currentColor; transition: top 0.2s ease, transform 0.2s ease, opacity 0.14s ease; }
-    .nav-toggle .bars i:nth-child(1) { top: 0; }
-    .nav-toggle .bars i:nth-child(2) { top: 7px; }
-    .nav-toggle .bars i:nth-child(3) { top: 14px; }
-    .nav-toggle[aria-expanded="true"] .bars i:nth-child(1) { top: 7px; transform: rotate(45deg); }
-    .nav-toggle[aria-expanded="true"] .bars i:nth-child(2) { opacity: 0; }
-    .nav-toggle[aria-expanded="true"] .bars i:nth-child(3) { top: 7px; transform: rotate(-45deg); }
+    /* off the clock */
+    .offclock-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(40px, 7vw, 104px); align-items: center; }
+    .offclock .lede { max-width: 52ch; }
+    .offclock .polaroid { max-width: 280px; justify-self: center; rotate: 4deg; }
+    .offclock .polaroid img { aspect-ratio: 1 / 1.05; object-fit: cover; object-position: 50% 30%; }
+    @media (max-width: 860px) { .offclock-grid { grid-template-columns: 1fr; } .offclock .polaroid { max-width: 230px; justify-self: start; margin-left: 8px; } }
 
-    /* absolute so opening the menu never changes the measured header height */
-    .mobile-menu { display: none; position: absolute; top: 100%; left: 0; right: 0;
-      background: var(--c-ink); color: var(--c-cream); border-top: 1px solid rgba(247,238,231,0.14);
-      box-shadow: 0 18px 40px rgba(29,30,38,0.28); }
-    .mm-inner { overflow: hidden; visibility: hidden; transition: visibility 0s 0.26s; }
-    .mobile-menu.open .mm-inner { visibility: visible; transition-delay: 0s; }
-    .mm-nav { max-height: min(70vh, 520px); overflow-y: auto; padding: var(--s-2) var(--s-3) var(--s-3); }
-    .mm-label { margin: var(--s-1) 0 0; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--c-pink); }
-    .mm-sub { margin: 0 0 var(--s-1); padding-left: var(--s-2); border-left: 2px solid rgba(255,200,229,0.4); }
-    .mm-link { display: flex; align-items: center; min-height: 48px; padding: 10px 2px;
-      color: var(--c-cream); text-decoration: none; font-size: 1.02rem; font-weight: 500;
-      border-bottom: 1px solid rgba(247,238,231,0.12); }
-    .mm-sub .mm-link:last-child { border-bottom: 0; }
-    .mm-link[aria-current] { color: var(--c-pink); font-weight: 700; }
-    .mm-cta { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px;
-      margin-top: var(--s-3); padding: 10px 18px; border: 0; border-radius: 999px; cursor: pointer;
-      background: var(--c-cream); color: var(--c-ink); font-family: var(--font-body); font-size: 1rem;
-      font-weight: 600; text-decoration: none; }
-    @media (max-width: 760px) {
-      .nav-toggle { display: inline-grid; }
-      .mobile-menu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.26s ease; }
-      .mobile-menu.open { grid-template-rows: 1fr; }
-      .wordmark { font-size: 1.12rem; }
-    }
-    /* below ~430px the wordmark, the pill and the toggle stop fitting on one row */
-    @media (max-width: 430px) { .nav-cta .nav-pill { display: none; } }
-    @media (prefers-reduced-motion: reduce) {
-      .mobile-menu { transition: none; } .nav-toggle .bars i { transition: none; }
-      .mm-inner { transition: none; }
-    }
-
-    /* ---- Nav dropdowns ---- */
-    .nav-item { position: relative; display: inline-flex; align-items: center; }
-    .nav-link { font: inherit; font-size: 0.95rem; font-weight: 500; color: var(--c-cream); opacity: 0.9;
-      background: none; border: 0; padding: 0; margin: 0; cursor: pointer; display: inline-flex; align-items: center;
-      gap: 5px; white-space: nowrap; line-height: 1; }
-    .nav-item:hover .nav-link, .nav-item:focus-within .nav-link, .nav-link:hover { opacity: 1; }
-    .nav-item:has(.submenu a[aria-current]) .nav-link { opacity: 1; }
-    .nav-link .caret { font-size: 0.6em; transition: transform 0.18s ease; }
-    .nav-item:hover .caret, .nav-item:focus-within .caret, .nav-item.open .caret { transform: rotate(180deg); }
-    .submenu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
-      min-width: 190px; background: var(--c-cream); border: 1px solid var(--line); border-radius: var(--radius);
-      box-shadow: var(--shadow); padding: 6px; display: flex; flex-direction: column; gap: 2px;
-      opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.16s ease, transform 0.16s ease; z-index: 60; }
-    .submenu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
-    .nav-item:hover .submenu, .nav-item:focus-within .submenu, .nav-item.open .submenu {
-      opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(4px); }
-    .submenu a { display: block; color: var(--c-ink); opacity: 1; font-size: 0.92rem; font-weight: 500;
-      padding: 9px 12px; border-radius: 3px; white-space: nowrap; }
-    .submenu a:hover { background: var(--c-pink); color: var(--c-ink); }
-    .submenu a[aria-current] { color: var(--c-pink-deep); font-weight: 700; }
-
-    /* ---- Buttons ---- */
-    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 1rem;
-      font-weight: 600; line-height: 1; padding: 16px 28px; border-radius: var(--radius);
-      border: 1.5px solid var(--action); background: var(--action); color: var(--action-text);
-      text-decoration: none; cursor: pointer; transition: opacity 0.14s ease, transform 0.12s ease; }
-    .btn:hover { opacity: 0.88; } .btn:active { transform: translateY(1px); }
-    .btn-cream { background: var(--c-cream); color: var(--c-ink); border-color: var(--c-cream); }
-    .textlink { color: var(--link); font-weight: 600; text-decoration: none; border-bottom: 2px solid currentColor; padding-bottom: 1px; }
-
-    /* ---- Pills ---- */
-    .pills { display: flex; flex-wrap: wrap; gap: 8px; }
-    .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 500;
-      padding: 7px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); color: var(--text); }
-    .pill-pink { background: var(--c-pink); border-color: transparent; }
-    .pill-mint { background: var(--c-mint); border-color: transparent; }
-    .pill-coral { background: var(--c-coral); border-color: transparent; }
-
-    /* ================= HERO: split — text + framed photo ================= */
-    .hero { position: relative; min-height: 88vh; display: flex; align-items: center; overflow: hidden;
-      background: linear-gradient(170deg, #F7EEE7 0%, #FBEAF1 55%, #FBE2D6 100%); }
-    .hero-blob { position: absolute; z-index: 0; right: 9%; bottom: 6%; width: 40vw; height: 64%;
-      max-width: 580px; border-radius: 50%; background: var(--c-coral); filter: blur(72px); opacity: 0.42; }
-    .hero .container { position: relative; z-index: 2; }
-    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.85fr; gap: clamp(var(--s-5), 6vw, var(--s-7));
-      align-items: center; padding-top: 47px; padding-bottom: var(--s-6); }
-    .hero-text { max-width: 34rem; }
-    .hero h1 { color: var(--text); max-width: 14ch; }
-    .hero .lede { color: var(--text); max-width: 40ch; margin-top: var(--s-3); }
-    .hero .cta { margin-top: var(--s-4); display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
-    .hero .pills { margin-top: var(--s-4); }
-    .hero-photo { justify-self: center; width: 100%; }
-    .hero-photo-frame { position: relative; max-width: 440px; margin-inline: auto; }
-    .hero-photo-frame img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;
-      object-position: center 42%; border-radius: 22px; box-shadow: 0 22px 48px rgba(29,30,38,0.20); }
-    .hero-photo-frame .note-script { position: absolute; z-index: 2; font-size: 2rem; transform: rotate(-7deg);
-      top: -16px; left: -12px; }
-    @media (max-width: 860px) {
-      .hero { min-height: auto; }
-      .hero-grid { grid-template-columns: 1fr; gap: var(--s-5); padding-top: 43px; }
-      .hero-text { max-width: 100%; }
-      .hero-photo-frame { max-width: 330px; }
-    }
-
-    /* ================= Ombre / bands ================= */
-    .alt-pink  { background: linear-gradient(180deg, #F7EEE7 0%, #FCE4EF 100%); }
-    .alt-coral { background: linear-gradient(180deg, #F7EEE7 0%, #FBE7DD 100%); }
-    .band-ink { background: var(--bg-feature); color: var(--text-on-dark); }
-    .band-ink h2, .band-ink h3 { color: var(--c-pink); }
-    .band-ink .eyebrow, .band-ink .eyebrow .heart { color: var(--c-pink); }
-    .band-ink .lede { color: var(--c-cream); opacity: 0.85; }
-    .overlap { margin-top: -44px; z-index: 2; border-radius: 40px 40px 0 0;
-      box-shadow: 0 -16px 40px rgba(29,30,38,0.08); padding-top: calc(var(--section-y) + 44px); }
-
-    /* ---- Story pull-quote ---- */
-    .pullquote { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.5rem, 3vw, 2rem);
-      line-height: 1.3; color: var(--c-pink-deep); margin: var(--s-4) 0; max-width: 22ch; }
-    .quote-soft { font-family: var(--font-display); font-synthesis: none; font-size: 1.3rem; line-height: 1.4;
-      border-left: 3px solid var(--c-pink); padding-left: var(--s-2); margin: var(--s-3) 0 0; }
-
-    /* ---- Script band ---- */
-    .script-band { text-align: center; }
-    .script-band .big { font-family: var(--font-script); color: var(--c-pink); font-size: clamp(1.8rem, 4.5vw, 3rem);
-      line-height: 1.3; max-width: 18ch; margin: 0 auto; display: block; }
-
-    /* ---- Beliefs ---- */
-    .beliefs { display: grid; gap: var(--s-4); margin-top: var(--s-4); }
-    .belief { display: grid; grid-template-columns: auto 1fr; gap: var(--s-3); align-items: start; }
-    .belief .be { font-size: 1.7rem; line-height: 1; }
-    .belief h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); margin-bottom: 4px; }
-    .belief p { color: var(--text-muted); margin: 0; }
-
-    /* ---- Partner split ---- */
-    .split { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: var(--s-6); align-items: center; }
-    @media (max-width: 820px) { .split { grid-template-columns: 1fr; gap: var(--s-4); } }
-    .photo-frame { position: relative; }
-    .photo-frame .block { position: absolute; z-index: 0; width: 60%; aspect-ratio: 1; background: var(--c-coral);
-      border-radius: var(--radius); right: -22px; bottom: -22px; }
-    .about-photo { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: var(--radius);
-      background-image: url('/assets/img/about-headshot.webp'); background-size: cover; background-position: 50% 18%; }
-    .photo-frame .note-script { position: absolute; z-index: 2; font-size: 2.1rem; transform: rotate(-7deg); top: -18px; left: -10px; }
-
-    /* ---- Services ---- */
-    .svc-about { display: grid; gap: var(--s-2); margin-top: var(--s-4); }
-    .svc-about .item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-3); align-items: center;
-      padding: var(--s-3); background: #fff; border: 1px solid var(--line); border-radius: var(--radius); }
-    .svc-about .em { font-size: 1.5rem; }
-    .svc-about h3 { font-size: 1.15rem; margin-bottom: 2px; }
-    .svc-about p { color: var(--text-muted); font-size: 0.92rem; margin: 0; }
-    .svc-about .lk { font-weight: 600; color: var(--link); white-space: nowrap; font-size: 0.85rem; text-decoration: none; border-bottom: 2px solid currentColor; }
-    .svc-about .soon { color: var(--text-muted); white-space: nowrap; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
-    @media (max-width: 640px) { .svc-about .item { grid-template-columns: auto 1fr; } .svc-about .lk, .svc-about .soon { grid-column: 2; } }
-
-    /* ---- Off the clock band ---- */
-    .band-ink .pill { background: rgba(247,238,231,0.10); border-color: rgba(247,238,231,0.22); color: var(--c-cream); }
-    .band-ink .sign { font-family: var(--font-script); color: var(--c-pink); font-size: 1.5rem; }
-
-    /* ---- Quiz flip cards ---- */
-    .quiz-intro { color: var(--text-muted); max-width: 46ch; margin: var(--s-2) auto 0; }
-    .quiz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); max-width: 920px; margin: var(--s-5) auto 0; }
-    @media (max-width: 760px) { .quiz-grid { grid-template-columns: 1fr; } }
-    .flip { perspective: 1000px; }
-    .flip-inner { position: relative; width: 100%; transition: transform 0.6s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
-    .flip.flipped .flip-inner { transform: rotateY(180deg); }
-    .flip-front, .flip-back { backface-visibility: hidden; border-radius: var(--radius); padding: var(--s-3); top: 0; left: 0; width: 100%; }
-    .flip-front { background: #fff; box-shadow: var(--shadow); }
-    .flip-back { background: var(--c-mint); transform: rotateY(180deg); display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center; }
-    /* flow trick so cards size to content */
-    .flip-front, .flip-back { position: relative; }
-    .flip.flipped .flip-front { visibility: hidden; position: absolute; }
-    .flip.flipped .flip-back { position: relative; visibility: visible; }
-    .flip:not(.flipped) .flip-back { visibility: hidden; position: absolute; }
-    .flip-num { font-family: var(--font-script); font-weight: 700; font-size: 1.8rem; color: var(--c-pink-deep); opacity: 0.35; }
-    .flip-q { font-family: var(--font-display); font-size: 1.2rem; color: var(--text); margin-bottom: var(--s-2); }
-    .flip-opts { display: flex; flex-direction: column; gap: 6px; }
-    .flip-o { font-size: 0.9rem; color: var(--text); padding: 9px 14px; border-radius: 999px; cursor: pointer;
-      border: 1.5px solid var(--line); transition: all 0.18s ease; }
-    .flip-o:hover { border-color: var(--c-pink-deep); background: var(--bg-alt); }
-    .flip-lbl { font-weight: 600; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-mint-deep); margin-bottom: var(--s-1); }
-    .flip-ans { font-family: var(--font-script); font-size: 1.5rem; color: var(--c-ink); margin-bottom: var(--s-2); line-height: 1.25; }
-    .flip-you { font-size: 0.85rem; color: var(--c-ink); margin-bottom: 4px; }
-    .flip-yours { font-weight: 600; }
-    .flip-vibe { font-family: var(--font-script); font-size: 1.3rem; color: var(--c-pink-deep); }
-
-    /* ---- grain + reveal ---- */
-    #grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04; mix-blend-mode: multiply;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.7,.2,1); }
-    .reveal.in { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
-
-    /* ---- footer ---- */
-    .site-footer { position: relative; z-index: 1; }
-    .site-footer { background: var(--c-cream-soft); color: var(--c-ink); padding-block: var(--s-7) var(--s-4); }
-    .site-footer a { color: var(--c-ink); text-decoration: none; }
-    .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--s-6); align-items: start; }
-    .foot-script { font-family: var(--font-script); font-weight: 700; font-size: clamp(2.8rem, 6.5vw, 4.6rem);
-      line-height: 0.82; color: var(--c-pink-deep); display: inline-block; }
-    .foot-intro { display: flex; gap: var(--s-3); align-items: center; margin-top: var(--s-3); max-width: 540px; }
-    .foot-photo { position: relative; flex: 0 0 auto; width: 130px; height: 130px; }
-    .foot-photo img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover;
-      border-radius: 46% 54% 52% 48% / 54% 46% 54% 46%; }
-    .foot-photo::after { content: ''; position: absolute; z-index: 0; left: -12px; top: 12px; width: 130px; height: 130px;
-      background: var(--c-mint); border-radius: 54% 46% 48% 52% / 46% 54% 46% 54%; }
-    .foot-bio { font-size: 1.02rem; line-height: 1.5; }
-    .foot-social { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: var(--s-4); max-width: 540px; }
-    .social-btn { display: flex; align-items: center; gap: 10px; border: 1.5px solid var(--c-ink); border-radius: var(--radius);
-      padding: 11px 14px; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700;
-      transition: background 0.15s ease, color 0.15s ease; }
-    .social-btn:hover { background: var(--c-ink); color: var(--c-cream); }
-    .social-btn .ic { font-size: 1.05rem; line-height: 1; }
-    .foot-explore { justify-self: end; }
-    .foot-explore .foot-h { line-height: 1.3; font-weight: 700; font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--c-pink-deep); display: inline-block; border-bottom: 2px solid var(--c-pink); padding-bottom: 6px; margin-bottom: var(--s-3); }
-    .explore-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-5);
-      font-family: var(--font-display); font-size: 1.2rem; }
-    .explore-cols a:hover { color: var(--c-pink-deep); }
-    .back-to-top { position: absolute; top: var(--s-6); right: var(--s-4); writing-mode: vertical-rl;
-      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--c-pink-deep);
-      display: inline-flex; align-items: center; gap: 8px; }
-    .foot-bottom { margin-top: var(--s-6); padding-top: var(--s-3); border-top: 1px solid var(--line);
-      font-size: 0.85rem; color: var(--text-muted); display: flex; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
-    @media (max-width: 760px) {
-      .foot-grid { grid-template-columns: 1fr; gap: var(--s-5); }
-      .foot-explore { justify-self: start; }
-      .foot-social { grid-template-columns: 1fr; }
-      .back-to-top { display: none; }
-    }
-
-    /* ---- Phones: comfortable touch targets and readable micro-labels ---- */
-    @media (max-width: 760px) {
-      .explore-cols { gap: 2px var(--s-5); }
-      .explore-cols a { display: flex; align-items: center; min-height: 48px; }
-      .social-btn { min-height: 48px; font-size: 0.78rem; }
-      .foot-script { display: inline-flex; align-items: center; }
-      .nav-pill { display: inline-flex; align-items: center; min-height: 44px; }
-      .textlink, .proj-link { display: inline-flex; align-items: center; min-height: 44px; }
-      .promo-tag { font-size: 0.75rem; }
-    }
-
-    /* ================================================================
-       ELEVATION — competence + trust, same editorial voice. No new
-       sections beyond the requested proof strip & behaviors manifesto.
-       ================================================================ */
-
-    /* ---- Story: editorial rhythm ---- */
-    #story .lead-in { font-size: clamp(1.2rem, 1.9vw, 1.45rem); color: var(--text); max-width: 42ch; margin-top: var(--s-3); }
-    #story .cred { display: inline-block; font-weight: 700; color: var(--c-mint-deep);
-      border-bottom: 2px solid var(--c-mint); padding-bottom: 1px; }
-    .pullquote.big { font-family: var(--font-display); font-synthesis: none; color: var(--c-ink);
-      font-size: clamp(1.9rem, 4.2vw, 3rem); line-height: 1.18; text-align: center;
-      max-width: 18ch; margin: clamp(var(--s-5), 6vw, var(--s-7)) auto; }
-    .pullquote.big .em { color: var(--c-pink-deep); }
-
-    /* ---- Proof: subtle credibility strip ---- */
-    #proof { text-align: center; }
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4);
-      max-width: 900px; margin: var(--s-5) auto 0; }
-    @media (max-width: 720px) { .stats { grid-template-columns: 1fr 1fr; gap: var(--s-5) var(--s-3); } }
-    .stat { position: relative; }
-    .stat + .stat::before { content: ''; position: absolute; left: calc(-1 * var(--s-4) / 2); top: 12%; bottom: 12%;
-      width: 1px; background: var(--line); }
-    @media (max-width: 720px) { .stat + .stat::before { display: none; } }
-    .stat .n { font-family: var(--font-display); font-synthesis: none; font-size: clamp(2.6rem, 5.4vw, 3.6rem);
-      line-height: 1; color: var(--c-ink); }
-    .stat .n .u { color: var(--c-pink-deep); }
-    .stat .l { font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted);
-      font-weight: 600; margin-top: var(--s-2); line-height: 1.35; }
-    .stats-cap { text-align: center; color: var(--text-muted); font-style: italic; margin: var(--s-5) auto 0; max-width: 44ch; }
-
-    /* ---- Partner: the emotional centerpiece ---- */
-    #partner h2 { font-size: clamp(2.4rem, 4.8vw, 3.5rem); max-width: 14ch; }
-    #partner .split { align-items: center; gap: clamp(var(--s-5), 6vw, var(--s-7)); }
-    #partner .about-photo { border-radius: 18px; box-shadow: 0 18px 44px rgba(29,30,38,0.16); }
-    #partner .photo-frame .block { inset: 26px -26px -26px 26px; width: auto; height: auto; aspect-ratio: auto; border-radius: 18px; }
-    @media (max-width: 760px) { #partner .photo-frame .block { inset: 20px -18px -20px 20px; } }
-    #partner .quote-soft { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.4rem, 2.6vw, 1.85rem);
-      line-height: 1.3; border-left-width: 4px; padding-left: var(--s-3); margin-top: var(--s-4); color: var(--c-ink); }
-    #partner .partner-close { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.3rem, 2.2vw, 1.6rem);
-      line-height: 1.35; color: var(--c-ink); margin-top: var(--s-4); }
-    #partner .partner-close .em { color: var(--c-pink-deep); }
-
-    /* ---- "What it's like to work with me" — behaviors manifesto ---- */
-    #work-with-me .col { max-width: 820px; }
-    .behaviors { margin-top: var(--s-5); }
-    .bhv { display: grid; grid-template-columns: auto 1fr; gap: var(--s-2) var(--s-4);
-      padding: clamp(var(--s-4), 3.5vw, var(--s-5)) 0; border-top: 1px solid var(--line); }
-    .bhv:last-child { border-bottom: 1px solid var(--line); }
-    .bhv .bn { font-family: var(--font-script); font-weight: 700; font-size: 2rem; line-height: 0.9;
-      color: var(--c-pink); }
-    .bhv .bt { font-family: var(--font-display); font-synthesis: none; font-size: clamp(1.5rem, 3vw, 2.15rem);
-      line-height: 1.18; color: var(--c-ink); }
-    .bhv .bs { grid-column: 2; color: var(--text-muted); margin: 0; font-size: 1rem; line-height: 1.55; max-width: 52ch; }
-    @media (max-width: 560px) { .bhv { grid-template-columns: 1fr; gap: var(--s-1); } .bhv .bs { grid-column: 1; } }
-    .bhv-sign { font-family: var(--font-script); color: var(--c-pink-deep); font-size: 1.7rem;
-      display: block; text-align: right; margin-top: var(--s-4); transform: rotate(-4deg); }
-
-    /* ---- Nav pill works as a <button> too ---- */
-    .nav-pill { border: none; cursor: pointer; font-family: var(--font-body); }
-
-    /* ---- Reimagined "What I do": the marketing-partner operating board ---- */
-    .alt { background: var(--bg-alt); }
-    .subhead { font-family: var(--font-display); font-synthesis: none; font-size: var(--h3);
-      color: var(--c-pink-deep); margin: var(--s-2) 0 var(--s-3); }
-    .offer-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(var(--s-5), 6vw, var(--s-7)); align-items: start; }
-    @media (max-width: 900px) { .offer-grid { grid-template-columns: 1fr; gap: var(--s-5); } }
-    .offer-narr { max-width: 34rem; }
-    .offer-narr .btn { margin-top: var(--s-4); }
-    .board { background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; }
-    @media (min-width: 901px) { .board { position: sticky; top: 96px; } }
-    .board-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2);
-      padding: var(--s-3) var(--s-4); border-bottom: 1px solid var(--line); background: var(--bg-alt); }
-    .board-head .bt { font-family: var(--font-display); font-synthesis: none; font-size: 1.2rem; }
-    .board-head .live { font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
-      color: var(--c-mint-deep); display: inline-flex; align-items: center; gap: 7px; }
-    .board-head .live::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--c-mint-deep); }
-    .workstreams { padding: 8px; }
-    .ws { display: flex; align-items: center; gap: 14px; padding: 13px 12px; border-radius: 12px; transition: background 0.15s ease; }
-    .ws + .ws { border-top: 1px solid var(--line); }
-    .ws:hover { background: var(--bg-alt); }
-    .ws .ic { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 1.2rem; }
-    .ws:nth-child(1) .ic { background: var(--c-pink); }
-    .ws:nth-child(2) .ic { background: var(--c-mint); }
-    .ws:nth-child(3) .ic { background: var(--c-coral); }
-    .ws:nth-child(4) .ic { background: var(--c-pink); }
-    .ws:nth-child(5) .ic { background: var(--c-mint); }
-    .ws .wt { font-size: 1rem; line-height: 1.3; }
-    .board-foot { padding: var(--s-3) var(--s-4); border-top: 1px solid var(--line);
-      font-family: var(--font-display); font-synthesis: none; font-size: 1.1rem; color: var(--c-ink); }
-    .board-foot .em { color: var(--c-pink-deep); }
-
-    /* ---- Inquiry drawer (Formspree) ---- */
-    .drawer-overlay { position: fixed; inset: 0; z-index: 60; background: rgba(29,30,38,0.5);
-      opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .drawer-overlay.open { opacity: 1; pointer-events: auto; }
-    .drawer { position: fixed; top: 0; right: 0; height: 100%; width: min(460px, 100%); z-index: 61;
-      background: var(--bg); box-shadow: -24px 0 60px rgba(29,30,38,0.20); overflow-y: auto;
-      transform: translateX(100%); transition: transform 0.38s cubic-bezier(.2,.7,.2,1); }
-    .drawer.open { transform: translateX(0); }
-    @media (prefers-reduced-motion: reduce) { .drawer, .drawer-overlay { transition: none; } }
-    .drawer-inner { padding: clamp(var(--s-4), 5vw, var(--s-6)); }
-    .drawer-close { position: absolute; top: 14px; right: 16px; width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid var(--line); background: #fff; color: var(--c-ink); font-size: 1.5rem; line-height: 1;
-      cursor: pointer; display: grid; place-items: center; transition: background 0.15s ease, color 0.15s ease; }
-    .drawer-close:hover { background: var(--c-ink); color: var(--c-cream); }
-    .drawer-head h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); }
-    .drawer-head p { color: var(--text-muted); margin: var(--s-2) 0 0; }
-    .inquiry-form { margin-top: var(--s-4); }
-    .field { display: block; margin-bottom: var(--s-3); }
-    .field > span { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-    .field .req { color: var(--c-pink-deep); }
-    .field .hint { font-weight: 400; color: var(--text-muted); }
-    .field input, .field select, .field textarea { width: 100%; padding: 12px 14px; border-radius: var(--radius);
-      border: 1px solid var(--line); background: #fff; font: inherit; color: var(--text); }
-    .field textarea { resize: vertical; min-height: 96px; }
-    .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
-      outline: 2px solid var(--c-pink-deep); outline-offset: 1px; border-color: var(--c-pink-deep); }
-    .opts { display: grid; gap: 6px; }
-    .opt { display: flex; align-items: flex-start; gap: 10px; padding: 9px 12px; border: 1px solid var(--line);
-      border-radius: var(--radius); background: #fff; cursor: pointer; font-size: 0.95rem; line-height: 1.35; }
-    .opt:hover { border-color: var(--c-pink); }
-    .opt input { width: auto; margin: 2px 0 0; accent-color: var(--c-pink-deep); flex: none; }
-    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
-    .form-actions { margin-top: var(--s-4); }
-    .form-actions .btn { width: 100%; justify-content: center; }
-    .form-note { display: block; color: var(--text-muted); font-size: 0.85rem; margin-top: var(--s-2); text-align: center; }
-    .form-status { margin: var(--s-3) 0 0; font-weight: 600; color: var(--c-pink-deep); }
-    .form-success { display: none; }
-    .inquiry-form.sent > *:not(.form-success) { display: none; }
-    .inquiry-form.sent .form-success { display: block; }
-    .form-success .emoji { font-size: 2.4rem; line-height: 1; }
-    .form-success h3 { font-size: 1.5rem; margin: var(--s-2) 0 var(--s-2); }
-    .form-success p { color: var(--text-muted); margin: 0 0 var(--s-2); }
-    .form-success a { color: var(--link); font-weight: 600; }
-
-    /* ---- Phones: keep the smallest labels and links usable (end of sheet so nothing overrides) ---- */
-    @media (max-width: 760px) {
-      .wordmark { display: inline-flex; align-items: center; min-height: 44px; }
-      .foot-script { min-height: 44px; }
-      .board-head .live { font-size: 0.76rem; }
-    }
+    /* closing: cashmere */
+    .cash-close { padding-block: clamp(96px, 12vw, 168px); background: #742D47 url("/assets/img/cashmere-mulberry.webp") 0 0 / 900px auto; }
+    .cash-close .paper-card { box-shadow: 12px 12px 0 #3E1626, 0 40px 70px -30px rgba(0,0,0,0.6); border-color: #3E1626; }
+    .cash-close .paper-card h2 { max-width: 16ch; }
+    @media (max-width: 600px) { .cash-close .paper-card { box-shadow: 8px 8px 0 #3E1626; } }
   </style>
-  <link rel="stylesheet" href="/assets/css/finish.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -478,11 +89,7 @@
   <div id="grain" aria-hidden="true"></div>
 
   <div class="top-stack" id="hdr-stack">
-    <aside aria-label="Announcement"><a class="promo-bar" href="/podcast.html">
-      <span class="promo-tag">New</span>
-      <span class="promo-text"><strong>The Signal:</strong> done-for-you podcast launch, $1,297.</span>
-      <span class="promo-cta">See the service →</span>
-    </a></aside>
+    <aside aria-label="Announcement"><a class="hello-bar" href="/podcast.html">New: <span>The Signal, a done-for-you podcast launch</span> for business owners.</a></aside>
     <header class="site-header" id="hdr">
       <div class="container nav">
         <a href="/" class="wordmark">Priscilla Zaehringer</a>
@@ -515,144 +122,129 @@
   <main id="main" tabindex="-1">
 
   <!-- ===================== HERO ===================== -->
-  <section class="hero" id="top">
-    <span class="hero-blob" aria-hidden="true"></span>
-    <div class="container hero-grid">
-      <div class="hero-text">
-        <h1>Hi, I'm
-          <span class="sig">Priscilla<svg viewBox="0 0 180 12" preserveAspectRatio="none"><path d="M3 8 C 45 2, 130 2, 177 6"/></svg></span>.</h1>
-        <p class="lede">I'm a marketing and operations person from Iowa, which is a long way of saying I help
-          small business owners plan their marketing and then actually get it built.</p>
-        <div class="pills">
-          <span class="pill pill-coral">🌻 Iowa girl</span>
-          <span class="pill pill-pink">☕ Sugar cookie latte</span>
-          <span class="pill pill-mint">✨ Disney lover</span>
-        </div>
-        <div class="cta">
-          <button type="button" class="btn" data-open-inquiry>Get in touch</button>
-          <span class="note-script" style="font-size:1.4rem; transform:rotate(-5deg); display:inline-block;">Cilla, for short</span>
-        </div>
-      </div>
-      <div class="hero-photo reveal">
-        <div class="hero-photo-frame">
-          <img src="/assets/img/about-hero-alt.webp"
-            srcset="/assets/img/about-hero-alt-560.webp 560w, /assets/img/about-hero-alt-760.webp 760w, /assets/img/about-hero-alt.webp 1000w"
-            sizes="(max-width: 860px) 330px, 440px"
-            width="1000" height="1250" fetchpriority="high" decoding="async"
-            alt="Priscilla walking away through a wildflower field, holding a straw hat in the evening light">
-        </div>
+  <section class="hero" id="top" aria-labelledby="hero-h">
+    <div class="wrap">
+      <h1 id="hero-h">Hi, I'm Priscilla.</h1>
+      <p class="lede">I'm a marketing and operations person from Iowa, which is a long way of saying I help small business
+        owners plan their marketing and then actually get it built.</p>
+      <p class="facts"><span>Iowa girl</span><span>Sugar cookie latte</span><span>Disney lover</span></p>
+      <div class="hero-cta">
+        <button type="button" class="btn btn-gold" data-open-inquiry>Get in touch <span class="arr" aria-hidden="true">&#8599;</span></button>
+        <span class="hand" aria-hidden="true">Cilla, for short</span>
       </div>
     </div>
   </section>
 
   <!-- ===================== STORY ===================== -->
-  <section class="section alt-pink overlap" id="story">
-    <div class="container">
-      <div class="col reveal">
-        <h2>How I got here</h2>
-        <p class="lead-in">I was born and raised in Iowa, and I'm still here. I'm a mom of three, and I'd
-          much rather have an honest conversation with you than give you a polished pitch.</p>
-        <p>I earned my <span class="cred">MBA in 2020</span>, right in the middle of the pandemic, with all
-          three kids at home. Yes, it was exactly as busy as it sounds.</p>
-        <p>After that I tried a little of everything: operations, marketing, content, systems. I worked as an
-          online business manager, which is how I got into podcasts. I started out editing episodes, and
-          before long I was planning launches, coordinating guests, and building the workflows behind the
-          shows. Funnels, email, and running ads for clients came the same way.</p>
+  <section class="sec story dk bg-ink" id="story" aria-labelledby="story-h">
+    <div class="wrap story-grid">
+      <div class="reveal">
+        <h2 id="story-h">How I got here</h2>
+        <p class="lede">I was born and raised in Iowa, and I'm still here. I'm a mom of three, and I'd much rather have an
+          honest conversation with you than give you a polished pitch.</p>
+        <p>I earned my <span class="cred">MBA in 2020</span>, right in the middle of the pandemic, with all three kids at
+          home. Yes, it was exactly as busy as it sounds.</p>
+        <p>After that I tried a little of everything: operations, marketing, content, systems. I worked as an online
+          business manager, which is how I got into podcasts. I started out editing episodes, and before long I was
+          planning launches, coordinating guests, and building the workflows behind the shows. Funnels, email, and running
+          ads for clients came the same way.</p>
         <p>Today that's my business. I do ongoing marketing support for a small group of clients,
-          <a href="/podcast.html">podcast launches</a>, and one-off projects when someone needs one thing
-          done. You can <a href="/support.html">see how that works here</a>.</p>
+          <a href="/podcast.html">podcast launches</a>, and one-off projects when someone needs one thing done. You can
+          <a href="/support.html">see how that works here</a>.</p>
       </div>
+      <figure class="arch reveal">
+        <img src="/assets/img/about-hero-alt-760.webp"
+             srcset="/assets/img/about-hero-alt-560.webp 560w, /assets/img/about-hero-alt-760.webp 760w, /assets/img/about-hero-alt.webp 1000w"
+             sizes="(max-width: 860px) 360px, 34vw" width="760" height="1016" loading="lazy" decoding="async"
+             alt="Priscilla walking away through a wildflower field, holding a straw hat in the evening light">
+      </figure>
     </div>
   </section>
 
   <!-- ===================== PROOF ===================== -->
   <!-- Numbers confirmed with Priscilla (years is an estimate — adjust anytime). -->
-  <section class="section" id="proof">
-    <div class="container">
-      <div class="col reveal" style="max-width:780px;">
-        <div class="stats">
-          <div class="stat"><div class="n">6<span class="u">+</span></div><div class="l">Years doing this work</div></div>
-          <div class="stat"><div class="n">40<span class="u">+</span></div><div class="l">Meta campaigns managed</div></div>
-          <div class="stat"><div class="n">300<span class="u">+</span></div><div class="l">Podcast episodes produced</div></div>
-          <div class="stat"><div class="n">30<span class="u">+</span></div><div class="l">Funnels &amp; systems built</div></div>
-        </div>
-      </div>
+  <section class="sec dk bg-forest" id="proof" aria-label="By the numbers" style="padding-block: clamp(64px, 8vw, 112px);">
+    <div class="wrap">
+      <ul class="stats reveal">
+        <li><b>6+</b><span>Years doing this work</span></li>
+        <li><b>40+</b><span>Meta campaigns managed</span></li>
+        <li><b>300+</b><span>Podcast episodes produced</span></li>
+        <li><b>30+</b><span>Funnels &amp; systems built</span></li>
+      </ul>
     </div>
   </section>
 
   <!-- ===================== WORKING WITH ME ===================== -->
-  <section class="section alt-coral" id="partner">
-    <div class="container">
-      <div class="split">
-        <div class="reveal">
-          <div class="photo-frame">
-            <span class="block" aria-hidden="true"></span>
-            <div class="about-photo" role="img" aria-label="Priscilla"></div>
-            <span class="note-script" aria-hidden="true">that's me!</span>
-          </div>
-        </div>
-        <div class="reveal">
-          <h2>What working with me is like</h2>
-          <p style="margin-top: var(--s-3);">I'm probably the person asking why your email automation is doing
-            that weird thing, or reminding you that we need to finalize the landing page before the ads go
-            live.</p>
-          <p>And yes, I'm also the person making sure those things actually get done.</p>
-          <p>I like details. I like figuring things out. And I really like when a client can hand something
-            over and know it's taken care of.</p>
-          <p>I keep my client list small on purpose, so you're always working with me. I'll also tell you if I
-            don't think you're ready for something yet. I'd rather say that up front than take your money for
-            something that won't work.</p>
-        </div>
+  <section class="sec work dk bg-ink" id="partner" aria-labelledby="work-h">
+    <div class="wrap work-grid">
+      <figure class="portrait reveal">
+        <img src="/assets/img/about-headshot-600.webp" srcset="/assets/img/about-headshot-600.webp 600w, /assets/img/about-headshot.webp 800w"
+             sizes="(max-width: 860px) 340px, 40vw" width="600" height="900" loading="lazy" decoding="async" alt="Priscilla smiling, in a cream sweater">
+        <figcaption class="hand" aria-hidden="true">that's me!</figcaption>
+      </figure>
+      <div class="reveal">
+        <h2 id="work-h">What working with me is like</h2>
+        <p class="lede">I'm probably the person asking why your email automation is doing that weird thing, or reminding
+          you that we need to finalize the landing page before the ads go live.</p>
+        <p>And yes, I'm also the person making sure those things actually get done.</p>
+        <p>I like details. I like figuring things out. And I really like when a client can hand something over and know
+          it's taken care of.</p>
+        <p>I keep my client list small on purpose, so you're always working with me. I'll also tell you if I don't think
+          you're ready for something yet. I'd rather say that up front than take your money for something that won't work.</p>
       </div>
     </div>
   </section>
 
   <!-- ===================== BELIEFS ===================== -->
-  <section class="section">
-    <div class="container">
-      <div class="col reveal">
-        <h2>The hills I'll die on</h2>
-        <div class="beliefs">
-          <div class="belief"><div>
-            <h3>Your podcast is a marketing tool, not a revenue stream.</h3>
-            <p>Sponsorships are nice, but the real value is that people get to know you before they ever book a call.</p></div></div>
-          <div class="belief"><div>
-            <h3>Done and live beats perfect and stuck.</h3>
-            <p>A good-enough funnel that's live this month will teach you more than a perfect one still sitting in a Google Doc.</p></div></div>
-          <div class="belief"><div>
-            <h3>Small businesses deserve good help too.</h3>
-            <p>A lot of good marketing help is priced for companies with a whole marketing department. I'd like the owner who's doing it all themselves to have someone in their corner, too.</p></div></div>
-        </div>
-      </div>
+  <section class="sec dk bg-mulberry" aria-labelledby="beliefs-h">
+    <div class="wrap">
+      <div class="beliefs-head reveal"><h2 id="beliefs-h">The hills I'll die on</h2></div>
+      <ul class="beliefs reveal">
+        <li><h3>Your podcast is a marketing tool, not a revenue stream.</h3>
+          <p>Sponsorships are nice, but the real value is that people get to know you before they ever book a call.</p></li>
+        <li><h3>Done and live beats perfect and stuck.</h3>
+          <p>A good-enough funnel that's live this month will teach you more than a perfect one still sitting in a Google Doc.</p></li>
+        <li><h3>Small businesses deserve good help too.</h3>
+          <p>A lot of good marketing help is priced for companies with a whole marketing department. I'd like the owner
+            who's doing it all themselves to have someone in their corner, too.</p></li>
+      </ul>
     </div>
   </section>
 
   <!-- ===================== OFF THE CLOCK ===================== -->
-  <section class="section band-ink overlap">
-    <div class="container col reveal">
-      <h2>When I'm not working</h2>
-      <p class="lede" style="margin-top: var(--s-3); max-width: 56ch;">You'll probably find me on a Target
-        run that somehow turned into a two-hour adventure, sugar cookie latte in hand. I'm a Disney Parks
-        fanatic. I'll happily watch TLC and Game of Thrones in the same night. And if I weren't doing this,
-        I'd be a teacher. No question.</p>
+  <section class="sec offclock dk bg-forest" aria-labelledby="off-h">
+    <div class="wrap offclock-grid">
+      <div class="reveal">
+        <h2 id="off-h">When I'm not working</h2>
+        <p class="lede" style="margin-top: 24px;">You'll probably find me on a Target run that somehow turned into a two-hour
+          adventure, sugar cookie latte in hand. I'm a Disney Parks fanatic. I'll happily watch TLC and Game of Thrones in the
+          same night. And if I weren't doing this, I'd be a teacher. No question.</p>
+      </div>
+      <figure class="polaroid reveal">
+        <span class="pin" aria-hidden="true"></span>
+        <img src="/assets/img/about-hero-700.webp" width="700" height="1444" loading="lazy" decoding="async"
+             alt="Priscilla twirling in a floral dress in a sunlit meadow">
+        <figcaption>off the clock</figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- ===================== CTA ===================== -->
-  <section class="section" id="book">
-    <div class="container col reveal center-head">
-      <h2>If you've read this far, we should probably talk.</h2>
-      <p class="lede" style="margin: var(--s-3) 0 var(--s-4); max-width: 52ch;">Tell me what you're working on.
-        I'd love to hear about it. Fill out a short form, and I'll get back to you within two business days.
-        If it looks like a fit, we'll set up a call.</p>
-      <button type="button" class="btn" data-open-inquiry>Get in touch</button>
+  <section class="cash-close" id="book" aria-labelledby="book-h">
+    <div class="wrap">
+      <div class="paper-card reveal">
+        <h2 id="book-h">If you've read this far, we should probably talk.</h2>
+        <p>Tell me what you're working on. I'd love to hear about it. Fill out a short form, and I'll get back to you within
+          two business days. If it looks like a fit, we'll set up a call.</p>
+        <button type="button" class="btn" data-open-inquiry>Get in touch <span class="arr" aria-hidden="true">&#8599;</span></button>
+      </div>
     </div>
   </section>
 
   </main>
 
   <!-- ===================== FOOTER ===================== -->
-  <footer class="site-footer">
+  <footer class="site-footer dk">
     <a href="#top" class="back-to-top" aria-label="Back to top">Back to top <span aria-hidden="true">&uarr;</span></a>
     <div class="container">
       <div class="foot-grid">
