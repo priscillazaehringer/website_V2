@@ -52,12 +52,13 @@
     @media (max-width: 860px) { .work-grid { grid-template-columns: 1fr; } .portrait { max-width: 340px; } }
 
     /* beliefs */
-    .beliefs-head h2 { max-width: 14ch; }
-    .beliefs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); list-style: none; margin: clamp(48px, 6vw, 72px) 0 0; padding: 0; }
-    .beliefs li { padding-top: 24px; border-top: 3px solid var(--hi); }
-    .beliefs h3 { font-weight: 600; font-variation-settings: 'SOFT' 100, 'WONK' 1; font-size: clamp(1.4rem, 1.15rem + 0.8vw, 1.8rem); margin-bottom: 14px; }
+    .beliefs-head h2 { max-width: 18ch; }
+    .beliefs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(28px, 3.5vw, 48px); list-style: none; margin: clamp(48px, 6vw, 72px) 0 0; padding: 0; }
+    .belief-art { display: block; width: clamp(84px, 7vw, 104px); height: auto; margin-bottom: 22px; }
+    .beliefs h3 { font-weight: 600; font-variation-settings: 'SOFT' 100, 'WONK' 1; font-size: clamp(1.3rem, 1.1rem + 0.6vw, 1.6rem); margin-bottom: 14px; }
     .beliefs p { margin: 0; color: var(--muted); }
-    @media (max-width: 860px) { .beliefs { grid-template-columns: 1fr; gap: 40px; } }
+    @media (max-width: 1100px) { .beliefs { grid-template-columns: 1fr 1fr; row-gap: 56px; } }
+    @media (max-width: 600px) { .beliefs { grid-template-columns: 1fr; gap: 44px; } }
 
     /* off the clock: a board of pinned Polaroids */
     .offclock-head h2 { margin-bottom: 32px; }
@@ -204,17 +205,22 @@
   </section>
 
   <!-- ===================== BELIEFS ===================== -->
-  <section class="sec dk bg-mulberry" aria-labelledby="beliefs-h">
+  <section class="sec dk bg-mulberry" id="beliefs" aria-labelledby="beliefs-h">
     <div class="wrap">
-      <div class="beliefs-head reveal"><h2 id="beliefs-h">The hills I'll die on</h2></div>
+      <div class="beliefs-head reveal"><h2 id="beliefs-h">A few things I firmly believe</h2></div>
       <ul class="beliefs reveal">
-        <li><h3>Your podcast is a marketing tool, not a revenue stream.</h3>
-          <p>Sponsorships are nice, but the real value is that people get to know you before they ever book a call.</p></li>
-        <li><h3>Done and live beats perfect and stuck.</h3>
-          <p>A good-enough funnel that's live this month will teach you more than a perfect one still sitting in a Google Doc.</p></li>
-        <li><h3>Small businesses deserve good help too.</h3>
-          <p>A lot of good marketing help is priced for companies with a whole marketing department. I'd like the owner
-            who's doing it all themselves to have someone in their corner, too.</p></li>
+        <li><svg class="belief-art" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><circle cx="60" cy="60" r="58" fill="#254B3D"/><circle cx="60" cy="60" r="51" fill="none" stroke="#F3EBDD" stroke-opacity=".35"/><g fill="none" stroke="#F3EBDD" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="48" y="28" width="24" height="40" rx="12" fill="#E0C08A" stroke="#E0C08A"/><path d="M53 40h14M53 48h14M53 56h14" stroke="#254B3D" stroke-width="2.2"/><path d="M40 58a20 20 0 0 0 40 0M60 78v12M48 92h24"/></g></svg>
+          <h3>Your podcast doesn't need sponsors to be successful.</h3>
+          <p>For business owners, there's so much value in having a space where people can get to know you, hear how you think, and learn from you before they ever inquire about working with you.</p></li>
+        <li><svg class="belief-art" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><circle cx="60" cy="60" r="58" fill="#292622"/><circle cx="60" cy="60" r="51" fill="none" stroke="#F3EBDD" stroke-opacity=".35"/><g fill="none" stroke="#F3EBDD" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M30 62 L88 36 L74 86 L60 70 Z" fill="#E0C08A" stroke="#E0C08A"/><path d="M88 36 L60 70 L58 84" stroke="#292622" stroke-width="2.2"/><path d="M24 80c8-2 14-6 20-12M20 92c10-2 18-6 26-14" stroke="#F3EBDD" stroke-opacity=".7" stroke-dasharray="3 5"/></g></svg>
+          <h3>You don't have to have everything figured out before you start.</h3>
+          <p>I've seen business owners spend months overthinking a project that could already be out in the world. Sometimes, the best thing you can do is get it up and running, see what happens, and make adjustments along the way.</p></li>
+        <li><svg class="belief-art" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><circle cx="60" cy="60" r="58" fill="#254B3D"/><circle cx="60" cy="60" r="51" fill="none" stroke="#F3EBDD" stroke-opacity=".35"/><g fill="none" stroke="#F3EBDD" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M34 54v32h52V54"/><path d="M30 54l6-18h48l6 18z" fill="#E0C08A" stroke="#E0C08A"/><path d="M42 36v18M54 36v18M66 36v18M78 36v18" stroke="#292622" stroke-width="2"/><path d="M52 86V68h16v18"/><rect x="72" y="62" width="10" height="10" rx="1"/></g></svg>
+          <h3>Small businesses deserve good marketing support, too.</h3>
+          <p>You shouldn't need a full-time marketing team to have someone who understands your business and can help you move things forward. I know how much time, money, and energy goes into running a small business, and I don't take that lightly.</p></li>
+        <li><svg class="belief-art" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><circle cx="60" cy="60" r="58" fill="#C69B55"/><circle cx="60" cy="60" r="51" fill="none" stroke="#292622" stroke-opacity=".35"/><g fill="none" stroke="#292622" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="36" y="28" width="48" height="64" rx="4" fill="#F3EBDD" stroke="#F3EBDD"/><g stroke="#292622" stroke-width="2.4"><rect x="43" y="38" width="9" height="9" rx="1.5"/><path d="M45 42l2.5 3 5-7" stroke="#742D47" stroke-width="3"/><path d="M58 43h18"/><rect x="43" y="56" width="9" height="9" rx="1.5"/><path d="M58 61h18" stroke-opacity=".35"/><rect x="43" y="74" width="9" height="9" rx="1.5"/><path d="M58 79h18" stroke-opacity=".35"/></g></g></svg>
+          <h3>You don't need to do all the things.</h3>
+          <p>Just because another business owner is doing something doesn't mean you need to be doing it, too. I'd much rather help you figure out what makes sense for your business, your budget, and the amount of time you actually have.</p></li>
       </ul>
     </div>
   </section>
