@@ -8,10 +8,10 @@
   <!-- noindex while staging. Remove this tag at launch. -->
   <meta name="robots" content="noindex, nofollow">
   <title>Done-for-You Podcast Launch Service for Business Owners | The Signal</title>
-  <meta name="description" content="Launch a podcast for your business in 6 to 8 weeks. I plan the show, design the cover art, set up hosting, Apple Podcasts and Spotify, and hand you the workflows. $1,297.">
+  <meta name="description" content="The Signal is a done-for-you podcast launch for business owners: strategy, branding, technical setup, launch, and a production process you can keep using. $1,297, 6 to 8 weeks.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Done-for-You Podcast Launch Service for Business Owners | The Signal">
-  <meta property="og:description" content="A done-for-you podcast launch and handoff. I build it, get it live, and hand you a system simple enough to run yourself. Founding rate $1,297.">
+  <meta property="og:description" content="A done-for-you podcast launch for business owners: podcast strategy, branding, technical setup, launch preparation, and a documented production process. $1,297, 6 to 8 weeks.">
   <meta property="og:url" content="https://priscillazaehringer.com/services/podcast/">
   <link rel="preload" href="/assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -497,6 +497,32 @@
     .back-to-top { color: var(--hi) !important; }
     .foot-bottom { border-top-color: var(--rule); color: var(--muted); }
 
+
+    /* ================= Copy-led layout updates ================= */
+    .hero-head { grid-column: 1 / span 8; grid-row: 1; position: relative; z-index: 3; }
+    .hero-h1 { font-size: clamp(3rem, 1.3rem + 5.2vw, 6.6rem); font-weight: 600; line-height: 0.98; letter-spacing: -0.025em;
+      font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144; max-width: 11ch; }
+    .hero-h1 em { color: var(--gold); font-weight: 500; }
+    .hero-copy .lede { max-width: 44ch; margin: 0 0 16px; }
+    .hero-copy .hero-cta { margin-top: 30px; }
+    @media (max-width: 900px) { .hero-head { grid-column: 1 / -1; } .hero-h1 { font-size: clamp(2.7rem, 11vw, 4rem); } }
+
+    .notes-head h2 { max-width: 20ch; }
+    .notes-cols { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(32px, 6vw, 96px); margin-top: clamp(36px, 4vw, 56px); }
+    .notes-cols .lede { font-size: clamp(1.12rem, 1rem + 0.45vw, 1.32rem); line-height: 1.55; }
+    .notes-cols .lede b { font-weight: 600; color: var(--hi); }
+    .notes-cols .body { color: var(--muted); font-size: 1.06rem; }
+    @media (max-width: 860px) { .notes-cols { grid-template-columns: 1fr; } }
+
+    .side-a-main h2 { margin-bottom: clamp(40px, 5vw, 60px); max-width: 14ch; }
+    .side-b h2 { max-width: 20ch; }
+    .b-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px clamp(32px, 5vw, 72px); margin-top: 40px; }
+    .b-groups h3 { font-weight: 600; font-variation-settings: 'SOFT' 100; color: #E0C08A; font-size: 1.3rem; margin-bottom: 10px; }
+    .b-groups ul { list-style: none; margin: 0; padding: 0; }
+    .b-groups li { padding: 8px 0; border-bottom: 1px solid rgba(243,235,221,0.12); color: #F3EBDD; font-size: 1.06rem; }
+    @media (max-width: 560px) { .b-groups { grid-template-columns: 1fr; gap: 28px; } }
+    .producer .prod-text p:not(.tag):not(.lede) { color: var(--muted); }
+    .ad .small { max-width: 34ch; }
     /* ---- gentle reveal ---- */
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
     .reveal.in { opacity: 1; transform: none; }
@@ -551,30 +577,31 @@
       <span class="vt-icon" aria-hidden="true">&#10074;&#10074;</span><span class="vt-label">Pause video</span>
     </button>
     <div class="wrap hero-grid">
-      <h1 class="hero-title">
-        <span class="t-the">The</span>
-        <span class="t-signal">Signal</span>
-        <span class="t-dfy">A done-for-you podcast launch <em>for business owners.</em></span>
-      </h1>
+      <div class="hero-head">
+        <p class="tag">The Signal &middot; Done-for-you podcast launch</p>
+        <h1 class="hero-h1">Start a podcast that <em>supports your business.</em></h1>
+      </div>
       <div class="hero-copy">
-        <p class="tagline">Your business has something worth listening to.</p>
-        <p class="lede">For business owners who have something to say, but don't want to figure out all the moving pieces.
-          I plan the show, brand it, set up the tech and launch it, then hand you a system you can keep running.</p>
+        <p class="lede">You've been thinking about starting a podcast, but between running your business and figuring out
+          how to actually launch one, it hasn't happened yet.</p>
+        <p class="lede">I'll help you develop your show, create the branding, set up the technology, and get it published.
+          You'll also have a production process you can use long after we finish working together.</p>
         <div class="hero-cta">
-          <button type="button" class="btn btn-gold" data-open-inquiry>Let's build your show <span class="arr" aria-hidden="true">&#8599;</span></button>
-          <p class="hero-meta"><span>$1,297</span><span>6&ndash;8 weeks</span></p>
+          <button type="button" class="btn btn-gold" data-open-inquiry>Let's talk about your podcast <span class="arr" aria-hidden="true">&#8599;</span></button>
+          <p class="hero-meta"><span>$1,297</span><span>6&ndash;8 week launch</span></p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===================== IN ROTATION (portfolio) ===================== -->
-  <!-- TODO: add where the rankings come from (e.g. Listen Notes, and which show). -->
-  <section class="sec rotation dk" id="shows" style="padding-block: clamp(72px, 8vw, 112px);" aria-labelledby="shows-h">
+  <!-- TODO: confirm the ranking claim and name its source (e.g. Listen Notes, and which show). -->
+  <section class="sec rotation dk" id="shows" aria-labelledby="shows-h" style="padding-block: clamp(72px, 8vw, 112px);">
     <div class="wrap">
       <div class="rot-head reveal">
-        <div><p class="tag">In rotation</p><h2 id="shows-h">Shows I've <em>produced.</em></h2></div>
-        <p>Business, marketing, and healthcare podcasts, from launch strategy to week-to-week production.</p>
+        <div><p class="tag">In rotation</p><h2 id="shows-h">Shows I've <em>worked on.</em></h2></div>
+        <p>A look at some of the business, marketing, and healthcare podcasts I've supported through launch strategy,
+          production, and ongoing management.</p>
       </div>
       <ul class="crate reveal">
         <li><img src="/assets/img/show-brand-gravity.webp" width="447" height="447" loading="lazy" decoding="async" alt="The Brand Gravity Show with Kaye Putnam, podcast cover">
@@ -584,48 +611,50 @@
         <li><img src="/assets/img/show-jaw-talk.webp" width="600" height="600" loading="lazy" decoding="async" alt="Jaw Talk with Dr. Tiffany Lamberton, podcast cover">
           <span class="cap"><span class="name">Jaw Talk</span><span class="cat">Healthcare podcast</span></span></li>
       </ul>
-      <p class="charts-line reveal">Client shows rank in the <b>top 10%</b> of podcasts, and the highest-ranked sits in the <b>top 2.5%</b>.</p>
+      <p class="charts-line reveal">The podcasts I've worked on rank as high as the <b>top 2.5%</b> of podcasts globally.</p>
     </div>
   </section>
 
-  <!-- ===================== LINER NOTES ===================== -->
+  <!-- ===================== ABOUT THE OFFER ===================== -->
   <section class="sec notes dk" id="signal" aria-labelledby="signal-h">
-    <div class="wrap notes-grid">
-      <div class="notes-text reveal">
-        <p class="tag">Liner notes</p>
-        <h2 id="signal-h">A done-for-you podcast launch built around your <em>business.</em></h2>
-        <p class="lede">Most people get stuck before the first episode. Between microphones, hosting, branding,
-          Apple Podcasts, Spotify, YouTube, editing, and launch planning, there are dozens of decisions to make
-          before you ever hit record.</p>
-        <p class="body">That's the part I take care of. Over six to eight weeks, we plan your show, brand it, set up the
-          tech, and launch it, so you can focus on the part only you can do: having conversations worth
-          listening to. Done well, your podcast becomes the place future clients get to know you before they
-          ever book a call.</p>
+    <div class="wrap">
+      <div class="notes-head reveal">
+        <p class="tag">The Signal</p>
+        <h2 id="signal-h">There's more to launching a podcast than recording your <em>first episode.</em></h2>
       </div>
-      <figure class="notes-quote reveal">
-        <blockquote>Think of it like building a house. I'm the contractor. <span>When we're finished, you get the keys.</span></blockquote>
-      </figure>
+      <div class="notes-cols reveal">
+        <div>
+          <p class="lede">What are you going to talk about? How will the podcast support your business? Where will you host
+            it? And how will you find the time to keep producing episodes alongside everything else you're already doing?</p>
+          <p class="lede"><b>These are the things we'll work through together.</b></p>
+        </div>
+        <div class="body">
+          <p>I'll take care of the planning, branding, technical setup, and launch. We'll also establish a production process
+            that works with your schedule, your team, and the way you already run your business.</p>
+          <p>The goal is to give potential clients another way to discover your business, learn from you, and get to know
+            how you work before they ever reach out.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ===================== BACK OF THE SLEEVE ===================== -->
+  <!-- ===================== SIDE A + SIDE B ===================== -->
   <!-- TODO: week ranges are estimates inside the 6-8 week launch; adjust to match how Priscilla runs it. -->
   <section class="sec sleeve-back on-dark" id="included" aria-labelledby="sidea-h">
     <div class="wrap">
       <div class="side-a">
         <div class="side-a-main reveal">
           <p class="tag">Side A &middot; The build</p>
-          <h2 id="sidea-h">From idea to <em>on air.</em></h2>
-          <p>Six to eight weeks, starting with what the show is for and ending with your launch.</p>
+          <h2 id="sidea-h">Here's what we'll work on <em>together.</em></h2>
           <ol class="tracklist">
             <li><div class="row"><span class="no" aria-hidden="true">01</span><h3>Podcast strategy</h3><span class="dots" aria-hidden="true"></span><span class="time">Weeks 1&ndash;2</span></div>
-              <p>We figure out who the show is for, what it covers, the format, and how it connects to what you sell.</p></li>
+              <p>We'll define your audience, podcast name, topics, format, publishing frequency, and how the show fits into your broader marketing strategy.</p></li>
             <li><div class="row"><span class="no" aria-hidden="true">02</span><h3>Cover art &amp; branding</h3><span class="dots" aria-hidden="true"></span><span class="time">Weeks 2&ndash;4</span></div>
-              <p>Podcast cover art and a look and feel that matches your brand, so people recognize your show in any podcast app.</p></li>
+              <p>I'll create your podcast cover art and visual assets that complement your existing business branding.</p></li>
             <li><div class="row"><span class="no" aria-hidden="true">03</span><h3>Hosting &amp; technical setup</h3><span class="dots" aria-hidden="true"></span><span class="time">Weeks 3&ndash;6</span></div>
-              <p>Podcast hosting, your feed, and listings on Apple Podcasts, Spotify, and the other major platforms, plus recording and editing workflows that fit how you work.</p></li>
-            <li><div class="row"><span class="no" aria-hidden="true">04</span><h3>Launch day</h3><span class="dots" aria-hidden="true"></span><span class="time">Weeks 6&ndash;8</span></div>
-              <p>A launch plan, announcement emails, and launch assets, so your show goes out with a plan instead of a single episode and hope.</p></li>
+              <p>I'll set up your podcast hosting, RSS feed, and distribution to Apple Podcasts, Spotify, and other major podcast directories. We'll also work through your equipment, recording setup, and production process.</p></li>
+            <li><div class="row"><span class="no" aria-hidden="true">04</span><h3>Launch preparation</h3><span class="dots" aria-hidden="true"></span><span class="time">Weeks 6&ndash;8</span></div>
+              <p>I'll put together your launch schedule, promotional assets, and announcement emails, and coordinate getting your podcast live.</p></li>
           </ol>
         </div>
         <div class="side-a-disc"><svg class="disc" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle cx="200" cy="200" r="199" fill="#292622"/><circle cx="200" cy="200" r="76" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="79" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="82" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="85" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="88" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="91" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="94" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="97" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="100" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="103" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="106" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="109" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="112" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="115" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="118" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="121" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="124" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="127" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="130" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="133" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="136" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="139" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="142" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="145" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="148" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="151" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="154" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="157" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="160" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="163" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="166" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="169" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="172" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="175" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="178" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="181" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="184" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="187" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="190" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="193" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="104" fill="none" stroke="#151311" stroke-width="3.2"/><circle cx="200" cy="200" r="132" fill="none" stroke="#151311" stroke-width="3.2"/><circle cx="200" cy="200" r="161" fill="none" stroke="#151311" stroke-width="3.2"/><circle cx="200" cy="200" r="193" fill="none" stroke="#F3EBDD" stroke-opacity="0.12" stroke-width="1"/><path d="M200 200 L318 39 A199 199 0 0 1 378 118 Z" fill="#F3EBDD" fill-opacity="0.06"/><path d="M200 200 L82 361 A199 199 0 0 1 22 282 Z" fill="#F3EBDD" fill-opacity="0.05"/><circle cx="200" cy="200" r="68" fill="#742D47"/><circle cx="200" cy="200" r="61" fill="none" stroke="#C69B55" stroke-width="0.9"/><path id="lr-sa" d="M200 200 m-50 0 a50 50 0 1 1 100 0 a50 50 0 1 1 -100 0" fill="none"/><text font-family="DM Sans, sans-serif" font-size="7.6" font-weight="600" letter-spacing="2.4" fill="#C69B55"><textPath href="#lr-sa">THE SIGNAL · VOL. 01 · THE BUILD ·</textPath></text><text x="200" y="192" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="17" font-style="italic" fill="#F3EBDD">Side A</text><text x="200" y="224" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="7.5" font-weight="600" letter-spacing="2.2" fill="#C69B55">4 TRACKS</text><circle cx="200" cy="200" r="4.5" fill="#F3EBDD"/></svg></div>
@@ -633,14 +662,15 @@
       <div class="side-b reveal" id="handoff">
         <div>
           <p class="tag">Side B &middot; The handoff</p>
-          <h2>Everything you need to keep <em>publishing.</em></h2>
-          <p>Launching the show is only half the project. I also hand over the workflows, templates, and
-            documentation you (or your VA) need to keep going.</p>
-          <ol class="b-list">
-            <li>Publishing checklist</li><li>Recording workflow</li><li>Editing workflow</li><li>Show notes templates</li>
-            <li>Repurposing templates</li><li>Content calendar recommendations</li><li>SOPs for your VA</li><li>Guest onboarding process</li>
-            <li>Social media workflow</li><li>Launch assets</li><li>Announcement emails</li><li>Training session</li>
-          </ol>
+          <h2>You won't be left figuring out how to produce your <em>next episode.</em></h2>
+          <p>Whether you plan to manage your podcast yourself, hand it over to a team member, or continue working with me,
+            you'll have a documented process in place.</p>
+          <div class="b-groups">
+            <div><h3>Production</h3><ul><li>Publishing checklist</li><li>Recording workflow</li><li>Editing workflow</li></ul></div>
+            <div><h3>Content</h3><ul><li>Show notes templates</li><li>Repurposing templates</li><li>Content calendar recommendations</li></ul></div>
+            <div><h3>Operations</h3><ul><li>SOPs for your team</li><li>Guest onboarding process</li><li>Social media workflow</li></ul></div>
+            <div><h3>Launch &amp; training</h3><ul><li>Launch assets</li><li>Announcement emails</li><li>Handoff training session</li></ul></div>
+          </div>
         </div>
       </div>
     </div>
@@ -658,103 +688,107 @@
       <div class="prod-text reveal">
         <p class="tag">Produced by</p>
         <h2 id="about-h">Hi, I'm <em>Priscilla.</em></h2>
-        <p class="lede">I'm an operations person first, so when I produce a podcast I'm also thinking about how
-          you'll keep it going after launch.</p>
-        <p>I stepped into podcast production while working as an online business manager. At first I was
-          editing episodes. Before long I was shaping launch strategy, building workflows, coordinating
-          guests, and making sure every episode supported the business behind it.</p>
-        <p>What I learned is that most business owners don't need someone to "edit a podcast." They need
-          someone to set up a process they can keep using. That's what The Signal is.</p>
+        <p class="lede">I'm a business operations and marketing partner based in Iowa, and I've been working behind the
+          scenes of online businesses since 2020.</p>
+        <p>I got into podcast production through my work as an online business manager. What started with editing episodes
+          grew into planning launches, managing guest interviews, writing show notes, repurposing content, and overseeing the
+          entire production process.</p>
+        <p>Because of my background in business operations and marketing, I approach podcasting a little differently. I'm
+          thinking about how your podcast fits into your marketing, how your episodes can support your other content, and how
+          we can make production manageable for you and your team.</p>
+        <p>I've produced over 300 episodes across business, marketing, and healthcare podcasts, and I still love seeing a show
+          come together from its very first idea.</p>
         <dl class="credits">
           <div><dt>episodes produced</dt><dd>300+</dd></div>
-          <div><dt>producing since</dt><dd>2020</dd></div>
-          <div><dt>based in</dt><dd>Iowa</dd></div>
+          <div><dt>behind the scenes since</dt><dd>2020</dd></div>
         </dl>
         <a href="/about.html" class="link">More about me</a>
       </div>
     </div>
   </section>
 
-  <!-- ===================== THE PRINT AD ===================== -->
+  <!-- ===================== INVESTMENT ===================== -->
   <section class="sec pricing dk" id="pricing" aria-labelledby="price-h">
     <div class="wrap">
       <div class="ad reveal">
-        <div class="ad-strip"><span id="price-h">The Signal &middot; Vol. 01</span><span>the full launch</span></div>
+        <div class="ad-strip"><span id="price-h">The Signal</span><span>Podcast launch</span></div>
         <div class="ad-body">
           <div>
             <p class="price"><sup>$</sup>1,297</p>
-            <p class="sub">One price for the whole podcast launch.</p>
-            <button type="button" class="btn" data-open-inquiry>Let's build your show <span class="arr" aria-hidden="true">&#8599;</span></button>
-            <p class="small">You own everything from day one.</p>
+            <p class="sub">A complete, done-for-you podcast launch.</p>
+            <button type="button" class="btn" data-open-inquiry>Let's talk about your podcast <span class="arr" aria-hidden="true">&#8599;</span></button>
+            <p class="small">Your podcast and its accounts belong to you, and there's no ongoing commitment required.</p>
           </div>
           <div class="ad-list">
             <h3>What's included</h3>
             <ul>
               <li>Podcast strategy</li>
-              <li>Cover art and branding</li>
-              <li>Hosting and directory setup</li>
-              <li>Launch plan and assets</li>
-              <li>Workflows and training</li>
+              <li>Branding</li>
+              <li>Technical setup</li>
+              <li>Launch assets</li>
+              <li>Production workflows</li>
+              <li>Training</li>
             </ul>
           </div>
         </div>
       </div>
       <div class="encore reveal">
-        <h3>Want me to keep <em class="nw">producing it?</em></h3>
-        <p>Many clients do. After launch, you can roll into ongoing production and just show up to record
-          while I handle the rest. Either way, the systems are yours.</p>
+        <h3>Need help after <em>launch?</em></h3>
+        <p>I also offer ongoing podcast production. You can continue working with me after your launch if you'd prefer to
+          spend your time recording rather than managing production, publishing, and promotion.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== FIT ===================== -->
+  <!-- ===================== WHO IT'S FOR ===================== -->
   <section class="sec fit dk" id="fit" aria-labelledby="fit-h">
     <div class="wrap fit-grid">
-      <h2 id="fit-h" class="reveal">Is this a <em>fit?</em></h2>
+      <h2 id="fit-h" class="reveal">Is The Signal right <em>for you?</em></h2>
       <div class="fit-lists reveal">
-        <div><h3>This is for you if&hellip;</h3><ul>
-            <li>You already have a business you're proud of.</li>
-            <li>You want people to get to know you before they book a call.</li>
-            <li>You'd rather launch once, and launch well.</li>
-            <li>You can commit to recording on a regular schedule.</li>
-            <li>You're committed to showing up consistently.</li>
+        <div><h3>We'd be a good fit if&hellip;</h3>
+          <ul>
+            <li>You run a service-based business or personal brand.</li>
+            <li>You want to use podcasting as part of your marketing.</li>
+            <li>You have expertise you'd love to share beyond social media.</li>
+            <li>You want help developing your show, not just setting up the technology.</li>
+            <li>You have time to record episodes but need help with the rest.</li>
           </ul></div>
-        <div class="no"><h3>This probably isn't for you if&hellip;</h3><ul>
-            <li>You're looking for the cheapest way to start.</li>
-            <li>You only need someone to edit audio.</li>
-            <li>You aren't ready to publish regularly.</li>
-            <li>You're hoping podcast sponsorships will become your business model.</li>
+        <div class="no"><h3>You might need something different if&hellip;</h3>
+          <ul>
+            <li>You already have an established podcast and only need production support.</li>
+            <li>You're looking to start a podcast primarily as a hobby.</li>
+            <li>You're primarily interested in sponsorship revenue.</li>
+            <li>You aren't sure you have the time to commit to recording yet.</li>
           </ul></div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== BONUS TRACK (workbook) ===================== -->
+  <!-- ===================== FREE WORKBOOK ===================== -->
   <!-- TODO: set the real Kit opt-in URL on the button (currently "#"). -->
   <section class="bonus" aria-labelledby="wb-h">
     <div class="wrap bonus-grid">
       <div>
-        <p class="tag">Bonus track &middot; Free workbook</p>
-        <h2 id="wb-h">Thinking about a podcast? <em>Decide in 30 minutes.</em></h2>
-        <p>A short workbook to help you decide whether a podcast belongs in your marketing, before you buy a microphone.</p>
+        <p class="tag">Free resource</p>
+        <h2 id="wb-h">Would a podcast make sense for <em>your business?</em></h2>
+        <p>I created a short workbook to help you think through your podcast idea, your goals, and the time involved before
+          committing to a launch.</p>
       </div>
-      <a href="#" class="btn" data-kit-optin>Send me the workbook <span class="arr" aria-hidden="true">&#8599;</span></a>
+      <a href="#" class="btn" data-kit-optin>Get the free workbook <span class="arr" aria-hidden="true">&#8599;</span></a>
     </div>
   </section>
 
-  <!-- ===================== UP NEXT ===================== -->
+  <!-- ===================== NEXT STEPS ===================== -->
   <section class="sec next dk" id="next" aria-labelledby="next-h">
     <div class="wrap">
       <div class="next-head reveal">
-        <h2 id="next-h">What happens <em>next.</em></h2>
-        <p>Tell me about your business and the show you have in mind. I'll get back to you within two business days,
-          and if we're a fit, we'll hop on a call and map out your launch.</p>
+        <h2 id="next-h">How we'll get <em>started.</em></h2>
       </div>
       <ol class="cues reveal">
-        <li><h3>Submit an inquiry</h3><p>You tell me about your business.</p></li>
-        <li><h3>We get on a call</h3><p>We figure out if it's the right fit.</p></li>
-        <li><h3>Your launch plan</h3><p>A timeline for your show, with real dates.</p></li>
-        <li><h3>We build your show</h3><p>You walk away ready to run it.</p></li>
+        <li><h3>Get in touch</h3><p>Tell me a little about your business and what you're thinking for your podcast.</p></li>
+        <li><h3>Let's talk</h3><p>We'll discuss your ideas, goals, and what you'd need from me.</p></li>
+        <li><h3>Plan your project</h3><p>I'll send over your project details, deliverables, and proposed launch timeline.</p></li>
+        <li><h3>Get to work</h3><p>Once we're booked, we'll start developing your show.</p></li>
       </ol>
     </div>
   </section>
@@ -800,16 +834,15 @@
     </div>
   </section>
 
-  <!-- ===================== CLOSING ===================== -->
+  <!-- ===================== FINAL CTA ===================== -->
   <section class="sec closing on-dark" id="book" aria-labelledby="book-h">
     <div class="wrap closing-grid">
       <svg class="disc" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle cx="200" cy="200" r="199" fill="#292622"/><circle cx="200" cy="200" r="76" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="79" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="82" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="85" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="88" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="91" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="94" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="97" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="100" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="103" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="106" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="109" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="112" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="115" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="118" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="121" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="124" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="127" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="130" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="133" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="136" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="139" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="142" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="145" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="148" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="151" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="154" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="157" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="160" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="163" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="166" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="169" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="172" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="175" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="178" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="181" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="184" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="187" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="190" fill="none" stroke="#F3EBDD" stroke-opacity="0.04" stroke-width="0.8"/><circle cx="200" cy="200" r="193" fill="none" stroke="#F3EBDD" stroke-opacity="0.07" stroke-width="0.8"/><circle cx="200" cy="200" r="104" fill="none" stroke="#151311" stroke-width="3.2"/><circle cx="200" cy="200" r="132" fill="none" stroke="#151311" stroke-width="3.2"/><circle cx="200" cy="200" r="161" fill="none" stroke="#151311" stroke-width="3.2"/><circle cx="200" cy="200" r="193" fill="none" stroke="#F3EBDD" stroke-opacity="0.12" stroke-width="1"/><path d="M200 200 L318 39 A199 199 0 0 1 378 118 Z" fill="#F3EBDD" fill-opacity="0.06"/><path d="M200 200 L82 361 A199 199 0 0 1 22 282 Z" fill="#F3EBDD" fill-opacity="0.05"/><clipPath id="lp-cl"><circle cx="200" cy="200" r="68"/></clipPath><image href="/assets/img/about-hero-700.webp" x="122" y="122" width="156" height="156" preserveAspectRatio="xMidYMin slice" clip-path="url(#lp-cl)"/><circle cx="200" cy="200" r="68" fill="none" stroke="#C69B55" stroke-width="2"/><circle cx="200" cy="200" r="4.5" fill="#F3EBDD"/></svg>
       <div class="closing-text reveal">
-        <p class="tag">I take on a few launches each month</p>
-        <h2 id="book-h">Ready to build <em>your show?</em></h2>
-        <p>Tell me about your business and what you want to build. If we're a fit, we'll map out your launch.</p>
-        <button type="button" class="btn btn-paper" data-open-inquiry>Let's build your show <span class="arr" aria-hidden="true">&#8599;</span></button>
-        <p class="note hand" aria-hidden="true">can't wait to hear it!</p>
+        <p class="tag">I take on a limited number of launches each month</p>
+        <h2 id="book-h">Been thinking about starting <em>a podcast?</em></h2>
+        <p>I'd love to hear what you have in mind for your show and how I can help bring it together.</p>
+        <button type="button" class="btn btn-paper" data-open-inquiry>Get in touch <span class="arr" aria-hidden="true">&#8599;</span></button>
       </div>
     </div>
   </section>
@@ -1097,7 +1130,7 @@
         "@id": "https://priscillazaehringer.com/services/podcast/#service",
         "serviceType": "Podcast launch service",
         "name": "The Signal",
-        "description": "A done-for-you podcast launch and handoff. Strategy, branding, tech setup, and the first batch of episodes, plus a system simple enough to run yourself. Founding rate $1,297.",
+        "description": "A done-for-you podcast launch for business owners: podcast strategy, branding, technical setup, launch preparation, and a documented production process. $1,297, 6 to 8 weeks.",
         "provider": { "@id": "https://priscillazaehringer.com/#person" },
         "areaServed": "US",
         "url": "https://priscillazaehringer.com/services/podcast/"
