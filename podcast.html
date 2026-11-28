@@ -605,6 +605,13 @@
     @media (max-width: 860px) { .payoff-list { grid-template-columns: 1fr; gap: 40px; }
       .payoff-list li { display: grid; grid-template-columns: 84px 1fr; column-gap: 20px; align-items: start; }
       .payoff-art { grid-row: span 2; width: 84px; margin: 0; } }
+
+    /* ---- Photo break ---- */
+    .photo-break { position: relative; margin: 0; height: clamp(320px, 52vw, 640px); overflow: hidden; background: #1F1C19; }
+    .photo-break img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 52%; }
+    .photo-break::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(180deg, rgba(37,75,61,0.55) 0%, rgba(37,75,61,0) 22%, rgba(41,38,34,0) 78%, rgba(41,38,34,0.6) 100%); }
+    @media (max-width: 600px) { .photo-break { height: 300px; } .photo-break img { object-position: 42% 52%; } }
     /* ---- gentle reveal ---- */
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
     .reveal.in { opacity: 1; transform: none; }
@@ -770,6 +777,13 @@
       </div>
     </div>
   </section>
+
+  <!-- ===================== PHOTO BREAK ===================== -->
+  <figure class="photo-break">
+    <img src="/assets/img/recording-sign-1800.webp" srcset="/assets/img/recording-sign-900.webp 900w, /assets/img/recording-sign-1800.webp 1800w"
+         sizes="100vw" width="1800" height="1200" loading="lazy" decoding="async"
+         alt="A glowing red RECORDING sign on top of an old upright piano in a dim recording studio">
+  </figure>
 
   <!-- ===================== PRODUCED BY ===================== -->
   <section class="sec producer dk" id="about" aria-labelledby="about-h">
