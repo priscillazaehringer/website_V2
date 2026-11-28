@@ -78,17 +78,15 @@
     .board .polaroid figcaption { font-size: 1.25rem; }
     @media (max-width: 860px) { .board { grid-template-columns: 1fr 1fr; row-gap: 44px; } }
 
-    /* closing: solid mulberry, pheasant feathers tucked behind the card */
-    .feather-close { background: var(--mulberry); padding-block: clamp(96px, 12vw, 168px); overflow: hidden; }
-    .feather-close .paper-card { position: relative; box-shadow: 12px 12px 0 #3E1626; border-color: #3E1626; }
+    /* closing: mulberry with a vintage halftone overlay fading in from the corners */
+    .feather-close { position: relative; background: var(--mulberry); padding-block: clamp(96px, 12vw, 168px); overflow: hidden; isolation: isolate; }
+    .feather-close::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background-image: radial-gradient(circle, #4E1C30 0 2.2px, transparent 2.6px);
+      background-size: 11px 11px;
+      -webkit-mask-image: radial-gradient(ellipse at 0% 100%, #000 0%, transparent 55%), radial-gradient(ellipse at 100% 0%, #000 0%, transparent 50%);
+              mask-image: radial-gradient(ellipse at 0% 100%, #000 0%, transparent 55%), radial-gradient(ellipse at 100% 0%, #000 0%, transparent 50%); }
+    .feather-close .paper-card { box-shadow: 12px 12px 0 #3E1626; border-color: #3E1626; }
     .feather-close .paper-card h2 { max-width: 16ch; }
-    .feathers { position: absolute; right: -170px; bottom: -40px; width: 300px; height: 600px; z-index: -2; pointer-events: none; }
-    .feathers img { position: absolute; bottom: 0; height: 100%; width: auto; transform-origin: 50% 100%; }
-    .feathers img:first-child { left: 20px; rotate: 22deg; }
-    .feathers img:last-child { left: 60px; height: 80%; rotate: 44deg; }
-    .feather-close .paper-card { isolation: isolate; }
-    .feather-close .paper-card::before { content: ""; position: absolute; inset: 0; background: var(--paper); z-index: -1; }
-    @media (max-width: 760px) { .feathers { right: -60px; bottom: -30px; width: 170px; height: 340px; } .feathers img:first-child { left: 10px; } .feathers img:last-child { left: 34px; } }
     @media (max-width: 600px) { .feather-close .paper-card { box-shadow: 8px 8px 0 #3E1626; } }
   </style>
 </head>
@@ -268,7 +266,6 @@
   <section class="feather-close" id="book" aria-labelledby="book-h">
     <div class="wrap">
       <div class="paper-card reveal">
-        <span class="feathers" aria-hidden="true"><img src="/assets/img/pheasant-feather.svg" alt=""><img src="/assets/img/pheasant-feather.svg" alt=""></span>
         <h2 id="book-h">If you've read this far, we should probably talk.</h2>
         <p>Tell me what you're working on. I'd love to hear about it. Fill out a short form, and I'll get back to you within
           two business days. If it looks like a fit, we'll set up a call.</p>
